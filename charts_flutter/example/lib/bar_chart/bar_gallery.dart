@@ -108,174 +108,174 @@ const barChartWithCustomBarRadius = 'Bar Chart with custom bar radius';
 const barChartWithCustomBarRadiusSubtitle = 'Custom rounded bar corners';
 
 List<GalleryScaffold> buildGallery() => [
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.insert_chart),
-        title: simpleBarChartTileTitle,
-        subtitle: simpleBarChartTileSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? SimpleBarChart.withRandomData()
-            : SimpleBarChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.insert_chart),
-        title: stackedBarChartTileTitle,
-        subtitle: stackedBarChartTileSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? StackedBarChart.withRandomData()
-            : StackedBarChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.insert_chart),
-        title: groupedBarChartTileTitle,
-        subtitle: groupedBarChartTileSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? GroupedBarChart.withRandomData()
-            : GroupedBarChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.insert_chart),
-        title: groupedStackedBarChartTileTitle,
-        subtitle: groupedStackedBarChartTileSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? GroupedStackedBarChart.withRandomData()
-            : GroupedStackedBarChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.insert_chart),
-        title: groupedBarTargetLineChartTileTitle,
-        subtitle: groupedBarTargetLineChartTileSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? GroupedBarTargetLineChart.withRandomData()
-            : GroupedBarTargetLineChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.insert_chart),
-        title: groupedBarSingleTargetLineChartTileTitle,
-        subtitle: groupedBarSingleTargetLineChartTileSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? GroupedBarSingleTargetLineChart.withRandomData()
-            : GroupedBarSingleTargetLineChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.insert_chart),
-        title: stackedBarTargetLineChart,
-        subtitle: stackedBarTargetLineChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? StackedBarTargetLineChart.withRandomData()
-            : StackedBarTargetLineChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: Transform.rotate(
-          angle: 1.5708,
-          child: const Icon(Icons.insert_chart),
-        ),
-        title: horizontalBarChart,
-        subtitle: horizontalBarChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? HorizontalBarChart.withRandomData()
-            : HorizontalBarChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: Transform.rotate(
-          angle: 1.5708,
-          child: const Icon(Icons.insert_chart),
-        ),
-        title: stackedHorizontalBarChart,
-        subtitle: stackedHorizontalBarChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? StackedHorizontalBarChart.withRandomData()
-            : StackedHorizontalBarChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: Transform.rotate(
-          angle: 1.5708,
-          child: const Icon(Icons.insert_chart),
-        ),
-        title: horizontalBarLabelChart,
-        subtitle: horizontalBarLabelChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? HorizontalBarLabelChart.withRandomData()
-            : HorizontalBarLabelChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: Transform.rotate(
-          angle: 1.5708,
-          child: const Icon(Icons.insert_chart),
-        ),
-        title: horizontalBarLabelCustomChart,
-        subtitle: horizontalBarLabelCustomChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? HorizontalBarLabelCustomChart.withRandomData()
-            : HorizontalBarLabelCustomChart.createWithSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: Transform.rotate(
-          angle: 1.5708,
-          child: const Icon(Icons.insert_chart),
-        ),
-        title: verticalBarLabelChart,
-        subtitle: verticalBarLabelChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? VerticalBarLabelChart.withRandomData()
-            : VerticalBarLabelChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.insert_chart),
-        title: sparkBarChart,
-        subtitle: sparkBarChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? SparkBar.withRandomData()
-            : SparkBar.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.insert_chart),
-        title: groupedFillColorChart,
-        subtitle: groupedFillColorChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? GroupedFillColorBarChart.withRandomData()
-            : GroupedFillColorBarChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.insert_chart),
-        title: stackedFillColorChart,
-        subtitle: stackedFillColorChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? StackedFillColorBarChart.withRandomData()
-            : StackedFillColorBarChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.insert_chart),
-        title: patternForwardHatchChart,
-        subtitle: patternForwardHatchChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? PatternForwardHatchBarChart.withRandomData()
-            : PatternForwardHatchBarChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: Transform.rotate(
-          angle: 1.5708,
-          child: const Icon(Icons.insert_chart),
-        ),
-        title: horizontalPatternForwardHatchChart,
-        subtitle: horizontalPatternForwardHatchChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? HorizontalPatternForwardHatchBarChart.withRandomData()
-            : HorizontalPatternForwardHatchBarChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.insert_chart),
-        title: weightedPatternChart,
-        subtitle: weightedPatternChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? GroupedStackedWeightPatternBarChart.withRandomData()
-            : GroupedStackedWeightPatternBarChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.insert_chart),
-        title: barChartWithCustomBarRadius,
-        subtitle: barChartWithCustomBarRadiusSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? CustomRoundedBars.withRandomData()
-            : CustomRoundedBars.withSampleData(),
-      ),
-    ];
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.insert_chart),
+    title: simpleBarChartTileTitle,
+    subtitle: simpleBarChartTileSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? SimpleBarChart.withRandomData()
+        : SimpleBarChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.insert_chart),
+    title: stackedBarChartTileTitle,
+    subtitle: stackedBarChartTileSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? StackedBarChart.withRandomData()
+        : StackedBarChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.insert_chart),
+    title: groupedBarChartTileTitle,
+    subtitle: groupedBarChartTileSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? GroupedBarChart.withRandomData()
+        : GroupedBarChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.insert_chart),
+    title: groupedStackedBarChartTileTitle,
+    subtitle: groupedStackedBarChartTileSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? GroupedStackedBarChart.withRandomData()
+        : GroupedStackedBarChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.insert_chart),
+    title: groupedBarTargetLineChartTileTitle,
+    subtitle: groupedBarTargetLineChartTileSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? GroupedBarTargetLineChart.withRandomData()
+        : GroupedBarTargetLineChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.insert_chart),
+    title: groupedBarSingleTargetLineChartTileTitle,
+    subtitle: groupedBarSingleTargetLineChartTileSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? GroupedBarSingleTargetLineChart.withRandomData()
+        : GroupedBarSingleTargetLineChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.insert_chart),
+    title: stackedBarTargetLineChart,
+    subtitle: stackedBarTargetLineChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? StackedBarTargetLineChart.withRandomData()
+        : StackedBarTargetLineChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: Transform.rotate(
+      angle: 1.5708,
+      child: const Icon(Icons.insert_chart),
+    ),
+    title: horizontalBarChart,
+    subtitle: horizontalBarChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? HorizontalBarChart.withRandomData()
+        : HorizontalBarChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: Transform.rotate(
+      angle: 1.5708,
+      child: const Icon(Icons.insert_chart),
+    ),
+    title: stackedHorizontalBarChart,
+    subtitle: stackedHorizontalBarChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? StackedHorizontalBarChart.withRandomData()
+        : StackedHorizontalBarChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: Transform.rotate(
+      angle: 1.5708,
+      child: const Icon(Icons.insert_chart),
+    ),
+    title: horizontalBarLabelChart,
+    subtitle: horizontalBarLabelChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? HorizontalBarLabelChart.withRandomData()
+        : HorizontalBarLabelChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: Transform.rotate(
+      angle: 1.5708,
+      child: const Icon(Icons.insert_chart),
+    ),
+    title: horizontalBarLabelCustomChart,
+    subtitle: horizontalBarLabelCustomChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? HorizontalBarLabelCustomChart.withRandomData()
+        : HorizontalBarLabelCustomChart.createWithSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: Transform.rotate(
+      angle: 1.5708,
+      child: const Icon(Icons.insert_chart),
+    ),
+    title: verticalBarLabelChart,
+    subtitle: verticalBarLabelChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? VerticalBarLabelChart.withRandomData()
+        : VerticalBarLabelChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.insert_chart),
+    title: sparkBarChart,
+    subtitle: sparkBarChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? SparkBar.withRandomData()
+        : SparkBar.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.insert_chart),
+    title: groupedFillColorChart,
+    subtitle: groupedFillColorChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? GroupedFillColorBarChart.withRandomData()
+        : GroupedFillColorBarChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.insert_chart),
+    title: stackedFillColorChart,
+    subtitle: stackedFillColorChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? StackedFillColorBarChart.withRandomData()
+        : StackedFillColorBarChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.insert_chart),
+    title: patternForwardHatchChart,
+    subtitle: patternForwardHatchChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? PatternForwardHatchBarChart.withRandomData()
+        : PatternForwardHatchBarChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: Transform.rotate(
+      angle: 1.5708,
+      child: const Icon(Icons.insert_chart),
+    ),
+    title: horizontalPatternForwardHatchChart,
+    subtitle: horizontalPatternForwardHatchChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? HorizontalPatternForwardHatchBarChart.withRandomData()
+        : HorizontalPatternForwardHatchBarChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.insert_chart),
+    title: weightedPatternChart,
+    subtitle: weightedPatternChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? GroupedStackedWeightPatternBarChart.withRandomData()
+        : GroupedStackedWeightPatternBarChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.insert_chart),
+    title: barChartWithCustomBarRadius,
+    subtitle: barChartWithCustomBarRadiusSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? CustomRoundedBars.withRandomData()
+        : CustomRoundedBars.withSampleData(),
+  ),
+];

@@ -44,21 +44,19 @@ class MaterialStyle implements Style {
   LineStyle createAxisLineStyle(
     GraphicsFactory graphicsFactory,
     LineStyleSpec? spec,
-  ) =>
-      graphicsFactory.createLinePaint()
-        ..color = spec?.color ?? MaterialPalette.gray.shadeDefault
-        ..dashPattern = spec?.dashPattern
-        ..strokeWidth = spec?.thickness ?? 1;
+  ) => graphicsFactory.createLinePaint()
+    ..color = spec?.color ?? MaterialPalette.gray.shadeDefault
+    ..dashPattern = spec?.dashPattern
+    ..strokeWidth = spec?.thickness ?? 1;
 
   @override
   LineStyle createTickLineStyle(
     GraphicsFactory graphicsFactory,
     LineStyleSpec? spec,
-  ) =>
-      graphicsFactory.createLinePaint()
-        ..color = spec?.color ?? MaterialPalette.gray.shadeDefault
-        ..dashPattern = spec?.dashPattern
-        ..strokeWidth = spec?.thickness ?? 1;
+  ) => graphicsFactory.createLinePaint()
+    ..color = spec?.color ?? MaterialPalette.gray.shadeDefault
+    ..dashPattern = spec?.dashPattern
+    ..strokeWidth = spec?.thickness ?? 1;
 
   @override
   int get tickLength => 3;
@@ -70,11 +68,10 @@ class MaterialStyle implements Style {
   LineStyle createGridlineStyle(
     GraphicsFactory graphicsFactory,
     LineStyleSpec? spec,
-  ) =>
-      graphicsFactory.createLinePaint()
-        ..color = spec?.color ?? MaterialPalette.gray.shade300
-        ..dashPattern = spec?.dashPattern
-        ..strokeWidth = spec?.thickness ?? 1;
+  ) => graphicsFactory.createLinePaint()
+    ..color = spec?.color ?? MaterialPalette.gray.shade300
+    ..dashPattern = spec?.dashPattern
+    ..strokeWidth = spec?.thickness ?? 1;
 
   @override
   Color get arcLabelOutsideLeaderLine => MaterialPalette.gray.shade600;

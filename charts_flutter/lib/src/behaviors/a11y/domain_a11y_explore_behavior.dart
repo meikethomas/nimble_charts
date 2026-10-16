@@ -15,7 +15,8 @@
 
 import 'package:nimble_charts/src/behaviors/chart_behavior.dart'
     show ChartBehavior, GestureType;
-import 'package:nimble_charts_common/common.dart' as common
+import 'package:nimble_charts_common/common.dart'
+    as common
     show
         ChartBehavior,
         DomainA11yExploreBehavior,
@@ -110,10 +111,10 @@ class DomainA11yExploreBehavior<D> extends ChartBehavior<D> {
 
   @override
   int get hashCode => Object.hash(
-        minimumWidth,
-        vocalizationCallback,
-        exploreModeTrigger,
-        exploreModeEnabledAnnouncement,
-        exploreModeDisabledAnnouncement,
-      );
+    minimumWidth,
+    vocalizationCallback,
+    exploreModeTrigger,
+    exploreModeEnabledAnnouncement,
+    exploreModeDisabledAnnouncement,
+  );
 }

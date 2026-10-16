@@ -143,19 +143,19 @@ abstract class BaseTickDrawStrategy<D> implements TickDrawStrategy<D> {
     int? minimumPaddingBetweenLabelsPx,
     int? labelRotation,
     int? labelCollisionRotation,
-  })  : labelStyle = graphicsFactory.createTextPaint(),
-        axisLineStyle = graphicsFactory.createLinePaint(),
-        _defaultTickLabelAnchor = labelAnchor ?? TickLabelAnchor.centered,
-        tickLabelJustification =
-            labelJustification ?? TickLabelJustification.inside,
-        _rotateOnCollision = labelCollisionRotation != null,
-        minimumPaddingBetweenLabelsPx = minimumPaddingBetweenLabelsPx ?? 50,
-        _labelDefaultOffsetFromAxisPx = labelOffsetFromAxisPx ?? 5,
-        _labelDefaultOffsetFromTickPx = labelOffsetFromTickPx ?? 5,
-        _labelDefaultRotation = labelRotation ?? 0,
-        _labelCollisionOffsetFromAxisPx = labelCollisionOffsetFromAxisPx ?? 5,
-        _labelCollisionOffsetFromTickPx = labelCollisionOffsetFromTickPx ?? 5,
-        _labelCollisionRotation = labelCollisionRotation ?? 0 {
+  }) : labelStyle = graphicsFactory.createTextPaint(),
+       axisLineStyle = graphicsFactory.createLinePaint(),
+       _defaultTickLabelAnchor = labelAnchor ?? TickLabelAnchor.centered,
+       tickLabelJustification =
+           labelJustification ?? TickLabelJustification.inside,
+       _rotateOnCollision = labelCollisionRotation != null,
+       minimumPaddingBetweenLabelsPx = minimumPaddingBetweenLabelsPx ?? 50,
+       _labelDefaultOffsetFromAxisPx = labelOffsetFromAxisPx ?? 5,
+       _labelDefaultOffsetFromTickPx = labelOffsetFromTickPx ?? 5,
+       _labelDefaultRotation = labelRotation ?? 0,
+       _labelCollisionOffsetFromAxisPx = labelCollisionOffsetFromAxisPx ?? 5,
+       _labelCollisionOffsetFromTickPx = labelCollisionOffsetFromTickPx ?? 5,
+       _labelCollisionRotation = labelCollisionRotation ?? 0 {
     labelStyle
       ..color = labelStyleSpec?.color ?? StyleFactory.style.tickColor
       ..fontFamily = labelStyleSpec?.fontFamily
@@ -192,23 +192,23 @@ abstract class BaseTickDrawStrategy<D> implements TickDrawStrategy<D> {
 
   int labelRotation({required bool collision}) =>
       collision && _rotateOnCollision
-          ? _labelCollisionRotation
-          : _labelDefaultRotation;
+      ? _labelCollisionRotation
+      : _labelDefaultRotation;
 
   int labelOffsetFromAxisPx({required bool collision}) =>
       collision && _rotateOnCollision
-          ? _labelCollisionOffsetFromAxisPx
-          : _labelDefaultOffsetFromAxisPx;
+      ? _labelCollisionOffsetFromAxisPx
+      : _labelDefaultOffsetFromAxisPx;
 
   int labelOffsetFromTickPx({required bool collision}) =>
       collision && _rotateOnCollision
-          ? _labelCollisionOffsetFromTickPx
-          : _labelDefaultOffsetFromTickPx;
+      ? _labelCollisionOffsetFromTickPx
+      : _labelDefaultOffsetFromTickPx;
 
   TickLabelAnchor tickLabelAnchor({required bool collision}) =>
       collision && _rotateOnCollision
-          ? TickLabelAnchor.after
-          : _defaultTickLabelAnchor;
+      ? TickLabelAnchor.after
+      : _defaultTickLabelAnchor;
 
   @override
   void decorateTicks(List<Tick<D>> ticks) {
@@ -241,13 +241,17 @@ abstract class BaseTickDrawStrategy<D> implements TickDrawStrategy<D> {
     AxisOrientation orientation, {
     bool collision = false,
   }) {
-    final isVertical = orientation == AxisOrientation.right ||
+    final isVertical =
+        orientation == AxisOrientation.right ||
         orientation == AxisOrientation.left;
-    final rotationRelativeToAxis =
-        labelRotation(collision: collision).toDouble();
-    final rotationRads =
-        _degToRad(rotationRelativeToAxis - (isVertical ? 90 : 0)).abs();
-    final availableSpace = (isVertical ? maxWidth : maxHeight) -
+    final rotationRelativeToAxis = labelRotation(
+      collision: collision,
+    ).toDouble();
+    final rotationRads = _degToRad(
+      rotationRelativeToAxis - (isVertical ? 90 : 0),
+    ).abs();
+    final availableSpace =
+        (isVertical ? maxWidth : maxHeight) -
         labelOffsetFromAxisPx(collision: collision);
     final maxTextWidth = sin(rotationRads) == 0
         ? null
@@ -281,17 +285,19 @@ abstract class BaseTickDrawStrategy<D> implements TickDrawStrategy<D> {
       );
     }
 
-    final vertical = orientation == AxisOrientation.left ||
+    final vertical =
+        orientation == AxisOrientation.left ||
         orientation == AxisOrientation.right;
 
-    ticks = [
-      for (final tick in ticks)
-        if (tick.locationPx != null) tick,
-    ]
-
-      // First sort ticks by smallest locationPx first (NOT sorted by value).
-      // This allows us to only check if a tick collides with the previous tick.
-      ..sort((a, b) => a.locationPx!.compareTo(b.locationPx!));
+    ticks =
+        [
+            for (final tick in ticks)
+              if (tick.locationPx != null) tick,
+          ]
+          // First sort ticks by smallest locationPx first (NOT by value).
+          // This allows us to check only whether a tick collides with the
+          // previous tick.
+          ..sort((a, b) => a.locationPx!.compareTo(b.locationPx!));
 
     var previousEnd = double.negativeInfinity;
     var collides = false;
@@ -301,7 +307,8 @@ abstract class BaseTickDrawStrategy<D> implements TickDrawStrategy<D> {
       final tickLocationPx = tick.locationPx!;
 
       if (vertical) {
-        final adjustedHeight = (tickSize?.verticalSliceWidth ?? 0.0) +
+        final adjustedHeight =
+            (tickSize?.verticalSliceWidth ?? 0.0) +
             minimumPaddingBetweenLabelsPx;
 
         if (_defaultTickLabelAnchor == TickLabelAnchor.inside) {
@@ -336,7 +343,8 @@ abstract class BaseTickDrawStrategy<D> implements TickDrawStrategy<D> {
           identical(tick, ticks.first),
           identical(tick, ticks.last),
         );
-        final adjustedWidth = (tickSize?.horizontalSliceWidth ?? 0.0) +
+        final adjustedWidth =
+            (tickSize?.horizontalSliceWidth ?? 0.0) +
             minimumPaddingBetweenLabelsPx;
         switch (textDirection) {
           case TextDirection.ltr:
@@ -490,8 +498,8 @@ abstract class BaseTickDrawStrategy<D> implements TickDrawStrategy<D> {
         y = orientation == AxisOrientation.bottom
             ? axisBounds.top + labelOffsetFromAxisPx(collision: collision)
             : axisBounds.bottom -
-                (labelHeight.toInt() - multiLineLabelOffset) -
-                labelOffsetFromAxisPx(collision: collision);
+                  (labelHeight.toInt() - multiLineLabelOffset) -
+                  labelOffsetFromAxisPx(collision: collision);
 
         final direction = _normalizeHorizontalAnchor(
           tickLabelAnchor(collision: collision),
@@ -504,15 +512,17 @@ abstract class BaseTickDrawStrategy<D> implements TickDrawStrategy<D> {
 
         switch (direction) {
           case TextDirection.rtl:
-            x = (locationPx +
-                    labelOffsetFromTickPx(collision: collision) +
-                    labelOffsetPx)
-                .toInt();
+            x =
+                (locationPx +
+                        labelOffsetFromTickPx(collision: collision) +
+                        labelOffsetPx)
+                    .toInt();
           case TextDirection.ltr:
-            x = (locationPx -
-                    labelOffsetFromTickPx(collision: collision) -
-                    labelOffsetPx)
-                .toInt();
+            x =
+                (locationPx -
+                        labelOffsetFromTickPx(collision: collision) -
+                        labelOffsetPx)
+                    .toInt();
           case TextDirection.center:
             x = (locationPx - labelOffsetPx).toInt();
         }
@@ -542,16 +552,18 @@ abstract class BaseTickDrawStrategy<D> implements TickDrawStrategy<D> {
           isLast,
         )) {
           case PixelVerticalDirection.over:
-            y = (locationPx -
-                    (labelHeight - multiLineLabelOffset) -
-                    labelOffsetFromTickPx(collision: collision) -
-                    labelOffsetPx)
-                .toInt();
+            y =
+                (locationPx -
+                        (labelHeight - multiLineLabelOffset) -
+                        labelOffsetFromTickPx(collision: collision) -
+                        labelOffsetPx)
+                    .toInt();
           case PixelVerticalDirection.under:
-            y = (locationPx +
-                    labelOffsetFromTickPx(collision: collision) +
-                    labelOffsetPx)
-                .toInt();
+            y =
+                (locationPx +
+                        labelOffsetFromTickPx(collision: collision) +
+                        labelOffsetPx)
+                    .toInt();
           case PixelVerticalDirection.center:
             y = (locationPx - labelHeight / 2 + labelOffsetPx).toInt();
         }
@@ -678,8 +690,9 @@ abstract class BaseTickDrawStrategy<D> implements TickDrawStrategy<D> {
   List<TextElement> splitLabel(TextElement wholeLabel) => wholeLabel.text
       .split(_labelSplitPattern)
       .map(
-        (line) => (graphicsFactory.createTextElement(line.trim())
-          ..textStyle = wholeLabel.textStyle),
+        (line) =>
+            (graphicsFactory.createTextElement(line.trim())
+              ..textStyle = wholeLabel.textStyle),
       )
       .toList();
 
@@ -700,8 +713,4 @@ abstract class BaseTickDrawStrategy<D> implements TickDrawStrategy<D> {
   }
 }
 
-enum PixelVerticalDirection {
-  over,
-  center,
-  under,
-}
+enum PixelVerticalDirection { over, center, under }

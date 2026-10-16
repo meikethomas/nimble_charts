@@ -180,7 +180,7 @@ abstract class Legend<D> implements ChartBehavior<D>, LayoutView {
     // Also update legend entries if the series list has changed.
     if (legendState._selectionModel != selectionModel ||
         _postProcessSeriesList != seriesList) {
-      final customEntryOrder = this._customEntryOrder;
+      final customEntryOrder = _customEntryOrder;
       if (customEntryOrder != null) {
         _currentSeriesList.sort((a, b) {
           final aIndex = customEntryOrder.indexOf(a.id);
@@ -198,8 +198,9 @@ abstract class Legend<D> implements ChartBehavior<D>, LayoutView {
       }
 
       legendState
-        .._legendEntries =
-            legendEntryGenerator.getLegendEntries(_currentSeriesList)
+        .._legendEntries = legendEntryGenerator.getLegendEntries(
+          _currentSeriesList,
+        )
         .._selectionModel = selectionModel;
       _postProcessSeriesList = seriesList;
       _updateLegendEntries(seriesList: seriesList);
@@ -264,10 +265,10 @@ abstract class Legend<D> implements ChartBehavior<D>, LayoutView {
 
   @override
   LayoutViewConfig get layoutConfig => LayoutViewConfig(
-        position: _layoutPosition,
-        positionOrder: LayoutViewPositionOrder.legend,
-        paintOrder: LayoutViewPaintOrder.legend,
-      );
+    position: _layoutPosition,
+    positionOrder: LayoutViewPositionOrder.legend,
+    paintOrder: LayoutViewPaintOrder.legend,
+  );
 
   /// Get layout position from legend position.
   LayoutPosition get _layoutPosition =>
@@ -320,10 +321,10 @@ class LegendCellPadding {
     this.topPct,
     this.rightPct,
     this.bottomPct,
-  )   : leftPx = null,
-        topPx = null,
-        rightPx = null,
-        bottomPx = null;
+  ) : leftPx = null,
+      topPx = null,
+      rightPx = null,
+      bottomPx = null;
 
   /// Creates padding in pixels from the left, top, right, and bottom.
   const LegendCellPadding.fromLTRBPx(
@@ -331,10 +332,10 @@ class LegendCellPadding {
     this.topPx,
     this.rightPx,
     this.bottomPx,
-  )   : leftPct = null,
-        topPct = null,
-        rightPct = null,
-        bottomPct = null;
+  ) : leftPct = null,
+      topPct = null,
+      rightPct = null,
+      bottomPct = null;
 
   /// Creates padding in percents from the top, right, bottom, and left.
   const LegendCellPadding.fromTRBLPct(
@@ -342,10 +343,10 @@ class LegendCellPadding {
     this.rightPct,
     this.bottomPct,
     this.leftPct,
-  )   : topPx = null,
-        rightPx = null,
-        bottomPx = null,
-        leftPx = null;
+  ) : topPx = null,
+      rightPx = null,
+      bottomPx = null,
+      leftPx = null;
 
   /// Creates padding in pixels from the top, right, bottom, and left.
   const LegendCellPadding.fromTRBLPx(
@@ -353,10 +354,10 @@ class LegendCellPadding {
     this.rightPx,
     this.bottomPx,
     this.leftPx,
-  )   : topPct = null,
-        rightPct = null,
-        bottomPct = null,
-        leftPct = null;
+  ) : topPct = null,
+      rightPct = null,
+      bottomPct = null,
+      leftPct = null;
 
   /// Creates cell padding where all the offsets are `value` in percent.
   ///
@@ -368,7 +369,7 @@ class LegendCellPadding {
   /// const LegendCellPadding.allPct(8.0)
   /// ```
   const LegendCellPadding.allPct(double value)
-      : this.fromLTRBPct(value, value, value, value);
+    : this.fromLTRBPct(value, value, value, value);
 
   /// Creates cell padding where all the offsets are `value` in pixels.
   ///
@@ -380,7 +381,7 @@ class LegendCellPadding {
   /// const LegendCellPadding.allPx(8.0)
   /// ```
   const LegendCellPadding.allPx(double value)
-      : this.fromLTRBPx(value, value, value, value);
+    : this.fromLTRBPx(value, value, value, value);
   final double? bottomPct;
   final double? bottomPx;
   final double? leftPct;

@@ -67,8 +67,10 @@ class LinearScaleFunction {
     // Determine the stepSize and reserved range values.
     // The percentage of the step reserved from the scale's range due to the
     // possible half step at the start and end.
-    final reservedRangePercentOfStep =
-        getStepReservationPercent(hasHalfStepAtStart, hasHalfStepAtEnd);
+    final reservedRangePercentOfStep = getStepReservationPercent(
+      hasHalfStepAtStart,
+      hasHalfStepAtEnd,
+    );
     _updateStepSizeAndScaleFactor(
       viewportSettings,
       domainInfo,
@@ -112,10 +114,12 @@ class LinearScaleFunction {
           domainInfo.extent.min == domainInfo.dataDomainStart;
       // The pixel shift of the scale function due to the half a step at the
       // beginning.
-      final reservedRangePixelShift =
-          hasHalfStepAtStart ? (stepSizePixels / 2.0) : 0.0;
+      final reservedRangePixelShift = hasHalfStepAtStart
+          ? (stepSizePixels / 2.0)
+          : 0.0;
 
-      rangeTranslate = viewportSettings.range!.start +
+      rangeTranslate =
+          viewportSettings.range!.start +
           viewportSettings.translatePx +
           reservedRangePixelShift;
     }
@@ -166,10 +170,11 @@ class LinearScaleFunction {
     if (rangeBandConfig.type != RangeBandType.none) {
       switch (stepSizeConfig.type) {
         case StepSizeType.autoDetect:
-          final minimumDetectedDomainStep =
-              domainInfo.minimumDetectedDomainStep.toDouble();
+          final minimumDetectedDomainStep = domainInfo.minimumDetectedDomainStep
+              .toDouble();
           if (minimumDetectedDomainStep.isFinite) {
-            scalingFactor = viewportSettings.scalingFactor *
+            scalingFactor =
+                viewportSettings.scalingFactor *
                 (rangeDiff /
                     (domainDiff +
                         (minimumDetectedDomainStep *
@@ -187,8 +192,8 @@ class LinearScaleFunction {
           scalingFactor = domainDiff == 0
               ? 1.0
               : viewportSettings.scalingFactor *
-                  (rangeDiff - reservedRangeForStepPixels) /
-                  domainDiff;
+                    (rangeDiff - reservedRangeForStepPixels) /
+                    domainDiff;
           return;
         case StepSizeType.fixedDomain:
           final domainStepWidth = stepSizeConfig.size;

@@ -35,10 +35,8 @@ class MonthTimeStepper extends BaseTimeStepper {
     return MonthTimeStepper._internal(dateTimeFactory, allowedTickIncrements);
   }
 
-  MonthTimeStepper._internal(
-    super.dateTimeFactory,
-    List<int> increments,
-  ) : _allowedTickIncrements = increments;
+  MonthTimeStepper._internal(super.dateTimeFactory, List<int> increments)
+    : _allowedTickIncrements = increments;
   static const _defaultIncrements = [1, 2, 3, 4, 6, 12];
 
   final List<int> _allowedTickIncrements;

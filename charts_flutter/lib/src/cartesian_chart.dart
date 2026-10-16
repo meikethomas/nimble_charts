@@ -18,7 +18,8 @@ import 'dart:collection' show LinkedHashMap;
 import 'package:meta/meta.dart' show immutable, protected;
 import 'package:nimble_charts/src/base_chart.dart' show BaseChart;
 import 'package:nimble_charts/src/base_chart_state.dart' show BaseChartState;
-import 'package:nimble_charts_common/common.dart' as common
+import 'package:nimble_charts_common/common.dart'
+    as common
     show AxisSpec, BaseChart, CartesianChart, NumericAxis, NumericAxisSpec;
 
 /// Base class for all cartesian charts.

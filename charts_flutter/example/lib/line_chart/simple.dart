@@ -27,9 +27,8 @@ class SimpleLineChart extends StatelessWidget {
   const SimpleLineChart(this.seriesList, {super.key, this.animate = true});
 
   /// Creates a [charts.LineChart] with sample data and no transition.
-  factory SimpleLineChart.withSampleData() => SimpleLineChart(
-        _createSampleData(),
-      );
+  factory SimpleLineChart.withSampleData() =>
+      SimpleLineChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.

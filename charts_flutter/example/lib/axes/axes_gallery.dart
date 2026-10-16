@@ -100,135 +100,135 @@ const kDisjointMeasureAxesTitle = 'Disjoint Measure Axes';
 const kDisjointMeasureAxesSubtitle = 'Line chart with disjoint measure axes';
 
 List<GalleryScaffold> buildGallery() => [
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.insert_chart),
-        title: kBarChartWithSecondaryAxisTitle,
-        subtitle: kBarChartWithSecondaryAxisSubtitle,
-        childBuilder: appState.value.useRandomData
-            ? BarChartWithSecondaryAxis.withRandomData
-            : BarChartWithSecondaryAxis.withSampleData,
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.insert_chart),
-        title: kBarChartWithSecondaryAxisOnlyTitle,
-        subtitle: kBarChartWithSecondaryAxisOnlySubtitle,
-        childBuilder: appState.value.useRandomData
-            ? BarChartWithSecondaryAxisOnly.withRandomData
-            : BarChartWithSecondaryAxisOnly.withSampleData,
-      ),
-      GalleryScaffold(
-        listTileIcon: Transform.rotate(
-          angle: 1.5708,
-          child: const Icon(Icons.insert_chart),
-        ),
-        title: kHorizontalBarChartWithSecondaryAxisTitle,
-        subtitle: kHorizontalBarChartWithSecondaryAxisSubtitle,
-        childBuilder: appState.value.useRandomData
-            ? HorizontalBarChartWithSecondaryAxis.withRandomData
-            : HorizontalBarChartWithSecondaryAxis.withSampleData,
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.insert_chart),
-        title: kShortTicksAxisTitle,
-        subtitle: kShortTicksAxisSubtitle,
-        childBuilder: appState.value.useRandomData
-            ? ShortTickLengthAxis.withRandomData
-            : ShortTickLengthAxis.withSampleData,
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.insert_chart),
-        title: kCustomAxisFontsTitle,
-        subtitle: kCustomAxisFontsSubtitle,
-        childBuilder: appState.value.useRandomData
-            ? CustomFontSizeAndColor.withRandomData
-            : CustomFontSizeAndColor.withSampleData,
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.insert_chart),
-        title: kLabelAlignmentAxisTitle,
-        subtitle: kLabelAlignmentAxisSubtitle,
-        childBuilder: appState.value.useRandomData
-            ? MeasureAxisLabelAlignment.withRandomData
-            : MeasureAxisLabelAlignment.withSampleData,
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.insert_chart),
-        title: kNoAxisTitle,
-        subtitle: kNoAxisSubtitle,
-        childBuilder: appState.value.useRandomData
-            ? HiddenTicksAndLabelsAxis.withRandomData
-            : HiddenTicksAndLabelsAxis.withSampleData,
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.insert_chart),
-        title: kStaticallyProvidedTicksTitle,
-        subtitle: kStaticallyProvidedTicksSubtitle,
-        childBuilder: appState.value.useRandomData
-            ? StaticallyProvidedTicks.withRandomData
-            : StaticallyProvidedTicks.withSampleData,
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: kCustomFormatterTitle,
-        subtitle: kCustomFormatterSubtitle,
-        childBuilder: appState.value.useRandomData
-            ? CustomAxisTickFormatters.withRandomData
-            : CustomAxisTickFormatters.withSampleData,
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: kCustomTickCountTitle,
-        subtitle: kCustomTickCountSubtitle,
-        childBuilder: appState.value.useRandomData
-            ? CustomMeasureTickCount.withRandomData
-            : CustomMeasureTickCount.withSampleData,
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: kIntegerMeasureTicksTitle,
-        subtitle: kIntegerMeasureTicksSubtitle,
-        childBuilder: appState.value.useRandomData
-            ? IntegerOnlyMeasureAxis.withRandomData
-            : IntegerOnlyMeasureAxis.withSampleData,
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: kNonZeroBoundAxisTitle,
-        subtitle: kNonZeroBoundAxisSubtitle,
-        childBuilder: appState.value.useRandomData
-            ? NonzeroBoundMeasureAxis.withRandomData
-            : NonzeroBoundMeasureAxis.withSampleData,
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.insert_chart),
-        title: kOrdinalAxisWithInitialViewportTitle,
-        subtitle: kOrdinalAxisWithInitialViewportSubtitle,
-        childBuilder: appState.value.useRandomData
-            ? OrdinalInitialViewport.withRandomData
-            : OrdinalInitialViewport.withSampleData,
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: kNumericAxisWithInitialViewportTitle,
-        subtitle: kNumericAxisWithInitialViewportSubtitle,
-        childBuilder: appState.value.useRandomData
-            ? NumericInitialViewport.withRandomData
-            : NumericInitialViewport.withSampleData,
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: kGridlineDashPatternTitle,
-        subtitle: kGridlineDashPatternSubtitle,
-        childBuilder: appState.value.useRandomData
-            ? GridlineDashPattern.withRandomData
-            : GridlineDashPattern.withSampleData,
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: kDisjointMeasureAxesTitle,
-        subtitle: kDisjointMeasureAxesSubtitle,
-        childBuilder: appState.value.useRandomData
-            ? DisjointMeasureAxisLineChart.withRandomData
-            : DisjointMeasureAxisLineChart.withSampleData,
-      ),
-    ];
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.insert_chart),
+    title: kBarChartWithSecondaryAxisTitle,
+    subtitle: kBarChartWithSecondaryAxisSubtitle,
+    childBuilder: appState.value.useRandomData
+        ? BarChartWithSecondaryAxis.withRandomData
+        : BarChartWithSecondaryAxis.withSampleData,
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.insert_chart),
+    title: kBarChartWithSecondaryAxisOnlyTitle,
+    subtitle: kBarChartWithSecondaryAxisOnlySubtitle,
+    childBuilder: appState.value.useRandomData
+        ? BarChartWithSecondaryAxisOnly.withRandomData
+        : BarChartWithSecondaryAxisOnly.withSampleData,
+  ),
+  GalleryScaffold(
+    listTileIcon: Transform.rotate(
+      angle: 1.5708,
+      child: const Icon(Icons.insert_chart),
+    ),
+    title: kHorizontalBarChartWithSecondaryAxisTitle,
+    subtitle: kHorizontalBarChartWithSecondaryAxisSubtitle,
+    childBuilder: appState.value.useRandomData
+        ? HorizontalBarChartWithSecondaryAxis.withRandomData
+        : HorizontalBarChartWithSecondaryAxis.withSampleData,
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.insert_chart),
+    title: kShortTicksAxisTitle,
+    subtitle: kShortTicksAxisSubtitle,
+    childBuilder: appState.value.useRandomData
+        ? ShortTickLengthAxis.withRandomData
+        : ShortTickLengthAxis.withSampleData,
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.insert_chart),
+    title: kCustomAxisFontsTitle,
+    subtitle: kCustomAxisFontsSubtitle,
+    childBuilder: appState.value.useRandomData
+        ? CustomFontSizeAndColor.withRandomData
+        : CustomFontSizeAndColor.withSampleData,
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.insert_chart),
+    title: kLabelAlignmentAxisTitle,
+    subtitle: kLabelAlignmentAxisSubtitle,
+    childBuilder: appState.value.useRandomData
+        ? MeasureAxisLabelAlignment.withRandomData
+        : MeasureAxisLabelAlignment.withSampleData,
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.insert_chart),
+    title: kNoAxisTitle,
+    subtitle: kNoAxisSubtitle,
+    childBuilder: appState.value.useRandomData
+        ? HiddenTicksAndLabelsAxis.withRandomData
+        : HiddenTicksAndLabelsAxis.withSampleData,
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.insert_chart),
+    title: kStaticallyProvidedTicksTitle,
+    subtitle: kStaticallyProvidedTicksSubtitle,
+    childBuilder: appState.value.useRandomData
+        ? StaticallyProvidedTicks.withRandomData
+        : StaticallyProvidedTicks.withSampleData,
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: kCustomFormatterTitle,
+    subtitle: kCustomFormatterSubtitle,
+    childBuilder: appState.value.useRandomData
+        ? CustomAxisTickFormatters.withRandomData
+        : CustomAxisTickFormatters.withSampleData,
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: kCustomTickCountTitle,
+    subtitle: kCustomTickCountSubtitle,
+    childBuilder: appState.value.useRandomData
+        ? CustomMeasureTickCount.withRandomData
+        : CustomMeasureTickCount.withSampleData,
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: kIntegerMeasureTicksTitle,
+    subtitle: kIntegerMeasureTicksSubtitle,
+    childBuilder: appState.value.useRandomData
+        ? IntegerOnlyMeasureAxis.withRandomData
+        : IntegerOnlyMeasureAxis.withSampleData,
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: kNonZeroBoundAxisTitle,
+    subtitle: kNonZeroBoundAxisSubtitle,
+    childBuilder: appState.value.useRandomData
+        ? NonzeroBoundMeasureAxis.withRandomData
+        : NonzeroBoundMeasureAxis.withSampleData,
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.insert_chart),
+    title: kOrdinalAxisWithInitialViewportTitle,
+    subtitle: kOrdinalAxisWithInitialViewportSubtitle,
+    childBuilder: appState.value.useRandomData
+        ? OrdinalInitialViewport.withRandomData
+        : OrdinalInitialViewport.withSampleData,
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: kNumericAxisWithInitialViewportTitle,
+    subtitle: kNumericAxisWithInitialViewportSubtitle,
+    childBuilder: appState.value.useRandomData
+        ? NumericInitialViewport.withRandomData
+        : NumericInitialViewport.withSampleData,
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: kGridlineDashPatternTitle,
+    subtitle: kGridlineDashPatternSubtitle,
+    childBuilder: appState.value.useRandomData
+        ? GridlineDashPattern.withRandomData
+        : GridlineDashPattern.withSampleData,
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: kDisjointMeasureAxesTitle,
+    subtitle: kDisjointMeasureAxesSubtitle,
+    childBuilder: appState.value.useRandomData
+        ? DisjointMeasureAxisLineChart.withRandomData
+        : DisjointMeasureAxisLineChart.withSampleData,
+  ),
+];

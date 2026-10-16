@@ -21,14 +21,12 @@ const graphCycleErrorMsg = 'The given graph contains a cycle.';
 /// If the node accessor is not null return a function to act on a graph [Node].
 TypedAccessorFn<Node<N, L>, R>? actOnNodeData<N, L, R>(
   TypedAccessorFn<N, R>? f,
-) =>
-    f == null ? null : (node, index) => f(node.data, index);
+) => f == null ? null : (node, index) => f(node.data, index);
 
 /// If the node accessor is not null return a function to act on a graph [Link].
 TypedAccessorFn<Link<N, L>, R>? actOnLinkData<N, L, R>(
   TypedAccessorFn<L, R>? f,
-) =>
-    f == null ? null : (link, index) => f(link.data, index);
+) => f == null ? null : (link, index) => f(link.data, index);
 
 /// Add an incoming or outgoing link to a [Node].
 Node<N, L> addLinkToNode<N, L>(

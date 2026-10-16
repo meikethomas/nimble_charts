@@ -54,15 +54,16 @@ import 'package:nimble_charts_common/src/chart/cartesian/axis/scale.dart'
 /// [stepSizeConfig] is a no-op.
 class LinearScale implements NumericScale {
   LinearScale()
-      : _domainInfo = LinearScaleDomainInfo(),
-        _viewportSettings = LinearScaleViewportSettings();
+    : _domainInfo = LinearScaleDomainInfo(),
+      _viewportSettings = LinearScaleViewportSettings();
 
   LinearScale._copy(LinearScale other)
-      : _domainInfo = LinearScaleDomainInfo.copy(other._domainInfo),
-        _viewportSettings =
-            LinearScaleViewportSettings.copy(other._viewportSettings),
-        rangeBandConfig = other.rangeBandConfig,
-        stepSizeConfig = other.stepSizeConfig;
+    : _domainInfo = LinearScaleDomainInfo.copy(other._domainInfo),
+      _viewportSettings = LinearScaleViewportSettings.copy(
+        other._viewportSettings,
+      ),
+      rangeBandConfig = other.rangeBandConfig,
+      stepSizeConfig = other.stepSizeConfig;
   final LinearScaleDomainInfo _domainInfo;
   final LinearScaleViewportSettings _viewportSettings;
   final LinearScaleFunction _scaleFunction = LinearScaleFunction();

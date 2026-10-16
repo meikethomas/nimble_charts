@@ -105,8 +105,9 @@ class PerDatumLegendEntryGenerator<D> implements LegendEntryGenerator<D> {
         entry
           ..value = measure!.toDouble()
           ..formattedValue = _getFormattedMeasureValue(series, measure)
-          ..isSelected = selectionModel.selectedSeries
-              .any((selectedSeries) => series.id == selectedSeries.id);
+          ..isSelected = selectionModel.selectedSeries.any(
+            (selectedSeries) => series.id == selectedSeries.id,
+          );
       }
     }
   }
@@ -145,8 +146,8 @@ class PerDatumLegendEntryGenerator<D> implements LegendEntryGenerator<D> {
   /// function for the series.
   String _getFormattedMeasureValue(ImmutableSeries<D> series, num measure) =>
       (series.getAttr(measureAxisIdKey) == Axis.secondaryMeasureAxisId)
-          ? secondaryMeasureFormatter!(measure)
-          : measureFormatter!(measure);
+      ? secondaryMeasureFormatter!(measure)
+      : measureFormatter!(measure);
 
   @override
   bool operator ==(Object other) =>

@@ -31,9 +31,7 @@ class RTLLineChart extends StatelessWidget {
   const RTLLineChart(this.seriesList, {super.key, this.animate = true});
 
   /// Creates a [charts.LineChart] with sample data and no transition.
-  factory RTLLineChart.withSampleData() => RTLLineChart(
-        _createSampleData(),
-      );
+  factory RTLLineChart.withSampleData() => RTLLineChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -80,10 +78,7 @@ class RTLLineChart extends StatelessWidget {
       // Domain axis' first domain starts on the right and grows left.
       Directionality(
         textDirection: ui.TextDirection.rtl,
-        child: charts.LineChart(
-          seriesList,
-          animate: animate,
-        ),
+        child: charts.LineChart(seriesList, animate: animate),
       );
 
   /// Create one series with sample hard coded data.

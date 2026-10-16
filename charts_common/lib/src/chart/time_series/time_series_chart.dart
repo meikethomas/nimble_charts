@@ -40,9 +40,7 @@ class TimeSeriesChart extends CartesianChart<DateTime> {
     super.secondaryMeasureAxis,
     super.disjointMeasureAxes,
     this.dateTimeFactory = const LocalDateTimeFactory(),
-  }) : super(
-          domainAxis: DateTimeAxis(dateTimeFactory),
-        );
+  }) : super(domainAxis: DateTimeAxis(dateTimeFactory));
   final DateTimeFactory dateTimeFactory;
 
   @override

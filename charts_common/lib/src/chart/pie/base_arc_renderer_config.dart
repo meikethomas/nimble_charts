@@ -40,9 +40,9 @@ abstract class BaseArcRendererConfig<D> extends LayoutViewConfig
     this.startAngle = -pi / 2,
     this.strokeWidthPx = 2.0,
     SymbolRenderer? symbolRenderer,
-  })  : noDataColor = StyleFactory.style.noDataColor,
-        stroke = StyleFactory.style.arcStrokeColor,
-        symbolRenderer = symbolRenderer ?? CircleSymbolRenderer();
+  }) : noDataColor = StyleFactory.style.noDataColor,
+       stroke = StyleFactory.style.arcStrokeColor,
+       symbolRenderer = symbolRenderer ?? CircleSymbolRenderer();
   @override
   final String? customRendererId;
 

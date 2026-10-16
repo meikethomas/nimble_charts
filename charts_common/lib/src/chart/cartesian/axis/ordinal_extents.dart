@@ -25,13 +25,10 @@ class OrdinalExtents extends Extents<String> {
   /// The elements of [range] must all be unique.
   OrdinalExtents(List<String> range) : _range = range {
     // This asserts that all elements in [range] are unique.
-    assert(
-      () {
-        final uniqueValueCount = HashSet.of(_range).length;
-        return uniqueValueCount == range.length;
-      }(),
-      'Ordinal values must be unique.',
-    );
+    assert(() {
+      final uniqueValueCount = HashSet.of(_range).length;
+      return uniqueValueCount == range.length;
+    }(), 'Ordinal values must be unique.');
   }
 
   factory OrdinalExtents.all(List<String> range) => OrdinalExtents(range);

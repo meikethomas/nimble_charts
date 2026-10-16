@@ -99,9 +99,11 @@ class RangeTickProvider<D> extends TickProvider<D> {
             scale.compareDomainValueToViewport(spec.rangeEndValue) == 0) {
           tick = RangeTick<D>(
             value: spec.value,
-            textElement: graphicsFactory
-                .createTextElement(spec.label ?? formattedValues![i]),
-            locationPx: scale[spec.rangeStartValue]! +
+            textElement: graphicsFactory.createTextElement(
+              spec.label ?? formattedValues![i],
+            ),
+            locationPx:
+                scale[spec.rangeStartValue]! +
                 (scale[spec.rangeEndValue]! - scale[spec.rangeStartValue]!) / 2,
             rangeStartValue: spec.rangeStartValue,
             rangeStartLocationPx: scale[spec.rangeStartValue]!.toDouble(),
@@ -115,8 +117,9 @@ class RangeTickProvider<D> extends TickProvider<D> {
         if (scale.compareDomainValueToViewport(spec.value) == 0) {
           tick = Tick<D>(
             value: spec.value,
-            textElement: graphicsFactory
-                .createTextElement(spec.label ?? formattedValues![i]),
+            textElement: graphicsFactory.createTextElement(
+              spec.label ?? formattedValues![i],
+            ),
             locationPx: scale[spec.value]?.toDouble(),
           );
         }

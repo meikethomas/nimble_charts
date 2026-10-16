@@ -38,9 +38,7 @@ class NumericComboLinePointChart extends StatelessWidget {
 
   /// Creates a [charts.LineChart] with sample data and no transition.
   factory NumericComboLinePointChart.withSampleData() =>
-      NumericComboLinePointChart(
-        _createSampleData(),
-      );
+      NumericComboLinePointChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -92,12 +90,12 @@ class NumericComboLinePointChart extends StatelessWidget {
         data: tableSalesData,
       ),
       charts.Series<LinearSales, int>(
-        id: 'Mobile',
-        colorFn: (_, _) => charts.MaterialPalette.green.shadeDefault,
-        domainFn: (sales, _) => sales.year,
-        measureFn: (sales, _) => sales.sales,
-        data: mobileSalesData,
-      )
+          id: 'Mobile',
+          colorFn: (_, _) => charts.MaterialPalette.green.shadeDefault,
+          domainFn: (sales, _) => sales.year,
+          measureFn: (sales, _) => sales.sales,
+          data: mobileSalesData,
+        )
         // Configure our custom point renderer for this series.
         ..setAttribute(charts.rendererIdKey, 'customPoint'),
     ];
@@ -106,19 +104,19 @@ class NumericComboLinePointChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.NumericComboChart(
-        seriesList,
-        animate: animate,
-        // Configure the default renderer as a line renderer. This will be used
-        // for any series that does not define a rendererIdKey.
-        defaultRenderer: charts.LineRendererConfig(),
-        // Custom renderer configuration for the point series.
-        customSeriesRenderers: [
-          charts.PointRendererConfig(
-            // ID used to link series to this renderer.
-            customRendererId: 'customPoint',
-          ),
-        ],
-      );
+    seriesList,
+    animate: animate,
+    // Configure the default renderer as a line renderer. This will be used
+    // for any series that does not define a rendererIdKey.
+    defaultRenderer: charts.LineRendererConfig(),
+    // Custom renderer configuration for the point series.
+    customSeriesRenderers: [
+      charts.PointRendererConfig(
+        // ID used to link series to this renderer.
+        customRendererId: 'customPoint',
+      ),
+    ],
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<LinearSales, int>> _createSampleData() {
@@ -159,12 +157,12 @@ class NumericComboLinePointChart extends StatelessWidget {
         data: tableSalesData,
       ),
       charts.Series<LinearSales, int>(
-        id: 'Mobile',
-        colorFn: (_, _) => charts.MaterialPalette.green.shadeDefault,
-        domainFn: (sales, _) => sales.year,
-        measureFn: (sales, _) => sales.sales,
-        data: mobileSalesData,
-      )
+          id: 'Mobile',
+          colorFn: (_, _) => charts.MaterialPalette.green.shadeDefault,
+          domainFn: (sales, _) => sales.year,
+          measureFn: (sales, _) => sales.sales,
+          data: mobileSalesData,
+        )
         // Configure our custom point renderer for this series.
         ..setAttribute(charts.rendererIdKey, 'customPoint'),
     ];

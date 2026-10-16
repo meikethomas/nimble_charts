@@ -33,29 +33,37 @@ void main() {
       expect(closestStepSize, equals(oneHourMs));
     });
 
-    test('choose smallest increment if step is smaller than smallest increment',
-        () {
-      final stepper = AutoAdjustingDateTimeTickProvider.createHourTickProvider(
-        dateTimeFactory,
-      );
-      final oneHourMs = const Duration(hours: 1).inMilliseconds;
-      final closestStepSize = stepper
-          .getClosestStepSize(const Duration(minutes: 56).inMilliseconds);
+    test(
+      'choose smallest increment if step is smaller than smallest increment',
+      () {
+        final stepper =
+            AutoAdjustingDateTimeTickProvider.createHourTickProvider(
+              dateTimeFactory,
+            );
+        final oneHourMs = const Duration(hours: 1).inMilliseconds;
+        final closestStepSize = stepper.getClosestStepSize(
+          const Duration(minutes: 56).inMilliseconds,
+        );
 
-      expect(closestStepSize, equals(oneHourMs));
-    });
+        expect(closestStepSize, equals(oneHourMs));
+      },
+    );
 
-    test('choose largest increment if step is larger than largest increment',
-        () {
-      final stepper = AutoAdjustingDateTimeTickProvider.createHourTickProvider(
-        dateTimeFactory,
-      );
-      final oneDayMs = const Duration(hours: 24).inMilliseconds;
-      final closestStepSize =
-          stepper.getClosestStepSize(const Duration(hours: 25).inMilliseconds);
+    test(
+      'choose largest increment if step is larger than largest increment',
+      () {
+        final stepper =
+            AutoAdjustingDateTimeTickProvider.createHourTickProvider(
+              dateTimeFactory,
+            );
+        final oneDayMs = const Duration(hours: 24).inMilliseconds;
+        final closestStepSize = stepper.getClosestStepSize(
+          const Duration(hours: 25).inMilliseconds,
+        );
 
-      expect(closestStepSize, equals(oneDayMs));
-    });
+        expect(closestStepSize, equals(oneDayMs));
+      },
+    );
 
     test('choose closest increment if exact not found', () {
       final stepper = AutoAdjustingDateTimeTickProvider.createHourTickProvider(

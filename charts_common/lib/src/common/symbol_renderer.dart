@@ -85,7 +85,7 @@ abstract class PointSymbolRenderer extends BaseSymbolRenderer {
 /// Rounded rectangular symbol with corners having [radius].
 class RoundedRectSymbolRenderer extends SymbolRenderer {
   RoundedRectSymbolRenderer({super.isSolid = true, double? radius})
-      : radius = radius ?? 1.0;
+    : radius = radius ?? 1.0;
   final double radius;
 
   @override
@@ -135,8 +135,8 @@ class LineSymbolRenderer extends SymbolRenderer {
     List<int>? dashPattern,
     super.isSolid = true,
     double? strokeWidth,
-  })  : strokeWidth = strokeWidth ?? strokeWidthForRoundEndCaps,
-        _dashPattern = dashPattern;
+  }) : strokeWidth = strokeWidth ?? strokeWidthForRoundEndCaps,
+       _dashPattern = dashPattern;
   static const roundEndCapsPixels = 2;
   static const minLengthToRoundCaps = (roundEndCapsPixels * 2) + 1;
   static const strokeWidthForRoundEndCaps = 4.0;

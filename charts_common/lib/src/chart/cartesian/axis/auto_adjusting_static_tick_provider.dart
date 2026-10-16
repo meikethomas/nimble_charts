@@ -48,8 +48,10 @@ class AutoAdjustingStaticTickProvider<D> extends TickProvider<D> {
   }) {
     var ticksForTheFirstIncrement = <Tick<D>>[];
     for (final tickIncrement in allowedTickIncrements) {
-      final staticTickProvider =
-          StaticTickProvider(tickSpec, tickIncrement: tickIncrement);
+      final staticTickProvider = StaticTickProvider(
+        tickSpec,
+        tickIncrement: tickIncrement,
+      );
       final ticks = staticTickProvider.getTicks(
         context: context,
         graphicsFactory: graphicsFactory,

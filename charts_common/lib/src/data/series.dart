@@ -147,8 +147,9 @@ class Series<T, D> {
     final _areaColorFn = areaColorFn == null
         ? null
         : (int? index) => areaColorFn(data[index!], index);
-    final _colorFn =
-        colorFn == null ? null : (int? index) => colorFn(data[index!], index);
+    final _colorFn = colorFn == null
+        ? null
+        : (int? index) => colorFn(data[index!], index);
     final _dashPatternFn = dashPatternFn == null
         ? null
         : (int? index) => dashPatternFn(data[index!], index);
@@ -197,8 +198,9 @@ class Series<T, D> {
     final _strokeWidthPxFn = strokeWidthPxFn == null
         ? null
         : (int? index) => strokeWidthPxFn(data[index!], index);
-    final _keyFn =
-        keyFn == null ? null : (int? index) => keyFn(data[index!], index);
+    final _keyFn = keyFn == null
+        ? null
+        : (int? index) => keyFn(data[index!], index);
 
     return Series._internal(
       id: id,

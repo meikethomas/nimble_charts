@@ -49,9 +49,7 @@ class SelectionScatterPlotHighlight extends StatelessWidget {
 
   /// Creates a [charts.ScatterPlotChart] with sample data and no transition.
   factory SelectionScatterPlotHighlight.withSampleData() =>
-      SelectionScatterPlotHighlight(
-        _createSampleData(),
-      );
+      SelectionScatterPlotHighlight(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -176,31 +174,28 @@ class SelectionScatterPlotHighlight extends StatelessWidget {
 
     return [
       charts.Series<LinearSales, int>(
-        id: 'Sales',
-        colorFn: (sales, _) {
-          // Color bucket the measure column value into 3 distinct colors.
-          final bucket = sales.sales / maxMeasure;
+          id: 'Sales',
+          colorFn: (sales, _) {
+            // Color bucket the measure column value into 3 distinct colors.
+            final bucket = sales.sales / maxMeasure;
 
-          if (bucket < 1 / 3) {
-            return charts.MaterialPalette.blue.shadeDefault;
-          } else if (bucket < 2 / 3) {
-            return charts.MaterialPalette.red.shadeDefault;
-          } else {
-            return charts.MaterialPalette.green.shadeDefault;
-          }
-        },
-        domainFn: (sales, _) => sales.year,
-        measureFn: (sales, _) => sales.sales,
-        radiusPxFn: (sales, _) => sales.radius,
-        fillColorFn: (row, _) => row.fillColor,
-        strokeWidthPxFn: (row, _) => row.strokeWidth,
-        data: data,
-      )
-        // Accessor function that associates each datum with a symbol renderer.
-        ..setAttribute(
-          charts.pointSymbolRendererFnKey,
-          getShape,
+            if (bucket < 1 / 3) {
+              return charts.MaterialPalette.blue.shadeDefault;
+            } else if (bucket < 2 / 3) {
+              return charts.MaterialPalette.red.shadeDefault;
+            } else {
+              return charts.MaterialPalette.green.shadeDefault;
+            }
+          },
+          domainFn: (sales, _) => sales.year,
+          measureFn: (sales, _) => sales.sales,
+          radiusPxFn: (sales, _) => sales.radius,
+          fillColorFn: (row, _) => row.fillColor,
+          strokeWidthPxFn: (row, _) => row.strokeWidth,
+          data: data,
         )
+        // Accessor function that associates each datum with a symbol renderer.
+        ..setAttribute(charts.pointSymbolRendererFnKey, getShape)
         // Default symbol renderer ID for data that have no defined shape.
         ..setAttribute(charts.pointSymbolRendererIdKey, 'rect'),
     ];
@@ -209,42 +204,40 @@ class SelectionScatterPlotHighlight extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.ScatterPlotChart(
-        seriesList,
-        animate: animate,
-        behaviors: [
-          // Optional - Configures a [LinePointHighlighter] behavior with
-          // horizontal and vertical follow lines. The highlighter will increase
-          // the size of the selected points on the chart.
-          //
-          // By default, the line has default dash pattern of [1,3]. This can be
-          // set by providing a [dashPattern] or it can be turned off by passing
-          // in an empty list. An empty list is necessary because passing in a
-          // null value will be treated the same as not passing in a value at
-          // all.
-          charts.LinePointHighlighter(
-            showHorizontalFollowLine:
-                charts.LinePointHighlighterFollowLineType.nearest,
-            showVerticalFollowLine:
-                charts.LinePointHighlighterFollowLineType.nearest,
-          ),
-          // Optional - By default, select nearest is configured to trigger
-          // with tap so that a user can have pan/zoom behavior and line point
-          // highlighter. Changing the trigger to tap and drag allows the
-          // highlighter to follow the dragging gesture but it is not
-          // recommended to be used when pan/zoom behavior is enabled.
-          charts.SelectNearest(
-            eventTrigger: charts.SelectionTrigger.tapAndDrag,
-          ),
-        ],
-        // Configure the point renderer to have a map of custom symbol
-        // renderers.
-        defaultRenderer: charts.PointRendererConfig<num>(
-          customSymbolRenderers: {
-            'circle': charts.CircleSymbolRenderer(),
-            'rect': charts.RectSymbolRenderer(),
-          },
-        ),
-      );
+    seriesList,
+    animate: animate,
+    behaviors: [
+      // Optional - Configures a [LinePointHighlighter] behavior with
+      // horizontal and vertical follow lines. The highlighter will increase
+      // the size of the selected points on the chart.
+      //
+      // By default, the line has default dash pattern of [1,3]. This can be
+      // set by providing a [dashPattern] or it can be turned off by passing
+      // in an empty list. An empty list is necessary because passing in a
+      // null value will be treated the same as not passing in a value at
+      // all.
+      charts.LinePointHighlighter(
+        showHorizontalFollowLine:
+            charts.LinePointHighlighterFollowLineType.nearest,
+        showVerticalFollowLine:
+            charts.LinePointHighlighterFollowLineType.nearest,
+      ),
+      // Optional - By default, select nearest is configured to trigger
+      // with tap so that a user can have pan/zoom behavior and line point
+      // highlighter. Changing the trigger to tap and drag allows the
+      // highlighter to follow the dragging gesture but it is not
+      // recommended to be used when pan/zoom behavior is enabled.
+      charts.SelectNearest(eventTrigger: charts.SelectionTrigger.tapAndDrag),
+    ],
+    // Configure the point renderer to have a map of custom symbol
+    // renderers.
+    defaultRenderer: charts.PointRendererConfig<num>(
+      customSymbolRenderers: {
+        'circle': charts.CircleSymbolRenderer(),
+        'rect': charts.RectSymbolRenderer(),
+      },
+    ),
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<LinearSales, int>> _createSampleData() {
@@ -253,28 +246,14 @@ class SelectionScatterPlotHighlight extends StatelessWidget {
       LinearSales(10, 25, 5, null, null, null),
       LinearSales(12, 75, 4, null, null, null),
       // Render a hollow circle, filled in with white.
-      LinearSales(
-        13,
-        225,
-        5,
-        'circle',
-        charts.MaterialPalette.white,
-        2,
-      ),
+      LinearSales(13, 225, 5, 'circle', charts.MaterialPalette.white, 2),
       LinearSales(16, 50, 4, null, null, null),
       LinearSales(24, 75, 3, null, null, null),
       LinearSales(25, 100, 3, 'circle', null, null),
       LinearSales(34, 150, 5, null, null, null),
       LinearSales(37, 10, 4.5, null, null, null),
       // Render a hollow circle, filled in with white.
-      LinearSales(
-        45,
-        300,
-        8,
-        'circle',
-        charts.MaterialPalette.white,
-        2,
-      ),
+      LinearSales(45, 300, 8, 'circle', charts.MaterialPalette.white, 2),
       LinearSales(52, 15, 4, null, null, null),
       // Render a hollow square, filled in with white.
       LinearSales(56, 200, 7, null, charts.MaterialPalette.white, 2),
@@ -286,32 +265,29 @@ class SelectionScatterPlotHighlight extends StatelessWidget {
 
     return [
       charts.Series<LinearSales, int>(
-        id: 'Sales',
-        // Providing a color function is optional.
-        colorFn: (sales, _) {
-          // Bucket the measure column value into 3 distinct colors.
-          final bucket = sales.sales / maxMeasure;
+          id: 'Sales',
+          // Providing a color function is optional.
+          colorFn: (sales, _) {
+            // Bucket the measure column value into 3 distinct colors.
+            final bucket = sales.sales / maxMeasure;
 
-          if (bucket < 1 / 3) {
-            return charts.MaterialPalette.blue.shadeDefault;
-          } else if (bucket < 2 / 3) {
-            return charts.MaterialPalette.red.shadeDefault;
-          } else {
-            return charts.MaterialPalette.green.shadeDefault;
-          }
-        },
-        domainFn: (sales, _) => sales.year,
-        measureFn: (sales, _) => sales.sales,
-        radiusPxFn: (sales, _) => sales.radius,
-        fillColorFn: (row, _) => row.fillColor,
-        strokeWidthPxFn: (row, _) => row.strokeWidth,
-        data: data,
-      )
-        // Accessor function that associates each datum with a symbol renderer.
-        ..setAttribute(
-          charts.pointSymbolRendererFnKey,
-          getShape,
+            if (bucket < 1 / 3) {
+              return charts.MaterialPalette.blue.shadeDefault;
+            } else if (bucket < 2 / 3) {
+              return charts.MaterialPalette.red.shadeDefault;
+            } else {
+              return charts.MaterialPalette.green.shadeDefault;
+            }
+          },
+          domainFn: (sales, _) => sales.year,
+          measureFn: (sales, _) => sales.sales,
+          radiusPxFn: (sales, _) => sales.radius,
+          fillColorFn: (row, _) => row.fillColor,
+          strokeWidthPxFn: (row, _) => row.strokeWidth,
+          data: data,
         )
+        // Accessor function that associates each datum with a symbol renderer.
+        ..setAttribute(charts.pointSymbolRendererFnKey, getShape)
         // Default symbol renderer ID for data that have no defined shape.
         ..setAttribute(charts.pointSymbolRendererIdKey, 'rect'),
     ];

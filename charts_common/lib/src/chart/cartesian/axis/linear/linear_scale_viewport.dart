@@ -139,8 +139,10 @@ class LinearScaleViewportSettings {
       final viewportDomainDiff = domainInfo.domainDiff / scalingFactor;
       final viewportStart =
           (-translatePx / scaleScalingFactor) + domainInfo.extent.min;
-      _domainExtent =
-          NumericExtents(viewportStart, viewportStart + viewportDomainDiff);
+      _domainExtent = NumericExtents(
+        viewportStart,
+        viewportStart + viewportDomainDiff,
+      );
     }
   }
 }

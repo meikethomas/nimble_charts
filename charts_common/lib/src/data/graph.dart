@@ -40,28 +40,26 @@ class Graph<N, L, D> {
     TypedAccessorFn<N, FillPatternType>? nodeFillPatternFn,
     TypedAccessorFn<N, num>? nodeStrokeWidthPxFn,
     TypedAccessorFn<L, Color>? linkFillColorFn,
-  }) =>
-      Graph.base(
-        id: id,
-        nodes: convertGraphNodes<N, L, D>(
-          nodes,
-          links,
-          sourceFn,
-          targetFn,
-          nodeDomainFn,
-        ),
-        links: convertGraphLinks<N, L>(links, sourceFn, targetFn),
-        nodeDomainFn: actOnNodeData<N, L, D>(nodeDomainFn)!,
-        linkDomainFn: actOnLinkData<N, L, D>(linkDomainFn)!,
-        nodeMeasureFn: actOnNodeData<N, L, num?>(nodeMeasureFn)!,
-        linkMeasureFn: actOnLinkData<N, L, num?>(linkMeasureFn)!,
-        nodeColorFn: actOnNodeData<N, L, Color>(nodeColorFn),
-        nodeFillColorFn: actOnNodeData<N, L, Color>(nodeFillColorFn),
-        nodeFillPatternFn:
-            actOnNodeData<N, L, FillPatternType>(nodeFillPatternFn),
-        nodeStrokeWidthPxFn: actOnNodeData<N, L, num>(nodeStrokeWidthPxFn),
-        linkFillColorFn: actOnLinkData<N, L, Color>(linkFillColorFn),
-      );
+  }) => Graph.base(
+    id: id,
+    nodes: convertGraphNodes<N, L, D>(
+      nodes,
+      links,
+      sourceFn,
+      targetFn,
+      nodeDomainFn,
+    ),
+    links: convertGraphLinks<N, L>(links, sourceFn, targetFn),
+    nodeDomainFn: actOnNodeData<N, L, D>(nodeDomainFn)!,
+    linkDomainFn: actOnLinkData<N, L, D>(linkDomainFn)!,
+    nodeMeasureFn: actOnNodeData<N, L, num?>(nodeMeasureFn)!,
+    linkMeasureFn: actOnLinkData<N, L, num?>(linkMeasureFn)!,
+    nodeColorFn: actOnNodeData<N, L, Color>(nodeColorFn),
+    nodeFillColorFn: actOnNodeData<N, L, Color>(nodeFillColorFn),
+    nodeFillPatternFn: actOnNodeData<N, L, FillPatternType>(nodeFillPatternFn),
+    nodeStrokeWidthPxFn: actOnNodeData<N, L, num>(nodeStrokeWidthPxFn),
+    linkFillColorFn: actOnLinkData<N, L, Color>(linkFillColorFn),
+  );
 
   Graph.base({
     required this.id,
@@ -238,16 +236,16 @@ class Node<N, L> extends GraphElement<N> {
     super.data, {
     List<Link<N, L>>? incomingLinks,
     List<Link<N, L>>? outgoingLinks,
-  })  : incomingLinks = incomingLinks ?? [],
-        outgoingLinks = outgoingLinks ?? [];
+  }) : incomingLinks = incomingLinks ?? [],
+       outgoingLinks = outgoingLinks ?? [];
 
   /// Return.a new copy of a node with all associated links.
   Node.clone(Node<N, L> node)
-      : this(
-          node.data,
-          incomingLinks: _cloneLinkList<N, L>(node.incomingLinks),
-          outgoingLinks: _cloneLinkList<N, L>(node.outgoingLinks),
-        );
+    : this(
+        node.data,
+        incomingLinks: _cloneLinkList<N, L>(node.incomingLinks),
+        outgoingLinks: _cloneLinkList<N, L>(node.outgoingLinks),
+      );
 
   /// Return a new copy of a node with user defined data only, no links.
   Node.cloneData(Node<N, L> node) : this(node.data);
@@ -264,11 +262,7 @@ class Link<N, L> extends GraphElement<L> {
   Link(this.source, this.target, L data) : super(data);
 
   Link.clone(Link<N, L> link)
-      : this(
-          Node.cloneData(link.source),
-          Node.cloneData(link.target),
-          link.data,
-        );
+    : this(Node.cloneData(link.source), Node.cloneData(link.target), link.data);
 
   /// The source Node for this Link.
   final Node<N, L> source;

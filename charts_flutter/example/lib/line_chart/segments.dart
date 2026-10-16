@@ -38,9 +38,8 @@ class SegmentsLineChart extends StatelessWidget {
   const SegmentsLineChart(this.seriesList, {super.key, this.animate = true});
 
   /// Creates a [charts.LineChart] with sample data and no transition.
-  factory SegmentsLineChart.withSampleData() => SegmentsLineChart(
-        _createSampleData(),
-      );
+  factory SegmentsLineChart.withSampleData() =>
+      SegmentsLineChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -131,11 +130,13 @@ class SegmentsLineChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.LineChart(
-        seriesList,
-        defaultRenderer:
-            charts.LineRendererConfig(includeArea: true, stacked: true),
-        animate: animate,
-      );
+    seriesList,
+    defaultRenderer: charts.LineRendererConfig(
+      includeArea: true,
+      stacked: true,
+    ),
+    animate: animate,
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<LinearSales, int>> _createSampleData() {

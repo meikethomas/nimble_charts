@@ -33,7 +33,7 @@ import 'package:nimble_charts_common/src/common/symbol_renderer.dart';
 /// point  (domainUpperBound, measureUpperBound).
 class ComparisonPointsDecorator<D> extends PointRendererDecorator<D> {
   ComparisonPointsDecorator({PointSymbolRenderer? symbolRenderer})
-      : symbolRenderer = symbolRenderer ?? CylinderSymbolRenderer();
+    : symbolRenderer = symbolRenderer ?? CylinderSymbolRenderer();
 
   /// Renderer used to draw the points. Defaults to a line with circular end
   /// caps.
@@ -253,7 +253,7 @@ class _Line {
 
     final y =
         slope! * (other.yIntercept! - yIntercept!) / (slope! - other.slope!) +
-            yIntercept!;
+        yIntercept!;
 
     return Point<double>(x, y);
   }

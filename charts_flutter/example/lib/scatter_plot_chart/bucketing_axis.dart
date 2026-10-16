@@ -37,9 +37,7 @@ class BucketingAxisScatterPlotChart extends StatelessWidget {
 
   /// Creates a [charts.ScatterPlotChart] with sample data and no transition.
   factory BucketingAxisScatterPlotChart.withSampleData() =>
-      BucketingAxisScatterPlotChart(
-        _createSampleData(),
-      );
+      BucketingAxisScatterPlotChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -101,36 +99,12 @@ class BucketingAxisScatterPlotChart extends StatelessWidget {
 
     // Make sure that the "Other" series values are smaller.
     final myFakeOtherData = [
-      LinearSales(
-        random.nextInt(100),
-        random.nextInt(50) / 100,
-        makeRadius(6),
-      ),
-      LinearSales(
-        random.nextInt(100),
-        random.nextInt(50) / 100,
-        makeRadius(6),
-      ),
-      LinearSales(
-        random.nextInt(100),
-        random.nextInt(50) / 100,
-        makeRadius(6),
-      ),
-      LinearSales(
-        random.nextInt(100),
-        random.nextInt(50) / 100,
-        makeRadius(6),
-      ),
-      LinearSales(
-        random.nextInt(100),
-        random.nextInt(50) / 100,
-        makeRadius(6),
-      ),
-      LinearSales(
-        random.nextInt(100),
-        random.nextInt(50) / 100,
-        makeRadius(6),
-      ),
+      LinearSales(random.nextInt(100), random.nextInt(50) / 100, makeRadius(6)),
+      LinearSales(random.nextInt(100), random.nextInt(50) / 100, makeRadius(6)),
+      LinearSales(random.nextInt(100), random.nextInt(50) / 100, makeRadius(6)),
+      LinearSales(random.nextInt(100), random.nextInt(50) / 100, makeRadius(6)),
+      LinearSales(random.nextInt(100), random.nextInt(50) / 100, makeRadius(6)),
+      LinearSales(random.nextInt(100), random.nextInt(50) / 100, makeRadius(6)),
     ];
 
     return [
@@ -188,46 +162,34 @@ class BucketingAxisScatterPlotChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.ScatterPlotChart(
-        seriesList,
-        // Set up a bucketing axis that will place all values below 0.1 (10%)
-        // into a bucket at the bottom of the chart.
-        //
-        // Configure a tick count of 3 so that we get 100%, 50%, and the
-        // threshold.
-        primaryMeasureAxis: charts.BucketingAxisSpec(
-          threshold: 0.1,
-          tickProviderSpec: const charts.BucketingNumericTickProviderSpec(
-            desiredTickCount: 3,
-          ),
-        ),
-        // Add a series legend to display the series names.
-        behaviors: [
-          charts.SeriesLegend(position: charts.BehaviorPosition.end),
-        ],
-        animate: animate,
-      );
+    seriesList,
+    // Set up a bucketing axis that will place all values below 0.1 (10%)
+    // into a bucket at the bottom of the chart.
+    //
+    // Configure a tick count of 3 so that we get 100%, 50%, and the
+    // threshold.
+    primaryMeasureAxis: charts.BucketingAxisSpec(
+      threshold: 0.1,
+      tickProviderSpec: const charts.BucketingNumericTickProviderSpec(
+        desiredTickCount: 3,
+      ),
+    ),
+    // Add a series legend to display the series names.
+    behaviors: [charts.SeriesLegend(position: charts.BehaviorPosition.end)],
+    animate: animate,
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<LinearSales, int>> _createSampleData() {
-    final myFakeDesktopData = [
-      LinearSales(52, 0.75, 14),
-    ];
+    final myFakeDesktopData = [LinearSales(52, 0.75, 14)];
 
-    final myFakeTabletData = [
-      LinearSales(45, 0.3, 18),
-    ];
+    final myFakeTabletData = [LinearSales(45, 0.3, 18)];
 
-    final myFakeMobileData = [
-      LinearSales(56, 0.8, 17),
-    ];
+    final myFakeMobileData = [LinearSales(56, 0.8, 17)];
 
-    final myFakeChromebookData = [
-      LinearSales(25, 0.6, 13),
-    ];
+    final myFakeChromebookData = [LinearSales(25, 0.6, 13)];
 
-    final myFakeHomeData = [
-      LinearSales(34, 0.5, 15),
-    ];
+    final myFakeHomeData = [LinearSales(34, 0.5, 15)];
 
     final myFakeOtherData = [
       LinearSales(10, 0.25, 15),

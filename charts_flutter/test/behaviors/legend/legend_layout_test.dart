@@ -43,8 +43,9 @@ void main() {
     });
 
     test('does not build extra columns if max columns exceed widget count', () {
-      final builder =
-          TabularLegendLayout.horizontalFirst(desiredMaxColumns: 10);
+      final builder = TabularLegendLayout.horizontalFirst(
+        desiredMaxColumns: 10,
+      );
       final widgets = <Widget>[
         const Text('1'),
         const Text('2'),

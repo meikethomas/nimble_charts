@@ -136,8 +136,11 @@ class ChartGestureDetector {
 
     final container = _containerResolver();
 
-    container.gestureProxy
-        .onDragEnd(_lastTapPoint!, _lastScale!, d.velocity.pixelsPerSecond.dx);
+    container.gestureProxy.onDragEnd(
+      _lastTapPoint!,
+      _lastScale!,
+      d.velocity.pixelsPerSecond.dx,
+    );
   }
 }
 

@@ -218,8 +218,9 @@ void main() {
 
   test('creates nodes with minimum width', () {
     // A behavior with minimum width of 50
-    final behaviorWithMinWidth =
-        DomainA11yExploreBehavior<String>(minimumWidth: 50);
+    final behaviorWithMinWidth = DomainA11yExploreBehavior<String>(
+      minimumWidth: 50,
+    );
     // ignore: cascade_invocations
     behaviorWithMinWidth.attachTo(chart);
 

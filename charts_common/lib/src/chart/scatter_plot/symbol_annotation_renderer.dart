@@ -105,11 +105,13 @@ class SymbolAnnotationRenderer<D> extends PointRenderer<D>
 
       final rowInnerHeight = maxRadius * 2;
 
-      final rowHeight = localConfig.verticalSymbolBottomPaddingPx +
+      final rowHeight =
+          localConfig.verticalSymbolBottomPaddingPx +
           localConfig.verticalSymbolTopPaddingPx +
           rowInnerHeight;
 
-      final symbolCenter = offset +
+      final symbolCenter =
+          offset +
           localConfig.verticalSymbolTopPaddingPx +
           (rowInnerHeight / 2);
 
@@ -122,7 +124,8 @@ class SymbolAnnotationRenderer<D> extends PointRenderer<D>
       // measure value of 0, so the key generated in [PointRenderer] is not
       // unique enough.
       // ignore: cascade_invocations
-      series.keyFn ??= (index) => '${series.id}__${series.domainFn(index)}__'
+      series.keyFn ??= (index) =>
+          '${series.id}__${series.domainFn(index)}__'
           '${series.domainLowerBoundFn!(index)}__'
           '${series.domainUpperBoundFn!(index)}';
 
@@ -169,11 +172,13 @@ class SymbolAnnotationRenderer<D> extends PointRenderer<D>
 
     final measurePosition = _componentBounds.top + seriesInfo.symbolCenter;
 
-    final measureLowerBoundPosition =
-        domainLowerBoundPosition != null ? measurePosition : null;
+    final measureLowerBoundPosition = domainLowerBoundPosition != null
+        ? measurePosition
+        : null;
 
-    final measureUpperBoundPosition =
-        domainUpperBoundPosition != null ? measurePosition : null;
+    final measureUpperBoundPosition = domainUpperBoundPosition != null
+        ? measurePosition
+        : null;
 
     return DatumPoint<D>(
       datum: datum,
@@ -229,8 +234,11 @@ class SymbolAnnotationRenderer<D> extends PointRenderer<D>
           componentBounds.width,
           0,
         );
-        domainAxis.tickDrawStrategy!
-            .drawAxisLine(canvas, domainAxis.axisOrientation!, bounds);
+        domainAxis.tickDrawStrategy!.drawAxisLine(
+          canvas,
+          domainAxis.axisOrientation!,
+          bounds,
+        );
       });
     }
   }
@@ -241,10 +249,10 @@ class SymbolAnnotationRenderer<D> extends PointRenderer<D>
 
   @override
   LayoutViewConfig get layoutConfig => LayoutViewConfig(
-        paintOrder: LayoutViewPaintOrder.point,
-        position: LayoutPosition.Bottom,
-        positionOrder: LayoutViewPositionOrder.symbolAnnotation,
-      );
+    paintOrder: LayoutViewPaintOrder.point,
+    position: LayoutPosition.Bottom,
+    positionOrder: LayoutViewPositionOrder.symbolAnnotation,
+  );
 
   @override
   ViewMeasuredSizes measure(int maxWidth, int maxHeight) =>

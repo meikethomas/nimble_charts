@@ -77,8 +77,9 @@ class StaticTickProvider<D> extends TickProvider<D> {
       if (scale.compareDomainValueToViewport(spec.value) == 0) {
         final tick = Tick<D>(
           value: spec.value,
-          textElement: graphicsFactory
-              .createTextElement(spec.label ?? formattedValues[i]),
+          textElement: graphicsFactory.createTextElement(
+            spec.label ?? formattedValues[i],
+          ),
           locationPx: scale[spec.value]?.toDouble(),
         );
         final style = spec.style;

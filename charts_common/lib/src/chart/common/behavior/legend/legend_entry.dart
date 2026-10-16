@@ -112,17 +112,17 @@ class LegendEntry<D> extends LegendEntryBase {
     bool? inLastRow,
     bool? inLastColumn,
   }) : super(
-          label,
-          textStyle: textStyle,
-          rowNumber: rowNumber,
-          columnNumber: columnNumber,
-          rowCount: rowCount,
-          columnCount: columnCount,
-          inFirstRow: inFirstRow,
-          inFirstColumn: inFirstColumn,
-          inLastRow: inLastRow,
-          inLastColumn: inLastColumn,
-        );
+         label,
+         textStyle: textStyle,
+         rowNumber: rowNumber,
+         columnNumber: columnNumber,
+         rowCount: rowCount,
+         columnCount: columnCount,
+         inFirstRow: inFirstRow,
+         inFirstColumn: inFirstColumn,
+         inLastRow: inLastRow,
+         inLastColumn: inLastColumn,
+       );
   final ImmutableSeries<D> series;
   final dynamic datum;
   final int? datumIndex;

@@ -28,17 +28,16 @@ class SankeyRenderer<D> extends BaseSeriesRenderer<D> {
   factory SankeyRenderer({
     String? rendererId,
     SankeyRendererConfig<D>? config,
-  }) =>
-      SankeyRenderer._internal(
-        rendererId: rendererId ?? defaultRendererID,
-        config: config ?? SankeyRendererConfig(),
-      );
+  }) => SankeyRenderer._internal(
+    rendererId: rendererId ?? defaultRendererID,
+    config: config ?? SankeyRendererConfig(),
+  );
 
   SankeyRenderer._internal({required super.rendererId, required this.config})
-      : super(
-          layoutPaintOrder: config.layoutPaintOrder,
-          symbolRenderer: config.symbolRenderer,
-        );
+    : super(
+        layoutPaintOrder: config.layoutPaintOrder,
+        symbolRenderer: config.symbolRenderer,
+      );
 
   /// Default renderer ID for the Sankey Chart
   static const defaultRendererID = 'sankey';
@@ -81,6 +80,5 @@ class SankeyRenderer<D> extends BaseSeriesRenderer<D> {
     Rectangle<int>? boundsOverride, {
     bool selectOverlappingPoints = false,
     bool selectExactEventLocation = false,
-  }) =>
-      <DatumDetails<D>>[];
+  }) => <DatumDetails<D>>[];
 }

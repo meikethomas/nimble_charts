@@ -35,9 +35,8 @@ class LineLineAnnotationChart extends StatelessWidget {
   /// The second annotation extends beyond the range of the series data,
   /// demonstrating the effect of the [Charts.RangeAnnotation.extendAxis] flag.
   /// This can be set to false to disable range extension.
-  factory LineLineAnnotationChart.withSampleData() => LineLineAnnotationChart(
-        _createSampleData(),
-      );
+  factory LineLineAnnotationChart.withSampleData() =>
+      LineLineAnnotationChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -74,38 +73,38 @@ class LineLineAnnotationChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.LineChart(
-        seriesList,
-        animate: animate,
-        behaviors: [
-          charts.RangeAnnotation([
-            charts.LineAnnotationSegment(
-              1.0,
-              charts.RangeAnnotationAxisType.domain,
-              startLabel: 'Domain 1',
-            ),
-            charts.LineAnnotationSegment(
-              4,
-              charts.RangeAnnotationAxisType.domain,
-              endLabel: 'Domain 2',
-              color: charts.MaterialPalette.gray.shade200,
-            ),
-            charts.LineAnnotationSegment(
-              20,
-              charts.RangeAnnotationAxisType.measure,
-              startLabel: 'Measure 1 Start',
-              endLabel: 'Measure 1 End',
-              color: charts.MaterialPalette.gray.shade300,
-            ),
-            charts.LineAnnotationSegment(
-              65,
-              charts.RangeAnnotationAxisType.measure,
-              startLabel: 'Measure 2 Start',
-              endLabel: 'Measure 2 End',
-              color: charts.MaterialPalette.gray.shade400,
-            ),
-          ]),
-        ],
-      );
+    seriesList,
+    animate: animate,
+    behaviors: [
+      charts.RangeAnnotation([
+        charts.LineAnnotationSegment(
+          1.0,
+          charts.RangeAnnotationAxisType.domain,
+          startLabel: 'Domain 1',
+        ),
+        charts.LineAnnotationSegment(
+          4,
+          charts.RangeAnnotationAxisType.domain,
+          endLabel: 'Domain 2',
+          color: charts.MaterialPalette.gray.shade200,
+        ),
+        charts.LineAnnotationSegment(
+          20,
+          charts.RangeAnnotationAxisType.measure,
+          startLabel: 'Measure 1 Start',
+          endLabel: 'Measure 1 End',
+          color: charts.MaterialPalette.gray.shade300,
+        ),
+        charts.LineAnnotationSegment(
+          65,
+          charts.RangeAnnotationAxisType.measure,
+          startLabel: 'Measure 2 Start',
+          endLabel: 'Measure 2 End',
+          color: charts.MaterialPalette.gray.shade400,
+        ),
+      ]),
+    ],
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<LinearSales, int>> _createSampleData() {

@@ -32,9 +32,7 @@ class ComparisonPointsScatterPlotChart extends StatelessWidget {
 
   /// Creates a [charts.ScatterPlotChart] with sample data and no transition.
   factory ComparisonPointsScatterPlotChart.withSampleData() =>
-      ComparisonPointsScatterPlotChart(
-        _createSampleData(),
-      );
+      ComparisonPointsScatterPlotChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -111,16 +109,16 @@ class ComparisonPointsScatterPlotChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.ScatterPlotChart(
-        seriesList,
-        animate: animate,
-        defaultRenderer: charts.PointRendererConfig(
-          pointRendererDecorators: [
-            charts.ComparisonPointsDecorator(
-              symbolRenderer: charts.CylinderSymbolRenderer(),
-            ),
-          ],
+    seriesList,
+    animate: animate,
+    defaultRenderer: charts.PointRendererConfig(
+      pointRendererDecorators: [
+        charts.ComparisonPointsDecorator(
+          symbolRenderer: charts.CylinderSymbolRenderer(),
         ),
-      );
+      ],
+    ),
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<LinearSales, int>> _createSampleData() {

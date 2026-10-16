@@ -23,10 +23,10 @@ void main() {
     testWidgets('selection can be set programmatically', (tester) async {
       final onTapSelection =
           charts.UserManagedSelectionModel<String>.fromConfig(
-        selectedDataConfig: [
-          charts.SeriesDatumConfig<String>('Sales', '2016'),
-        ],
-      );
+            selectedDataConfig: [
+              charts.SeriesDatumConfig<String>('Sales', '2016'),
+            ],
+          );
 
       charts.SelectionModel<String>? currentSelectionModel;
 
@@ -37,10 +37,7 @@ void main() {
       final testChart = TestChart(selectionChangedListener, onTapSelection);
 
       await tester.pumpWidget(
-        Directionality(
-          textDirection: TextDirection.ltr,
-          child: testChart,
-        ),
+        Directionality(textDirection: TextDirection.ltr, child: testChart),
       );
 
       expect(currentSelectionModel, isNull);
@@ -127,7 +124,7 @@ List<charts.Series<OrdinalSales, String>> _createSampleData() {
   return [
     charts.Series<OrdinalSales, String>(
       id: 'Sales',
-      colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+      colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
       domainFn: (sales, _) => sales.year,
       measureFn: (sales, _) => sales.sales,
       data: data,

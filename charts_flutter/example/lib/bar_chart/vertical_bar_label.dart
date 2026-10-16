@@ -31,9 +31,8 @@ class VerticalBarLabelChart extends StatelessWidget {
   });
 
   /// Creates a [charts.BarChart] with sample data and no transition.
-  factory VerticalBarLabelChart.withSampleData() => VerticalBarLabelChart(
-        _createSampleData(),
-      );
+  factory VerticalBarLabelChart.withSampleData() =>
+      VerticalBarLabelChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -77,16 +76,16 @@ class VerticalBarLabelChart extends StatelessWidget {
   // [insideLabelStyleSpec] and [outsideLabelStyleSpec].
   @override
   Widget build(BuildContext context) => charts.BarChart(
-        seriesList,
-        animate: animate,
-        // Set a bar label decorator.
-        // Example configuring different styles for inside/outside:
-        //       barRendererDecorator: new charts.BarLabelDecorator(
-        //          insideLabelStyleSpec: new charts.TextStyleSpec(...),
-        //          outsideLabelStyleSpec: new charts.TextStyleSpec(...)),
-        barRendererDecorator: charts.BarLabelDecorator<String>(),
-        domainAxis: const charts.OrdinalAxisSpec(),
-      );
+    seriesList,
+    animate: animate,
+    // Set a bar label decorator.
+    // Example configuring different styles for inside/outside:
+    //       barRendererDecorator: new charts.BarLabelDecorator(
+    //          insideLabelStyleSpec: new charts.TextStyleSpec(...),
+    //          outsideLabelStyleSpec: new charts.TextStyleSpec(...)),
+    barRendererDecorator: charts.BarLabelDecorator<String>(),
+    domainAxis: const charts.OrdinalAxisSpec(),
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {

@@ -16,7 +16,8 @@
 import 'package:meta/meta.dart' show immutable;
 import 'package:nimble_charts/src/behaviors/chart_behavior.dart'
     show ChartBehavior, GestureType;
-import 'package:nimble_charts_common/common.dart' as common
+import 'package:nimble_charts_common/common.dart'
+    as common
     show
         BehaviorPosition,
         ChartBehavior,
@@ -144,20 +145,20 @@ class ChartTitle<D> extends ChartBehavior<D> {
 
   @override
   common.ChartTitle<D> createCommonBehavior() => common.ChartTitle<D>(
-        title,
-        behaviorPosition: behaviorPosition,
-        innerPadding: innerPadding,
-        layoutMinSize: layoutMinSize,
-        layoutPreferredSize: layoutPreferredSize,
-        outerPadding: outerPadding,
-        maxWidthStrategy: maxWidthStrategy,
-        titleDirection: titleDirection,
-        titleOutsideJustification: titleOutsideJustification,
-        titlePadding: titlePadding,
-        titleStyleSpec: titleStyleSpec,
-        subTitle: subTitle,
-        subTitleStyleSpec: subTitleStyleSpec,
-      );
+    title,
+    behaviorPosition: behaviorPosition,
+    innerPadding: innerPadding,
+    layoutMinSize: layoutMinSize,
+    layoutPreferredSize: layoutPreferredSize,
+    outerPadding: outerPadding,
+    maxWidthStrategy: maxWidthStrategy,
+    titleDirection: titleDirection,
+    titleOutsideJustification: titleOutsideJustification,
+    titlePadding: titlePadding,
+    titleStyleSpec: titleStyleSpec,
+    subTitle: subTitle,
+    subTitleStyleSpec: subTitleStyleSpec,
+  );
 
   @override
   void updateCommonBehavior(common.ChartBehavior commonBehavior) {}
@@ -184,18 +185,18 @@ class ChartTitle<D> extends ChartBehavior<D> {
 
   @override
   int get hashCode => Object.hash(
-        behaviorPosition,
-        layoutMinSize,
-        layoutPreferredSize,
-        maxWidthStrategy,
-        title,
-        titleDirection,
-        titleOutsideJustification,
-        titleStyleSpec,
-        subTitle,
-        subTitleStyleSpec,
-        innerPadding,
-        titlePadding,
-        outerPadding,
-      );
+    behaviorPosition,
+    layoutMinSize,
+    layoutPreferredSize,
+    maxWidthStrategy,
+    title,
+    titleDirection,
+    titleOutsideJustification,
+    titleStyleSpec,
+    subTitle,
+    subTitleStyleSpec,
+    innerPadding,
+    titlePadding,
+    outerPadding,
+  );
 }

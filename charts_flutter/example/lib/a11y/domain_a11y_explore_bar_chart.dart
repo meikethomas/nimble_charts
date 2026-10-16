@@ -49,9 +49,7 @@ class DomainA11yExploreBarChart extends StatelessWidget {
 
   /// Creates a [charts.BarChart] with sample data and no transition.
   factory DomainA11yExploreBarChart.withSampleData() =>
-      DomainA11yExploreBarChart(
-        _createSampleData(),
-      );
+      DomainA11yExploreBarChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -112,17 +110,18 @@ class DomainA11yExploreBarChart extends StatelessWidget {
   ) {
     final buffer = StringBuffer()
       ..
-
-          // The datum's type in this case is [OrdinalSales].
-          // So we can access year and sales information here.
-          write(seriesDatums.first.datum.year);
+      // The datum's type in this case is [OrdinalSales].
+      // So we can access year and sales information here.
+      write(seriesDatums.first.datum.year);
 
     for (final seriesDatum in seriesDatums) {
       final series = seriesDatum.series;
       final datum = seriesDatum.datum;
 
-      buffer.write(' ${series.displayName} '
-          '${datum.sales / 1000} thousand dollars');
+      buffer.write(
+        ' ${series.displayName} '
+        '${datum.sales / 1000} thousand dollars',
+      );
     }
 
     return buffer.toString();
@@ -130,50 +129,50 @@ class DomainA11yExploreBarChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Semantics(
-        // Describe your chart
-        label: 'Yearly sales bar chart',
-        // Optionally provide a hint for the user to know how to trigger
-        // explore mode.
-        hint: 'Press and hold to enable explore',
-        child: charts.BarChart(
-          seriesList,
-          animate: animate,
-          // To prevent conflict with the select nearest behavior that uses the
-          // tap gesture, turn off default interactions when the user is using
-          // an accessibility service like TalkBack or VoiceOver to interact
-          // with the application.
-          defaultInteractions: !MediaQuery.of(context).accessibleNavigation,
-          behaviors: [
-            charts.DomainA11yExploreBehavior(
-              // Callback for generating the message that is vocalized.
-              // An example of how to use is in [vocalizeDomainAndMeasures].
-              // If none is set, the default only vocalizes the domain value.
-              vocalizationCallback: vocalizeDomainAndMeasures,
-              // The following settings are optional, but shown here for
-              // demonstration purchases.
-              // [exploreModeTrigger] Default is press and hold, can be
-              // changed to tap.
-              exploreModeTrigger: charts.ExploreModeTrigger.pressHold,
-              // [exploreModeEnabledAnnouncement] Optionally notify the OS
-              // when explore mode is enabled.
-              exploreModeEnabledAnnouncement: 'Explore mode enabled',
-              // [exploreModeDisabledAnnouncement] Optionally notify the OS
-              // when explore mode is disabled.
-              exploreModeDisabledAnnouncement: 'Explore mode disabled',
-              // [minimumWidth] Default and minimum is 1.0. This is the
-              // minimum width of the screen reader bounding box. The bounding
-              // box width is calculated based on the domain axis step size.
-              // Minimum width will be used if the step size is smaller.
-              minimumWidth: 1,
-            ),
-            // Optionally include domain highlighter as a behavior.
-            // This behavior is included in this example to show that when an
-            // a11y node has focus, the chart's internal selection model is
-            // also updated.
-            charts.DomainHighlighter(),
-          ],
+    // Describe your chart
+    label: 'Yearly sales bar chart',
+    // Optionally provide a hint for the user to know how to trigger
+    // explore mode.
+    hint: 'Press and hold to enable explore',
+    child: charts.BarChart(
+      seriesList,
+      animate: animate,
+      // To prevent conflict with the select nearest behavior that uses the
+      // tap gesture, turn off default interactions when the user is using
+      // an accessibility service like TalkBack or VoiceOver to interact
+      // with the application.
+      defaultInteractions: !MediaQuery.of(context).accessibleNavigation,
+      behaviors: [
+        charts.DomainA11yExploreBehavior(
+          // Callback for generating the message that is vocalized.
+          // An example of how to use is in [vocalizeDomainAndMeasures].
+          // If none is set, the default only vocalizes the domain value.
+          vocalizationCallback: vocalizeDomainAndMeasures,
+          // The following settings are optional, but shown here for
+          // demonstration purchases.
+          // [exploreModeTrigger] Default is press and hold, can be
+          // changed to tap.
+          exploreModeTrigger: charts.ExploreModeTrigger.pressHold,
+          // [exploreModeEnabledAnnouncement] Optionally notify the OS
+          // when explore mode is enabled.
+          exploreModeEnabledAnnouncement: 'Explore mode enabled',
+          // [exploreModeDisabledAnnouncement] Optionally notify the OS
+          // when explore mode is disabled.
+          exploreModeDisabledAnnouncement: 'Explore mode disabled',
+          // [minimumWidth] Default and minimum is 1.0. This is the
+          // minimum width of the screen reader bounding box. The bounding
+          // box width is calculated based on the domain axis step size.
+          // Minimum width will be used if the step size is smaller.
+          minimumWidth: 1,
         ),
-      );
+        // Optionally include domain highlighter as a behavior.
+        // This behavior is included in this example to show that when an
+        // a11y node has focus, the chart's internal selection model is
+        // also updated.
+        charts.DomainHighlighter(),
+      ],
+    ),
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {

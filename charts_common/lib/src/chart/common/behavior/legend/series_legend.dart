@@ -40,10 +40,10 @@ class SeriesLegend<D> extends Legend<D> {
     LegendDefaultMeasure? legendDefaultMeasure,
     super.entryTextStyle,
   }) : super(
-          selectionModelType: selectionModelType ?? SelectionModelType.info,
-          legendEntryGenerator:
-              legendEntryGenerator ?? PerSeriesLegendEntryGenerator(),
-        ) {
+         selectionModelType: selectionModelType ?? SelectionModelType.info,
+         legendEntryGenerator:
+             legendEntryGenerator ?? PerSeriesLegendEntryGenerator(),
+       ) {
     // Calling the setters will automatically use non-null default values.
     this.showMeasures = showMeasures;
     this.legendDefaultMeasure = legendDefaultMeasure;

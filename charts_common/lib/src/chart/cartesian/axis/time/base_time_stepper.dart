@@ -100,8 +100,10 @@ class _TimeStepIteratorImpl implements TimeStepIterator {
   @override
   bool moveNext() {
     if (_current == null) {
-      _current =
-          stepper.getStepTimeAfterInclusive(extentStartTime, _tickIncrement);
+      _current = stepper.getStepTimeAfterInclusive(
+        extentStartTime,
+        _tickIncrement,
+      );
     } else {
       _current = stepper.getNextStepTime(_current!, _tickIncrement);
     }

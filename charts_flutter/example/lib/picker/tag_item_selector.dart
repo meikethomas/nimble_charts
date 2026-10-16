@@ -33,40 +33,40 @@ class TagItemSelector<T extends TaggedItem> extends StatefulWidget {
 class _TagItemSelectorState<T extends TaggedItem>
     extends State<TagItemSelector<T>> {
   void _toggleTag(TagDefinition tag) => setState(() {
-        if (widget.selectedTags.value.contains(tag)) {
-          widget.selectedTags.value.remove(tag);
-        } else {
-          widget.selectedTags.value.add(tag);
-        }
-      });
+    if (widget.selectedTags.value.contains(tag)) {
+      widget.selectedTags.value.remove(tag);
+    } else {
+      widget.selectedTags.value.add(tag);
+    }
+  });
 
   Widget _buildTagChips(bool isPhoneScreen) => SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: widget.allTags
-              .map(
-                (tag) => Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4),
-                  child: Tooltip(
-                    message: tag.blurb,
-                    child: FilterChip(
-                      label: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(tag.icon),
-                          const SizedBox(width: 8),
-                          Text(tag.display),
-                        ],
-                      ),
-                      selected: widget.selectedTags.value.contains(tag),
-                      onSelected: (_) => _toggleTag(tag),
-                    ),
+    scrollDirection: Axis.horizontal,
+    child: Row(
+      children: widget.allTags
+          .map(
+            (tag) => Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: Tooltip(
+                message: tag.blurb,
+                child: FilterChip(
+                  label: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(tag.icon),
+                      const SizedBox(width: 8),
+                      Text(tag.display),
+                    ],
                   ),
+                  selected: widget.selectedTags.value.contains(tag),
+                  onSelected: (_) => _toggleTag(tag),
                 ),
-              )
-              .toList(),
-        ),
-      );
+              ),
+            ),
+          )
+          .toList(),
+    ),
+  );
 
   Widget _buildItemGrid(bool isPhoneScreen) => widget.selectedTags.value.isEmpty
       ? const SizedBox.shrink()
@@ -81,42 +81,42 @@ class _TagItemSelectorState<T extends TaggedItem>
 
   @override
   Widget build(BuildContext context) => LayoutBuilder(
-        builder: (context, constraints) {
-          final isPhoneScreen = constraints.maxWidth < 600;
+    builder: (context, constraints) {
+      final isPhoneScreen = constraints.maxWidth < 600;
 
-          return isPhoneScreen
-              ? Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: _buildTagChips(isPhoneScreen),
+      return isPhoneScreen
+          ? Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: _buildTagChips(isPhoneScreen),
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: _buildItemGrid(isPhoneScreen),
                     ),
-                    Expanded(
-                      child: SingleChildScrollView(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: _buildItemGrid(isPhoneScreen),
-                        ),
-                      ),
+                  ),
+                ),
+              ],
+            )
+          : Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: _buildTagChips(isPhoneScreen),
+                ),
+                Expanded(
+                  child: Center(
+                    child: SingleChildScrollView(
+                      child: _buildItemGrid(isPhoneScreen),
                     ),
-                  ],
-                )
-              : Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: _buildTagChips(isPhoneScreen),
-                    ),
-                    Expanded(
-                      child: Center(
-                        child: SingleChildScrollView(
-                          child: _buildItemGrid(isPhoneScreen),
-                        ),
-                      ),
-                    ),
-                  ],
-                );
-        },
-      );
+                  ),
+                ),
+              ],
+            );
+    },
+  );
 }

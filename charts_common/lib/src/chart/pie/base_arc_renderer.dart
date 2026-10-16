@@ -41,16 +41,17 @@ import 'package:nimble_charts_common/src/chart/pie/base_arc_renderer_config.dart
 import 'package:nimble_charts_common/src/common/math.dart' show NullablePoint;
 import 'package:nimble_charts_common/src/data/series.dart' show AttributeKey;
 
-const arcElementsKey =
-    AttributeKey<List<ArcRendererElement<Object>>>('ArcRenderer.elements');
+const arcElementsKey = AttributeKey<List<ArcRendererElement<Object>>>(
+  'ArcRenderer.elements',
+);
 
 abstract class BaseArcRenderer<D> extends BaseSeriesRenderer<D> {
   BaseArcRenderer({required this.config, required super.rendererId})
-      : arcRendererDecorators = config.arcRendererDecorators,
-        super(
-          layoutPaintOrder: config.layoutPaintOrder,
-          symbolRenderer: config.symbolRenderer,
-        );
+    : arcRendererDecorators = config.arcRendererDecorators,
+      super(
+        layoutPaintOrder: config.layoutPaintOrder,
+        symbolRenderer: config.symbolRenderer,
+      );
   // Constant used in the calculation of [centerContentBounds], calculated
   // once to save runtime cost.
   static final _cosPIOver4 = cos(pi / 4);
@@ -161,10 +162,12 @@ abstract class BaseArcRenderer<D> extends BaseSeriesRenderer<D> {
           // Now that we have found the matching arc, calculate the center
           // point halfway between the inner and outer radius, and the start
           // and end angles.
-          final centerAngle = arc.currentArcStartAngle! +
+          final centerAngle =
+              arc.currentArcStartAngle! +
               (arc.currentArcEndAngle! - arc.currentArcStartAngle!) / 2;
 
-          final centerPointRadius = arcList.innerRadius! +
+          final centerPointRadius =
+              arcList.innerRadius! +
               (arcList.radius! - arcList.innerRadius!) / 2;
 
           chartPosition = Point<double>(
@@ -200,9 +203,9 @@ abstract class BaseArcRenderer<D> extends BaseSeriesRenderer<D> {
 
     // Decorate the arcs with decorators that should appear below the main
     // series data.
-    arcRendererDecorators
-        .where((decorator) => !decorator.renderAbove)
-        .forEach((decorator) {
+    arcRendererDecorators.where((decorator) => !decorator.renderAbove).forEach((
+      decorator,
+    ) {
       decorator.decorate(
         arcLists
             .map<ArcRendererElementList<D>>(
@@ -223,14 +226,15 @@ abstract class BaseArcRenderer<D> extends BaseSeriesRenderer<D> {
 
       arcList.arcs
           .map<ArcRendererElement<D>>(
-        (animatingArc) => animatingArc.getCurrentArc(animationPercent),
-      )
+            (animatingArc) => animatingArc.getCurrentArc(animationPercent),
+          )
           .forEach((arc) {
-        circleSectors
-            .add(CanvasPieSlice(arc.startAngle, arc.endAngle, fill: arc.color));
+            circleSectors.add(
+              CanvasPieSlice(arc.startAngle, arc.endAngle, fill: arc.color),
+            );
 
-        arcListToElementsList[arcList].arcs.add(arc);
-      });
+            arcListToElementsList[arcList].arcs.add(arc);
+          });
 
       // Draw the arcs.
       canvas.drawPie(
@@ -247,9 +251,9 @@ abstract class BaseArcRenderer<D> extends BaseSeriesRenderer<D> {
 
     // Decorate the arcs with decorators that should appear above the main
     // series data. This is the typical place for labels.
-    arcRendererDecorators
-        .where((decorator) => decorator.renderAbove)
-        .forEach((decorator) {
+    arcRendererDecorators.where((decorator) => decorator.renderAbove).forEach((
+      decorator,
+    ) {
       decorator.decorate(
         arcLists
             .map<ArcRendererElementList<D>>(
@@ -295,8 +299,10 @@ abstract class BaseArcRenderer<D> extends BaseSeriesRenderer<D> {
       final distance = center.distanceTo(chartPoint);
 
       // Calculate the angle of [chartPoint] from the center of the arcs.
-      var chartPointAngle =
-          atan2(chartPoint.y - center.y, chartPoint.x - center.x);
+      var chartPointAngle = atan2(
+        chartPoint.y - center.y,
+        chartPoint.x - center.x,
+      );
 
       // atan2 returns NaN if we are at the exact center of the circle.
       if (chartPointAngle.isNaN) {
@@ -337,8 +343,10 @@ abstract class BaseArcRenderer<D> extends BaseSeriesRenderer<D> {
     DatumDetails<D> details,
     SeriesDatum<D> seriesDatum,
   ) {
-    final chartPosition =
-        _getChartPosition(details.series!.id, details.domain.toString());
+    final chartPosition = _getChartPosition(
+      details.series!.id,
+      details.domain.toString(),
+    );
 
     return DatumDetails.from(
       details,

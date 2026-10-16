@@ -30,9 +30,8 @@ class OrdinalComboBarLineChart extends StatelessWidget {
     this.animate = true,
   });
 
-  factory OrdinalComboBarLineChart.withSampleData() => OrdinalComboBarLineChart(
-        _createSampleData(),
-      );
+  factory OrdinalComboBarLineChart.withSampleData() =>
+      OrdinalComboBarLineChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -84,12 +83,12 @@ class OrdinalComboBarLineChart extends StatelessWidget {
         data: tableSalesData,
       ),
       charts.Series<OrdinalSales, String>(
-        id: 'Mobile',
-        colorFn: (_, _) => charts.MaterialPalette.green.shadeDefault,
-        domainFn: (sales, _) => sales.year,
-        measureFn: (sales, _) => sales.sales,
-        data: mobileSalesData,
-      )
+          id: 'Mobile',
+          colorFn: (_, _) => charts.MaterialPalette.green.shadeDefault,
+          domainFn: (sales, _) => sales.year,
+          measureFn: (sales, _) => sales.sales,
+          data: mobileSalesData,
+        )
         // Configure our custom line renderer for this series.
         ..setAttribute(charts.rendererIdKey, 'customLine'),
     ];
@@ -98,21 +97,21 @@ class OrdinalComboBarLineChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.OrdinalComboChart(
-        seriesList,
-        animate: animate,
-        // Configure the default renderer as a bar renderer.
-        defaultRenderer: charts.BarRendererConfig(
-          groupingType: charts.BarGroupingType.grouped,
-        ),
-        // Custom renderer configuration for the line series. This will be used
-        // for any series that does not define a rendererIdKey.
-        customSeriesRenderers: [
-          charts.LineRendererConfig(
-            // ID used to link series to this renderer.
-            customRendererId: 'customLine',
-          ),
-        ],
-      );
+    seriesList,
+    animate: animate,
+    // Configure the default renderer as a bar renderer.
+    defaultRenderer: charts.BarRendererConfig(
+      groupingType: charts.BarGroupingType.grouped,
+    ),
+    // Custom renderer configuration for the line series. This will be used
+    // for any series that does not define a rendererIdKey.
+    customSeriesRenderers: [
+      charts.LineRendererConfig(
+        // ID used to link series to this renderer.
+        customRendererId: 'customLine',
+      ),
+    ],
+  );
 
   /// Create series list with multiple series
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {
@@ -153,12 +152,12 @@ class OrdinalComboBarLineChart extends StatelessWidget {
         data: tableSalesData,
       ),
       charts.Series<OrdinalSales, String>(
-        id: 'Mobile ',
-        colorFn: (_, _) => charts.MaterialPalette.green.shadeDefault,
-        domainFn: (sales, _) => sales.year,
-        measureFn: (sales, _) => sales.sales,
-        data: mobileSalesData,
-      )
+          id: 'Mobile ',
+          colorFn: (_, _) => charts.MaterialPalette.green.shadeDefault,
+          domainFn: (sales, _) => sales.year,
+          measureFn: (sales, _) => sales.sales,
+          data: mobileSalesData,
+        )
         // Configure our custom line renderer for this series.
         ..setAttribute(charts.rendererIdKey, 'customLine'),
     ];

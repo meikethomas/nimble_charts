@@ -25,7 +25,8 @@ import 'package:nimble_charts/src/canvas/point_painter.dart' show PointPainter;
 import 'package:nimble_charts/src/canvas/polygon_painter.dart'
     show PolygonPainter;
 import 'package:nimble_charts/src/text_element.dart' show TextElement;
-import 'package:nimble_charts_common/common.dart' as common
+import 'package:nimble_charts_common/common.dart'
+    as common
     show
         BlendMode,
         CanvasBarStack,
@@ -440,8 +441,10 @@ class ChartCanvas implements common.ChartCanvas {
 
       offsetY -= flutterTextElement.verticalFontShift;
 
-      textElement.textPainter!
-          .paint(canvas, Offset(offsetX.toDouble(), offsetY.toDouble()));
+      textElement.textPainter!.paint(
+        canvas,
+        Offset(offsetX.toDouble(), offsetY.toDouble()),
+      );
     }
   }
 
@@ -459,11 +462,11 @@ class ChartCanvas implements common.ChartCanvas {
 
   /// Convert dart:math [Rectangle] to Flutter [Rect].
   Rect _getRect(Rectangle<num> rectangle) => Rect.fromLTWH(
-        rectangle.left.toDouble(),
-        rectangle.top.toDouble(),
-        rectangle.width.toDouble(),
-        rectangle.height.toDouble(),
-      );
+    rectangle.left.toDouble(),
+    rectangle.top.toDouble(),
+    rectangle.width.toDouble(),
+    rectangle.height.toDouble(),
+  );
 
   /// Convert dart:math [Rectangle] and to Flutter [RRect].
   RRect _getRRect(
@@ -565,10 +568,7 @@ class ChartCanvas implements common.ChartCanvas {
       LinePainter.draw(
         canvas: canvas,
         paint: _paint,
-        points: [
-          Point(x0 + modifier, y0),
-          Point(x1 + modifier, y1),
-        ],
+        points: [Point(x0 + modifier, y0), Point(x1 + modifier, y1)],
         stroke: fill,
         strokeWidthPx: fillWidthPx,
         shader: lineShader,

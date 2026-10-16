@@ -27,9 +27,7 @@ class DonutPieChart extends StatelessWidget {
   const DonutPieChart(this.seriesList, {super.key, this.animate = true});
 
   /// Creates a [charts.PieChart] with sample data and no transition.
-  factory DonutPieChart.withSampleData() => DonutPieChart(
-        _createSampleData(),
-      );
+  factory DonutPieChart.withSampleData() => DonutPieChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -63,12 +61,12 @@ class DonutPieChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.PieChart(
-        seriesList,
-        animate: animate,
-        // Configure the width of the pie slices to 60px. The remaining space in
-        // the chart will be left as a hole in the center.
-        defaultRenderer: charts.ArcRendererConfig<dynamic>(arcWidth: 60),
-      );
+    seriesList,
+    animate: animate,
+    // Configure the width of the pie slices to 60px. The remaining space in
+    // the chart will be left as a hole in the center.
+    defaultRenderer: charts.ArcRendererConfig<dynamic>(arcWidth: 60),
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<LinearSales, int>> _createSampleData() {

@@ -36,12 +36,12 @@ class DateTimeAxis extends Axis<DateTime> {
     TickProvider<DateTime>? tickProvider,
     TickFormatter<DateTime>? tickFormatter,
   }) : super(
-          tickProvider: tickProvider ??
-              AutoAdjustingDateTimeTickProvider.createDefault(dateTimeFactory),
-          tickFormatter:
-              tickFormatter ?? DateTimeTickFormatter(dateTimeFactory),
-          scale: DateTimeScale(dateTimeFactory),
-        );
+         tickProvider:
+             tickProvider ??
+             AutoAdjustingDateTimeTickProvider.createDefault(dateTimeFactory),
+         tickFormatter: tickFormatter ?? DateTimeTickFormatter(dateTimeFactory),
+         scale: DateTimeScale(dateTimeFactory),
+       );
 
   void setScaleViewport(DateTimeExtents viewport) {
     autoViewport = false;

@@ -23,10 +23,11 @@ import 'package:nimble_charts_common/src/data/tree.dart' show TreeNode;
 
 /// Given the selected node and a list of currently expanded node, returns the
 /// new set of node to be expanded (shown beyond the initialDisplayLevel).
-typedef ExpandNodeCallback = List<TreeNode<dynamic>> Function(
-  TreeNode<dynamic> node,
-  List<TreeNode<dynamic>> expandedNode,
-);
+typedef ExpandNodeCallback =
+    List<TreeNode<dynamic>> Function(
+      TreeNode<dynamic> node,
+      List<TreeNode<dynamic>> expandedNode,
+    );
 
 /// Configuration for an [ArcRenderer].
 class SunburstArcRendererConfig<D> extends BaseArcRendererConfig<D> {
@@ -45,9 +46,9 @@ class SunburstArcRendererConfig<D> extends BaseArcRendererConfig<D> {
     super.minHoleWidthForCenterContent,
     super.startAngle,
     super.strokeWidthPx,
-  })  : maxDisplayLevel = maxDisplayLevel ?? _maxInt32Value,
-        initialDisplayLevel =
-            initialDisplayLevel ?? maxDisplayLevel ?? _maxInt32Value;
+  }) : maxDisplayLevel = maxDisplayLevel ?? _maxInt32Value,
+       initialDisplayLevel =
+           initialDisplayLevel ?? maxDisplayLevel ?? _maxInt32Value;
   static const _maxInt32Value = 1 << 31;
 
   /// Ratio of the arc widths for each of the ring drawn in the sunburst. The

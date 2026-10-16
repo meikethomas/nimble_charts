@@ -34,9 +34,7 @@ class GroupedStackedWeightPatternBarChart extends StatelessWidget {
   });
 
   factory GroupedStackedWeightPatternBarChart.withSampleData() =>
-      GroupedStackedWeightPatternBarChart(
-        createSampleData(),
-      );
+      GroupedStackedWeightPatternBarChart(createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -142,18 +140,18 @@ class GroupedStackedWeightPatternBarChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.BarChart(
-        seriesList,
-        animate: animate,
-        // Configure the bar renderer in grouped stacked rendering mode with a
-        // custom weight pattern.
-        //
-        // The first stack of bars in each group is configured to be twice as
-        // wide as the second stack of bars in each group.
-        defaultRenderer: charts.BarRendererConfig(
-          groupingType: charts.BarGroupingType.groupedStacked,
-          weightPattern: [2, 1],
-        ),
-      );
+    seriesList,
+    animate: animate,
+    // Configure the bar renderer in grouped stacked rendering mode with a
+    // custom weight pattern.
+    //
+    // The first stack of bars in each group is configured to be twice as
+    // wide as the second stack of bars in each group.
+    defaultRenderer: charts.BarRendererConfig(
+      groupingType: charts.BarGroupingType.groupedStacked,
+      weightPattern: [2, 1],
+    ),
+  );
 
   /// Create series list with multiple series
   static List<charts.Series<OrdinalSales, String>> createSampleData() {

@@ -20,11 +20,10 @@ import 'package:nimble_charts_common/src/data/tree.dart';
 /// A treemap renderer that renders a treemap with dice layout.
 class DiceTreeMapRenderer<D> extends BaseTreeMapRenderer<D> {
   DiceTreeMapRenderer({String? rendererId, TreeMapRendererConfig<D>? config})
-      : super(
-          config:
-              config ?? TreeMapRendererConfig(tileType: TreeMapTileType.dice),
-          rendererId: rendererId ?? BaseTreeMapRenderer.defaultRendererId,
-        );
+    : super(
+        config: config ?? TreeMapRendererConfig(tileType: TreeMapTileType.dice),
+        rendererId: rendererId ?? BaseTreeMapRenderer.defaultRendererId,
+      );
 
   /// Uses dicing as the tiling algorithm for this tree map.
   @override

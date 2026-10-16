@@ -64,13 +64,13 @@ class ArcRendererElement<D> {
   ImmutableSeries<D> series;
 
   ArcRendererElement<D> clone() => ArcRendererElement<D>(
-        startAngle: startAngle,
-        endAngle: endAngle,
-        color: color == null ? null : Color.fromOther(color: color!),
-        index: index,
-        key: key,
-        series: series,
-      );
+    startAngle: startAngle,
+    endAngle: endAngle,
+    color: color == null ? null : Color.fromOther(color: color!),
+    index: index,
+    key: key,
+    series: series,
+  );
 
   void updateAnimationPercent(
     ArcRendererElement<D> previous,
@@ -79,9 +79,10 @@ class ArcRendererElement<D> {
   ) {
     startAngle =
         ((target.startAngle - previous.startAngle) * animationPercent) +
-            previous.startAngle;
+        previous.startAngle;
 
-    endAngle = ((target.endAngle - previous.endAngle) * animationPercent) +
+    endAngle =
+        ((target.endAngle - previous.endAngle) * animationPercent) +
         previous.endAngle;
 
     color = getAnimatedColor(previous.color!, target.color!, animationPercent);
@@ -125,7 +126,6 @@ class AnimatedArc<D> {
   /// Animates the angle of the arc to [endAngle], in radians.
   void animateOut(double endAngle) {
     final newTarget = _currentArc!.clone()
-
       // Animate the arc out by setting the angles to 0.
       ..startAngle = endAngle
       ..endAngle = endAngle;
@@ -148,8 +148,11 @@ class AnimatedArc<D> {
       return _currentArc!;
     }
 
-    _currentArc!
-        .updateAnimationPercent(_previousArc!, _targetArc, animationPercent);
+    _currentArc!.updateAnimationPercent(
+      _previousArc!,
+      _targetArc,
+      animationPercent,
+    );
 
     return _currentArc!;
   }

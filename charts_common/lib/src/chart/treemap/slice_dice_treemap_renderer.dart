@@ -23,10 +23,11 @@ class SliceDiceTreeMapRenderer<D> extends BaseTreeMapRenderer<D> {
     String? rendererId,
     TreeMapRendererConfig<D>? config,
   }) : super(
-          config: config ??
-              TreeMapRendererConfig(tileType: TreeMapTileType.sliceDice),
-          rendererId: rendererId ?? BaseTreeMapRenderer.defaultRendererId,
-        );
+         config:
+             config ??
+             TreeMapRendererConfig(tileType: TreeMapTileType.sliceDice),
+         rendererId: rendererId ?? BaseTreeMapRenderer.defaultRendererId,
+       );
 
   /// Uses slice-and-dice as the tiling algorithm for this tree map.
   @override

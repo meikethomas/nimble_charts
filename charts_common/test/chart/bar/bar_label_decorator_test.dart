@@ -100,10 +100,10 @@ class FakeTextElement implements TextElement {
 
   @override
   TextMeasurement get measurement => TextMeasurement(
-        horizontalSliceWidth: text.length.toDouble(),
-        verticalSliceWidth: textStyle!.fontSize!.toDouble(),
-        baseline: textStyle!.fontSize!.toDouble(),
-      );
+    horizontalSliceWidth: text.length.toDouble(),
+    verticalSliceWidth: textStyle!.fontSize!.toDouble(),
+    baseline: textStyle!.fontSize!.toDouble(),
+  );
 }
 
 class FakeBarRendererElement implements ImmutableBarRendererElement<String> {
@@ -209,8 +209,9 @@ void main() {
           renderingVertically: true,
         );
 
-      final captured =
-          verify(canvas.drawText(captureAny, captureAny, captureAny)).captured;
+      final captured = verify(
+        canvas.drawText(captureAny, captureAny, captureAny),
+      ).captured;
       // Draw text is called three times (once for each bar) and all 3
       // parameters were captured. Total parameters captured expected to be 9.
       expect(captured, hasLength(9));
@@ -282,8 +283,9 @@ void main() {
         renderingVertically: true,
       );
 
-      final captured =
-          verify(canvas.drawText(captureAny, captureAny, captureAny)).captured;
+      final captured = verify(
+        canvas.drawText(captureAny, captureAny, captureAny),
+      ).captured;
       expect(captured, hasLength(3));
       expect(captured[0].measurement.horizontalSliceWidth, equals(8));
       expect(captured[0].measurement.verticalSliceWidth, equals(10));
@@ -317,8 +319,9 @@ void main() {
         renderingVertically: true,
       );
 
-      final captured =
-          verify(canvas.drawText(captureAny, captureAny, captureAny)).captured;
+      final captured = verify(
+        canvas.drawText(captureAny, captureAny, captureAny),
+      ).captured;
       expect(captured, hasLength(3));
       expect(captured[0].measurement.horizontalSliceWidth, equals(6));
       expect(captured[0].measurement.verticalSliceWidth, equals(10));
@@ -355,8 +358,9 @@ void main() {
         renderingVertically: true,
       );
 
-      final captured =
-          verify(canvas.drawText(captureAny, captureAny, captureAny)).captured;
+      final captured = verify(
+        canvas.drawText(captureAny, captureAny, captureAny),
+      ).captured;
       // Draw text is called 2 times (once for each label line) and all 3
       // parameters were captured.
       expect(captured, hasLength(6));
@@ -423,8 +427,9 @@ void main() {
         renderingVertically: true,
       );
 
-      final captured =
-          verify(canvas.drawText(captureAny, captureAny, captureAny)).captured;
+      final captured = verify(
+        canvas.drawText(captureAny, captureAny, captureAny),
+      ).captured;
       // Draw text is called twice (once for each bar) and all 3 parameters were
       // captured. Total parameters captured expected to be 6.
       expect(captured, hasLength(6));
@@ -454,12 +459,9 @@ void main() {
     group('Null and empty label scenarios', () {
       test('Skip label if label accessor does not exist', () {
         final barElements = [
-          FakeBarRendererElement(
+          FakeBarRendererElement('A', const Rectangle(0, 0, 10, 20), null, [
             'A',
-            const Rectangle(0, 0, 10, 20),
-            null,
-            ['A'],
-          ),
+          ]),
         ];
 
         BarLabelDecorator<String>().decorate(
@@ -529,9 +531,9 @@ void main() {
           renderingVertically: true,
         );
 
-        final captured =
-            verify(canvas.drawText(captureAny, captureAny, captureAny))
-                .captured;
+        final captured = verify(
+          canvas.drawText(captureAny, captureAny, captureAny),
+        ).captured;
         expect(captured, hasLength(3));
         expect(captured[0].measurement.horizontalSliceWidth, equals(6));
         expect(captured[0].measurement.verticalSliceWidth, equals(10));
@@ -570,9 +572,9 @@ void main() {
           renderingVertically: true,
         );
 
-        final captured =
-            verify(canvas.drawText(captureAny, captureAny, captureAny))
-                .captured;
+        final captured = verify(
+          canvas.drawText(captureAny, captureAny, captureAny),
+        ).captured;
         expect(captured, hasLength(3));
         expect(captured[0].measurement.horizontalSliceWidth, equals(6));
         expect(captured[0].measurement.verticalSliceWidth, equals(10));
@@ -607,9 +609,9 @@ void main() {
           renderingVertically: true,
         );
 
-        final captured =
-            verify(canvas.drawText(captureAny, captureAny, captureAny))
-                .captured;
+        final captured = verify(
+          canvas.drawText(captureAny, captureAny, captureAny),
+        ).captured;
         expect(captured, hasLength(3));
         expect(captured[0].measurement.horizontalSliceWidth, equals(6));
         expect(captured[0].measurement.verticalSliceWidth, equals(12));
@@ -645,9 +647,9 @@ void main() {
           renderingVertically: true,
         );
 
-        final captured =
-            verify(canvas.drawText(captureAny, captureAny, captureAny))
-                .captured;
+        final captured = verify(
+          canvas.drawText(captureAny, captureAny, captureAny),
+        ).captured;
         expect(captured, hasLength(3));
         expect(captured[0].measurement.horizontalSliceWidth, equals(6));
         expect(captured[0].measurement.verticalSliceWidth, equals(12));
@@ -693,8 +695,9 @@ void main() {
           renderingVertically: false,
         );
 
-      final captured =
-          verify(canvas.drawText(captureAny, captureAny, captureAny)).captured;
+      final captured = verify(
+        canvas.drawText(captureAny, captureAny, captureAny),
+      ).captured;
       // Draw text is called twice (once for each bar) and all 3 parameters were
       // captured. Total parameters captured expected to be 6.
       expect(captured, hasLength(6));
@@ -719,41 +722,44 @@ void main() {
       );
     });
 
-    test('LabelPosition.auto paints inside bar if outside bar has less width',
-        () {
-      final barElements = [
-        // 'LabelABC' would not fit inside the bar in auto setting because it
-        // has a width of 8.
-        FakeBarRendererElement(
-          'A',
-          const Rectangle(0, 0, 8, 20),
-          (_) => 'LabelABC',
-          ['A'],
-        ),
-      ];
-      // Draw bounds with width of 14 means that space inside the bar is larger.
-      const smallDrawBounds = Rectangle(0, 0, 14, 20);
+    test(
+      'LabelPosition.auto paints inside bar if outside bar has less width',
+      () {
+        final barElements = [
+          // 'LabelABC' would not fit inside the bar in auto setting because it
+          // has a width of 8.
+          FakeBarRendererElement(
+            'A',
+            const Rectangle(0, 0, 8, 20),
+            (_) => 'LabelABC',
+            ['A'],
+          ),
+        ];
+        // A draw-bounds width of 14 makes the space inside the bar larger.
+        const smallDrawBounds = Rectangle(0, 0, 14, 20);
 
-      BarLabelDecorator<String>(
-        labelPadding: 0, // Turn off label padding for testing.
-        insideLabelStyleSpec: const TextStyleSpec(fontSize: 10),
-      ).decorate(
-        barElements,
-        canvas,
-        graphicsFactory,
-        drawBounds: smallDrawBounds,
-        animationPercent: 1,
-        renderingVertically: false,
-      );
+        BarLabelDecorator<String>(
+          labelPadding: 0, // Turn off label padding for testing.
+          insideLabelStyleSpec: const TextStyleSpec(fontSize: 10),
+        ).decorate(
+          barElements,
+          canvas,
+          graphicsFactory,
+          drawBounds: smallDrawBounds,
+          animationPercent: 1,
+          renderingVertically: false,
+        );
 
-      final captured =
-          verify(canvas.drawText(captureAny, captureAny, captureAny)).captured;
-      expect(captured, hasLength(3));
-      expect(captured[0].maxWidth, equals(8));
-      expect(captured[0].textDirection, equals(TextDirection.ltr));
-      expect(captured[1], equals(0));
-      expect(captured[2], equals(5));
-    });
+        final captured = verify(
+          canvas.drawText(captureAny, captureAny, captureAny),
+        ).captured;
+        expect(captured, hasLength(3));
+        expect(captured[0].maxWidth, equals(8));
+        expect(captured[0].textDirection, equals(TextDirection.ltr));
+        expect(captured[1], equals(0));
+        expect(captured[2], equals(5));
+      },
+    );
 
     test('LabelPosition.inside always paints inside the bar', () {
       final barElements = [
@@ -780,8 +786,9 @@ void main() {
         renderingVertically: false,
       );
 
-      final captured =
-          verify(canvas.drawText(captureAny, captureAny, captureAny)).captured;
+      final captured = verify(
+        canvas.drawText(captureAny, captureAny, captureAny),
+      ).captured;
       expect(captured, hasLength(3));
       expect(captured[0].maxWidth, equals(8));
       expect(captured[0].textDirection, equals(TextDirection.ltr));
@@ -843,8 +850,9 @@ void main() {
         renderingVertically: false,
       );
 
-      final captured =
-          verify(canvas.drawText(captureAny, captureAny, captureAny)).captured;
+      final captured = verify(
+        canvas.drawText(captureAny, captureAny, captureAny),
+      ).captured;
       expect(captured, hasLength(3));
       expect(captured[0].maxWidth, equals(190));
       expect(captured[0].textDirection, equals(TextDirection.ltr));
@@ -857,7 +865,6 @@ void main() {
 
       // This code looks like it does nothing, but the weird mutable
       // hierarchy means that it's necessary.
-      // ignore: unused_local_variable
       final barElements = [
         // 'LabelA' and 'LabelB' both have lengths of 6.
         // 'LabelB' would not fit inside the bar in auto setting because it has
@@ -898,8 +905,9 @@ void main() {
         renderingVertically: false,
       );
 
-      final captured =
-          verify(canvas.drawText(captureAny, captureAny, captureAny)).captured;
+      final captured = verify(
+        canvas.drawText(captureAny, captureAny, captureAny),
+      ).captured;
       // Draw text is called twice (once for each bar) and all 3 parameters were
       // captured. Total parameters captured expected to be 6.
       expect(captured, hasLength(6));
@@ -943,8 +951,9 @@ void main() {
         renderingVertically: false,
       );
 
-      final captured =
-          verify(canvas.drawText(captureAny, captureAny, captureAny)).captured;
+      final captured = verify(
+        canvas.drawText(captureAny, captureAny, captureAny),
+      ).captured;
       expect(captured, hasLength(3));
       expect(captured[0].maxWidth, equals(10));
       expect(captured[0].textDirection, equals(TextDirection.rtl));
@@ -977,8 +986,9 @@ void main() {
         rtl: true,
       );
 
-      final captured =
-          verify(canvas.drawText(captureAny, captureAny, captureAny)).captured;
+      final captured = verify(
+        canvas.drawText(captureAny, captureAny, captureAny),
+      ).captured;
       expect(captured, hasLength(3));
       expect(captured[0].maxWidth, equals(10));
       expect(captured[0].textDirection, equals(TextDirection.rtl));
@@ -1011,8 +1021,9 @@ void main() {
         rtl: true,
       );
 
-      final captured =
-          verify(canvas.drawText(captureAny, captureAny, captureAny)).captured;
+      final captured = verify(
+        canvas.drawText(captureAny, captureAny, captureAny),
+      ).captured;
       expect(captured, hasLength(3));
       expect(captured[0].maxWidth, equals(10));
       expect(captured[0].textDirection, equals(TextDirection.ltr));
@@ -1044,8 +1055,9 @@ void main() {
         rtl: true,
       );
 
-      final captured =
-          verify(canvas.drawText(captureAny, captureAny, captureAny)).captured;
+      final captured = verify(
+        canvas.drawText(captureAny, captureAny, captureAny),
+      ).captured;
       expect(captured, hasLength(3));
       expect(captured[0].maxWidth, equals(190));
       expect(captured[1], equals(194));
@@ -1077,8 +1089,9 @@ void main() {
         rtl: true,
       );
 
-      final captured =
-          verify(canvas.drawText(captureAny, captureAny, captureAny)).captured;
+      final captured = verify(
+        canvas.drawText(captureAny, captureAny, captureAny),
+      ).captured;
       expect(captured, hasLength(3));
       expect(captured[0].maxWidth, equals(190));
       expect(captured[1], equals(194));
@@ -1088,12 +1101,9 @@ void main() {
     group('Null and empty label scenarios', () {
       test('Skip label if label accessor does not exist', () {
         final barElements = [
-          FakeBarRendererElement(
+          FakeBarRendererElement('A', const Rectangle(0, 0, 10, 20), null, [
             'A',
-            const Rectangle(0, 0, 10, 20),
-            null,
-            ['A'],
-          ),
+          ]),
         ];
 
         BarLabelDecorator<String>().decorate(
@@ -1188,9 +1198,9 @@ void main() {
           renderingVertically: false,
         );
 
-        final captured =
-            verify(canvas.drawText(captureAny, captureAny, captureAny))
-                .captured;
+        final captured = verify(
+          canvas.drawText(captureAny, captureAny, captureAny),
+        ).captured;
         expect(captured, hasLength(3));
         expect(captured[0].measurement.horizontalSliceWidth, equals(6));
         expect(captured[0].measurement.verticalSliceWidth, equals(10));
@@ -1226,9 +1236,9 @@ void main() {
           renderingVertically: false,
         );
 
-        final captured =
-            verify(canvas.drawText(captureAny, captureAny, captureAny))
-                .captured;
+        final captured = verify(
+          canvas.drawText(captureAny, captureAny, captureAny),
+        ).captured;
         expect(captured, hasLength(3));
         expect(captured[0].measurement.horizontalSliceWidth, equals(6));
         expect(captured[0].measurement.verticalSliceWidth, equals(10));
@@ -1263,9 +1273,9 @@ void main() {
           renderingVertically: false,
         );
 
-        final captured =
-            verify(canvas.drawText(captureAny, captureAny, captureAny))
-                .captured;
+        final captured = verify(
+          canvas.drawText(captureAny, captureAny, captureAny),
+        ).captured;
         expect(captured, hasLength(3));
         expect(captured[0].measurement.horizontalSliceWidth, equals(6));
         expect(captured[0].measurement.verticalSliceWidth, equals(12));
@@ -1301,9 +1311,9 @@ void main() {
           renderingVertically: false,
         );
 
-        final captured =
-            verify(canvas.drawText(captureAny, captureAny, captureAny))
-                .captured;
+        final captured = verify(
+          canvas.drawText(captureAny, captureAny, captureAny),
+        ).captured;
         expect(captured, hasLength(3));
         expect(captured[0].measurement.horizontalSliceWidth, equals(6));
         expect(captured[0].measurement.verticalSliceWidth, equals(12));

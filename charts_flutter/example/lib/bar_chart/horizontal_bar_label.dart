@@ -31,9 +31,8 @@ class HorizontalBarLabelChart extends StatelessWidget {
   });
 
   /// Creates a [charts.BarChart] with sample data and no transition.
-  factory HorizontalBarLabelChart.withSampleData() => HorizontalBarLabelChart(
-        _createSampleData(),
-      );
+  factory HorizontalBarLabelChart.withSampleData() =>
+      HorizontalBarLabelChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -77,19 +76,20 @@ class HorizontalBarLabelChart extends StatelessWidget {
   // [insideLabelStyleSpec] and [outsideLabelStyleSpec].
   @override
   Widget build(BuildContext context) => charts.BarChart(
-        seriesList,
-        animate: animate,
-        vertical: false,
-        // Set a bar label decorator.
-        // Example configuring different styles for inside/outside:
-        //       barRendererDecorator: new charts.BarLabelDecorator(
-        //          insideLabelStyleSpec: new charts.TextStyleSpec(...),
-        //          outsideLabelStyleSpec: new charts.TextStyleSpec(...)),
-        barRendererDecorator: charts.BarLabelDecorator<String>(),
-        // Hide domain axis.
-        domainAxis:
-            const charts.OrdinalAxisSpec(renderSpec: charts.NoneRenderSpec()),
-      );
+    seriesList,
+    animate: animate,
+    vertical: false,
+    // Set a bar label decorator.
+    // Example configuring different styles for inside/outside:
+    //       barRendererDecorator: new charts.BarLabelDecorator(
+    //          insideLabelStyleSpec: new charts.TextStyleSpec(...),
+    //          outsideLabelStyleSpec: new charts.TextStyleSpec(...)),
+    barRendererDecorator: charts.BarLabelDecorator<String>(),
+    // Hide domain axis.
+    domainAxis: const charts.OrdinalAxisSpec(
+      renderSpec: charts.NoneRenderSpec(),
+    ),
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {

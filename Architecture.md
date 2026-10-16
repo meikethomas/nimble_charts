@@ -49,6 +49,10 @@ flowchart LR
   branch, and `charts_common` path. A package-local `pubspec_overrides.yaml`
   may point to `../charts_common` only while developing unpublished commits;
   overrides are never committed.
+- The Flutter package's cleanup regression accepts Common only from that
+  canonical local sibling or from the expected repository's Pub Git cache.
+  A cached source must expose the same `HEAD:charts_common` tree as this
+  checkout, so a stale resolved ref cannot make library tests pass.
 - The example keeps its path dependency on `charts_flutter` and a scoped
   `nimble_charts_common` path override. Its generated package configuration
   must therefore resolve both packages to this checkout, never to a hosted or
@@ -95,6 +99,12 @@ flowchart LR
   Example hosts from the Example working directory, then checks the API-36
   debug APK with `aapt` and the single-scene iOS-15 Simulator bundle with
   `plutil`.
+- The existing formatter, localization, painter, selection, golden, and
+  Gallery regressions are additionally selectable through
+  `MMB0014_source_cleanup_regression`; their original names remain stable.
+- Mechanical formatting covers the authored `lib` and `test` paths per
+  package. Generated `charts_common/test/mox.mocks.dart`, native/generated
+  files, and golden images remain outside that write scope.
 - Analyze `lib` and `test` in both packages. New lint families from the current
   lint bundle remain warnings until the dedicated mechanical cleanup; compiler
   errors and external deprecated API uses are not accepted.

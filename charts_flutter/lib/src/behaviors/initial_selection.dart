@@ -17,7 +17,8 @@ import 'package:collection/collection.dart' show ListEquality;
 import 'package:meta/meta.dart' show immutable;
 import 'package:nimble_charts/src/behaviors/chart_behavior.dart'
     show ChartBehavior, GestureType;
-import 'package:nimble_charts_common/common.dart' as common
+import 'package:nimble_charts_common/common.dart'
+    as common
     show ChartBehavior, InitialSelection, SelectionModelType, SeriesDatumConfig;
 
 /// Chart behavior that sets the initial selection for a [selectionModelType].
@@ -63,8 +64,10 @@ class InitialSelection<D> extends ChartBehavior<D> {
   bool operator ==(Object other) =>
       other is InitialSelection &&
       selectionModelType == other.selectionModelType &&
-      const ListEquality()
-          .equals(selectedSeriesConfig, other.selectedSeriesConfig) &&
+      const ListEquality().equals(
+        selectedSeriesConfig,
+        other.selectedSeriesConfig,
+      ) &&
       const ListEquality().equals(selectedDataConfig, other.selectedDataConfig);
 
   @override

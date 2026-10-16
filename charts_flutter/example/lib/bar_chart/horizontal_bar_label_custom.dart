@@ -42,9 +42,7 @@ class HorizontalBarLabelCustomChart extends StatelessWidget {
   /// Creates a [charts.BarChart] with sample data and no transition.
   // ignore: sort_constructors_first
   factory HorizontalBarLabelCustomChart.createWithSampleData() =>
-      HorizontalBarLabelCustomChart(
-        _createSampleData(),
-      );
+      HorizontalBarLabelCustomChart(_createSampleData());
 
   /// Create random data.
   static List<charts.Series<OrdinalSales, String>> _createRandomData() {
@@ -87,14 +85,15 @@ class HorizontalBarLabelCustomChart extends StatelessWidget {
   // style, set the style accessor functions on the series.
   @override
   Widget build(BuildContext context) => charts.BarChart(
-        seriesList,
-        animate: animate,
-        vertical: false,
-        barRendererDecorator: charts.BarLabelDecorator<String>(),
-        // Hide domain axis.
-        domainAxis:
-            const charts.OrdinalAxisSpec(renderSpec: charts.NoneRenderSpec()),
-      );
+    seriesList,
+    animate: animate,
+    vertical: false,
+    barRendererDecorator: charts.BarLabelDecorator<String>(),
+    // Hide domain axis.
+    domainAxis: const charts.OrdinalAxisSpec(
+      renderSpec: charts.NoneRenderSpec(),
+    ),
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {

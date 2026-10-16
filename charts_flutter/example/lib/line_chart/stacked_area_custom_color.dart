@@ -36,9 +36,7 @@ class StackedAreaCustomColorLineChart extends StatelessWidget {
 
   /// Creates a [charts.LineChart] with sample data and no transition.
   factory StackedAreaCustomColorLineChart.withSampleData() =>
-      StackedAreaCustomColorLineChart(
-        _createSampleData(),
-      );
+      StackedAreaCustomColorLineChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -102,11 +100,13 @@ class StackedAreaCustomColorLineChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.LineChart(
-        seriesList,
-        defaultRenderer:
-            charts.LineRendererConfig(includeArea: true, stacked: true),
-        animate: animate,
-      );
+    seriesList,
+    defaultRenderer: charts.LineRendererConfig(
+      includeArea: true,
+      stacked: true,
+    ),
+    animate: animate,
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<LinearSales, int>> _createSampleData() {
@@ -137,8 +137,7 @@ class StackedAreaCustomColorLineChart extends StatelessWidget {
         // colorFn specifies that the line will be blue.
         colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
         // areaColorFn specifies that the area skirt will be light blue.
-        areaColorFn: (_, _) =>
-            charts.MaterialPalette.blue.shadeDefault.lighter,
+        areaColorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault.lighter,
         domainFn: (sales, _) => sales.year,
         measureFn: (sales, _) => sales.sales,
         data: myFakeDesktopData,

@@ -43,18 +43,19 @@ class LinePointHighlighter<D> implements ChartBehavior<D> {
     List<int>? dashPattern,
     bool? drawFollowLinesAcrossChart,
     SymbolRenderer? symbolRenderer,
-  })  : selectionModelType = selectionModelType ?? SelectionModelType.info,
-        defaultRadiusPx = defaultRadiusPx ?? 4.0,
-        radiusPaddingPx = radiusPaddingPx ?? 2.0,
-        showHorizontalFollowLine =
-            showHorizontalFollowLine ?? LinePointHighlighterFollowLineType.none,
-        showVerticalFollowLine = showVerticalFollowLine ??
-            LinePointHighlighterFollowLineType.nearest,
-        dashPattern = dashPattern ?? [1, 3],
-        drawFollowLinesAcrossChart = drawFollowLinesAcrossChart ?? true,
-        symbolRenderer = symbolRenderer ?? CircleSymbolRenderer() {
-    _lifecycleListener =
-        LifecycleListener<D>(onAxisConfigured: _updateViewData);
+  }) : selectionModelType = selectionModelType ?? SelectionModelType.info,
+       defaultRadiusPx = defaultRadiusPx ?? 4.0,
+       radiusPaddingPx = radiusPaddingPx ?? 2.0,
+       showHorizontalFollowLine =
+           showHorizontalFollowLine ?? LinePointHighlighterFollowLineType.none,
+       showVerticalFollowLine =
+           showVerticalFollowLine ?? LinePointHighlighterFollowLineType.nearest,
+       dashPattern = dashPattern ?? [1, 3],
+       drawFollowLinesAcrossChart = drawFollowLinesAcrossChart ?? true,
+       symbolRenderer = symbolRenderer ?? CircleSymbolRenderer() {
+    _lifecycleListener = LifecycleListener<D>(
+      onAxisConfigured: _updateViewData,
+    );
   }
   final SelectionModelType selectionModelType;
 
@@ -164,8 +165,9 @@ class LinePointHighlighter<D> implements ChartBehavior<D> {
   void _updateViewData() {
     _currentKeys.clear();
 
-    final selectedDatumDetails =
-        _chart.getSelectedDatumDetails(selectionModelType);
+    final selectedDatumDetails = _chart.getSelectedDatumDetails(
+      selectionModelType,
+    );
 
     // Create a new map each time to ensure that we have it sorted in the
     // selection model order. This preserves the "nearestDetail" ordering, so
@@ -202,20 +204,21 @@ class LinePointHighlighter<D> implements ChartBehavior<D> {
           y: measureAxis.getLocation(0.0),
         );
 
-        animatingPoint = _AnimatedPoint<D>(
-          key: pointKey,
-          overlaySeries: series.overlaySeries,
-        )..setNewTarget(
-            _PointRendererElement<D>(
-              point: point,
-              color: detail.color,
-              fillColor: detail.fillColor,
-              radiusPx: radiusPx,
-              measureAxisPosition: measureAxis.getLocation(0.0),
-              strokeWidthPx: detail.strokeWidthPx,
-              symbolRenderer: detail.symbolRenderer,
-            ),
-          );
+        animatingPoint =
+            _AnimatedPoint<D>(
+              key: pointKey,
+              overlaySeries: series.overlaySeries,
+            )..setNewTarget(
+              _PointRendererElement<D>(
+                point: point,
+                color: detail.color,
+                fillColor: detail.fillColor,
+                radiusPx: radiusPx,
+                measureAxisPosition: measureAxis.getLocation(0.0),
+                strokeWidthPx: detail.strokeWidthPx,
+                symbolRenderer: detail.symbolRenderer,
+              ),
+            );
       }
 
       newSeriesMap[pointKey] = animatingPoint;
@@ -272,10 +275,10 @@ class _LinePointLayoutView<D> extends LayoutView {
     required this.dashPattern,
     required this.drawFollowLinesAcrossChart,
   }) : layoutConfig = LayoutViewConfig(
-          paintOrder: LayoutViewPaintOrder.linePointHighlighter,
-          position: LayoutPosition.DrawArea,
-          positionOrder: layoutPaintOrder,
-        );
+         paintOrder: LayoutViewPaintOrder.linePointHighlighter,
+         position: LayoutPosition.DrawArea,
+         positionOrder: layoutPaintOrder,
+       );
   @override
   final LayoutViewConfig layoutConfig;
 
@@ -318,7 +321,7 @@ class _LinePointLayoutView<D> extends LayoutView {
 
   @override
   void paint(ChartCanvas canvas, double animationPercent) {
-    final seriesPointMap = this._seriesPointMap;
+    final seriesPointMap = _seriesPointMap;
     if (seriesPointMap == null) {
       return;
     }
@@ -364,8 +367,10 @@ class _LinePointLayoutView<D> extends LayoutView {
         // the selected data positions.
         if (showVerticalFollowLine !=
             LinePointHighlighterFollowLineType.nearest) {
-          endPointPerValueVertical[roundedX] =
-              min(endPointPerValueVertical[roundedX]!, roundedY);
+          endPointPerValueVertical[roundedX] = min(
+            endPointPerValueVertical[roundedX]!,
+            roundedY,
+          );
         }
       }
 
@@ -379,18 +384,20 @@ class _LinePointLayoutView<D> extends LayoutView {
         // the selected data positions.
         if (showHorizontalFollowLine !=
             LinePointHighlighterFollowLineType.nearest) {
-          endPointPerValueHorizontal[roundedY] =
-              max(endPointPerValueHorizontal[roundedY]!, roundedX);
+          endPointPerValueHorizontal[roundedY] = max(
+            endPointPerValueHorizontal[roundedY]!,
+            roundedX,
+          );
         }
       }
     }
 
-    var shouldShowHorizontalFollowLine = showHorizontalFollowLine ==
-            LinePointHighlighterFollowLineType.all ||
+    var shouldShowHorizontalFollowLine =
+        showHorizontalFollowLine == LinePointHighlighterFollowLineType.all ||
         showHorizontalFollowLine == LinePointHighlighterFollowLineType.nearest;
 
-    var shouldShowVerticalFollowLine = showVerticalFollowLine ==
-            LinePointHighlighterFollowLineType.all ||
+    var shouldShowVerticalFollowLine =
+        showVerticalFollowLine == LinePointHighlighterFollowLineType.all ||
         showVerticalFollowLine == LinePointHighlighterFollowLineType.nearest;
 
     // Keep track of points for which we've already drawn lines.
@@ -512,13 +519,8 @@ class _LinePointLayoutView<D> extends LayoutView {
 }
 
 class _DatumPoint<D> extends NullablePoint {
-  _DatumPoint({
-    this.datum,
-    this.domain,
-    this.series,
-    double? x,
-    double? y,
-  }) : super(x, y);
+  _DatumPoint({this.datum, this.domain, this.series, double? x, double? y})
+    : super(x, y);
 
   factory _DatumPoint.from(_DatumPoint<D> other, [double? x, double? y]) =>
       _DatumPoint<D>(
@@ -552,14 +554,14 @@ class _PointRendererElement<D> {
   SymbolRenderer? symbolRenderer;
 
   _PointRendererElement<D> clone() => _PointRendererElement<D>(
-        point: point,
-        color: color,
-        fillColor: fillColor,
-        measureAxisPosition: measureAxisPosition,
-        radiusPx: radiusPx,
-        strokeWidthPx: strokeWidthPx,
-        symbolRenderer: symbolRenderer,
-      );
+    point: point,
+    color: color,
+    fillColor: fillColor,
+    measureAxisPosition: measureAxisPosition,
+    radiusPx: radiusPx,
+    strokeWidthPx: strokeWidthPx,
+    symbolRenderer: symbolRenderer,
+  );
 
   void updateAnimationPercent(
     _PointRendererElement<D> previous,
@@ -583,15 +585,18 @@ class _PointRendererElement<D> {
       animationPercent,
     );
 
-    radiusPx =
-        _lerpDouble(previous.radiusPx, target.radiusPx, animationPercent)!;
+    radiusPx = _lerpDouble(
+      previous.radiusPx,
+      target.radiusPx,
+      animationPercent,
+    )!;
 
     final targetStrokeWidthPx = target.strokeWidthPx;
     final previousStrokeWidthPx = previous.strokeWidthPx;
     if (targetStrokeWidthPx != null && previousStrokeWidthPx != null) {
       strokeWidthPx =
           ((targetStrokeWidthPx - previousStrokeWidthPx) * animationPercent) +
-              previousStrokeWidthPx;
+          previousStrokeWidthPx;
     } else {
       strokeWidthPx = null;
     }
@@ -641,7 +646,6 @@ class _AnimatedPoint<D> {
 
     newTarget
       ..point = newPoint
-
       // Animate the radius to 0 so that we don't get a lingering point after
       // animation is done.
       ..radiusPx = 0.0;
@@ -694,6 +698,7 @@ class LinePointHighlighterTester<D> {
 
   int getSelectionLength() => behavior._seriesPointMap.length;
 
-  bool isDatumSelected(D datum) => behavior._seriesPointMap.values
-      .any((point) => point._currentPoint!.point.datum == datum);
+  bool isDatumSelected(D datum) => behavior._seriesPointMap.values.any(
+    (point) => point._currentPoint!.point.datum == datum,
+  );
 }

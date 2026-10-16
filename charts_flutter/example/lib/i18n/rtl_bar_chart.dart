@@ -31,9 +31,7 @@ class RTLBarChart extends StatelessWidget {
   const RTLBarChart(this.seriesList, {super.key, this.animate = true});
 
   /// Creates a [charts.BarChart] with sample data and no transition.
-  factory RTLBarChart.withSampleData() => RTLBarChart(
-        _createSampleData(),
-      );
+  factory RTLBarChart.withSampleData() => RTLBarChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -83,11 +81,7 @@ class RTLBarChart extends StatelessWidget {
       // chart display settings in RTL mode.
       Directionality(
         textDirection: ui.TextDirection.rtl,
-        child: charts.BarChart(
-          seriesList,
-          animate: animate,
-          vertical: false,
-        ),
+        child: charts.BarChart(seriesList, animate: animate, vertical: false),
       );
 
   /// Create one series with sample hard coded data.

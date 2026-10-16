@@ -45,9 +45,8 @@ class StaticallyProvidedTicks extends StatelessWidget {
     this.animate = true,
   });
 
-  factory StaticallyProvidedTicks.withSampleData() => StaticallyProvidedTicks(
-        _createSampleData(),
-      );
+  factory StaticallyProvidedTicks.withSampleData() =>
+      StaticallyProvidedTicks(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.

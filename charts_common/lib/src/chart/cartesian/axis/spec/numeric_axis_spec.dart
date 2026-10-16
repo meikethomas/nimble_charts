@@ -56,17 +56,18 @@ class NumericAxisSpec extends AxisSpec<num> {
     bool? showAxisLine,
     ScaleSpec<num>? scaleSpec,
     NumericExtents? viewport,
-  }) =>
-      NumericAxisSpec(
-        renderSpec: renderSpec ?? other.renderSpec,
-        tickProviderSpec: (tickProviderSpec ?? other.tickProviderSpec)
+  }) => NumericAxisSpec(
+    renderSpec: renderSpec ?? other.renderSpec,
+    tickProviderSpec:
+        (tickProviderSpec ?? other.tickProviderSpec)
             as NumericTickProviderSpec?,
-        tickFormatterSpec: (tickFormatterSpec ?? other.tickFormatterSpec)
+    tickFormatterSpec:
+        (tickFormatterSpec ?? other.tickFormatterSpec)
             as NumericTickFormatterSpec?,
-        showAxisLine: showAxisLine ?? other.showAxisLine,
-        scaleSpec: scaleSpec ?? other.scaleSpec,
-        viewport: viewport ?? other.viewport,
-      );
+    showAxisLine: showAxisLine ?? other.showAxisLine,
+    scaleSpec: scaleSpec ?? other.scaleSpec,
+    viewport: viewport ?? other.viewport,
+  );
 
   /// Sets viewport for this Axis.
   ///
@@ -215,7 +216,7 @@ class BasicNumericTickFormatterSpec implements NumericTickFormatterSpec {
   const BasicNumericTickFormatterSpec(this.formatter) : numberFormat = null;
 
   const BasicNumericTickFormatterSpec.fromNumberFormat(this.numberFormat)
-      : formatter = null;
+    : formatter = null;
   final MeasureFormatter? formatter;
   final NumberFormat? numberFormat;
 
@@ -224,8 +225,8 @@ class BasicNumericTickFormatterSpec implements NumericTickFormatterSpec {
   @override
   NumericTickFormatter createTickFormatter(ChartContext context) =>
       numberFormat != null
-          ? NumericTickFormatter.fromNumberFormat(numberFormat!)
-          : NumericTickFormatter(formatter: formatter);
+      ? NumericTickFormatter.fromNumberFormat(numberFormat!)
+      : NumericTickFormatter(formatter: formatter);
 
   @override
   bool operator ==(Object other) =>

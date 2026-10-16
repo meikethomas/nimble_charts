@@ -73,10 +73,10 @@ abstract class ImmutableAxis<D> {
 
 abstract class Axis<D> extends ImmutableAxis<D> implements LayoutView {
   Axis({this.tickProvider, TickFormatter<D>? tickFormatter, this.scale})
-      : _defaultScale = scale,
-        _defaultTickProvider = tickProvider,
-        _defaultTickFormatter = tickFormatter,
-        _tickFormatter = tickFormatter;
+    : _defaultScale = scale,
+      _defaultTickProvider = tickProvider,
+      _defaultTickFormatter = tickFormatter,
+      _tickFormatter = tickFormatter;
   static const primaryMeasureAxisId = 'primaryMeasureAxisId';
   static const secondaryMeasureAxisId = 'secondaryMeasureAxisId';
   static const _autoViewportDefault = true;
@@ -333,8 +333,9 @@ abstract class Axis<D> extends ImmutableAxis<D> implements LayoutView {
     final scale = this.scale!;
 
     for (final animatedTick in _axisTicks) {
-      final tick =
-          providedTicks.firstWhereOrNull((t) => t.value == animatedTick.value);
+      final tick = providedTicks.firstWhereOrNull(
+        (t) => t.value == animatedTick.value,
+      );
 
       if (tick != null) {
         // Swap out the text element only if the settings are different.
@@ -447,8 +448,10 @@ abstract class Axis<D> extends ImmutableAxis<D> implements LayoutView {
       final maxPositiveTranslate =
           (drawAreaHeight * viewportScalingFactor) - drawAreaHeight;
 
-      viewportTranslatePx =
-          max(min(viewportTranslatePx, maxPositiveTranslate), 0);
+      viewportTranslatePx = max(
+        min(viewportTranslatePx, maxPositiveTranslate),
+        0,
+      );
     } else {
       if (drawAreaWidth == null) {
         return viewportTranslatePx;
@@ -457,8 +460,10 @@ abstract class Axis<D> extends ImmutableAxis<D> implements LayoutView {
       final maxNegativeTranslate =
           -1.0 * ((drawAreaWidth * viewportScalingFactor) - drawAreaWidth);
 
-      viewportTranslatePx =
-          min(max(viewportTranslatePx, maxNegativeTranslate), 0);
+      viewportTranslatePx = min(
+        max(viewportTranslatePx, maxNegativeTranslate),
+        0,
+      );
     }
     return viewportTranslatePx;
   }
@@ -472,10 +477,10 @@ abstract class Axis<D> extends ImmutableAxis<D> implements LayoutView {
 
   @override
   LayoutViewConfig get layoutConfig => LayoutViewConfig(
-        paintOrder: layoutPaintOrder,
-        position: _layoutPosition,
-        positionOrder: LayoutViewPositionOrder.axis,
-      );
+    paintOrder: layoutPaintOrder,
+    position: _layoutPosition,
+    positionOrder: LayoutViewPositionOrder.axis,
+  );
 
   /// Get layout position from axis orientation.
   LayoutPosition? get _layoutPosition {
@@ -541,8 +546,9 @@ abstract class Axis<D> extends ImmutableAxis<D> implements LayoutView {
     // set between zero and the max range available. On layout, the output range
     // needs to be updated to account of the offset of the axis view.
 
-    final outputStart =
-        isVertical ? componentBounds.bottom : componentBounds.left;
+    final outputStart = isVertical
+        ? componentBounds.bottom
+        : componentBounds.left;
     final outputEnd = isVertical ? componentBounds.top : componentBounds.right;
 
     final outputRange = reverseOutputRange
@@ -596,19 +602,22 @@ abstract class Axis<D> extends ImmutableAxis<D> implements LayoutView {
     }
 
     if (drawAxisLine) {
-      tickDrawStrategy!
-          .drawAxisLine(canvas, axisOrientation!, _componentBounds!);
+      tickDrawStrategy!.drawAxisLine(
+        canvas,
+        axisOrientation!,
+        _componentBounds!,
+      );
     }
   }
 }
 
 class NumericAxis extends Axis<num> {
   NumericAxis({TickProvider<num>? tickProvider})
-      : super(
-          tickProvider: tickProvider ?? NumericTickProvider(),
-          tickFormatter: NumericTickFormatter(),
-          scale: LinearScale(),
-        );
+    : super(
+        tickProvider: tickProvider ?? NumericTickProvider(),
+        tickFormatter: NumericTickFormatter(),
+        scale: LinearScale(),
+      );
 
   void setScaleViewport(NumericExtents viewport) {
     autoViewport = false;
@@ -622,17 +631,19 @@ class OrdinalAxis extends Axis<String> {
     TickProvider<String>? tickProvider,
     TickFormatter<String>? tickFormatter,
   }) : super(
-          tickProvider: tickProvider ?? const OrdinalTickProvider(),
-          tickFormatter: tickFormatter ?? const OrdinalTickFormatter(),
-          scale: SimpleOrdinalScale(),
-        ) {
+         tickProvider: tickProvider ?? const OrdinalTickProvider(),
+         tickFormatter: tickFormatter ?? const OrdinalTickFormatter(),
+         scale: SimpleOrdinalScale(),
+       ) {
     this.tickDrawStrategy = tickDrawStrategy;
   }
 
   void setScaleViewport(OrdinalViewport viewport) {
     autoViewport = false;
-    (scale! as OrdinalScale)
-        .setViewport(viewport.dataSize, viewport.startingDomain);
+    (scale! as OrdinalScale).setViewport(
+      viewport.dataSize,
+      viewport.startingDomain,
+    );
   }
 
   @override

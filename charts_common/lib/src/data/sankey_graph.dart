@@ -37,33 +37,31 @@ class SankeyGraph<N, L, D> extends Graph<N, L, D> {
     TypedAccessorFn<N, num>? nodeStrokeWidthPxFn,
     TypedAccessorFn<L, Color>? linkFillColorFn,
     TypedAccessorFn<L, num>? secondaryLinkMeasureFn,
-  }) =>
-      SankeyGraph._(
-        id: id,
-        nodes: _convertSankeyNodes<N, L, D>(
-          nodes,
-          links,
-          sourceFn,
-          targetFn,
-          nodeDomainFn,
-        ),
-        links: _convertSankeyLinks<N, L>(
-          links,
-          sourceFn,
-          targetFn,
-          secondaryLinkMeasureFn,
-        ),
-        nodeDomainFn: actOnNodeData<N, L, D>(nodeDomainFn)!,
-        linkDomainFn: actOnLinkData<N, L, D>(linkDomainFn)!,
-        nodeMeasureFn: actOnNodeData<N, L, num?>(nodeMeasureFn)!,
-        linkMeasureFn: actOnLinkData<N, L, num?>(linkMeasureFn)!,
-        nodeColorFn: actOnNodeData<N, L, Color>(nodeColorFn),
-        nodeFillColorFn: actOnNodeData<N, L, Color>(nodeFillColorFn),
-        nodeFillPatternFn:
-            actOnNodeData<N, L, FillPatternType>(nodeFillPatternFn),
-        nodeStrokeWidthPxFn: actOnNodeData<N, L, num>(nodeStrokeWidthPxFn),
-        linkFillColorFn: actOnLinkData<N, L, Color>(linkFillColorFn),
-      );
+  }) => SankeyGraph._(
+    id: id,
+    nodes: _convertSankeyNodes<N, L, D>(
+      nodes,
+      links,
+      sourceFn,
+      targetFn,
+      nodeDomainFn,
+    ),
+    links: _convertSankeyLinks<N, L>(
+      links,
+      sourceFn,
+      targetFn,
+      secondaryLinkMeasureFn,
+    ),
+    nodeDomainFn: actOnNodeData<N, L, D>(nodeDomainFn)!,
+    linkDomainFn: actOnLinkData<N, L, D>(linkDomainFn)!,
+    nodeMeasureFn: actOnNodeData<N, L, num?>(nodeMeasureFn)!,
+    linkMeasureFn: actOnLinkData<N, L, num?>(linkMeasureFn)!,
+    nodeColorFn: actOnNodeData<N, L, Color>(nodeColorFn),
+    nodeFillColorFn: actOnNodeData<N, L, Color>(nodeFillColorFn),
+    nodeFillPatternFn: actOnNodeData<N, L, FillPatternType>(nodeFillPatternFn),
+    nodeStrokeWidthPxFn: actOnNodeData<N, L, num>(nodeStrokeWidthPxFn),
+    linkFillColorFn: actOnLinkData<N, L, Color>(linkFillColorFn),
+  );
 
   SankeyGraph._({
     required this.nodes,
@@ -78,10 +76,7 @@ class SankeyGraph<N, L, D> extends Graph<N, L, D> {
     super.nodeFillPatternFn,
     super.nodeStrokeWidthPxFn,
     super.linkFillColorFn,
-  }) : super.base(
-          nodes: nodes,
-          links: links,
-        );
+  }) : super.base(nodes: nodes, links: links);
   @override
   final List<SankeyNode<N, L>> nodes;
 
@@ -184,13 +179,10 @@ List<Node<N, L>> topologicalNodeSort<N, L, D>(
 
   while (sourceNodes.isNotEmpty) {
     final source = sourceNodes.removeLast();
-    sortedNodes.add(
-      givenNodeMap[nodeDomainFn(source, indexNotRelevant)]!,
-    );
+    sortedNodes.add(givenNodeMap[nodeDomainFn(source, indexNotRelevant)]!);
     while (source.outgoingLinks.isNotEmpty) {
       final toRemove = source.outgoingLinks.removeLast();
-      nodeMap[nodeDomainFn(toRemove.target, indexNotRelevant)]
-          ?.incomingLinks
+      nodeMap[nodeDomainFn(toRemove.target, indexNotRelevant)]?.incomingLinks
           .removeWhere(
             (link) =>
                 linkDomainFn(link, indexNotRelevant) ==

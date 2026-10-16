@@ -72,8 +72,11 @@ abstract class BaseTickProvider<D> implements TickProvider<D> {
     num? stepSize,
   }) {
     final ticks = <Tick<D>>[];
-    final labels =
-        formatter.format(domainValues, formatterValueCache, stepSize: stepSize);
+    final labels = formatter.format(
+      domainValues,
+      formatterValueCache,
+      stepSize: stepSize,
+    );
 
     for (var i = 0; i < domainValues.length; i++) {
       final value = domainValues[i];

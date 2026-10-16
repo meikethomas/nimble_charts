@@ -27,9 +27,8 @@ class SimplePieChart extends StatelessWidget {
   const SimplePieChart(this.seriesList, {super.key, this.animate = true});
 
   /// Creates a [charts.PieChart] with sample data and no transition.
-  factory SimplePieChart.withSampleData() => SimplePieChart(
-        _createSampleData(),
-      );
+  factory SimplePieChart.withSampleData() =>
+      SimplePieChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.

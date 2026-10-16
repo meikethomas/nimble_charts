@@ -96,8 +96,9 @@ class PanBehavior<D> implements ChartBehavior<D> {
     chart.domainAxis!.autoViewport = false;
 
     // Wrap domain axis tick provider with the panning behavior one.
-    _domainAxisTickProvider =
-        PanningTickProvider<D>(chart.domainAxis!.tickProvider!);
+    _domainAxisTickProvider = PanningTickProvider<D>(
+      chart.domainAxis!.tickProvider!,
+    );
     chart.domainAxis!.tickProvider = _domainAxisTickProvider;
   }
 
@@ -223,7 +224,7 @@ class PanBehavior<D> implements ChartBehavior<D> {
     // request redraw.
     _domainAxisTickProvider.mode = PanningTickProviderMode.passThrough;
 
-    final chart = this._chart!;
+    final chart = _chart!;
     chart.getMeasureAxis().lockAxis = false;
     chart.getMeasureAxis(axisId: Axis.secondaryMeasureAxisId).lockAxis = false;
     chart.redraw();

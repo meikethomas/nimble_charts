@@ -49,74 +49,76 @@ void main() {
     Intl.defaultLocale = previousLocale;
   });
 
-  group('MMB0011_intl_formatter_regression', () {
-    test('formatter with custom formatting function input', () {
-      final actualLabelFirstTick = simpleTimeFormatter.formatFirstTick(
-        testDate1,
-      );
-      final actualLabelSimpleTick = simpleTimeFormatter.formatSimpleTick(
-        testDate1,
-      );
-      final actualLabelTransitionTick = simpleTimeFormatter
-          .formatTransitionTick(testDate1);
-      final actualBoolIsTransition = simpleTimeFormatter.isTransition(
-        testDate2,
-        testDate1,
-      );
+  group('MMB0014_source_cleanup_regression', () {
+    group('MMB0011_intl_formatter_regression', () {
+      test('formatter with custom formatting function input', () {
+        final actualLabelFirstTick = simpleTimeFormatter.formatFirstTick(
+          testDate1,
+        );
+        final actualLabelSimpleTick = simpleTimeFormatter.formatSimpleTick(
+          testDate1,
+        );
+        final actualLabelTransitionTick = simpleTimeFormatter
+            .formatTransitionTick(testDate1);
+        final actualBoolIsTransition = simpleTimeFormatter.isTransition(
+          testDate2,
+          testDate1,
+        );
 
-      expect(actualLabelFirstTick, equals(tickLabel));
-      expect(actualLabelSimpleTick, equals(tickLabel));
-      expect(actualLabelTransitionTick, equals(tickLabel));
-      expect(actualBoolIsTransition, isFalse);
-    });
+        expect(actualLabelFirstTick, equals(tickLabel));
+        expect(actualLabelSimpleTick, equals(tickLabel));
+        expect(actualLabelTransitionTick, equals(tickLabel));
+        expect(actualBoolIsTransition, isFalse);
+      });
 
-    test('formatter with DateFormat formatting function', () {
-      const expectedLabel = 'Nov 11, 1984';
+      test('formatter with DateFormat formatting function', () {
+        const expectedLabel = 'Nov 11, 1984';
 
-      final actualLabelFirstTick = simpleTimeFormatterWithDateFormat
-          .formatFirstTick(testDate1);
-      final actualLabelSimpleTick = simpleTimeFormatterWithDateFormat
-          .formatSimpleTick(testDate1);
-      final actualLabelTransitionTick = simpleTimeFormatterWithDateFormat
-          .formatTransitionTick(testDate1);
-      final actualBoolIsTransition = simpleTimeFormatterWithDateFormat
-          .isTransition(testDate2, testDate1);
+        final actualLabelFirstTick = simpleTimeFormatterWithDateFormat
+            .formatFirstTick(testDate1);
+        final actualLabelSimpleTick = simpleTimeFormatterWithDateFormat
+            .formatSimpleTick(testDate1);
+        final actualLabelTransitionTick = simpleTimeFormatterWithDateFormat
+            .formatTransitionTick(testDate1);
+        final actualBoolIsTransition = simpleTimeFormatterWithDateFormat
+            .isTransition(testDate2, testDate1);
 
-      expect(actualLabelFirstTick, equals(expectedLabel));
-      expect(actualLabelSimpleTick, equals(expectedLabel));
-      expect(actualLabelTransitionTick, equals(expectedLabel));
-      expect(actualBoolIsTransition, isFalse);
-    });
+        expect(actualLabelFirstTick, equals(expectedLabel));
+        expect(actualLabelSimpleTick, equals(expectedLabel));
+        expect(actualLabelTransitionTick, equals(expectedLabel));
+        expect(actualBoolIsTransition, isFalse);
+      });
 
-    test('MMB0011_date_labels_en_de_preserve_boundaries', () {
-      final beforeBoundary = DateTime.utc(2024, 1, 31, 23, 59, 59);
-      final afterBoundary = DateTime.utc(2024, 2);
+      test('MMB0011_date_labels_en_de_preserve_boundaries', () {
+        final beforeBoundary = DateTime.utc(2024, 1, 31, 23, 59, 59);
+        final afterBoundary = DateTime.utc(2024, 2);
 
-      Intl.defaultLocale = 'en_US';
-      final englishFormatter = SimpleTimeTickFormatter(
-        formatter: DateFormat.yMMMd().format,
-      );
-      expect(
-        englishFormatter.formatFirstTick(beforeBoundary),
-        equals('Jan 31, 2024'),
-      );
-      expect(
-        englishFormatter.formatTransitionTick(afterBoundary),
-        equals('Feb 1, 2024'),
-      );
+        Intl.defaultLocale = 'en_US';
+        final englishFormatter = SimpleTimeTickFormatter(
+          formatter: DateFormat.yMMMd().format,
+        );
+        expect(
+          englishFormatter.formatFirstTick(beforeBoundary),
+          equals('Jan 31, 2024'),
+        );
+        expect(
+          englishFormatter.formatTransitionTick(afterBoundary),
+          equals('Feb 1, 2024'),
+        );
 
-      Intl.defaultLocale = 'de';
-      final germanFormatter = SimpleTimeTickFormatter(
-        formatter: DateFormat.yMMMd().format,
-      );
-      expect(
-        germanFormatter.formatFirstTick(beforeBoundary),
-        equals('31. Jan. 2024'),
-      );
-      expect(
-        germanFormatter.formatTransitionTick(afterBoundary),
-        equals('1. Feb. 2024'),
-      );
+        Intl.defaultLocale = 'de';
+        final germanFormatter = SimpleTimeTickFormatter(
+          formatter: DateFormat.yMMMd().format,
+        );
+        expect(
+          germanFormatter.formatFirstTick(beforeBoundary),
+          equals('31. Jan. 2024'),
+        );
+        expect(
+          germanFormatter.formatTransitionTick(afterBoundary),
+          equals('1. Feb. 2024'),
+        );
+      });
     });
   });
 }

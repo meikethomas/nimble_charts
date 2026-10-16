@@ -19,7 +19,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:nimble_charts/src/behaviors/chart_behavior.dart';
 import 'package:nimble_charts/src/widget_layout_delegate.dart';
-import 'package:nimble_charts_common/common.dart' as common
+import 'package:nimble_charts_common/common.dart'
+    as common
     show BehaviorPosition, InsideJustification, OutsideJustification;
 
 const chartContainerLayoutID = 'chartContainer';
@@ -59,9 +60,8 @@ void main() {
     Widget createWidget(
       Size chartSize,
       Size behaviorSize,
-      common.BehaviorPosition position,
+      common.BehaviorPosition position, {
       // Using these defaults, copied from DatumLegend.
-      {
       required Rectangle<int> drawAreaBounds,
       common.OutsideJustification outsideJustification =
           common.OutsideJustification.startDrawArea,
@@ -95,11 +95,9 @@ void main() {
 
       // Create a the widget that uses the layout delegate that is being tested.
       final layout = CustomMultiChildLayout(
-        delegate: WidgetLayoutDelegate(
-          chartContainerLayoutID,
-          {behaviorID: behavior},
-          isRTL,
-        ),
+        delegate: WidgetLayoutDelegate(chartContainerLayoutID, {
+          behaviorID: behavior,
+        }, isRTL),
         children: [chart, behaviorWidget],
       );
 
@@ -435,8 +433,9 @@ void main() {
       );
     });
 
-    testWidgets('RTL - Position top - start draw area justified',
-        (tester) async {
+    testWidgets('RTL - Position top - start draw area justified', (
+      tester,
+    ) async {
       const behaviorPosition = common.BehaviorPosition.top;
       const drawAreaBounds = Rectangle<int>(0, 50, 175, 50);
 
@@ -465,8 +464,9 @@ void main() {
       );
     });
 
-    testWidgets('RTL - Position bottom - end draw area justified',
-        (tester) async {
+    testWidgets('RTL - Position bottom - end draw area justified', (
+      tester,
+    ) async {
       const behaviorPosition = common.BehaviorPosition.bottom;
       const outsideJustification = common.OutsideJustification.endDrawArea;
       const drawAreaBounds = Rectangle<int>(0, 0, 175, 50);
@@ -497,8 +497,9 @@ void main() {
       );
     });
 
-    testWidgets('RTL - Position start - start draw area justified',
-        (tester) async {
+    testWidgets('RTL - Position start - start draw area justified', (
+      tester,
+    ) async {
       const behaviorPosition = common.BehaviorPosition.start;
       const drawAreaBounds = Rectangle<int>(0, 25, 125, 75);
 

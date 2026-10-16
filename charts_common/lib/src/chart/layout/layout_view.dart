@@ -86,10 +86,10 @@ class LayoutViewPositionOrder {
 /// A configuration for margin (empty space) around a layout child view.
 class ViewMargin {
   const ViewMargin({int? topPx, int? bottomPx, int? rightPx, int? leftPx})
-      : topPx = topPx ?? 0,
-        bottomPx = bottomPx ?? 0,
-        rightPx = rightPx ?? 0,
-        leftPx = leftPx ?? 0;
+    : topPx = topPx ?? 0,
+      bottomPx = bottomPx ?? 0,
+      rightPx = rightPx ?? 0,
+      leftPx = leftPx ?? 0;
 
   /// A [ViewMargin] with all zero px.
   static const empty = ViewMargin(topPx: 0, bottomPx: 0, rightPx: 0, leftPx: 0);
@@ -167,8 +167,8 @@ class ViewMeasuredSizes {
     required this.preferredHeight,
     int? minWidth,
     int? minHeight,
-  })  : minWidth = minWidth ?? 0,
-        minHeight = minHeight ?? 0;
+  }) : minWidth = minWidth ?? 0,
+       minHeight = minHeight ?? 0;
 
   /// All zeroes component size.
   static const zero = ViewMeasuredSizes(

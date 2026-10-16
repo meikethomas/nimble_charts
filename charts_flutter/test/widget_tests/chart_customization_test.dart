@@ -10,7 +10,7 @@ void main() {
       final seriesList = [
         charts.Series<OrdinalSales, String>(
           id: 'Sales',
-          colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+          colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
           domainFn: (sales, _) => sales.year,
           measureFn: (sales, _) => sales.sales,
           data: [

@@ -18,7 +18,8 @@ import 'package:nimble_charts/src/behaviors/chart_behavior.dart'
     show ChartBehavior, GestureType;
 import 'package:nimble_charts/src/behaviors/zoom/pan_behavior.dart'
     show FlutterPanBehaviorMixin;
-import 'package:nimble_charts_common/common.dart' as common
+import 'package:nimble_charts_common/common.dart'
+    as common
     show ChartBehavior, PanAndZoomBehavior, PanningCompletedCallback;
 
 /// Chart behavior that adds pan and zoom functionality.
@@ -35,9 +36,7 @@ class PanAndZoomBehavior<D> extends ChartBehavior<D> {
   PanAndZoomBehavior({this.panningCompletedCallback});
 
   /// The set of gestures that this behavior wants to handle.
-  final _desiredGestures = <GestureType>{
-    GestureType.onDrag,
-  };
+  final _desiredGestures = <GestureType>{GestureType.onDrag};
 
   @override
   Set<GestureType> get desiredGestures => _desiredGestures;

@@ -36,17 +36,17 @@ import 'package:nimble_charts_common/src/data/tree.dart';
 /// Each element contains a bounding rectangle for rendering.
 const treeMapElementsKey =
     AttributeKey<Iterable<TreeMapRendererElement<Object>>>(
-  'TreeMapRenderer.elements',
-);
+      'TreeMapRenderer.elements',
+    );
 
 abstract class BaseTreeMapRenderer<D> extends BaseSeriesRenderer<D> {
   BaseTreeMapRenderer({required this.config, String? rendererId})
-      : labelDecorator = config.labelDecorator,
-        super(
-          rendererId: rendererId ?? defaultRendererId,
-          layoutPaintOrder: config.layoutPaintOrder,
-          symbolRenderer: config.symbolRenderer,
-        );
+    : labelDecorator = config.labelDecorator,
+      super(
+        rendererId: rendererId ?? defaultRendererId,
+        layoutPaintOrder: config.layoutPaintOrder,
+        symbolRenderer: config.symbolRenderer,
+      );
 
   /// Default renderer ID for treemap.
   static const defaultRendererId = 'treemap';
@@ -98,8 +98,11 @@ abstract class BaseTreeMapRenderer<D> extends BaseSeriesRenderer<D> {
       // Populates [treeNodeToRendererElement] map entries.
       for (var i = 0; i < count; i++) {
         final node = series.data[i] as TreeNode<Object>;
-        _treeNodeToRendererElement[node] =
-            _createRendererElement(series, i, isLeaf: !node.hasChildren);
+        _treeNodeToRendererElement[node] = _createRendererElement(
+          series,
+          i,
+          isLeaf: !node.hasChildren,
+        );
       }
       series.setAttr(treeMapElementsKey, _treeNodeToRendererElement.values);
     }
@@ -164,7 +167,9 @@ abstract class BaseTreeMapRenderer<D> extends BaseSeriesRenderer<D> {
 
       // Paint label.
       labelDecorator?.decorate(
-        element, canvas, graphicsFactory!,
+        element,
+        canvas,
+        graphicsFactory!,
         drawBounds: drawBounds!,
         animationPercent: animationPercent,
         rtl: isRtl,
@@ -211,7 +216,6 @@ abstract class BaseTreeMapRenderer<D> extends BaseSeriesRenderer<D> {
         // No need to verify remaining siblings.
         queue
           ..clear()
-
           // Only processes nodes whose parents contain the [chartPoint].
           // This reduces the number of nodes to verify.
           ..addAll(node.children);
@@ -232,8 +236,9 @@ abstract class BaseTreeMapRenderer<D> extends BaseSeriesRenderer<D> {
     DatumDetails<D> details,
     SeriesDatum<D> seriesDatum,
   ) {
-    final bounds =
-        _getRendererElement(seriesDatum.datum as TreeNode<Object>).boundingRect;
+    final bounds = _getRendererElement(
+      seriesDatum.datum as TreeNode<Object>,
+    ).boundingRect;
     final chartPosition = Point<double>(
       (isRtl ? bounds.left : bounds.right).toDouble(),
       bounds.top + (bounds.height / 2),
@@ -253,8 +258,9 @@ abstract class BaseTreeMapRenderer<D> extends BaseSeriesRenderer<D> {
     required bool emptyCategoryUsesSinglePalette,
   }) {
     for (final series in seriesList) {
-      final colorPalettes =
-          StyleFactory.style.getOrderedPalettes(series.data.length);
+      final colorPalettes = StyleFactory.style.getOrderedPalettes(
+        series.data.length,
+      );
       final count = colorPalettes.length;
 
       series.fillColorFn ??= (index) {
@@ -426,14 +432,13 @@ abstract class BaseTreeMapRenderer<D> extends BaseSeriesRenderer<D> {
     MutableSeries<D> series,
     int index, {
     required bool isLeaf,
-  }) =>
-      TreeMapRendererElement<D>(
-        domain: series.domainFn(index),
-        measure: series.measureFn(index)!,
-        isLeaf: isLeaf,
-        index: index,
-        series: series,
-      );
+  }) => TreeMapRendererElement<D>(
+    domain: series.domainFn(index),
+    measure: series.measureFn(index)!,
+    isLeaf: isLeaf,
+    index: index,
+    series: series,
+  );
 
   TreeMapRendererElement<D> _getRendererElement(TreeNode<Object> node) {
     final element = _treeNodeToRendererElement[node];
@@ -505,8 +510,11 @@ class _AnimatedTreeMapRect<D> {
       return _currentRect!;
     }
 
-    _currentRect!
-        .updateAnimationPercent(_previousRect!, _targetRect, animationPercent);
+    _currentRect!.updateAnimationPercent(
+      _previousRect!,
+      _targetRect,
+      animationPercent,
+    );
     return _currentRect!;
   }
 }

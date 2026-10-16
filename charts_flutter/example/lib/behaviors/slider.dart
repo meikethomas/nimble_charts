@@ -38,9 +38,7 @@ class SliderLine extends StatefulWidget {
   const SliderLine(this.seriesList, {super.key, this.animate = true});
 
   /// Creates a [charts.LineChart] with sample data and no transition.
-  factory SliderLine.withSampleData() => SliderLine(
-        _createSampleData(),
-      );
+  factory SliderLine.withSampleData() => SliderLine(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.

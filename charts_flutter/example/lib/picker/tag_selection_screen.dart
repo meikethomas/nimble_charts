@@ -22,96 +22,92 @@ class _TagSelectionScreenState extends State<TagSelectionScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: const Text('nimble_charts Gallery'),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.history),
-              onPressed: () => unawaited(_showOriginalSampleDialog(context)),
-            ),
-            IconButton(
-              icon: ValueListenableBuilder(
-                valueListenable: appState,
-                builder: (_, appState, _) => Icon(
-                  appState.themeMode == ThemeMode.light
-                      ? Icons.dark_mode
-                      : Icons.light_mode,
-                ),
-              ),
-              onPressed: () => appState.value = appState.value.withThemeMode(
-                appState.value.themeMode == ThemeMode.light
-                    ? ThemeMode.dark
-                    : ThemeMode.light,
-              ),
-            ),
-          ],
+    appBar: AppBar(
+      title: const Text('nimble_charts Gallery'),
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.history),
+          onPressed: () => unawaited(_showOriginalSampleDialog(context)),
         ),
-        body: TagItemSelector(
-          selectedTags: selectedTags,
-          builder: (context, item) => SizedBox(
-            width: 350,
-            height: 250,
-            child: InkWell(
-              onTap: () => unawaited(
-                Navigator.push<void>(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => FullScreenSample(item: item),
-                  ),
-                ),
-              ),
-              child: Card(
-                key: ValueKey(item.hashCode),
-                elevation: 4,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        item.title,
-                        style: Theme.of(context).textTheme.titleMedium,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const SizedBox(height: 8),
-                      Expanded(
-                        child: Center(
-                          child: ConstrainedBox(
-                            constraints: const BoxConstraints(
-                              maxWidth: 300,
-                              maxHeight: 150,
-                            ),
-                            child: item.build(context, item),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        item.subtitle,
-                        style: Theme.of(context).textTheme.titleSmall,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
-                  ),
-                ),
+        IconButton(
+          icon: ValueListenableBuilder(
+            valueListenable: appState,
+            builder: (_, appState, _) => Icon(
+              appState.themeMode == ThemeMode.light
+                  ? Icons.dark_mode
+                  : Icons.light_mode,
+            ),
+          ),
+          onPressed: () => appState.value = appState.value.withThemeMode(
+            appState.value.themeMode == ThemeMode.light
+                ? ThemeMode.dark
+                : ThemeMode.light,
+          ),
+        ),
+      ],
+    ),
+    body: TagItemSelector(
+      selectedTags: selectedTags,
+      builder: (context, item) => SizedBox(
+        width: 350,
+        height: 250,
+        child: InkWell(
+          onTap: () => unawaited(
+            Navigator.push<void>(
+              context,
+              MaterialPageRoute(
+                builder: (context) => FullScreenSample(item: item),
               ),
             ),
           ),
-          items: (tags) => chartSampleDefinitions
-              .where(
-                (item) => item.tags.any(
-                  (tag) => tags.contains(tag),
-                ),
-              )
-              .orderBy((a, b) => a.title.compareTo(b.title)),
-          allTags: tagDefinitions.values.toList(),
+          child: Card(
+            key: ValueKey(item.hashCode),
+            elevation: 4,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    item.title,
+                    style: Theme.of(context).textTheme.titleMedium,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 8),
+                  Expanded(
+                    child: Center(
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(
+                          maxWidth: 300,
+                          maxHeight: 150,
+                        ),
+                        child: item.build(context, item),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    item.subtitle,
+                    style: Theme.of(context).textTheme.titleSmall,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
-      );
+      ),
+      items: (tags) => chartSampleDefinitions
+          .where((item) => item.tags.any((tag) => tags.contains(tag)))
+          .orderBy((a, b) => a.title.compareTo(b.title)),
+      allTags: tagDefinitions.values.toList(),
+    ),
+  );
 
   Future<bool?> _showOriginalSampleDialog(BuildContext context) =>
       showDialog<bool>(

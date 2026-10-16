@@ -31,9 +31,8 @@ class SimpleTimeSeriesChart extends StatelessWidget {
   });
 
   /// Creates a [charts.TimeSeriesChart] with sample data and no transition.
-  factory SimpleTimeSeriesChart.withSampleData() => SimpleTimeSeriesChart(
-        _createSampleData(),
-      );
+  factory SimpleTimeSeriesChart.withSampleData() =>
+      SimpleTimeSeriesChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -69,13 +68,13 @@ class SimpleTimeSeriesChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.TimeSeriesChart(
-        seriesList,
-        animate: animate,
-        // Optionally pass in a [DateTimeFactory] used by the chart. The factory
-        // should create the same type of [DateTime] as the data provided. If
-        // none specified, the default creates local date time.
-        dateTimeFactory: const charts.LocalDateTimeFactory(),
-      );
+    seriesList,
+    animate: animate,
+    // Optionally pass in a [DateTimeFactory] used by the chart. The factory
+    // should create the same type of [DateTime] as the data provided. If
+    // none specified, the default creates local date time.
+    dateTimeFactory: const charts.LocalDateTimeFactory(),
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<TimeSeriesSales, DateTime>> _createSampleData() {

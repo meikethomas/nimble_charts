@@ -42,13 +42,14 @@ class SymbolAnnotationRendererConfig<D> extends PointRendererConfig<D> {
     this.verticalSymbolBottomPaddingPx = 5.0,
     this.verticalSymbolTopPaddingPx = 5.0,
   }) : super(
-          pointRendererDecorators: pointRendererDecorators ??
-              [
-                ComparisonPointsDecorator<D>(
-                  symbolRenderer: RectangleRangeSymbolRenderer(),
-                ),
-              ],
-        );
+         pointRendererDecorators:
+             pointRendererDecorators ??
+             [
+               ComparisonPointsDecorator<D>(
+                 symbolRenderer: RectangleRangeSymbolRenderer(),
+               ),
+             ],
+       );
 
   /// Whether a separator line should be drawn between the bottom row of
   /// rendered symbols and the axis ticks/labels.
@@ -67,8 +68,6 @@ class SymbolAnnotationRendererConfig<D> extends PointRendererConfig<D> {
   final double verticalSymbolTopPaddingPx;
 
   @override
-  SymbolAnnotationRenderer<D> build() => SymbolAnnotationRenderer<D>(
-        config: this,
-        rendererId: customRendererId,
-      );
+  SymbolAnnotationRenderer<D> build() =>
+      SymbolAnnotationRenderer<D>(config: this, rendererId: customRendererId);
 }

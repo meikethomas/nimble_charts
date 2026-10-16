@@ -33,9 +33,8 @@ import 'package:nimble_charts_common/src/chart/common/series_datum.dart'
     show SeriesDatum;
 
 /// Returns a string for a11y vocalization from a list of series datum.
-typedef VocalizationCallback<D> = String Function(
-  List<SeriesDatum<D>> seriesDatums,
-);
+typedef VocalizationCallback<D> =
+    String Function(List<SeriesDatum<D>> seriesDatums);
 
 /// A simple vocalization that returns the domain value to string.
 String domainVocalization<D>(List<SeriesDatum<D>> seriesDatums) {

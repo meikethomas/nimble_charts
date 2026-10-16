@@ -38,12 +38,16 @@ class TreeMapRendererConfig<D> extends LayoutViewConfig
     this.labelDecorator,
     Color? strokeColor,
     SymbolRenderer? symbolRenderer,
-  })  : strokeColor = strokeColor ?? StyleFactory.style.black,
-        symbolRenderer = symbolRenderer ?? RectSymbolRenderer();
+  }) : strokeColor = strokeColor ?? StyleFactory.style.black,
+       symbolRenderer = symbolRenderer ?? RectSymbolRenderer();
 
   /// Default padding of a treemap rectangle.
-  static const _defaultRectPadding =
-      ViewMargin(topPx: 26, leftPx: 4, rightPx: 4, bottomPx: 4);
+  static const _defaultRectPadding = ViewMargin(
+    topPx: 26,
+    leftPx: 4,
+    rightPx: 4,
+    bottomPx: 4,
+  );
 
   @override
   final String? customRendererId;

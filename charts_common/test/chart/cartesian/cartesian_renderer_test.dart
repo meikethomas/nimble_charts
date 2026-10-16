@@ -37,8 +37,7 @@ class FakeCartesianRenderer extends BaseCartesianRenderer<dynamic> {
     Rectangle<int>? boundsOverride, {
     bool selectOverlappingPoints = false,
     bool selectExactEventLocation = false,
-  }) =>
-      throw UnimplementedError();
+  }) => throw UnimplementedError();
 
   @override
   void paint(ChartCanvas canvas, double animationPercent) {}
@@ -53,8 +52,7 @@ class FakeCartesianRenderer extends BaseCartesianRenderer<dynamic> {
   DatumDetails<dynamic> addPositionToDetailsForSeriesDatum(
     DatumDetails<dynamic> details,
     SeriesDatum<dynamic> seriesDatum,
-  ) =>
-      details;
+  ) => details;
 }
 
 void main() {
@@ -218,8 +216,11 @@ void main() {
       when(axis.compareDomainValueToViewport(5)).thenReturn(1);
       when(axis.compareDomainValueToViewport(6)).thenReturn(1);
 
-      final start =
-          renderer.findNearestViewportEnd(axis, (index) => data[index!], data);
+      final start = renderer.findNearestViewportEnd(
+        axis,
+        (index) => data[index!],
+        data,
+      );
 
       expect(start, equals(4));
     });
@@ -230,8 +231,11 @@ void main() {
       final axis = MockAxis();
       when(axis.compareDomainValueToViewport(any)).thenReturn(0);
 
-      final start =
-          renderer.findNearestViewportEnd(axis, (index) => data[index!], data);
+      final start = renderer.findNearestViewportEnd(
+        axis,
+        (index) => data[index!],
+        data,
+      );
 
       expect(start, equals(3));
     });
@@ -244,8 +248,11 @@ void main() {
       when(axis.compareDomainValueToViewport(2)).thenReturn(1);
       when(axis.compareDomainValueToViewport(3)).thenReturn(1);
 
-      final start =
-          renderer.findNearestViewportEnd(axis, (index) => data[index!], data);
+      final start = renderer.findNearestViewportEnd(
+        axis,
+        (index) => data[index!],
+        data,
+      );
 
       expect(start, equals(0));
     });
@@ -258,8 +265,11 @@ void main() {
       when(axis.compareDomainValueToViewport(2)).thenReturn(-1);
       when(axis.compareDomainValueToViewport(3)).thenReturn(0);
 
-      final start =
-          renderer.findNearestViewportEnd(axis, (index) => data[index!], data);
+      final start = renderer.findNearestViewportEnd(
+        axis,
+        (index) => data[index!],
+        data,
+      );
 
       expect(start, equals(3));
     });
@@ -275,8 +285,11 @@ void main() {
       when(axis.compareDomainValueToViewport(5)).thenReturn(1);
       when(axis.compareDomainValueToViewport(6)).thenReturn(1);
 
-      final start =
-          renderer.findNearestViewportEnd(axis, (index) => data[index!], data);
+      final start = renderer.findNearestViewportEnd(
+        axis,
+        (index) => data[index!],
+        data,
+      );
 
       expect(start, equals(3));
     });
@@ -289,8 +302,11 @@ void main() {
       when(axis.compareDomainValueToViewport(2)).thenReturn(1);
       when(axis.compareDomainValueToViewport(3)).thenReturn(1);
 
-      final start =
-          renderer.findNearestViewportEnd(axis, (index) => data[index!], data);
+      final start = renderer.findNearestViewportEnd(
+        axis,
+        (index) => data[index!],
+        data,
+      );
 
       expect(start, equals(2));
     });
@@ -303,8 +319,11 @@ void main() {
       final axis = MockAxis();
       when(axis.compareDomainValueToViewport(any)).thenReturn(1);
 
-      final start =
-          renderer.findNearestViewportEnd(axis, (index) => data[index!], data);
+      final start = renderer.findNearestViewportEnd(
+        axis,
+        (index) => data[index!],
+        data,
+      );
 
       expect(start, equals(3));
     });
@@ -317,8 +336,11 @@ void main() {
       final axis = MockAxis();
       when(axis.compareDomainValueToViewport(any)).thenReturn(-1);
 
-      final start =
-          renderer.findNearestViewportEnd(axis, (index) => data[index!], data);
+      final start = renderer.findNearestViewportEnd(
+        axis,
+        (index) => data[index!],
+        data,
+      );
 
       expect(start, equals(0));
     });

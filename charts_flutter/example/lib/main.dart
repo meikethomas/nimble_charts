@@ -23,30 +23,27 @@ typedef AppState = ({ThemeMode themeMode, bool isOriginal, bool useRandomData});
 
 extension AppStateExtension on AppState {
   AppState withThemeMode(ThemeMode themeMode) => (
-        themeMode: themeMode,
-        isOriginal: isOriginal,
-        useRandomData: useRandomData,
-      );
+    themeMode: themeMode,
+    isOriginal: isOriginal,
+    useRandomData: useRandomData,
+  );
 
   AppState copyWith({
     ThemeMode? themeMode,
     bool? isOriginal,
     bool? useRandomData,
-  }) =>
-      (
-        themeMode: themeMode ?? this.themeMode,
-        isOriginal: isOriginal ?? this.isOriginal,
-        useRandomData: useRandomData ?? this.useRandomData,
-      );
+  }) => (
+    themeMode: themeMode ?? this.themeMode,
+    isOriginal: isOriginal ?? this.isOriginal,
+    useRandomData: useRandomData ?? this.useRandomData,
+  );
 }
 
-final ValueNotifier<AppState> appState = ValueNotifier(
-  (
-    themeMode: ThemeMode.system,
-    isOriginal: false,
-    useRandomData: true,
-  ),
-);
+final ValueNotifier<AppState> appState = ValueNotifier((
+  themeMode: ThemeMode.system,
+  isOriginal: false,
+  useRandomData: true,
+));
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

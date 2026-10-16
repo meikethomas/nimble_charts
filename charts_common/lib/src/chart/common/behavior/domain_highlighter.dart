@@ -31,8 +31,9 @@ import 'package:nimble_charts_common/src/chart/common/selection_model/selection_
 /// and expand selection out to the domain value.
 class DomainHighlighter<D> implements ChartBehavior<D> {
   DomainHighlighter([this.selectionModelType = SelectionModelType.info]) {
-    _lifecycleListener =
-        LifecycleListener<D>(onPostprocess: _updateColorFunctions);
+    _lifecycleListener = LifecycleListener<D>(
+      onPostprocess: _updateColorFunctions,
+    );
   }
   final SelectionModelType selectionModelType;
 
@@ -45,8 +46,9 @@ class DomainHighlighter<D> implements ChartBehavior<D> {
   }
 
   void _updateColorFunctions(List<MutableSeries<D>> seriesList) {
-    final SelectionModel<D> selectionModel =
-        _chart.getSelectionModel(selectionModelType);
+    final SelectionModel<D> selectionModel = _chart.getSelectionModel(
+      selectionModelType,
+    );
     for (final series in seriesList) {
       final origColorFn = series.colorFn;
 

@@ -121,12 +121,13 @@ class PerSeriesLegendEntryGenerator<D> implements LegendEntryGenerator<D> {
       entry
         ..value = measureValue
         ..formattedValue = formattedValue
-        ..isSelected = selectionModel.selectedSeries
-            .any((selectedSeries) => entry.series.id == selectedSeries.id)
-
+        ..isSelected = selectionModel.selectedSeries.any(
+          (selectedSeries) => entry.series.id == selectedSeries.id,
+        )
         // Set the current selected model index for legend entry.
-        ..selectedDataIndexes =
-            selectionModel.selectedDatum.map((datum) => datum.index).toList();
+        ..selectedDataIndexes = selectionModel.selectedDatum
+            .map((datum) => datum.index)
+            .toList();
     }
   }
 
@@ -184,8 +185,8 @@ class PerSeriesLegendEntryGenerator<D> implements LegendEntryGenerator<D> {
       seriesAndMeasure[seriesId] = calculatedMeasure?.toDouble();
       seriesAndFormattedMeasure[seriesId] =
           (series.getAttr(measureAxisIdKey) == Axis.secondaryMeasureAxisId)
-              ? secondaryMeasureFormatter!(calculatedMeasure)
-              : measureFormatter!(calculatedMeasure);
+          ? secondaryMeasureFormatter!(calculatedMeasure)
+          : measureFormatter!(calculatedMeasure);
     }
 
     for (final entry in legendEntries) {

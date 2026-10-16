@@ -43,9 +43,7 @@ class DefaultHiddenSeriesLegend extends StatelessWidget {
   /// Creates a bar chart with sample data that demonstrates the default hidden
   /// series behavior.
   factory DefaultHiddenSeriesLegend.withSampleData() =>
-      DefaultHiddenSeriesLegend(
-        _createSampleData(),
-      );
+      DefaultHiddenSeriesLegend(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -119,18 +117,18 @@ class DefaultHiddenSeriesLegend extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.BarChart(
-        seriesList,
-        animate: animate,
-        barGroupingType: charts.BarGroupingType.grouped,
-        // Add the series legend behavior to the chart to turn on series
-        // legends. By default the legend will display above the chart.
-        behaviors: [
-          charts.SeriesLegend(
-            // Configures the "Other" series to be hidden on first chart draw.
-            defaultHiddenSeries: const ['Other'],
-          ),
-        ],
-      );
+    seriesList,
+    animate: animate,
+    barGroupingType: charts.BarGroupingType.grouped,
+    // Add the series legend behavior to the chart to turn on series
+    // legends. By default the legend will display above the chart.
+    behaviors: [
+      charts.SeriesLegend(
+        // Configures the "Other" series to be hidden on first chart draw.
+        defaultHiddenSeries: const ['Other'],
+      ),
+    ],
+  );
 
   /// Create series list with multiple series
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {

@@ -102,10 +102,10 @@ class FakeTextElement implements TextElement {
 
   @override
   TextMeasurement get measurement => TextMeasurement(
-        horizontalSliceWidth: _text.length.toDouble(),
-        verticalSliceWidth: textStyle!.fontSize!.toDouble(),
-        baseline: textStyle!.fontSize!.toDouble(),
-      );
+    horizontalSliceWidth: _text.length.toDouble(),
+    verticalSliceWidth: textStyle!.fontSize!.toDouble(),
+    baseline: textStyle!.fontSize!.toDouble(),
+  );
 
   double measureTextWidth(String text) => text.length.toDouble();
 }
@@ -131,8 +131,7 @@ void main() {
   });
 
   group('tree map', () {
-    test(
-        'when label can fit in a single line, enable allowLabelOverflow, '
+    test('when label can fit in a single line, enable allowLabelOverflow, '
         'disable multiline, return full text', () {
       final textElement = FakeTextElement('text')..textStyle = textStyle;
       final textElements = wrapLabelLines(
@@ -148,8 +147,7 @@ void main() {
       expect(textElements.first.text, 'text');
     });
 
-    test(
-        'when label can not fit in a single line, enable allowLabelOverflow, '
+    test('when label can not fit in a single line, enable allowLabelOverflow, '
         'disable multiline, return ellipsized text', () {
       // cspell:disable-next-line
       final textElement = FakeTextElement('texttexttexttext')
@@ -168,8 +166,7 @@ void main() {
       expect(textElements.first.text, 'textte...');
     });
 
-    test(
-        'when label can not fit in a single line, enable allowLabelOverflow '
+    test('when label can not fit in a single line, enable allowLabelOverflow '
         'and multiline, return two textElements', () {
       final textElement = FakeTextElement('texttexttexttext')
         ..textStyle = textStyle;
@@ -187,8 +184,7 @@ void main() {
       expect(textElements.last.text, 'xttext');
     });
 
-    test(
-        'when both label and ellipsis can not fit in a single line, disable '
+    test('when both label and ellipsis can not fit in a single line, disable '
         'allowLabelOverflow and multiline, return empty', () {
       const maxWidth = 2;
       final textElement = FakeTextElement('texttexttexttext')
@@ -205,8 +201,7 @@ void main() {
       expect(textElements, isEmpty);
     });
 
-    test(
-        'when both label and ellipsis can not fit in a single line, disable '
+    test('when both label and ellipsis can not fit in a single line, disable '
         'allowLabelOverflow but enable multiline, return textElements', () {
       const maxWidth = 2;
       final textElement = FakeTextElement('t ex text')..textStyle = textStyle;

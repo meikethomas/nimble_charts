@@ -98,8 +98,10 @@ class PanAndZoomBehavior<D> extends PanBehavior<D> {
 
     // Clamp the scale to prevent zooming out beyond the range of the data, or
     // zooming in so far that we show nothing useful.
-    final newScalingFactor =
-        min(max(_scalingFactor * scale, _minScalingFactor), _maxScalingFactor);
+    final newScalingFactor = min(
+      max(_scalingFactor * scale, _minScalingFactor),
+      _maxScalingFactor,
+    );
 
     domainAxis.setViewportSettings(
       newScalingFactor,

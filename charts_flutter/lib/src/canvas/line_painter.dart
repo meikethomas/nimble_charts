@@ -165,8 +165,9 @@ class LinePainter {
         var d = _getOffsetDistance(previousSeriesPoint, seriesPoint);
 
         while (d > 0) {
-          final dashSegment =
-              remainder > 0 ? remainder : getNextDashPatternSegment();
+          final dashSegment = remainder > 0
+              ? remainder
+              : getNextDashPatternSegment();
           remainder = 0;
 
           // Create a unit vector in the direction from previous to next point.

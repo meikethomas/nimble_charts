@@ -14,7 +14,6 @@
 // limitations under the License.
 
 // Long chart API references stay intact for the copyable gallery snippet.
-// ignore_for_file: lines_longer_than_80_chars
 
 /// Example of the chart behavior that centers the viewport on domain selection.
 library;
@@ -35,9 +34,7 @@ class SlidingViewportOnSelection extends StatelessWidget {
 
   /// Creates a [charts.BarChart] with sample data and no transition.
   factory SlidingViewportOnSelection.withSampleData() =>
-      SlidingViewportOnSelection(
-        _createSampleData(),
-      );
+      SlidingViewportOnSelection(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -86,23 +83,23 @@ class SlidingViewportOnSelection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.BarChart(
-        seriesList,
-        animate: animate,
-        behaviors: [
-          // Add the sliding viewport behavior to have the viewport center on the
-          // domain that is currently selected.
-          charts.SlidingViewport(),
-          // A pan and zoom behavior helps demonstrate the sliding viewport
-          // behavior by allowing the data visible in the viewport to be adjusted
-          // dynamically.
-          charts.PanAndZoomBehavior(),
-        ],
-        // Set an initial viewport to demonstrate the sliding viewport behavior on
-        // initial chart load.
-        domainAxis: charts.OrdinalAxisSpec(
-          viewport: charts.OrdinalViewport('2018', 4),
-        ),
-      );
+    seriesList,
+    animate: animate,
+    behaviors: [
+      // Add the sliding viewport behavior to have the viewport center on the
+      // domain that is currently selected.
+      charts.SlidingViewport(),
+      // A pan and zoom behavior helps demonstrate the sliding viewport
+      // behavior by allowing the data visible in the viewport to be adjusted
+      // dynamically.
+      charts.PanAndZoomBehavior(),
+    ],
+    // Set an initial viewport to demonstrate the sliding viewport behavior on
+    // initial chart load.
+    domainAxis: charts.OrdinalAxisSpec(
+      viewport: charts.OrdinalViewport('2018', 4),
+    ),
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {

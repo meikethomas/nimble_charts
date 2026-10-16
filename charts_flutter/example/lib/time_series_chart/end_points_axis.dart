@@ -14,7 +14,6 @@
 // limitations under the License.
 
 // Long chart API references stay intact for the copyable gallery snippet.
-// ignore_for_file: lines_longer_than_80_chars
 
 /// Example of a time series chart with an end points domain axis.
 ///
@@ -37,9 +36,7 @@ class EndPointsAxisTimeSeriesChart extends StatelessWidget {
 
   /// Creates a [charts.TimeSeriesChart] with sample data and no transition.
   factory EndPointsAxisTimeSeriesChart.withSampleData() =>
-      EndPointsAxisTimeSeriesChart(
-        _createSampleData(),
-      );
+      EndPointsAxisTimeSeriesChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -75,14 +72,14 @@ class EndPointsAxisTimeSeriesChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.TimeSeriesChart(
-        seriesList,
-        animate: animate,
-        // Configures an axis spec that is configured to render one tick at each
-        // end of the axis range, anchored "inside" the axis. The start tick label
-        // will be left-aligned with its tick mark, and the end tick label will be
-        // right-aligned with its tick mark.
-        domainAxis: const charts.EndPointsTimeAxisSpec(),
-      );
+    seriesList,
+    animate: animate,
+    // Configures an axis spec that is configured to render one tick at each
+    // end of the axis range, anchored "inside" the axis. The start tick label
+    // will be left-aligned with its tick mark, and the end tick label will be
+    // right-aligned with its tick mark.
+    domainAxis: const charts.EndPointsTimeAxisSpec(),
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<TimeSeriesSales, DateTime>> _createSampleData() {

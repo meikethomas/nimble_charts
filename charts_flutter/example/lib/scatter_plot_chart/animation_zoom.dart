@@ -33,9 +33,7 @@ class ScatterPlotAnimationZoomChart extends StatelessWidget {
 
   /// Creates a [charts.ScatterPlotChart] with sample data and no transition.
   factory ScatterPlotAnimationZoomChart.withSampleData() =>
-      ScatterPlotAnimationZoomChart(
-        _createSampleData(),
-      );
+      ScatterPlotAnimationZoomChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -86,12 +84,10 @@ class ScatterPlotAnimationZoomChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.ScatterPlotChart(
-        seriesList,
-        animate: animate,
-        behaviors: [
-          charts.PanAndZoomBehavior(),
-        ],
-      );
+    seriesList,
+    animate: animate,
+    behaviors: [charts.PanAndZoomBehavior()],
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<LinearSales, int>> _createSampleData() {

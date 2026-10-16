@@ -48,8 +48,7 @@ class MockChart extends Mock implements CartesianChart<dynamic> {
   @override
   LifecycleListener<dynamic> addLifecycleListener(
     LifecycleListener<dynamic> listener,
-  ) =>
-      lastLifecycleListener = listener;
+  ) => lastLifecycleListener = listener;
 
   @override
   bool removeLifecycleListener(LifecycleListener<dynamic> listener) {

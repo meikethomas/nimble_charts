@@ -57,10 +57,7 @@ class ConcreteChart extends LineChart {
 }
 
 class ConcreteNumericAxis extends NumericAxis {
-  ConcreteNumericAxis()
-      : super(
-          tickProvider: MockNumericTickProvider(),
-        );
+  ConcreteNumericAxis() : super(tickProvider: MockNumericTickProvider());
 }
 
 class MockGraphicsFactory extends Mock implements GraphicsFactory {}
@@ -168,7 +165,7 @@ void main() {
       data: [s1D1, s1D2, s1D3],
       domainFn: (row, _) => row.campaign,
       measureFn: (row, _) => row.count,
-      colorFn: (_, __) => MaterialPalette.blue.shadeDefault,
+      colorFn: (_, _) => MaterialPalette.blue.shadeDefault,
     );
 
     series2 = Series<MyRow, int>(
@@ -176,7 +173,7 @@ void main() {
       data: [s2D1, s2D2, s2D3],
       domainFn: (row, _) => row.campaign,
       measureFn: (row, _) => row.count,
-      colorFn: (_, __) => MaterialPalette.red.shadeDefault,
+      colorFn: (_, _) => MaterialPalette.red.shadeDefault,
     );
 
     annotations1 = [
@@ -427,7 +424,6 @@ void main() {
       // ignore: unused_local_variable
       final behavior = RangeAnnotation<num>(annotations2)
         ..attachTo(chart0)
-
         // Act
         ..removeFrom(chart0);
 

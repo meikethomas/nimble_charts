@@ -31,9 +31,8 @@ class GroupedFillColorBarChart extends StatelessWidget {
     this.animate = true,
   });
 
-  factory GroupedFillColorBarChart.withSampleData() => GroupedFillColorBarChart(
-        _createSampleData(),
-      );
+  factory GroupedFillColorBarChart.withSampleData() =>
+      GroupedFillColorBarChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -77,8 +76,7 @@ class GroupedFillColorBarChart extends StatelessWidget {
         measureFn: (sales, _) => sales.sales,
         data: desktopSalesData,
         colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
-        fillColorFn: (_, _) =>
-            charts.MaterialPalette.blue.shadeDefault.lighter,
+        fillColorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault.lighter,
       ),
       // Solid red bars. Fill color will default to the series color if no
       // fillColorFn is configured.
@@ -104,14 +102,14 @@ class GroupedFillColorBarChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.BarChart(
-        seriesList,
-        animate: animate,
-        // Configure a stroke width to enable borders on the bars.
-        defaultRenderer: charts.BarRendererConfig(
-          groupingType: charts.BarGroupingType.grouped,
-          strokeWidthPx: 2,
-        ),
-      );
+    seriesList,
+    animate: animate,
+    // Configure a stroke width to enable borders on the bars.
+    defaultRenderer: charts.BarRendererConfig(
+      groupingType: charts.BarGroupingType.grouped,
+      strokeWidthPx: 2,
+    ),
+  );
 
   /// Create series list with multiple series
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {
@@ -144,8 +142,7 @@ class GroupedFillColorBarChart extends StatelessWidget {
         measureFn: (sales, _) => sales.sales,
         data: desktopSalesData,
         colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
-        fillColorFn: (_, _) =>
-            charts.MaterialPalette.blue.shadeDefault.lighter,
+        fillColorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault.lighter,
       ),
       // Solid red bars. Fill color will default to the series color if no
       // fillColorFn is configured.

@@ -19,20 +19,16 @@ import 'package:test/test.dart';
 
 const EPSILON = 0.001;
 
-typedef IsTransitionFunction = bool Function(
-  DateTime tickValue,
-  DateTime prevTickValue,
-);
+typedef IsTransitionFunction =
+    bool Function(DateTime tickValue, DateTime prevTickValue);
 
 class FakeTimeTickFormatter implements TimeTickFormatter {
-  FakeTimeTickFormatter(
-    this.id, {
-    IsTransitionFunction? isTransitionFunction,
-  }) : isTransitionFunction = isTransitionFunction ?? transitionAlwaysFalse;
+  FakeTimeTickFormatter(this.id, {IsTransitionFunction? isTransitionFunction})
+    : isTransitionFunction = isTransitionFunction ?? transitionAlwaysFalse;
   static const firstTick = '-firstTick-';
   static const simpleTick = '-simpleTick-';
   static const transitionTick = '-transitionTick-';
-  static final transitionAlwaysFalse = (DateTime _, DateTime __) => false;
+  static final transitionAlwaysFalse = (DateTime _, DateTime _) => false;
 
   final String id;
   final IsTransitionFunction isTransitionFunction;
@@ -67,9 +63,11 @@ void main() {
 
   group('Uses formatter', () {
     test('with largest interval less than diff between tickValues', () {
-      final formatter = DateTimeTickFormatter.withFormatters(
-        {10: timeFormatter1, 100: timeFormatter2, 1000: timeFormatter3},
-      );
+      final formatter = DateTimeTickFormatter.withFormatters({
+        10: timeFormatter1,
+        100: timeFormatter2,
+        1000: timeFormatter3,
+      });
       final formatterCache = <DateTime, String>{};
 
       final ticksWith10Diff = [
@@ -124,16 +122,31 @@ void main() {
         'fake3-simpleTick-2000',
       ];
 
-      final actualLabelsWith10Diff =
-          formatter.format(ticksWith10Diff, formatterCache, stepSize: 10);
-      final actualLabelsWith20Diff =
-          formatter.format(ticksWith20Diff, formatterCache, stepSize: 20);
-      final actualLabelsWith100Diff =
-          formatter.format(ticksWith100Diff, formatterCache, stepSize: 100);
-      final actualLabelsWith200Diff =
-          formatter.format(ticksWith200Diff, formatterCache, stepSize: 200);
-      final actualLabelsWith1000Diff =
-          formatter.format(ticksWith1000Diff, formatterCache, stepSize: 1000);
+      final actualLabelsWith10Diff = formatter.format(
+        ticksWith10Diff,
+        formatterCache,
+        stepSize: 10,
+      );
+      final actualLabelsWith20Diff = formatter.format(
+        ticksWith20Diff,
+        formatterCache,
+        stepSize: 20,
+      );
+      final actualLabelsWith100Diff = formatter.format(
+        ticksWith100Diff,
+        formatterCache,
+        stepSize: 100,
+      );
+      final actualLabelsWith200Diff = formatter.format(
+        ticksWith200Diff,
+        formatterCache,
+        stepSize: 200,
+      );
+      final actualLabelsWith1000Diff = formatter.format(
+        ticksWith1000Diff,
+        formatterCache,
+        stepSize: 1000,
+      );
 
       expect(actualLabelsWith10Diff, equals(expectedLabels10Diff));
       expect(actualLabelsWith20Diff, equals(expectedLabels20Diff));
@@ -144,9 +157,10 @@ void main() {
     });
 
     test('with smallest interval when no smaller one exists', () {
-      final formatter = DateTimeTickFormatter.withFormatters(
-        {10: timeFormatter1, 100: timeFormatter2},
-      );
+      final formatter = DateTimeTickFormatter.withFormatters({
+        10: timeFormatter1,
+        100: timeFormatter2,
+      });
       final formatterCache = <DateTime, String>{};
 
       final ticks = [
@@ -165,9 +179,10 @@ void main() {
     });
 
     test('with smallest interval for single tick input', () {
-      final formatter = DateTimeTickFormatter.withFormatters(
-        {10: timeFormatter1, 100: timeFormatter2},
-      );
+      final formatter = DateTimeTickFormatter.withFormatters({
+        10: timeFormatter1,
+        100: timeFormatter2,
+      });
       final formatterCache = <DateTime, String>{};
 
       final ticks = [DateTime.fromMillisecondsSinceEpoch(5000)];
@@ -177,12 +192,16 @@ void main() {
     });
 
     test('on empty input does not break', () {
-      final formatter =
-          DateTimeTickFormatter.withFormatters({10: timeFormatter1});
+      final formatter = DateTimeTickFormatter.withFormatters({
+        10: timeFormatter1,
+      });
       final formatterCache = <DateTime, String>{};
 
-      final actualLabels =
-          formatter.format(<DateTime>[], formatterCache, stepSize: 10);
+      final actualLabels = formatter.format(
+        <DateTime>[],
+        formatterCache,
+        stepSize: 10,
+      );
       expect(actualLabels, isEmpty);
     });
 
@@ -194,8 +213,9 @@ void main() {
       );
       final formatterCache = <DateTime, String>{};
 
-      final formatter =
-          DateTimeTickFormatter.withFormatters({10: timeFormatter});
+      final formatter = DateTimeTickFormatter.withFormatters({
+        10: timeFormatter,
+      });
 
       final ticks = [
         DateTime.fromMillisecondsSinceEpoch(0),
@@ -210,8 +230,11 @@ void main() {
         'fake-transitionTick-20',
         'fake-simpleTick-30',
       ];
-      final actualLabels =
-          formatter.format(ticks, formatterCache, stepSize: 10);
+      final actualLabels = formatter.format(
+        ticks,
+        formatterCache,
+        stepSize: 10,
+      );
 
       expect(actualLabels, equals(expectedLabels));
     });
@@ -221,9 +244,10 @@ void main() {
     test('throws argument error if time resolution key is not positive', () {
       // -1 is reserved for any, if there is only one formatter, -1 is allowed.
       expect(
-        () => DateTimeTickFormatter.withFormatters(
-          {-1: timeFormatter1, 2: timeFormatter2},
-        ),
+        () => DateTimeTickFormatter.withFormatters({
+          -1: timeFormatter1,
+          2: timeFormatter2,
+        }),
         throwsArgumentError,
       );
     });

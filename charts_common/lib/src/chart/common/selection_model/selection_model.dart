@@ -67,9 +67,7 @@ class SelectionModel<D> {
 
       // Add to list of selected series.
       _selectedSeries.addAll(
-        seriesList.where(
-          (series) => selectedDataMap.keys.contains(series.id),
-        ),
+        seriesList.where((series) => selectedDataMap.keys.contains(series.id)),
       );
 
       // Add to list of selected data.
@@ -99,9 +97,7 @@ class SelectionModel<D> {
           .toSet();
 
       _selectedSeries.addAll(
-        seriesList.where(
-          (series) => remainingSeriesToAdd.contains(series.id),
-        ),
+        seriesList.where((series) => remainingSeriesToAdd.contains(series.id)),
       );
     }
   }
@@ -137,15 +133,20 @@ class SelectionModel<D> {
   @override
   bool operator ==(Object other) =>
       other is SelectionModel<D> &&
-      ListEquality<SeriesDatum<D>>()
-          .equals(_selectedDatum, other.selectedDatum) &&
-      ListEquality<ImmutableSeries<D>>()
-          .equals(_selectedSeries, other.selectedSeries);
+      ListEquality<SeriesDatum<D>>().equals(
+        _selectedDatum,
+        other.selectedDatum,
+      ) &&
+      ListEquality<ImmutableSeries<D>>().equals(
+        _selectedSeries,
+        other.selectedSeries,
+      );
 
   @override
   int get hashCode {
     var hashcode = ListEquality<SeriesDatum<D>>().hash(_selectedDatum);
-    hashcode = hashcode * 37 +
+    hashcode =
+        hashcode * 37 +
         ListEquality<ImmutableSeries<D>>().hash(_selectedSeries);
     return hashcode;
   }
@@ -197,10 +198,15 @@ class MutableSelectionModel<D> extends SelectionModel<D> {
       listener(copyOfSelectionModel);
     }
 
-    final changed = !ListEquality<SeriesDatum<D>>()
-            .equals(origSelectedDatum, _selectedDatum) ||
-        !ListEquality<ImmutableSeries<D>>()
-            .equals(origSelectedSeries, _selectedSeries);
+    final changed =
+        !ListEquality<SeriesDatum<D>>().equals(
+          origSelectedDatum,
+          _selectedDatum,
+        ) ||
+        !ListEquality<ImmutableSeries<D>>().equals(
+          origSelectedSeries,
+          _selectedSeries,
+        );
     if (notifyListeners && changed) {
       for (final listener in _changedListeners) {
         listener(copyOfSelectionModel);

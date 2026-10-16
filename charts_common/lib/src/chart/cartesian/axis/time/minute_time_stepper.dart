@@ -27,18 +27,17 @@ class MinuteTimeStepper extends BaseTimeStepper {
     allowedTickIncrements ??= _defaultIncrements;
 
     assert(
-      allowedTickIncrements
-          .every((increment) => increment >= 1 && increment <= 60),
+      allowedTickIncrements.every(
+        (increment) => increment >= 1 && increment <= 60,
+      ),
       'Tick increments must be between 1 and 60.',
     );
 
     return MinuteTimeStepper._internal(dateTimeFactory, allowedTickIncrements);
   }
 
-  MinuteTimeStepper._internal(
-    super.dateTimeFactory,
-    List<int> increments,
-  ) : _allowedTickIncrements = increments;
+  MinuteTimeStepper._internal(super.dateTimeFactory, List<int> increments)
+    : _allowedTickIncrements = increments;
   static const _defaultIncrements = [5, 10, 15, 20, 30];
   static const _millisecondsInMinute = 60 * 1000;
 
@@ -56,7 +55,8 @@ class MinuteTimeStepper extends BaseTimeStepper {
   /// we can guarantee a step at 4:00.
   @override
   DateTime getStepTimeBeforeInclusive(DateTime time, int tickIncrement) {
-    final nextHourStart = time.millisecondsSinceEpoch +
+    final nextHourStart =
+        time.millisecondsSinceEpoch +
         (60 - time.minute) * _millisecondsInMinute;
 
     final minutesToNextHour =

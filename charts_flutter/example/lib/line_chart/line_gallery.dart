@@ -79,108 +79,108 @@ const lineAnimationZoomChartSubtitle =
     'Simple line chart pan and zoom behaviors enabled';
 
 List<GalleryScaffold> buildGallery() => [
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: simpleLineChartTitle,
-        subtitle: simpleLineChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? SimpleLineChart.withRandomData()
-            : SimpleLineChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: stackedAreaLineChartTitle,
-        subtitle: stackedAreaLineChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? StackedAreaLineChart.withRandomData()
-            : StackedAreaLineChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: stackedAreaCustomColorLineChartTitle,
-        subtitle: stackedAreaCustomColorLineChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? StackedAreaCustomColorLineChart.withRandomData()
-            : StackedAreaCustomColorLineChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: areaAndLineChartTitle,
-        subtitle: areaAndLineChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? AreaAndLineChart.withRandomData()
-            : AreaAndLineChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: pointsLineChartTitle,
-        subtitle: pointsLineChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? PointsLineChart.withRandomData()
-            : PointsLineChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: simpleNullsLineChartTitle,
-        subtitle: simpleNullsLineChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? SimpleNullsLineChart.withRandomData()
-            : SimpleNullsLineChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: stackedAreaNullsLineChartTitle,
-        subtitle: stackedAreaNullsLineChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? StackedAreaNullsLineChart.withRandomData()
-            : StackedAreaNullsLineChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: dashPatternLineChartTitle,
-        subtitle: dashPatternLineChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? DashPatternLineChart.withRandomData()
-            : DashPatternLineChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: segmentsLineChartTitle,
-        subtitle: segmentsLineChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? SegmentsLineChart.withRandomData()
-            : SegmentsLineChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: lineLineAnnotationChartTitle,
-        subtitle: lineLineAnnotationChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? LineLineAnnotationChart.withRandomData()
-            : LineLineAnnotationChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: lineRangeAnnotationChartTitle,
-        subtitle: lineRangeAnnotationChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? LineRangeAnnotationChart.withRandomData()
-            : LineRangeAnnotationChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: lineRangeAnnotationMarginChartTitle,
-        subtitle: lineRangeAnnotationMarginChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? LineRangeAnnotationMarginChart.withRandomData()
-            : LineRangeAnnotationMarginChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: lineAnimationZoomChartTitle,
-        subtitle: lineAnimationZoomChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? LineAnimationZoomChart.withRandomData()
-            : LineAnimationZoomChart.withSampleData(),
-      ),
-    ];
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: simpleLineChartTitle,
+    subtitle: simpleLineChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? SimpleLineChart.withRandomData()
+        : SimpleLineChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: stackedAreaLineChartTitle,
+    subtitle: stackedAreaLineChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? StackedAreaLineChart.withRandomData()
+        : StackedAreaLineChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: stackedAreaCustomColorLineChartTitle,
+    subtitle: stackedAreaCustomColorLineChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? StackedAreaCustomColorLineChart.withRandomData()
+        : StackedAreaCustomColorLineChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: areaAndLineChartTitle,
+    subtitle: areaAndLineChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? AreaAndLineChart.withRandomData()
+        : AreaAndLineChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: pointsLineChartTitle,
+    subtitle: pointsLineChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? PointsLineChart.withRandomData()
+        : PointsLineChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: simpleNullsLineChartTitle,
+    subtitle: simpleNullsLineChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? SimpleNullsLineChart.withRandomData()
+        : SimpleNullsLineChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: stackedAreaNullsLineChartTitle,
+    subtitle: stackedAreaNullsLineChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? StackedAreaNullsLineChart.withRandomData()
+        : StackedAreaNullsLineChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: dashPatternLineChartTitle,
+    subtitle: dashPatternLineChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? DashPatternLineChart.withRandomData()
+        : DashPatternLineChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: segmentsLineChartTitle,
+    subtitle: segmentsLineChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? SegmentsLineChart.withRandomData()
+        : SegmentsLineChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: lineLineAnnotationChartTitle,
+    subtitle: lineLineAnnotationChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? LineLineAnnotationChart.withRandomData()
+        : LineLineAnnotationChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: lineRangeAnnotationChartTitle,
+    subtitle: lineRangeAnnotationChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? LineRangeAnnotationChart.withRandomData()
+        : LineRangeAnnotationChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: lineRangeAnnotationMarginChartTitle,
+    subtitle: lineRangeAnnotationMarginChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? LineRangeAnnotationMarginChart.withRandomData()
+        : LineRangeAnnotationMarginChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: lineAnimationZoomChartTitle,
+    subtitle: lineAnimationZoomChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? LineAnimationZoomChart.withRandomData()
+        : LineAnimationZoomChart.withSampleData(),
+  ),
+];

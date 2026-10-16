@@ -144,8 +144,7 @@ void main() {
     expect(ticks[3].value, equals(75));
   });
 
-  test(
-      'tickCountRangeChoosesTicksWithMost'
+  test('tickCountRangeChoosesTicksWithMost'
       'TicksAndSmallestIntervalCoveringDomain', () {
     tickProvider
       ..zeroBound = false
@@ -362,8 +361,9 @@ void main() {
 
     final drawStrategy = FakeDrawStrategy(10, 10);
 
-    when(scale.viewportDomain)
-        .thenReturn(const NumericExtents(0.000001, 0.000002));
+    when(
+      scale.viewportDomain,
+    ).thenReturn(const NumericExtents(0.000001, 0.000002));
     when(scale.rangeWidth).thenReturn(1000);
 
     final ticks = tickProvider.getTicks(
@@ -392,8 +392,9 @@ void main() {
 
     final drawStrategy = FakeDrawStrategy(10, 10);
 
-    when(scale.viewportDomain)
-        .thenReturn(const NumericExtents(0.000001, 0.000002));
+    when(
+      scale.viewportDomain,
+    ).thenReturn(const NumericExtents(0.000001, 0.000002));
     when(scale.rangeWidth).thenReturn(1000);
 
     final ticks = tickProvider.getTicks(
@@ -422,8 +423,9 @@ void main() {
 
     final drawStrategy = FakeDrawStrategy(10, 10);
 
-    when(scale.viewportDomain)
-        .thenReturn(const NumericExtents(101.000001, 101.000002));
+    when(
+      scale.viewportDomain,
+    ).thenReturn(const NumericExtents(101.000001, 101.000002));
     when(scale.rangeWidth).thenReturn(1000);
 
     final ticks = tickProvider.getTicks(

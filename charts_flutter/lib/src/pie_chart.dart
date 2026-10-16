@@ -15,7 +15,8 @@
 
 import 'package:nimble_charts/src/base_chart.dart' show BaseChart;
 import 'package:nimble_charts/src/base_chart_state.dart' show BaseChartState;
-import 'package:nimble_charts_common/common.dart' as common
+import 'package:nimble_charts_common/common.dart'
+    as common
     show ArcRendererConfig, PieChart;
 
 /// A pie chart that displays data as a circle divided into sectors, each

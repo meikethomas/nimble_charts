@@ -75,8 +75,9 @@ void main() {
     required bool vertical,
     required BarGroupingType groupType,
   }) {
-    final renderer =
-        BarRenderer(config: BarRendererConfig(groupingType: groupType));
+    final renderer = BarRenderer(
+      config: BarRendererConfig(groupingType: groupType),
+    );
     configureBaseRenderer(renderer, vertical);
     return renderer;
   }
@@ -97,31 +98,31 @@ void main() {
     String? seriesCategory,
     bool vertical = true,
   }) {
-    final data = <MyRow>[
-      MyRow('camp0', 10),
-      MyRow('camp1', 10),
-    ];
+    final data = <MyRow>[MyRow('camp0', 10), MyRow('camp1', 10)];
 
-    final series = MutableSeries(
-      Series<MyRow, String>(
-        id: id,
-        data: data,
-        domainFn: (row, _) => row.campaign,
-        measureFn: (row, _) => row.clickCount,
-        seriesCategory: seriesCategory,
-      ),
-    )
-      ..measureOffsetFn = ((_) => 0.0)
-      ..colorFn = (_) => Color.fromHex(code: '#000000');
+    final series =
+        MutableSeries(
+            Series<MyRow, String>(
+              id: id,
+              data: data,
+              domainFn: (row, _) => row.campaign,
+              measureFn: (row, _) => row.clickCount,
+              seriesCategory: seriesCategory,
+            ),
+          )
+          ..measureOffsetFn = ((_) => 0.0)
+          ..colorFn = (_) => Color.fromHex(code: '#000000');
 
     // Mock the Domain axis results.
     final domainAxis = MockOrdinalAxis();
     when(domainAxis.rangeBand).thenReturn(100);
     final domainOffset = vertical ? 70.0 : 20.0;
-    when(domainAxis.getLocation('camp0'))
-        .thenReturn(domainOffset + 10.0 + 50.0);
-    when(domainAxis.getLocation('camp1'))
-        .thenReturn(domainOffset + 10.0 + 100.0 + 10.0 + 50.0);
+    when(
+      domainAxis.getLocation('camp0'),
+    ).thenReturn(domainOffset + 10.0 + 50.0);
+    when(
+      domainAxis.getLocation('camp1'),
+    ).thenReturn(domainOffset + 10.0 + 100.0 + 10.0 + 50.0);
     when(domainAxis.getLocation('outsideViewport')).thenReturn(-51);
 
     if (vertical) {
@@ -162,25 +163,27 @@ void main() {
       MyDateTimeRow(date1, 10),
     ];
 
-    final series = MutableSeries(
-      Series<MyDateTimeRow, DateTime>(
-        id: id,
-        data: data,
-        domainFn: (row, _) => row.time,
-        measureFn: (row, _) => row.clickCount,
-        seriesCategory: seriesCategory,
-      ),
-    )
-      ..measureOffsetFn = ((_) => 0.0)
-      ..colorFn = (_) => Color.fromHex(code: '#000000');
+    final series =
+        MutableSeries(
+            Series<MyDateTimeRow, DateTime>(
+              id: id,
+              data: data,
+              domainFn: (row, _) => row.time,
+              measureFn: (row, _) => row.clickCount,
+              seriesCategory: seriesCategory,
+            ),
+          )
+          ..measureOffsetFn = ((_) => 0.0)
+          ..colorFn = (_) => Color.fromHex(code: '#000000');
 
     // Mock the Domain axis results.
     final domainAxis = MockAxis<DateTime>();
     when(domainAxis.rangeBand).thenReturn(100);
     final domainOffset = vertical ? 70.0 : 20.0;
     when(domainAxis.getLocation(date0)).thenReturn(domainOffset + 10.0 + 50.0);
-    when(domainAxis.getLocation(date1))
-        .thenReturn(domainOffset + 10.0 + 100.0 + 10.0 + 50.0);
+    when(
+      domainAxis.getLocation(date1),
+    ).thenReturn(domainOffset + 10.0 + 100.0 + 10.0 + 50.0);
     when(domainAxis.getLocation(dateOutsideViewport)).thenReturn(-51);
 
     series.setAttr(domainAxisKey, domainAxis);
@@ -213,8 +216,10 @@ void main() {
   group('edge cases', () {
     test('hit target on missing data in group should highlight group', () {
       // Setup
-      final renderer =
-          makeBarRenderer(vertical: true, groupType: BarGroupingType.grouped);
+      final renderer = makeBarRenderer(
+        vertical: true,
+        groupType: BarGroupingType.grouped,
+      );
       final seriesList = <MutableSeries<String>>[
         makeSeries(id: 'foo')..data.clear(),
         makeSeries(id: 'bar'),
@@ -245,8 +250,10 @@ void main() {
 
     test('all series without data is skipped', () {
       // Setup
-      final renderer =
-          makeBarRenderer(vertical: true, groupType: BarGroupingType.grouped);
+      final renderer = makeBarRenderer(
+        vertical: true,
+        groupType: BarGroupingType.grouped,
+      );
       final seriesList = <MutableSeries<String>>[
         makeSeries(id: 'foo')..data.clear(),
         makeSeries(id: 'bar')..data.clear(),
@@ -270,8 +277,10 @@ void main() {
 
     test('single overlay series is skipped', () {
       // Setup
-      final renderer =
-          makeBarRenderer(vertical: true, groupType: BarGroupingType.grouped);
+      final renderer = makeBarRenderer(
+        vertical: true,
+        groupType: BarGroupingType.grouped,
+      );
       final seriesList = <MutableSeries<String>>[
         makeSeries(id: 'foo')..overlaySeries = true,
         makeSeries(id: 'bar'),
@@ -302,8 +311,10 @@ void main() {
 
     test('all overlay series is skipped', () {
       // Setup
-      final renderer =
-          makeBarRenderer(vertical: true, groupType: BarGroupingType.grouped);
+      final renderer = makeBarRenderer(
+        vertical: true,
+        groupType: BarGroupingType.grouped,
+      );
       final seriesList = <MutableSeries<String>>[
         makeSeries(id: 'foo')..overlaySeries = true,
         makeSeries(id: 'bar')..overlaySeries = true,
@@ -332,8 +343,10 @@ void main() {
   group('Vertical BarRenderer', () {
     test('hit test works on bar', () {
       // Setup
-      final renderer =
-          makeBarRenderer(vertical: true, groupType: BarGroupingType.stacked);
+      final renderer = makeBarRenderer(
+        vertical: true,
+        groupType: BarGroupingType.stacked,
+      );
       final seriesList = <MutableSeries<String>>[makeSeries(id: 'foo')];
       renderer
         ..configureSeries(seriesList)
@@ -360,8 +373,10 @@ void main() {
 
     test('hit test expands to grouped bars', () {
       // Setup
-      final renderer =
-          makeBarRenderer(vertical: true, groupType: BarGroupingType.grouped);
+      final renderer = makeBarRenderer(
+        vertical: true,
+        groupType: BarGroupingType.grouped,
+      );
       final seriesList = <MutableSeries<String>>[
         makeSeries(id: 'foo'),
         makeSeries(id: 'bar'),
@@ -399,8 +414,10 @@ void main() {
 
     test('hit test expands to stacked bars', () {
       // Setup
-      final renderer =
-          makeBarRenderer(vertical: true, groupType: BarGroupingType.stacked);
+      final renderer = makeBarRenderer(
+        vertical: true,
+        groupType: BarGroupingType.stacked,
+      );
       final seriesList = <MutableSeries<String>>[
         makeSeries(id: 'foo'),
         makeSeries(id: 'bar'),
@@ -497,8 +514,10 @@ void main() {
 
     test('hit test works above bar', () {
       // Setup
-      final renderer =
-          makeBarRenderer(vertical: true, groupType: BarGroupingType.stacked);
+      final renderer = makeBarRenderer(
+        vertical: true,
+        groupType: BarGroupingType.stacked,
+      );
       final seriesList = <MutableSeries<String>>[makeSeries(id: 'foo')];
       renderer
         ..configureSeries(seriesList)
@@ -525,8 +544,10 @@ void main() {
 
     test('hit test works between bars in a group', () {
       // Setup
-      final renderer =
-          makeBarRenderer(vertical: true, groupType: BarGroupingType.grouped);
+      final renderer = makeBarRenderer(
+        vertical: true,
+        groupType: BarGroupingType.grouped,
+      );
       final seriesList = <MutableSeries<String>>[
         makeSeries(id: 'foo'),
         makeSeries(id: 'bar'),
@@ -564,8 +585,10 @@ void main() {
 
     test('no selection for bars outside of viewport', () {
       // Setup
-      final renderer =
-          makeBarRenderer(vertical: true, groupType: BarGroupingType.grouped);
+      final renderer = makeBarRenderer(
+        vertical: true,
+        groupType: BarGroupingType.grouped,
+      );
       final seriesList = <MutableSeries<String>>[
         makeSeries(id: 'foo')..data.add(MyRow('outsideViewport', 20)),
       ];
@@ -594,8 +617,10 @@ void main() {
   group('Horizontal BarRenderer', () {
     test('hit test works on bar', () {
       // Setup
-      final renderer =
-          makeBarRenderer(vertical: false, groupType: BarGroupingType.stacked);
+      final renderer = makeBarRenderer(
+        vertical: false,
+        groupType: BarGroupingType.stacked,
+      );
       final seriesList = <MutableSeries<String>>[
         makeSeries(id: 'foo', vertical: false),
       ];
@@ -624,8 +649,10 @@ void main() {
 
     test('hit test expands to grouped bars', () {
       // Setup
-      final renderer =
-          makeBarRenderer(vertical: false, groupType: BarGroupingType.grouped);
+      final renderer = makeBarRenderer(
+        vertical: false,
+        groupType: BarGroupingType.grouped,
+      );
       final seriesList = <MutableSeries<String>>[
         makeSeries(id: 'foo', vertical: false),
         makeSeries(id: 'bar', vertical: false),
@@ -663,8 +690,10 @@ void main() {
 
     test('hit test expands to stacked bars', () {
       // Setup
-      final renderer =
-          makeBarRenderer(vertical: false, groupType: BarGroupingType.stacked);
+      final renderer = makeBarRenderer(
+        vertical: false,
+        groupType: BarGroupingType.stacked,
+      );
       final seriesList = <MutableSeries<String>>[
         makeSeries(id: 'foo', vertical: false),
         makeSeries(id: 'bar', vertical: false),
@@ -759,8 +788,10 @@ void main() {
 
     test('hit test works above bar', () {
       // Setup
-      final renderer =
-          makeBarRenderer(vertical: false, groupType: BarGroupingType.stacked);
+      final renderer = makeBarRenderer(
+        vertical: false,
+        groupType: BarGroupingType.stacked,
+      );
       final seriesList = <MutableSeries<String>>[
         makeSeries(id: 'foo', vertical: false),
       ];
@@ -789,8 +820,10 @@ void main() {
 
     test('hit test works between bars in a group', () {
       // Setup
-      final renderer =
-          makeBarRenderer(vertical: false, groupType: BarGroupingType.grouped);
+      final renderer = makeBarRenderer(
+        vertical: false,
+        groupType: BarGroupingType.grouped,
+      );
       final seriesList = <MutableSeries<String>>[
         makeSeries(id: 'foo', vertical: false),
         makeSeries(id: 'bar', vertical: false),
@@ -1294,8 +1327,10 @@ void main() {
   group('with date time axis and vertical bar', () {
     test('hit test works on bar', () {
       // Setup
-      final renderer =
-          makeBarRenderer(vertical: true, groupType: BarGroupingType.stacked);
+      final renderer = makeBarRenderer(
+        vertical: true,
+        groupType: BarGroupingType.stacked,
+      );
       final seriesList = <MutableSeries<DateTime>>[
         makeDateTimeSeries(id: 'foo'),
       ];
@@ -1324,8 +1359,10 @@ void main() {
 
     test('hit test expands to grouped bars', () {
       // Setup
-      final renderer =
-          makeBarRenderer(vertical: true, groupType: BarGroupingType.grouped);
+      final renderer = makeBarRenderer(
+        vertical: true,
+        groupType: BarGroupingType.grouped,
+      );
       final seriesList = <MutableSeries<DateTime>>[
         makeDateTimeSeries(id: 'foo'),
         makeDateTimeSeries(id: 'bar'),

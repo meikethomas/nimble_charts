@@ -51,8 +51,7 @@ class LocalDateTimeFactory implements DateTimeFactory {
   @override
   DateTime createDateTimeFromMilliSecondsSinceEpoch(
     int millisecondsSinceEpoch,
-  ) =>
-      DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch);
+  ) => DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch);
 
   @override
   DateTime createDateTime(
@@ -64,17 +63,16 @@ class LocalDateTimeFactory implements DateTimeFactory {
     int second = 0,
     int millisecond = 0,
     int microsecond = 0,
-  ]) =>
-      DateTime(
-        year,
-        month,
-        day,
-        hour,
-        minute,
-        second,
-        millisecond,
-        microsecond,
-      );
+  ]) => DateTime(
+    year,
+    month,
+    day,
+    hour,
+    minute,
+    second,
+    millisecond,
+    microsecond,
+  );
 
   /// Returns a [DateFormat].
   @override
@@ -88,11 +86,7 @@ class UTCDateTimeFactory implements DateTimeFactory {
   @override
   DateTime createDateTimeFromMilliSecondsSinceEpoch(
     int millisecondsSinceEpoch,
-  ) =>
-      DateTime.fromMillisecondsSinceEpoch(
-        millisecondsSinceEpoch,
-        isUtc: true,
-      );
+  ) => DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch, isUtc: true);
 
   @override
   DateTime createDateTime(
@@ -104,17 +98,16 @@ class UTCDateTimeFactory implements DateTimeFactory {
     int second = 0,
     int millisecond = 0,
     int microsecond = 0,
-  ]) =>
-      DateTime.utc(
-        year,
-        month,
-        day,
-        hour,
-        minute,
-        second,
-        millisecond,
-        microsecond,
-      );
+  ]) => DateTime.utc(
+    year,
+    month,
+    day,
+    hour,
+    minute,
+    second,
+    millisecond,
+    microsecond,
+  );
 
   /// Returns a [DateFormat].
   @override

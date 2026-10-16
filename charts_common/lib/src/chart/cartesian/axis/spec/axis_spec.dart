@@ -47,14 +47,13 @@ class AxisSpec<D> {
     TickFormatterSpec<D>? tickFormatterSpec,
     bool? showAxisLine,
     ScaleSpec<D>? scaleSpec,
-  }) =>
-      AxisSpec(
-        renderSpec: renderSpec ?? other.renderSpec,
-        tickProviderSpec: tickProviderSpec ?? other.tickProviderSpec,
-        tickFormatterSpec: tickFormatterSpec ?? other.tickFormatterSpec,
-        showAxisLine: showAxisLine ?? other.showAxisLine,
-        scaleSpec: scaleSpec ?? other.scaleSpec,
-      );
+  }) => AxisSpec(
+    renderSpec: renderSpec ?? other.renderSpec,
+    tickProviderSpec: tickProviderSpec ?? other.tickProviderSpec,
+    tickFormatterSpec: tickFormatterSpec ?? other.tickFormatterSpec,
+    showAxisLine: showAxisLine ?? other.showAxisLine,
+    scaleSpec: scaleSpec ?? other.scaleSpec,
+  );
   final bool? showAxisLine;
   final RenderSpec<D>? renderSpec;
   final TickProviderSpec<D>? tickProviderSpec;
@@ -73,8 +72,10 @@ class AxisSpec<D> {
     }
 
     if (renderSpec != null) {
-      axis.tickDrawStrategy =
-          renderSpec!.createDrawStrategy(context, graphicsFactory);
+      axis.tickDrawStrategy = renderSpec!.createDrawStrategy(
+        context,
+        graphicsFactory,
+      );
     }
 
     if (tickProviderSpec != null) {
@@ -210,7 +211,4 @@ enum TickLabelAnchor {
   inside,
 }
 
-enum TickLabelJustification {
-  inside,
-  outside,
-}
+enum TickLabelJustification { inside, outside }

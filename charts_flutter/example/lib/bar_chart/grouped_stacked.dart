@@ -29,9 +29,8 @@ class GroupedStackedBarChart extends StatelessWidget {
     this.animate = true,
   });
 
-  factory GroupedStackedBarChart.withSampleData() => GroupedStackedBarChart(
-        createSampleData(),
-      );
+  factory GroupedStackedBarChart.withSampleData() =>
+      GroupedStackedBarChart(createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -137,10 +136,10 @@ class GroupedStackedBarChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.BarChart(
-        seriesList,
-        animate: animate,
-        barGroupingType: charts.BarGroupingType.groupedStacked,
-      );
+    seriesList,
+    animate: animate,
+    barGroupingType: charts.BarGroupingType.groupedStacked,
+  );
 
   /// Create series list with multiple series
   static List<charts.Series<OrdinalSales, String>> createSampleData() {

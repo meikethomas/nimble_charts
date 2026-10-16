@@ -32,7 +32,7 @@ import 'package:nimble_charts_common/src/chart/pie/arc_renderer.dart'
 
 class PieChart<D> extends BaseChart<D> {
   PieChart({LayoutConfig? layoutConfig})
-      : super(layoutConfig: layoutConfig ?? _defaultLayoutConfig);
+    : super(layoutConfig: layoutConfig ?? _defaultLayoutConfig);
   static final _defaultLayoutConfig = LayoutConfig(
     topSpec: MarginSpec.fromPixel(minPixel: 20),
     bottomSpec: MarginSpec.fromPixel(minPixel: 20),

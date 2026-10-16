@@ -60,24 +60,23 @@ class SmallTickRendererSpec<D> extends BaseRenderSpec<D> {
   TickDrawStrategy<D> createDrawStrategy(
     ChartContext context,
     GraphicsFactory graphicsFactory,
-  ) =>
-      SmallTickDrawStrategy<D>(
-        context,
-        graphicsFactory,
-        tickLengthPx: tickLengthPx,
-        lineStyleSpec: lineStyle,
-        labelStyleSpec: labelStyle,
-        axisLineStyleSpec: axisLineStyle,
-        labelAnchor: labelAnchor,
-        labelJustification: labelJustification,
-        labelOffsetFromAxisPx: labelOffsetFromAxisPx,
-        labelCollisionOffsetFromAxisPx: labelCollisionOffsetFromAxisPx,
-        labelOffsetFromTickPx: labelOffsetFromTickPx,
-        labelCollisionOffsetFromTickPx: labelCollisionOffsetFromTickPx,
-        minimumPaddingBetweenLabelsPx: minimumPaddingBetweenLabelsPx,
-        labelRotation: labelRotation,
-        labelCollisionRotation: labelCollisionRotation,
-      );
+  ) => SmallTickDrawStrategy<D>(
+    context,
+    graphicsFactory,
+    tickLengthPx: tickLengthPx,
+    lineStyleSpec: lineStyle,
+    labelStyleSpec: labelStyle,
+    axisLineStyleSpec: axisLineStyle,
+    labelAnchor: labelAnchor,
+    labelJustification: labelJustification,
+    labelOffsetFromAxisPx: labelOffsetFromAxisPx,
+    labelCollisionOffsetFromAxisPx: labelCollisionOffsetFromAxisPx,
+    labelOffsetFromTickPx: labelOffsetFromTickPx,
+    labelCollisionOffsetFromTickPx: labelCollisionOffsetFromTickPx,
+    minimumPaddingBetweenLabelsPx: minimumPaddingBetweenLabelsPx,
+    labelRotation: labelRotation,
+    labelCollisionRotation: labelCollisionRotation,
+  );
 
   @override
   bool operator ==(Object other) =>
@@ -114,12 +113,12 @@ class SmallTickDrawStrategy<D> extends BaseTickDrawStrategy<D> {
     super.minimumPaddingBetweenLabelsPx,
     super.labelRotation,
     super.labelCollisionRotation,
-  })  : tickLength = tickLengthPx ?? StyleFactory.style.tickLength,
-        lineStyle = StyleFactory.style
-            .createTickLineStyle(graphicsFactory, lineStyleSpec),
-        super(
-          axisLineStyleSpec: axisLineStyleSpec ?? lineStyleSpec,
-        );
+  }) : tickLength = tickLengthPx ?? StyleFactory.style.tickLength,
+       lineStyle = StyleFactory.style.createTickLineStyle(
+         graphicsFactory,
+         lineStyleSpec,
+       ),
+       super(axisLineStyleSpec: axisLineStyleSpec ?? lineStyleSpec);
   int tickLength;
   LineStyle lineStyle;
 

@@ -64,7 +64,9 @@ class InitialSelection<D> implements ChartBehavior<D> {
       seriesList,
     );
 
-    _chart!.getSelectionModel(selectionModelType).updateSelection(
+    _chart!
+        .getSelectionModel(selectionModelType)
+        .updateSelection(
           immutableModel.selectedDatum,
           immutableModel.selectedSeries,
           notifyListeners: false,

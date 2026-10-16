@@ -28,9 +28,7 @@ class GaugeChart extends StatelessWidget {
   const GaugeChart(this.seriesList, {super.key, this.animate = true});
 
   /// Creates a [charts.PieChart] with sample data and no transition.
-  factory GaugeChart.withSampleData() => GaugeChart(
-        _createSampleData(),
-      );
+  factory GaugeChart.withSampleData() => GaugeChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -64,17 +62,17 @@ class GaugeChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.PieChart(
-        seriesList,
-        animate: animate,
-        // Configure the width of the pie slices to 30px. The remaining space in
-        // the chart will be left as a hole in the center. Adjust the start
-        // angle and the arc length of the pie so it resembles a gauge.
-        defaultRenderer: charts.ArcRendererConfig<dynamic>(
-          arcWidth: 30,
-          startAngle: 4 / 5 * pi,
-          arcLength: 7 / 5 * pi,
-        ),
-      );
+    seriesList,
+    animate: animate,
+    // Configure the width of the pie slices to 30px. The remaining space in
+    // the chart will be left as a hole in the center. Adjust the start
+    // angle and the arc length of the pie so it resembles a gauge.
+    defaultRenderer: charts.ArcRendererConfig<dynamic>(
+      arcWidth: 30,
+      startAngle: 4 / 5 * pi,
+      arcLength: 7 / 5 * pi,
+    ),
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<GaugeSegment, String>> _createSampleData() {

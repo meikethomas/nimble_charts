@@ -72,15 +72,17 @@ class RangeTickRendererSpec<D> extends SmallTickRendererSpec<D> {
     super.minimumPaddingBetweenLabelsPx,
     super.labelRotation,
     super.labelCollisionRotation,
-  })  : defaultLabelStyleSpec =
-            TextStyleSpec(fontSize: 9, color: StyleFactory.style.tickColor),
-        super(
-          axisLineStyle: lineStyle,
-          labelOffsetFromAxisPx:
-              labelOffsetFromAxisPx ?? defaultLabelOffsetFromAxis,
-          labelOffsetFromTickPx:
-              labelOffsetFromTickPx ?? defaultLabelOffsetFromTick,
-        );
+  }) : defaultLabelStyleSpec = TextStyleSpec(
+         fontSize: 9,
+         color: StyleFactory.style.tickColor,
+       ),
+       super(
+         axisLineStyle: lineStyle,
+         labelOffsetFromAxisPx:
+             labelOffsetFromAxisPx ?? defaultLabelOffsetFromAxis,
+         labelOffsetFromTickPx:
+             labelOffsetFromTickPx ?? defaultLabelOffsetFromTick,
+       );
   // Specifies range shade's style.
   final LineStyleSpec? rangeShadeStyle;
   // Specifies range label text style.
@@ -104,30 +106,29 @@ class RangeTickRendererSpec<D> extends SmallTickRendererSpec<D> {
   TickDrawStrategy<D> createDrawStrategy(
     ChartContext context,
     GraphicsFactory graphicsFactory,
-  ) =>
-      RangeTickDrawStrategy<D>(
-        context,
-        graphicsFactory,
-        tickLength: tickLengthPx,
-        rangeLabelTextStyleSpec: rangeLabelStyle,
-        rangeTickLength: rangeTickLengthPx,
-        rangeShadeHeight: rangeShadeHeightPx,
-        rangeShadeOffsetFromAxis: rangeShadeOffsetFromAxisPx,
-        rangeTickOffset: rangeTickOffsetPx,
-        lineStyleSpec: lineStyle,
-        labelStyleSpec: labelStyle ?? defaultLabelStyleSpec,
-        axisLineStyleSpec: axisLineStyle,
-        rangeShadeStyleSpec: rangeShadeStyle,
-        labelAnchor: labelAnchor,
-        labelJustification: labelJustification,
-        labelOffsetFromAxisPx: labelOffsetFromAxisPx,
-        labelCollisionOffsetFromAxisPx: labelCollisionOffsetFromAxisPx,
-        labelOffsetFromTickPx: labelOffsetFromTickPx,
-        labelCollisionOffsetFromTickPx: labelCollisionOffsetFromTickPx,
-        minimumPaddingBetweenLabelsPx: minimumPaddingBetweenLabelsPx,
-        labelRotation: labelRotation,
-        labelCollisionRotation: labelCollisionRotation,
-      );
+  ) => RangeTickDrawStrategy<D>(
+    context,
+    graphicsFactory,
+    tickLength: tickLengthPx,
+    rangeLabelTextStyleSpec: rangeLabelStyle,
+    rangeTickLength: rangeTickLengthPx,
+    rangeShadeHeight: rangeShadeHeightPx,
+    rangeShadeOffsetFromAxis: rangeShadeOffsetFromAxisPx,
+    rangeTickOffset: rangeTickOffsetPx,
+    lineStyleSpec: lineStyle,
+    labelStyleSpec: labelStyle ?? defaultLabelStyleSpec,
+    axisLineStyleSpec: axisLineStyle,
+    rangeShadeStyleSpec: rangeShadeStyle,
+    labelAnchor: labelAnchor,
+    labelJustification: labelJustification,
+    labelOffsetFromAxisPx: labelOffsetFromAxisPx,
+    labelCollisionOffsetFromAxisPx: labelCollisionOffsetFromAxisPx,
+    labelOffsetFromTickPx: labelOffsetFromTickPx,
+    labelCollisionOffsetFromTickPx: labelCollisionOffsetFromTickPx,
+    minimumPaddingBetweenLabelsPx: minimumPaddingBetweenLabelsPx,
+    labelRotation: labelRotation,
+    labelCollisionRotation: labelCollisionRotation,
+  );
 
   @override
   // ignore: hash_and_equals
@@ -161,45 +162,48 @@ class RangeTickDrawStrategy<D> extends SmallTickDrawStrategy<D> {
     int? labelRotation,
     int? labelCollisionRotation,
   }) : super(
-          chartContext,
-          graphicsFactory,
-          tickLengthPx: tickLength,
-          axisLineStyleSpec: axisLineStyleSpec,
-          labelStyleSpec: labelStyleSpec,
-          lineStyleSpec: lineStyleSpec,
-          labelAnchor: labelAnchor ?? TickLabelAnchor.after,
-          labelJustification: labelJustification,
-          labelOffsetFromAxisPx: labelOffsetFromAxisPx,
-          labelCollisionOffsetFromAxisPx: labelCollisionOffsetFromAxisPx,
-          labelOffsetFromTickPx: labelOffsetFromTickPx,
-          labelCollisionOffsetFromTickPx: labelCollisionOffsetFromTickPx,
-          minimumPaddingBetweenLabelsPx: minimumPaddingBetweenLabelsPx,
-          labelRotation: labelRotation,
-          labelCollisionRotation: labelCollisionRotation,
-        ) {
+         chartContext,
+         graphicsFactory,
+         tickLengthPx: tickLength,
+         axisLineStyleSpec: axisLineStyleSpec,
+         labelStyleSpec: labelStyleSpec,
+         lineStyleSpec: lineStyleSpec,
+         labelAnchor: labelAnchor ?? TickLabelAnchor.after,
+         labelJustification: labelJustification,
+         labelOffsetFromAxisPx: labelOffsetFromAxisPx,
+         labelCollisionOffsetFromAxisPx: labelCollisionOffsetFromAxisPx,
+         labelOffsetFromTickPx: labelOffsetFromTickPx,
+         labelCollisionOffsetFromTickPx: labelCollisionOffsetFromTickPx,
+         minimumPaddingBetweenLabelsPx: minimumPaddingBetweenLabelsPx,
+         labelRotation: labelRotation,
+         labelCollisionRotation: labelCollisionRotation,
+       ) {
     rangeTickOffsetPx = rangeTickOffset ?? rangeTickOffsetPx;
     rangeTickLengthPx = rangeTickLength ?? rangeTickLengthPx;
     rangeShadeHeightPx = rangeShadeHeight ?? rangeShadeHeightPx;
     rangeShadeOffsetFromAxisPx =
         rangeShadeOffsetFromAxis ?? rangeShadeOffsetFromAxisPx;
-    lineStyle =
-        StyleFactory.style.createTickLineStyle(graphicsFactory, lineStyleSpec);
-    rangeShadeStyleSpec = rangeShadeStyleSpec ??
-        LineStyleSpec(
-          color: MaterialPalette.gray.shade300,
-        );
-    rangeShadeStyle = StyleFactory.style
-        .createTickLineStyle(graphicsFactory, rangeShadeStyleSpec);
+    lineStyle = StyleFactory.style.createTickLineStyle(
+      graphicsFactory,
+      lineStyleSpec,
+    );
+    rangeShadeStyleSpec =
+        rangeShadeStyleSpec ??
+        LineStyleSpec(color: MaterialPalette.gray.shade300);
+    rangeShadeStyle = StyleFactory.style.createTickLineStyle(
+      graphicsFactory,
+      rangeShadeStyleSpec,
+    );
     rangeLabelStyle = rangeLabelTextStyleSpec == null
         ? (graphicsFactory.createTextPaint()
-          ..color = labelStyleSpec?.color ?? StyleFactory.style.tickColor
-          ..fontFamily = labelStyleSpec?.fontFamily
-          ..fontSize = rangeShadeHeightPx - 1)
+            ..color = labelStyleSpec?.color ?? StyleFactory.style.tickColor
+            ..fontFamily = labelStyleSpec?.fontFamily
+            ..fontSize = rangeShadeHeightPx - 1)
         : (graphicsFactory.createTextPaint()
-          ..color = rangeLabelTextStyleSpec.color
-          ..fontFamily = rangeLabelTextStyleSpec.fontFamily
-          ..fontSize = rangeLabelTextStyleSpec.fontSize
-          ..lineHeight = rangeLabelTextStyleSpec.lineHeight);
+            ..color = rangeLabelTextStyleSpec.color
+            ..fontFamily = rangeLabelTextStyleSpec.fontFamily
+            ..fontSize = rangeLabelTextStyleSpec.fontSize
+            ..lineHeight = rangeLabelTextStyleSpec.lineHeight);
   }
   int rangeTickLengthPx = 24;
   int rangeShadeHeightPx = 12;
@@ -415,7 +419,6 @@ class RangeTickDrawStrategy<D> extends SmallTickDrawStrategy<D> {
         stroke: rangeShadeStyle.color,
         strokeWidthPx: rangeShadeStyle.strokeWidth.toDouble(),
       )
-
       // Draw the start and end boundaries of the range.
       ..drawLine(
         points: [rangeStartTickStart, rangeStartTickEnd],
@@ -449,13 +452,16 @@ class RangeTickDrawStrategy<D> extends SmallTickDrawStrategy<D> {
           orientation == AxisOrientation.top) {
         y = rangeStartTickStart.y.toInt() + rangeShadeOffsetFromAxisPx - 1;
 
-        x = (rangeStartTickStart.x +
-                (rangeEndTickStart.x - rangeStartTickStart.x - labelWidth) / 2)
-            .round();
+        x =
+            (rangeStartTickStart.x +
+                    (rangeEndTickStart.x - rangeStartTickStart.x - labelWidth) /
+                        2)
+                .round();
       }
       // TODO: add support for orientation left and right.
       canvas.drawText(line, x, y + multiLineLabelOffset);
-      multiLineLabelOffset += BaseTickDrawStrategy.multiLineLabelPadding +
+      multiLineLabelOffset +=
+          BaseTickDrawStrategy.multiLineLabelPadding +
           line.measurement.verticalSliceWidth.round();
     }
   }

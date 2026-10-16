@@ -185,16 +185,13 @@ void main() {
 
   group('with tick increment', () {
     test('returns every Nth tick', () {
-      final tickProvider = StaticTickProvider<num>(
-        [
-          const TickSpec<num>(50, label: '50'),
-          const TickSpec<num>(75, label: '75'),
-          const TickSpec<num>(100, label: '100'),
-          const TickSpec<num>(125, label: '125'),
-          const TickSpec<num>(150, label: '150'),
-        ],
-        tickIncrement: 2,
-      );
+      final tickProvider = StaticTickProvider<num>([
+        const TickSpec<num>(50, label: '50'),
+        const TickSpec<num>(75, label: '75'),
+        const TickSpec<num>(100, label: '100'),
+        const TickSpec<num>(125, label: '125'),
+        const TickSpec<num>(150, label: '150'),
+      ], tickIncrement: 2);
 
       final ticks = tickProvider.getTicks(
         context: context,

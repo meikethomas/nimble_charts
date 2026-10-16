@@ -35,10 +35,8 @@ class YearTimeStepper extends BaseTimeStepper {
     return YearTimeStepper._internal(dateTimeFactory, allowedTickIncrements);
   }
 
-  YearTimeStepper._internal(
-    super.dateTimeFactory,
-    List<int> increments,
-  ) : _allowedTickIncrements = increments;
+  YearTimeStepper._internal(super.dateTimeFactory, List<int> increments)
+    : _allowedTickIncrements = increments;
   static const _defaultIncrements = [1, 2, 5, 10, 50, 100, 500, 1000];
 
   final List<int> _allowedTickIncrements;

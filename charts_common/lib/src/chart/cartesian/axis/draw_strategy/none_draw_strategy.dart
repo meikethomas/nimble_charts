@@ -50,11 +50,7 @@ class NoneRenderSpec<D> extends RenderSpec<D> {
   TickDrawStrategy<D> createDrawStrategy(
     ChartContext context,
     GraphicsFactory graphicFactory,
-  ) =>
-      NoneDrawStrategy<D>(
-        graphicFactory,
-        axisLineStyleSpec: axisLineStyle,
-      );
+  ) => NoneDrawStrategy<D>(graphicFactory, axisLineStyleSpec: axisLineStyle);
 
   @override
   bool operator ==(Object other) =>
@@ -68,11 +64,13 @@ class NoneDrawStrategy<D> implements TickDrawStrategy<D> {
   NoneDrawStrategy(
     GraphicsFactory graphicsFactory, {
     LineStyleSpec? axisLineStyleSpec,
-  })  : axisLineStyle = StyleFactory.style
-            .createAxisLineStyle(graphicsFactory, axisLineStyleSpec),
-        noneTextStyle = graphicsFactory.createTextPaint()
-          ..color = Color.transparent
-          ..fontSize = 0;
+  }) : axisLineStyle = StyleFactory.style.createAxisLineStyle(
+         graphicsFactory,
+         axisLineStyleSpec,
+       ),
+       noneTextStyle = graphicsFactory.createTextPaint()
+         ..color = Color.transparent
+         ..fontSize = 0;
   LineStyle axisLineStyle;
   TextStyle noneTextStyle;
 
@@ -89,8 +87,7 @@ class NoneDrawStrategy<D> implements TickDrawStrategy<D> {
   CollisionReport<D> collides(
     List<Tick<D>>? ticks,
     AxisOrientation? orientation,
-  ) =>
-      CollisionReport(ticksCollide: false, ticks: ticks);
+  ) => CollisionReport(ticksCollide: false, ticks: ticks);
 
   @override
   void decorateTicks(List<Tick<D>> ticks) {
@@ -155,8 +152,7 @@ class NoneDrawStrategy<D> implements TickDrawStrategy<D> {
     int maxWidth,
     int maxHeight, {
     bool collision = false,
-  }) =>
-      ViewMeasuredSizes.zero;
+  }) => ViewMeasuredSizes.zero;
 
   @override
   ViewMeasuredSizes measureVerticallyDrawnTicks(
@@ -164,6 +160,5 @@ class NoneDrawStrategy<D> implements TickDrawStrategy<D> {
     int maxWidth,
     int maxHeight, {
     bool collision = false,
-  }) =>
-      ViewMeasuredSizes.zero;
+  }) => ViewMeasuredSizes.zero;
 }

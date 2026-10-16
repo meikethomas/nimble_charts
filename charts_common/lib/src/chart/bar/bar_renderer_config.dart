@@ -38,10 +38,8 @@ class BarRendererConfig<D> extends BaseBarRendererConfig<D> {
     this.barRendererDecorator,
     super.symbolRenderer,
     super.weightPattern,
-  })  : cornerStrategy = cornerStrategy ?? const ConstCornerStrategy(2),
-        super(
-          groupingType: groupingType ?? BarGroupingType.grouped,
-        );
+  }) : cornerStrategy = cornerStrategy ?? const ConstCornerStrategy(2),
+       super(groupingType: groupingType ?? BarGroupingType.grouped);
 
   /// Strategy for determining the corner radius of a bar.
   final CornerStrategy cornerStrategy;

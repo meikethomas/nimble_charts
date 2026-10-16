@@ -45,7 +45,8 @@ class RangeTick<D> extends Tick<D> {
   double rangeEndLocationPx;
 
   @override
-  String toString() => 'RangeTick(value: $value, locationPx: $locationPx, '
+  String toString() =>
+      'RangeTick(value: $value, locationPx: $locationPx, '
       'labelOffsetPx: $labelOffsetPx, rangeStartValue: $rangeStartValue, '
       'rangeStartLocationPx: $rangeStartLocationPx, '
       'rangeEndValue: $rangeEndValue,  '

@@ -61,14 +61,14 @@ void main() {
 
   group('with tick increment', () {
     test('returns the first increment if there is no collision', () {
-      final tickProvider = AutoAdjustingStaticTickProvider<num>([
-        const TickSpec<num>(1, label: '1'),
-        const TickSpec<num>(2, label: '2'),
-        const TickSpec<num>(3, label: '3'),
-      ], [
-        1,
-        2,
-      ]);
+      final tickProvider = AutoAdjustingStaticTickProvider<num>(
+        [
+          const TickSpec<num>(1, label: '1'),
+          const TickSpec<num>(2, label: '2'),
+          const TickSpec<num>(3, label: '3'),
+        ],
+        [1, 2],
+      );
       when(drawStrategy.collides(any, any)).thenReturn(CollisionReport.empty());
 
       final ticks = tickProvider.getTicks(
@@ -85,19 +85,19 @@ void main() {
     });
 
     test('returns the first non colliding increment', () {
-      final tickProvider = AutoAdjustingStaticTickProvider<num>([
-        const TickSpec<num>(1, label: '1'),
-        const TickSpec<num>(2, label: '2'),
-        const TickSpec<num>(3, label: '3'),
-      ], [
-        1,
-        2,
-      ]);
+      final tickProvider = AutoAdjustingStaticTickProvider<num>(
+        [
+          const TickSpec<num>(1, label: '1'),
+          const TickSpec<num>(2, label: '2'),
+          const TickSpec<num>(3, label: '3'),
+        ],
+        [1, 2],
+      );
       when(drawStrategy.collides(any, any)).thenAnswer(
         (invocation) =>
             (invocation.positionalArguments.first as List).length == 3
-                ? CollisionReport(ticksCollide: true, ticks: [])
-                : CollisionReport.empty(),
+            ? CollisionReport(ticksCollide: true, ticks: [])
+            : CollisionReport.empty(),
       );
 
       final ticks = tickProvider.getTicks(

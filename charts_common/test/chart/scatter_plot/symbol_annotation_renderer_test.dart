@@ -62,16 +62,16 @@ void main() {
     numericSeriesList = [
       MutableSeries<int>(
         Series<MyRow, int>(
-          id: 'Desktop',
-          colorFn: (row, _) => MaterialPalette.blue.shadeDefault,
-          domainFn: (row, _) => row.campaign,
-          domainLowerBoundFn: (row, _) => row.campaignLower,
-          domainUpperBoundFn: (row, _) => row.campaignUpper,
-          measureFn: (row, _) => 0,
-          measureOffsetFn: (row, _) => 0,
-          radiusPxFn: (row, _) => row.radius ?? 5, // default
-          data: myFakeDesktopData,
-        )
+            id: 'Desktop',
+            colorFn: (row, _) => MaterialPalette.blue.shadeDefault,
+            domainFn: (row, _) => row.campaign,
+            domainLowerBoundFn: (row, _) => row.campaignLower,
+            domainUpperBoundFn: (row, _) => row.campaignUpper,
+            measureFn: (row, _) => 0,
+            measureOffsetFn: (row, _) => 0,
+            radiusPxFn: (row, _) => row.radius ?? 5, // default
+            data: myFakeDesktopData,
+          )
           // Define a bounds line radius function.
           ..setAttribute(
             boundsLineRadiusPxFnKey,

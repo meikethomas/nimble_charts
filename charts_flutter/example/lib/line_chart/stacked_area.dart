@@ -24,16 +24,11 @@ import 'package:flutter/material.dart';
 import 'package:nimble_charts/flutter.dart' as charts;
 
 class StackedAreaLineChart extends StatelessWidget {
-  const StackedAreaLineChart(
-    this.seriesList, {
-    super.key,
-    this.animate = true,
-  });
+  const StackedAreaLineChart(this.seriesList, {super.key, this.animate = true});
 
   /// Creates a [charts.LineChart] with sample data and no transition.
-  factory StackedAreaLineChart.withSampleData() => StackedAreaLineChart(
-        _createSampleData(),
-      );
+  factory StackedAreaLineChart.withSampleData() =>
+      StackedAreaLineChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -97,11 +92,13 @@ class StackedAreaLineChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.LineChart(
-        seriesList,
-        defaultRenderer:
-            charts.LineRendererConfig(includeArea: true, stacked: true),
-        animate: animate,
-      );
+    seriesList,
+    defaultRenderer: charts.LineRendererConfig(
+      includeArea: true,
+      stacked: true,
+    ),
+    animate: animate,
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<LinearSales, int>> _createSampleData() {

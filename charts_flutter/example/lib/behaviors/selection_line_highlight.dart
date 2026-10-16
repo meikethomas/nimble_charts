@@ -29,9 +29,8 @@ class SelectionLineHighlight extends StatelessWidget {
   });
 
   /// Creates a [charts.LineChart] with sample data and no transition.
-  factory SelectionLineHighlight.withSampleData() => SelectionLineHighlight(
-        _createSampleData(),
-      );
+  factory SelectionLineHighlight.withSampleData() =>
+      SelectionLineHighlight(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.

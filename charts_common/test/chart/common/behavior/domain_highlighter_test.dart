@@ -43,7 +43,6 @@ class MockChart extends MockBaseChart<String> {
   }
 }
 
-// ignore: avoid_implementing_value_types
 class MockSelectionModel extends MockMutableSelectionModel<String> {
   SelectionModelListener<String>? lastListener;
 
@@ -77,12 +76,14 @@ void main() {
 
   void setupSelection(List<MyRow> selected) {
     for (var i = 0; i < series1.data.length; i++) {
-      when(selectionModel.isDatumSelected(series1, i))
-          .thenReturn(selected.contains(series1.data[i]));
+      when(
+        selectionModel.isDatumSelected(series1, i),
+      ).thenReturn(selected.contains(series1.data[i]));
     }
     for (var i = 0; i < series2.data.length; i++) {
-      when(selectionModel.isDatumSelected(series2, i))
-          .thenReturn(selected.contains(series2.data[i]));
+      when(
+        selectionModel.isDatumSelected(series2, i),
+      ).thenReturn(selected.contains(series2.data[i]));
     }
   }
 
@@ -90,8 +91,9 @@ void main() {
     chart = MockChart();
 
     selectionModel = MockSelectionModel();
-    when(chart.getSelectionModel(SelectionModelType.info))
-        .thenReturn(selectionModel);
+    when(
+      chart.getSelectionModel(SelectionModelType.info),
+    ).thenReturn(selectionModel);
 
     series1 = MutableSeries(
       Series<MyRow, String>(
@@ -99,7 +101,7 @@ void main() {
         data: [s1D1, s1D2, s1D3],
         domainFn: (row, _) => row.campaign,
         measureFn: (row, _) => row.count,
-        colorFn: (_, __) => MaterialPalette.blue.shadeDefault,
+        colorFn: (_, _) => MaterialPalette.blue.shadeDefault,
       ),
     )..measureFn = (_) => 0.0;
 
@@ -109,7 +111,7 @@ void main() {
         data: [s2D1, s2D2, s2D3],
         domainFn: (row, _) => row.campaign,
         measureFn: (row, _) => row.count,
-        colorFn: (_, __) => MaterialPalette.red.shadeDefault,
+        colorFn: (_, _) => MaterialPalette.red.shadeDefault,
       ),
     )..measureFn = (_) => 0.0;
   });
@@ -148,8 +150,9 @@ void main() {
     test('listens to other selection models', () {
       // Setup
       final behavior = DomainHighlighter<String>(SelectionModelType.action);
-      when(chart.getSelectionModel(SelectionModelType.action))
-          .thenReturn(selectionModel);
+      when(
+        chart.getSelectionModel(SelectionModelType.action),
+      ).thenReturn(selectionModel);
 
       // Act
       behavior.attachTo(chart);

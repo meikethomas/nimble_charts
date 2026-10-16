@@ -32,9 +32,8 @@ class NonzeroBoundMeasureAxis extends StatelessWidget {
   });
 
   /// Creates a [charts.TimeSeriesChart] with sample data and no transition.
-  factory NonzeroBoundMeasureAxis.withSampleData() => NonzeroBoundMeasureAxis(
-        _createSampleData(),
-      );
+  factory NonzeroBoundMeasureAxis.withSampleData() =>
+      NonzeroBoundMeasureAxis(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -76,15 +75,14 @@ class NonzeroBoundMeasureAxis extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.TimeSeriesChart(
-        seriesList,
-        animate: animate,
-        // Provide a tickProviderSpec which does NOT require that zero is
-        // included.
-        primaryMeasureAxis: const charts.NumericAxisSpec(
-          tickProviderSpec:
-              charts.BasicNumericTickProviderSpec(zeroBound: false),
-        ),
-      );
+    seriesList,
+    animate: animate,
+    // Provide a tickProviderSpec which does NOT require that zero is
+    // included.
+    primaryMeasureAxis: const charts.NumericAxisSpec(
+      tickProviderSpec: charts.BasicNumericTickProviderSpec(zeroBound: false),
+    ),
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<MyRow, DateTime>> _createSampleData() {

@@ -50,16 +50,15 @@ class SelectNearest<D> extends ChartBehavior<D> {
     bool selectClosestSeries = true,
     common.SelectionTrigger eventTrigger = common.SelectionTrigger.tap,
     int? maximumDomainDistancePx,
-  }) =>
-      SelectNearest._internal(
-        selectionModelType: selectionModelType,
-        selectionMode: selectionMode,
-        selectAcrossAllDrawAreaComponents: selectAcrossAllDrawAreaComponents,
-        selectClosestSeries: selectClosestSeries,
-        eventTrigger: eventTrigger,
-        desiredGestures: SelectNearest._getDesiredGestures(eventTrigger),
-        maximumDomainDistancePx: maximumDomainDistancePx,
-      );
+  }) => SelectNearest._internal(
+    selectionModelType: selectionModelType,
+    selectionMode: selectionMode,
+    selectAcrossAllDrawAreaComponents: selectAcrossAllDrawAreaComponents,
+    selectClosestSeries: selectClosestSeries,
+    eventTrigger: eventTrigger,
+    desiredGestures: SelectNearest._getDesiredGestures(eventTrigger),
+    maximumDomainDistancePx: maximumDomainDistancePx,
+  );
 
   SelectNearest._internal({
     required this.selectionModelType,
@@ -117,12 +116,12 @@ class SelectNearest<D> extends ChartBehavior<D> {
 
   @override
   common.SelectNearest<D> createCommonBehavior() => common.SelectNearest<D>(
-        selectionModelType: selectionModelType,
-        eventTrigger: eventTrigger,
-        selectionMode: selectionMode,
-        selectClosestSeries: selectClosestSeries,
-        maximumDomainDistancePx: maximumDomainDistancePx,
-      );
+    selectionModelType: selectionModelType,
+    eventTrigger: eventTrigger,
+    selectionMode: selectionMode,
+    selectClosestSeries: selectClosestSeries,
+    maximumDomainDistancePx: maximumDomainDistancePx,
+  );
 
   @override
   void updateCommonBehavior(common.ChartBehavior commonBehavior) {}

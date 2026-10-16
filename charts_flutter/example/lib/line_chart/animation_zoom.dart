@@ -32,9 +32,8 @@ class LineAnimationZoomChart extends StatelessWidget {
   });
 
   /// Creates a [charts.LineChart] with sample data and no transition.
-  factory LineAnimationZoomChart.withSampleData() => LineAnimationZoomChart(
-        _createSampleData(),
-      );
+  factory LineAnimationZoomChart.withSampleData() =>
+      LineAnimationZoomChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -68,12 +67,10 @@ class LineAnimationZoomChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.LineChart(
-        seriesList,
-        animate: animate,
-        behaviors: [
-          charts.PanAndZoomBehavior(),
-        ],
-      );
+    seriesList,
+    animate: animate,
+    behaviors: [charts.PanAndZoomBehavior()],
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<LinearSales, int>> _createSampleData() {

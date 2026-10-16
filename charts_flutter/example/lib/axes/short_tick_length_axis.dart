@@ -31,9 +31,8 @@ import 'package:nimble_charts/flutter.dart' as charts;
 class ShortTickLengthAxis extends StatelessWidget {
   const ShortTickLengthAxis(this.seriesList, {super.key, this.animate = true});
 
-  factory ShortTickLengthAxis.withSampleData() => ShortTickLengthAxis(
-        _createSampleData(),
-      );
+  factory ShortTickLengthAxis.withSampleData() =>
+      ShortTickLengthAxis(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -68,18 +67,18 @@ class ShortTickLengthAxis extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.BarChart(
-        seriesList,
-        animate: animate,
+    seriesList,
+    animate: animate,
 
-        /// Customize the primary measure axis using a small tick renderer.
-        /// Note: use String instead of num for ordinal domain axis
-        /// (typically bar charts).
-        primaryMeasureAxis: const charts.NumericAxisSpec(
-          renderSpec: charts.SmallTickRendererSpec(
-              // Tick and Label styling here.
-              ),
-        ),
-      );
+    /// Customize the primary measure axis using a small tick renderer.
+    /// Note: use String instead of num for ordinal domain axis
+    /// (typically bar charts).
+    primaryMeasureAxis: const charts.NumericAxisSpec(
+      renderSpec: charts.SmallTickRendererSpec(
+        // Tick and Label styling here.
+      ),
+    ),
+  );
 
   /// Create series list with single series
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {

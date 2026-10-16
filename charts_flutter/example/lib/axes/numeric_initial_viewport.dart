@@ -39,9 +39,8 @@ class NumericInitialViewport extends StatelessWidget {
   });
 
   /// Creates a [charts.LineChart] with sample data and no transition.
-  factory NumericInitialViewport.withSampleData() => NumericInitialViewport(
-        _createSampleData(),
-      );
+  factory NumericInitialViewport.withSampleData() =>
+      NumericInitialViewport(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -84,17 +83,17 @@ class NumericInitialViewport extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.LineChart(
-        seriesList,
-        animate: animate,
-        domainAxis: const charts.NumericAxisSpec(
-          // Set the initial viewport by providing a new AxisSpec with the
-          // desired viewport, in NumericExtents.
-          viewport: charts.NumericExtents(3.0, 7.0),
-        ),
-        // Optionally add a pan or pan and zoom behavior.
-        // If pan/zoom is not added, the viewport specified remains the viewport.
-        behaviors: [charts.PanAndZoomBehavior()],
-      );
+    seriesList,
+    animate: animate,
+    domainAxis: const charts.NumericAxisSpec(
+      // Set the initial viewport by providing a new AxisSpec with the
+      // desired viewport, in NumericExtents.
+      viewport: charts.NumericExtents(3.0, 7.0),
+    ),
+    // Optionally add a pan or pan and zoom behavior.
+    // If pan/zoom is not added, the viewport specified remains the viewport.
+    behaviors: [charts.PanAndZoomBehavior()],
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<LinearSales, int>> _createSampleData() {

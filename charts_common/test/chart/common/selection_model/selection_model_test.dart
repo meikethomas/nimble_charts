@@ -44,13 +44,17 @@ void main() {
         id: 'closest',
         data: [closestDatumClosestSeries, otherDatumClosestSeries],
         domainFn: (d, _) => d.id,
-        measureFn: (_, __) => 0,
+        measureFn: (_, _) => 0,
       ),
     );
-    closestDatumClosestSeriesPair =
-        SeriesDatum<String>(closestSeries, closestDatumClosestSeries);
-    otherDatumClosestSeriesPair =
-        SeriesDatum<String>(closestSeries, otherDatumClosestSeries);
+    closestDatumClosestSeriesPair = SeriesDatum<String>(
+      closestSeries,
+      closestDatumClosestSeries,
+    );
+    otherDatumClosestSeriesPair = SeriesDatum<String>(
+      closestSeries,
+      otherDatumClosestSeries,
+    );
 
     closestDatumOtherSeries = MyDatum('cDoS');
     otherDatumOtherSeries = MyDatum('oDoS');
@@ -59,13 +63,17 @@ void main() {
         id: 'other',
         data: [closestDatumOtherSeries, otherDatumOtherSeries],
         domainFn: (d, _) => d.id,
-        measureFn: (_, __) => 0,
+        measureFn: (_, _) => 0,
       ),
     );
-    closestDatumOtherSeriesPair =
-        SeriesDatum<String>(otherSeries, closestDatumOtherSeries);
-    otherDatumOtherSeriesPair =
-        SeriesDatum<String>(otherSeries, otherDatumOtherSeries);
+    closestDatumOtherSeriesPair = SeriesDatum<String>(
+      otherSeries,
+      closestDatumOtherSeries,
+    );
+    otherDatumOtherSeriesPair = SeriesDatum<String>(
+      otherSeries,
+      otherDatumOtherSeries,
+    );
   });
 
   group('SelectionModel persists values', () {
@@ -76,12 +84,13 @@ void main() {
 
     test('all datum are selected but only the first Series is', () {
       // Select the 'closest' datum for each Series.
-      selectionModel.updateSelection([
-        SeriesDatum(closestSeries, closestDatumClosestSeries),
-        SeriesDatum(otherSeries, closestDatumOtherSeries),
-      ], [
-        closestSeries,
-      ]);
+      selectionModel.updateSelection(
+        [
+          SeriesDatum(closestSeries, closestDatumClosestSeries),
+          SeriesDatum(otherSeries, closestDatumOtherSeries),
+        ],
+        [closestSeries],
+      );
 
       expect(selectionModel.hasDatumSelection, isTrue);
       expect(selectionModel.selectedDatum, hasLength(2));
@@ -111,25 +120,21 @@ void main() {
     test('selection can change', () {
       // Select the 'closest' datum for each Series.
       selectionModel
-        ..updateSelection([
-          SeriesDatum(closestSeries, closestDatumClosestSeries),
-          SeriesDatum(otherSeries, closestDatumOtherSeries),
-        ], [
-          closestSeries,
-        ])
-
+        ..updateSelection(
+          [
+            SeriesDatum(closestSeries, closestDatumClosestSeries),
+            SeriesDatum(otherSeries, closestDatumOtherSeries),
+          ],
+          [closestSeries],
+        )
         // Change selection to just the other datum on the other series.
-        ..updateSelection([
-          SeriesDatum(otherSeries, otherDatumOtherSeries),
-        ], [
-          otherSeries,
-        ]);
+        ..updateSelection(
+          [SeriesDatum(otherSeries, otherDatumOtherSeries)],
+          [otherSeries],
+        );
 
       expect(selectionModel.selectedDatum, hasLength(1));
-      expect(
-        selectionModel.selectedDatum,
-        contains(otherDatumOtherSeriesPair),
-      );
+      expect(selectionModel.selectedDatum, contains(otherDatumOtherSeriesPair));
 
       expect(selectionModel.selectedSeries, hasLength(1));
       expect(selectionModel.selectedSeries, contains(otherSeries));
@@ -151,14 +156,14 @@ void main() {
       // Prevent selection changes.
       selectionModel
         ..locked = true
-
         // Try to the 'closest' datum for each Series.
-        ..updateSelection([
-          SeriesDatum(closestSeries, closestDatumClosestSeries),
-          SeriesDatum(otherSeries, closestDatumOtherSeries),
-        ], [
-          closestSeries,
-        ]);
+        ..updateSelection(
+          [
+            SeriesDatum(closestSeries, closestDatumClosestSeries),
+            SeriesDatum(otherSeries, closestDatumOtherSeries),
+          ],
+          [closestSeries],
+        );
 
       expect(selectionModel.hasDatumSelection, isFalse);
       expect(selectionModel.hasSeriesSelection, isFalse);
@@ -166,14 +171,14 @@ void main() {
       // Allow selection changes.
       selectionModel
         ..locked = false
-
         // Try to the 'closest' datum for each Series.
-        ..updateSelection([
-          SeriesDatum(closestSeries, closestDatumClosestSeries),
-          SeriesDatum(otherSeries, closestDatumOtherSeries),
-        ], [
-          closestSeries,
-        ]);
+        ..updateSelection(
+          [
+            SeriesDatum(closestSeries, closestDatumClosestSeries),
+            SeriesDatum(otherSeries, closestDatumOtherSeries),
+          ],
+          [closestSeries],
+        );
 
       expect(selectionModel.hasDatumSelection, isTrue);
       expect(selectionModel.hasSeriesSelection, isTrue);
@@ -181,13 +186,11 @@ void main() {
       // Prevent selection changes.
       selectionModel
         ..locked = true
-
         // Attempt to change selection
-        ..updateSelection([
-          SeriesDatum(otherSeries, otherDatumOtherSeries),
-        ], [
-          otherSeries,
-        ]);
+        ..updateSelection(
+          [SeriesDatum(otherSeries, otherDatumOtherSeries)],
+          [otherSeries],
+        );
 
       // Previous selection should still be set.
       expect(selectionModel.selectedDatum, hasLength(2));
@@ -213,13 +216,11 @@ void main() {
         ..addSelectionChangedListener((model) {
           triggeredModel = model;
         })
-
         // Set the selection to closest datum.
-        ..updateSelection([
-          SeriesDatum(closestSeries, closestDatumClosestSeries),
-        ], [
-          closestSeries,
-        ]);
+        ..updateSelection(
+          [SeriesDatum(closestSeries, closestDatumClosestSeries)],
+          [closestSeries],
+        );
 
       // Callback should have been triggered.
       expect(triggeredModel, equals(selectionModel));
@@ -229,23 +230,19 @@ void main() {
       SelectionModel<String>? triggeredModel;
       // Set the selection to closest datum.
       selectionModel
-        ..updateSelection([
-          SeriesDatum(closestSeries, closestDatumClosestSeries),
-        ], [
-          closestSeries,
-        ])
-
+        ..updateSelection(
+          [SeriesDatum(closestSeries, closestDatumClosestSeries)],
+          [closestSeries],
+        )
         // Listen
         ..addSelectionChangedListener((model) {
           triggeredModel = model;
         })
-
         // Try to update the model with the same value.
-        ..updateSelection([
-          SeriesDatum(closestSeries, closestDatumClosestSeries),
-        ], [
-          closestSeries,
-        ]);
+        ..updateSelection(
+          [SeriesDatum(closestSeries, closestDatumClosestSeries)],
+          [closestSeries],
+        );
 
       // Callback should not have been triggered.
       expect(triggeredModel, isNull);
@@ -261,16 +258,13 @@ void main() {
       // Listen
       selectionModel
         ..addSelectionChangedListener(cb)
-
         // Unlisten
         ..removeSelectionChangedListener(cb)
-
         // Set the selection to closest datum.
-        ..updateSelection([
-          SeriesDatum(closestSeries, closestDatumClosestSeries),
-        ], [
-          closestSeries,
-        ]);
+        ..updateSelection(
+          [SeriesDatum(closestSeries, closestDatumClosestSeries)],
+          [closestSeries],
+        );
 
       // Callback should not have been triggered.
       expect(triggeredModel, isNull);
@@ -285,13 +279,11 @@ void main() {
         ..addSelectionUpdatedListener((model) {
           triggeredModel = model;
         })
-
         // Set the selection to closest datum.
-        ..updateSelection([
-          SeriesDatum(closestSeries, closestDatumClosestSeries),
-        ], [
-          closestSeries,
-        ]);
+        ..updateSelection(
+          [SeriesDatum(closestSeries, closestDatumClosestSeries)],
+          [closestSeries],
+        );
 
       // Callback should have been triggered.
       expect(triggeredModel, equals(selectionModel));
@@ -301,23 +293,19 @@ void main() {
       late SelectionModel<String> triggeredModel;
       // Set the selection to closest datum.
       selectionModel
-        ..updateSelection([
-          SeriesDatum(closestSeries, closestDatumClosestSeries),
-        ], [
-          closestSeries,
-        ])
-
+        ..updateSelection(
+          [SeriesDatum(closestSeries, closestDatumClosestSeries)],
+          [closestSeries],
+        )
         // Listen
         ..addSelectionUpdatedListener((model) {
           triggeredModel = model;
         })
-
         // Try to update the model with the same value.
-        ..updateSelection([
-          SeriesDatum(closestSeries, closestDatumClosestSeries),
-        ], [
-          closestSeries,
-        ]);
+        ..updateSelection(
+          [SeriesDatum(closestSeries, closestDatumClosestSeries)],
+          [closestSeries],
+        );
 
       // Callback should have been triggered.
       expect(triggeredModel, equals(selectionModel));
@@ -333,16 +321,13 @@ void main() {
       // Listen
       selectionModel
         ..addSelectionUpdatedListener(cb)
-
         // Unlisten
         ..removeSelectionUpdatedListener(cb)
-
         // Set the selection to closest datum.
-        ..updateSelection([
-          SeriesDatum(closestSeries, closestDatumClosestSeries),
-        ], [
-          closestSeries,
-        ]);
+        ..updateSelection(
+          [SeriesDatum(closestSeries, closestDatumClosestSeries)],
+          [closestSeries],
+        );
 
       // Callback should not have been triggered.
       expect(triggeredModel, isNull);
@@ -357,7 +342,6 @@ void main() {
         ..addSelectionLockChangedListener((model) {
           triggeredModel = model;
         })
-
         // Lock selection.
         ..locked = true;
 
@@ -375,10 +359,8 @@ void main() {
       // Listen
       selectionModel
         ..addSelectionLockChangedListener(cb)
-
         // Unlisten
         ..removeSelectionLockChangedListener(cb)
-
         // Lock selection.
         ..locked = true;
 

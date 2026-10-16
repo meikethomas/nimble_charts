@@ -27,9 +27,8 @@ class AreaAndLineChart extends StatelessWidget {
   const AreaAndLineChart(this.seriesList, {super.key, this.animate = true});
 
   /// Creates a [charts.LineChart] with sample data and no transition.
-  factory AreaAndLineChart.withSampleData() => AreaAndLineChart(
-        _createSampleData(),
-      );
+  factory AreaAndLineChart.withSampleData() =>
+      AreaAndLineChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -67,12 +66,12 @@ class AreaAndLineChart extends StatelessWidget {
         data: myFakeDesktopData,
       ),
       charts.Series<LinearSales, int>(
-        id: 'Tablet',
-        colorFn: (_, _) => charts.MaterialPalette.green.shadeDefault,
-        domainFn: (sales, _) => sales.year,
-        measureFn: (sales, _) => sales.sales,
-        data: myFakeTabletData,
-      )
+          id: 'Tablet',
+          colorFn: (_, _) => charts.MaterialPalette.green.shadeDefault,
+          domainFn: (sales, _) => sales.year,
+          measureFn: (sales, _) => sales.sales,
+          data: myFakeTabletData,
+        )
         // Configure our custom bar target renderer for this series.
         ..setAttribute(charts.rendererIdKey, 'customArea'),
     ];
@@ -81,17 +80,17 @@ class AreaAndLineChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.LineChart(
-        seriesList,
-        animate: animate,
-        customSeriesRenderers: [
-          charts.LineRendererConfig(
-            // ID used to link series to this renderer.
-            customRendererId: 'customArea',
-            includeArea: true,
-            stacked: true,
-          ),
-        ],
-      );
+    seriesList,
+    animate: animate,
+    customSeriesRenderers: [
+      charts.LineRendererConfig(
+        // ID used to link series to this renderer.
+        customRendererId: 'customArea',
+        includeArea: true,
+        stacked: true,
+      ),
+    ],
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<LinearSales, int>> _createSampleData() {
@@ -111,12 +110,12 @@ class AreaAndLineChart extends StatelessWidget {
 
     return [
       charts.Series<LinearSales, int>(
-        id: 'Desktop',
-        colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
-        domainFn: (sales, _) => sales.year,
-        measureFn: (sales, _) => sales.sales,
-        data: myFakeDesktopData,
-      )
+          id: 'Desktop',
+          colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
+          domainFn: (sales, _) => sales.year,
+          measureFn: (sales, _) => sales.sales,
+          data: myFakeDesktopData,
+        )
         // Configure our custom bar target renderer for this series.
         ..setAttribute(charts.rendererIdKey, 'customArea'),
       charts.Series<LinearSales, int>(

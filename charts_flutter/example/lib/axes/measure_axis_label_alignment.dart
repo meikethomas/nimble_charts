@@ -32,9 +32,7 @@ class MeasureAxisLabelAlignment extends StatelessWidget {
   });
 
   factory MeasureAxisLabelAlignment.withSampleData() =>
-      MeasureAxisLabelAlignment(
-        _createSampleData(),
-      );
+      MeasureAxisLabelAlignment(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -69,29 +67,29 @@ class MeasureAxisLabelAlignment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.BarChart(
-        seriesList,
-        animate: animate,
+    seriesList,
+    animate: animate,
 
-        /// Customize the primary measure axis using a small tick renderer.
-        /// Use String instead of num for ordinal domain axis
-        /// (typically bar charts).
-        primaryMeasureAxis: const charts.NumericAxisSpec(
-          renderSpec: charts.GridlineRendererSpec(
-            // Display the measure axis labels below the gridline.
-            //
-            // 'Before' & 'after' follow the axis value direction.
-            // Vertical axes draw 'before' below & 'after' above the tick.
-            // Horizontal axes draw 'before' left & 'after' right the tick.
-            labelAnchor: charts.TickLabelAnchor.before,
+    /// Customize the primary measure axis using a small tick renderer.
+    /// Use String instead of num for ordinal domain axis
+    /// (typically bar charts).
+    primaryMeasureAxis: const charts.NumericAxisSpec(
+      renderSpec: charts.GridlineRendererSpec(
+        // Display the measure axis labels below the gridline.
+        //
+        // 'Before' & 'after' follow the axis value direction.
+        // Vertical axes draw 'before' below & 'after' above the tick.
+        // Horizontal axes draw 'before' left & 'after' right the tick.
+        labelAnchor: charts.TickLabelAnchor.before,
 
-            // Left justify the text in the axis.
-            //
-            // Note: outside means that the secondary measure axis would right
-            // justify.
-            labelJustification: charts.TickLabelJustification.outside,
-          ),
-        ),
-      );
+        // Left justify the text in the axis.
+        //
+        // Note: outside means that the secondary measure axis would right
+        // justify.
+        labelJustification: charts.TickLabelJustification.outside,
+      ),
+    ),
+  );
 
   /// Create series list with single series
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {

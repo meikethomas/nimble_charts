@@ -40,8 +40,9 @@ import 'package:nimble_charts_common/src/data/series.dart' show AttributeKey;
 ///
 /// In grouped stacked mode, this list will contain a combination of domain
 /// value and series category.
-const domainValuesKey =
-    AttributeKey<Set<Object>>('BarLaneRenderer.domainValues');
+const domainValuesKey = AttributeKey<Set<Object>>(
+  'BarLaneRenderer.domainValues',
+);
 
 /// Renders series data as a series of bars with lanes.
 ///
@@ -54,10 +55,7 @@ const domainValuesKey =
 /// swim lanes may optionally be merged together into one wide lane that covers
 /// the full domain range band width.
 class BarLaneRenderer<D> extends BarRenderer<D> {
-  factory BarLaneRenderer({
-    BarLaneRendererConfig? config,
-    String? rendererId,
-  }) {
+  factory BarLaneRenderer({BarLaneRendererConfig? config, String? rendererId}) {
     rendererId ??= 'bar';
     config ??= BarLaneRendererConfig();
     return BarLaneRenderer._internal(config: config, rendererId: rendererId);
@@ -111,8 +109,9 @@ class BarLaneRenderer<D> extends BarRenderer<D> {
           final allNull = _allMeasuresForDomainNullMap[domain];
           final isNull = measure == null;
 
-          _allMeasuresForDomainNullMap[domain] =
-              allNull != null ? allNull && isNull : isNull;
+          _allMeasuresForDomainNullMap[domain] = allNull != null
+              ? allNull && isNull
+              : isNull;
         }
       }
 
@@ -144,7 +143,6 @@ class BarLaneRenderer<D> extends BarRenderer<D> {
       final laneSeries =
           MutableSeries<D>.clone(seriesList[0] as MutableSeries<D>)
             ..data = <Object>[]
-
             // Don't render any labels on the swim lanes.
             ..labelAccessorFn = (index) => '';
 
@@ -176,8 +174,9 @@ class BarLaneRenderer<D> extends BarRenderer<D> {
         );
 
         // If we already have an AnimatingBar for that index, use it.
-        var animatingBar =
-            barStackList.firstWhereOrNull((bar) => bar.key == barKey);
+        var animatingBar = barStackList.firstWhereOrNull(
+          (bar) => bar.key == barKey,
+        );
 
         final renderNegativeLanes =
             (config as BarLaneRendererConfig).renderNegativeLanes;
@@ -276,10 +275,9 @@ class BarLaneRenderer<D> extends BarRenderer<D> {
       final mergedSeries =
           MutableSeries<D>.clone(seriesList[0] as MutableSeries<D>)
             ..data = <Object>[]
-
             // Add a label accessor that returns the empty lane label.
-            ..labelAccessorFn =
-                (index) => (config as BarLaneRendererConfig).emptyLaneLabel;
+            ..labelAccessorFn = (index) =>
+                (config as BarLaneRendererConfig).emptyLaneLabel;
 
       var mergedSeriesIndex = 0;
       _allMeasuresForDomainNullMap.forEach((domainValue, allNull) {
@@ -298,8 +296,9 @@ class BarLaneRenderer<D> extends BarRenderer<D> {
           );
 
           // If we already have an AnimatingBar for that index, use it.
-          var animatingBar =
-              barStackList.firstWhereOrNull((bar) => bar.key == barKey);
+          var animatingBar = barStackList.firstWhereOrNull(
+            (bar) => bar.key == barKey,
+          );
 
           // If we don't have any existing bar element, create a new bar and
           // have
@@ -371,8 +370,8 @@ class BarLaneRenderer<D> extends BarRenderer<D> {
     final pos = chart.vertical
         ? chart.drawAreaBounds.top
         : ((isRtl && !laneIsNegative) || (!isRtl && laneIsNegative))
-            ? chart.drawAreaBounds.left
-            : chart.drawAreaBounds.right;
+        ? chart.drawAreaBounds.left
+        : chart.drawAreaBounds.right;
 
     return measureAxis.getDomain(pos.toDouble());
   }

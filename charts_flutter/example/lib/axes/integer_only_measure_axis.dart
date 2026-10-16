@@ -36,9 +36,8 @@ class IntegerOnlyMeasureAxis extends StatelessWidget {
   });
 
   /// Creates a [charts.TimeSeriesChart] with sample data and no transition.
-  factory IntegerOnlyMeasureAxis.withSampleData() => IntegerOnlyMeasureAxis(
-        _createSampleData(),
-      );
+  factory IntegerOnlyMeasureAxis.withSampleData() =>
+      IntegerOnlyMeasureAxis(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -80,20 +79,20 @@ class IntegerOnlyMeasureAxis extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.TimeSeriesChart(
-        seriesList,
-        animate: animate,
-        // Provides a custom axis ensuring that the ticks are in whole numbers.
-        primaryMeasureAxis: const charts.NumericAxisSpec(
-          tickProviderSpec: charts.BasicNumericTickProviderSpec(
-            // Make sure we don't have values less than 1 as ticks
-            // (ie: counts).
-            dataIsInWholeNumbers: true,
-            // Fixed tick count to highlight the integer only behavior
-            // generating ticks [0, 1, 2, 3, 4].
-            desiredTickCount: 5,
-          ),
-        ),
-      );
+    seriesList,
+    animate: animate,
+    // Provides a custom axis ensuring that the ticks are in whole numbers.
+    primaryMeasureAxis: const charts.NumericAxisSpec(
+      tickProviderSpec: charts.BasicNumericTickProviderSpec(
+        // Make sure we don't have values less than 1 as ticks
+        // (ie: counts).
+        dataIsInWholeNumbers: true,
+        // Fixed tick count to highlight the integer only behavior
+        // generating ticks [0, 1, 2, 3, 4].
+        desiredTickCount: 5,
+      ),
+    ),
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<MyRow, DateTime>> _createSampleData() {

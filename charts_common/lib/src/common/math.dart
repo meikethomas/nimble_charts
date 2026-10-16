@@ -31,8 +31,7 @@ bool withinBounds(
   num lowerBound,
   num upperBound, {
   double epsilon = _defaultEpsilon,
-}) =>
-    value + epsilon >= lowerBound && value - epsilon <= upperBound;
+}) => value + epsilon >= lowerBound && value - epsilon <= upperBound;
 
 /// Takes a number and clamps it to within the provided bounds.
 ///
@@ -119,8 +118,8 @@ extension NullablePointsToPoints on Iterable<NullablePoint> {
   ///
   /// Any [NullablePoint]s that have null values will be filtered out.
   List<Point<double>> toPoints() => [
-        for (final nullablePoint in this)
-          if (nullablePoint.x != null && nullablePoint.y != null)
-            nullablePoint.toPoint(),
-      ];
+    for (final nullablePoint in this)
+      if (nullablePoint.x != null && nullablePoint.y != null)
+        nullablePoint.toPoint(),
+  ];
 }

@@ -22,13 +22,13 @@ class CollisionReport<D> {
     required this.ticksCollide,
     required List<Tick<D>>? ticks,
     bool? alternateTicksUsed,
-  })  : ticks = ticks ?? [],
-        alternateTicksUsed = alternateTicksUsed ?? false;
+  }) : ticks = ticks ?? [],
+       alternateTicksUsed = alternateTicksUsed ?? false;
 
   CollisionReport.empty()
-      : ticksCollide = false,
-        ticks = [],
-        alternateTicksUsed = false;
+    : ticksCollide = false,
+      ticks = [],
+      alternateTicksUsed = false;
 
   /// If [ticks] collide.
   final bool ticksCollide;

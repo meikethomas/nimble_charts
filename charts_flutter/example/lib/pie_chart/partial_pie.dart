@@ -40,25 +40,25 @@ class PartialPieChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.PieChart<num>(
-        seriesList,
-        animate: animate,
-        defaultRenderer: charts.ArcRendererConfig(arcLength: 3 / 2 * pi),
-      );
+    seriesList,
+    animate: animate,
+    defaultRenderer: charts.ArcRendererConfig(arcLength: 3 / 2 * pi),
+  );
 
   /// Creates one series with sample hard coded data.
   static List<charts.Series<LinearSales, int>> _createSampleData() => [
-        charts.Series<LinearSales, int>(
-          id: 'Sales',
-          domainFn: (sales, _) => sales.year,
-          measureFn: (sales, _) => sales.sales,
-          data: [
-            LinearSales(0, 100),
-            LinearSales(1, 75),
-            LinearSales(2, 25),
-            LinearSales(3, 5),
-          ],
-        ),
-      ];
+    charts.Series<LinearSales, int>(
+      id: 'Sales',
+      domainFn: (sales, _) => sales.year,
+      measureFn: (sales, _) => sales.sales,
+      data: [
+        LinearSales(0, 100),
+        LinearSales(1, 75),
+        LinearSales(2, 25),
+        LinearSales(3, 5),
+      ],
+    ),
+  ];
 
   /// Creates random data.
   static List<charts.Series<LinearSales, int>> _createRandomData() {

@@ -33,8 +33,7 @@ class FakeRenderer<D> extends BaseSeriesRenderer<D> {
   DatumDetails<D> addPositionToDetailsForSeriesDatum(
     DatumDetails<D> details,
     SeriesDatum<D> seriesDatum,
-  ) =>
-      throw UnimplementedError();
+  ) => throw UnimplementedError();
 
   @override
   List<DatumDetails<D>> getNearestDatumDetailPerSeries(
@@ -95,8 +94,8 @@ void main() {
       Series(
         id: 'mySeries1',
         data: ['A', 'B', 'C', 'D'],
-        domainFn: (datum, __) => datum,
-        measureFn: (_, __) => null,
+        domainFn: (datum, _) => datum,
+        measureFn: (_, _) => null,
       ),
     );
 
@@ -104,8 +103,8 @@ void main() {
       Series(
         id: 'mySeries2',
         data: ['W', 'X', 'Y', 'Z'],
-        domainFn: (datum, __) => datum,
-        measureFn: (_, __) => null,
+        domainFn: (datum, _) => datum,
+        measureFn: (_, _) => null,
       ),
     );
 
@@ -113,8 +112,8 @@ void main() {
       Series(
         id: 'mySeries3',
         data: ['W', 'X', 'Y', 'Z'],
-        domainFn: (datum, __) => datum,
-        measureFn: (_, __) => null,
+        domainFn: (datum, _) => datum,
+        measureFn: (_, _) => null,
       ),
     );
 
@@ -122,8 +121,8 @@ void main() {
       Series(
         id: 'mySeries4',
         data: ['W', 'X', 'Y', 'Z'],
-        domainFn: (datum, __) => datum,
-        measureFn: (_, __) => null,
+        domainFn: (datum, _) => datum,
+        measureFn: (_, _) => null,
       ),
     );
   });
@@ -180,10 +179,7 @@ void main() {
   });
 
   test('selects multiple series', () {
-    makeBehavior(
-      infoSelectionType,
-      selectedSeries: ['mySeries2', 'mySeries4'],
-    );
+    makeBehavior(infoSelectionType, selectedSeries: ['mySeries2', 'mySeries4']);
 
     chart.requestOnDraw([series1, series2, series3, series4]);
 
@@ -226,16 +222,14 @@ void main() {
     expect(model.selectedDatum, isEmpty);
 
     // Request a draw with a new series list.
-    chart.draw(
-      [
-        Series(
-          id: 'mySeries2',
-          data: ['W', 'X', 'Y', 'Z'],
-          domainFn: (datum, __) => datum,
-          measureFn: (_, __) => null,
-        ),
-      ],
-    );
+    chart.draw([
+      Series(
+        id: 'mySeries2',
+        data: ['W', 'X', 'Y', 'Z'],
+        domainFn: (datum, _) => datum,
+        measureFn: (_, _) => null,
+      ),
+    ]);
 
     // Verify selection is cleared.
     expect(model.selectedSeries, isEmpty);

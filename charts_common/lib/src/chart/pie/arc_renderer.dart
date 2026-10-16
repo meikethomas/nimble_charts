@@ -32,8 +32,9 @@ import 'package:nimble_charts_common/src/common/style/style_factory.dart'
     show StyleFactory;
 import 'package:nimble_charts_common/src/data/series.dart' show AttributeKey;
 
-const arcElementsKey =
-    AttributeKey<List<ArcRendererElement<Object>>>('ArcRenderer.elements');
+const arcElementsKey = AttributeKey<List<ArcRendererElement<Object>>>(
+  'ArcRenderer.elements',
+);
 
 class ArcRenderer<D> extends BaseArcRenderer<D> {
   factory ArcRenderer({String? rendererId, ArcRendererConfig<D>? config}) =>
@@ -43,8 +44,8 @@ class ArcRenderer<D> extends BaseArcRenderer<D> {
       );
 
   ArcRenderer._internal({required super.rendererId, required this.config})
-      : arcRendererDecorators = config.arcRendererDecorators,
-        super(config: config);
+    : arcRendererDecorators = config.arcRendererDecorators,
+      super(config: config);
   @override
   final ArcRendererConfig<D> config;
 
@@ -149,8 +150,9 @@ class ArcRenderer<D> extends BaseArcRenderer<D> {
       bounds.top + bounds.height / 2,
     );
 
-    final radius =
-        bounds.height < bounds.width ? (bounds.height / 2) : (bounds.width / 2);
+    final radius = bounds.height < bounds.width
+        ? (bounds.height / 2)
+        : (bounds.width / 2);
 
     if (config.arcRatio != null &&
         (config.arcRatio! < 0 || config.arcRatio! > 1)) {
@@ -163,8 +165,10 @@ class ArcRenderer<D> extends BaseArcRenderer<D> {
       final colorFn = series.colorFn;
       final arcListKey = series.id;
 
-      final arcList =
-          _seriesArcMap.putIfAbsent(arcListKey, AnimatedArcList.new);
+      final arcList = _seriesArcMap.putIfAbsent(
+        arcListKey,
+        AnimatedArcList.new,
+      );
 
       final elementsList =
           series.getAttr(arcElementsKey)! as List<ArcRendererElement<D>>;
@@ -177,8 +181,9 @@ class ArcRenderer<D> extends BaseArcRenderer<D> {
         const arcKey = '__no_data__';
 
         // If we already have an AnimatingArc for that index, use it.
-        var animatingArc =
-            arcList.arcs.firstWhereOrNull((arc) => arc.key == arcKey);
+        var animatingArc = arcList.arcs.firstWhereOrNull(
+          (arc) => arc.key == arcKey,
+        );
 
         arcList
           ..center = center
@@ -223,8 +228,9 @@ class ArcRenderer<D> extends BaseArcRenderer<D> {
           final arcKey = '${series.id}__$domainValue';
 
           // If we already have an AnimatingArc for that index, use it.
-          var animatingArc =
-              arcList.arcs.firstWhereOrNull((arc) => arc.key == arcKey);
+          var animatingArc = arcList.arcs.firstWhereOrNull(
+            (arc) => arc.key == arcKey,
+          );
 
           arcList
             ..center = center
@@ -290,8 +296,9 @@ class ArcRenderer<D> extends BaseArcRenderer<D> {
 
           // Find the nearest start angle of the next arc that still exists in
           // the data.
-          for (final nextArc
-              in arcList.arcs.where((arc) => _currentKeys.contains(arc.key))) {
+          for (final nextArc in arcList.arcs.where(
+            (arc) => _currentKeys.contains(arc.key),
+          )) {
             final nextArcStartAngle = nextArc.newTargetArcStartAngle;
 
             if (arcStartAngle! < nextArcStartAngle! &&

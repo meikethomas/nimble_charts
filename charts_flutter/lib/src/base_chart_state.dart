@@ -120,8 +120,11 @@ class BaseChartState<D> extends State<BaseChart<D>>
     final desiredGestures = widget.getDesiredGestures(this);
     if (desiredGestures.isNotEmpty) {
       _chartGestureDetector ??= ChartGestureDetector();
-      return _chartGestureDetector!
-          .makeWidget(context, chartContainer, desiredGestures);
+      return _chartGestureDetector!.makeWidget(
+        context,
+        chartContainer,
+        desiredGestures,
+      );
     } else {
       return chartContainer;
     }
@@ -134,10 +137,7 @@ class BaseChartState<D> extends State<BaseChart<D>>
 
     // Add the common chart canvas widget.
     chartWidgets.add(
-      LayoutId(
-        id: chartContainerLayoutID,
-        child: _buildChartContainer(),
-      ),
+      LayoutId(id: chartContainerLayoutID, child: _buildChartContainer()),
     );
 
     // Add widget for each behavior that can build widgets
@@ -194,8 +194,9 @@ class BaseChartState<D> extends State<BaseChart<D>>
 
   /// Get animation controller to be used by [behavior].
   AnimationController getAnimationController(ChartStateBehavior behavior) {
-    _behaviorAnimationControllers[behavior] ??=
-        AnimationController(vsync: this);
+    _behaviorAnimationControllers[behavior] ??= AnimationController(
+      vsync: this,
+    );
 
     return _behaviorAnimationControllers[behavior]!;
   }

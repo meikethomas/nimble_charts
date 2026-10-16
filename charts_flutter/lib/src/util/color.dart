@@ -18,7 +18,6 @@ import 'dart:ui' as ui;
 import 'package:nimble_charts/flutter.dart';
 import 'package:nimble_charts_common/common.dart' as common show Color;
 
-// ignore: avoid_classes_with_only_static_members
 /// Utility class for converting between common and Flutter colors.
 class ColorUtil {
   /// Converts a common color to a Flutter color.

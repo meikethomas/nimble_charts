@@ -211,8 +211,9 @@ class FixedPixelSpaceOrdinalScaleSpec implements OrdinalScaleSpec {
 
   @override
   OrdinalScale createScale() => SimpleOrdinalScale()
-    ..rangeBandConfig =
-        RangeBandConfig.fixedPixelSpaceBetweenStep(pixelSpaceBetweenBars);
+    ..rangeBandConfig = RangeBandConfig.fixedPixelSpaceBetweenStep(
+      pixelSpaceBetweenBars,
+    );
 
   @override
   bool operator ==(Object other) => other is SimpleOrdinalScaleSpec;
@@ -228,8 +229,9 @@ class FixedPixelOrdinalScaleSpec implements OrdinalScaleSpec {
   final double pixels;
 
   @override
-  OrdinalScale createScale() => SimpleOrdinalScale()
-    ..rangeBandConfig = RangeBandConfig.fixedPixel(pixels);
+  OrdinalScale createScale() =>
+      SimpleOrdinalScale()
+        ..rangeBandConfig = RangeBandConfig.fixedPixel(pixels);
 
   @override
   bool operator ==(Object other) => other is SimpleOrdinalScaleSpec;

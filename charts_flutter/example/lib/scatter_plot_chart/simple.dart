@@ -31,9 +31,8 @@ class SimpleScatterPlotChart extends StatelessWidget {
   });
 
   /// Creates a [charts.ScatterPlotChart] with sample data and no transition.
-  factory SimpleScatterPlotChart.withSampleData() => SimpleScatterPlotChart(
-        _createSampleData(),
-      );
+  factory SimpleScatterPlotChart.withSampleData() =>
+      SimpleScatterPlotChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.

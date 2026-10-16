@@ -33,9 +33,7 @@ class ScatterPlotComboLineChart extends StatelessWidget {
 
   /// Creates a [charts.ScatterPlotChart] with sample data and no transition.
   factory ScatterPlotComboLineChart.withSampleData() =>
-      ScatterPlotComboLineChart(
-        _createSampleData(),
-      );
+      ScatterPlotComboLineChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -101,12 +99,12 @@ class ScatterPlotComboLineChart extends StatelessWidget {
         data: desktopSalesData,
       ),
       charts.Series<LinearSales, int>(
-        id: 'Mobile',
-        colorFn: (_, _) => charts.MaterialPalette.purple.shadeDefault,
-        domainFn: (sales, _) => sales.year,
-        measureFn: (sales, _) => sales.sales,
-        data: myRegressionData,
-      )
+          id: 'Mobile',
+          colorFn: (_, _) => charts.MaterialPalette.purple.shadeDefault,
+          domainFn: (sales, _) => sales.year,
+          measureFn: (sales, _) => sales.sales,
+          data: myRegressionData,
+        )
         // Configure our custom line renderer for this series.
         ..setAttribute(charts.rendererIdKey, 'customLine'),
     ];
@@ -115,27 +113,27 @@ class ScatterPlotComboLineChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.ScatterPlotChart(
-        seriesList,
-        animate: animate,
-        // Configure the default renderer as a point renderer. This will be used
-        // for any series that does not define a rendererIdKey.
+    seriesList,
+    animate: animate,
+    // Configure the default renderer as a point renderer. This will be used
+    // for any series that does not define a rendererIdKey.
+    //
+    // This is the default configuration, but is shown here for
+    // illustration.
+    defaultRenderer: charts.PointRendererConfig(),
+    // Custom renderer configuration for the line series.
+    customSeriesRenderers: [
+      charts.LineRendererConfig(
+        // ID used to link series to this renderer.
+        customRendererId: 'customLine',
+        // Configure the regression line to be painted above the points.
         //
-        // This is the default configuration, but is shown here for
-        // illustration.
-        defaultRenderer: charts.PointRendererConfig(),
-        // Custom renderer configuration for the line series.
-        customSeriesRenderers: [
-          charts.LineRendererConfig(
-            // ID used to link series to this renderer.
-            customRendererId: 'customLine',
-            // Configure the regression line to be painted above the points.
-            //
-            // By default, series drawn by the point renderer are painted on
-            // top of those drawn by a line renderer.
-            layoutPaintOrder: charts.LayoutViewPaintOrder.point + 1,
-          ),
-        ],
-      );
+        // By default, series drawn by the point renderer are painted on
+        // top of those drawn by a line renderer.
+        layoutPaintOrder: charts.LayoutViewPaintOrder.point + 1,
+      ),
+    ],
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<LinearSales, int>> _createSampleData() {
@@ -184,12 +182,12 @@ class ScatterPlotComboLineChart extends StatelessWidget {
         data: desktopSalesData,
       ),
       charts.Series<LinearSales, int>(
-        id: 'Mobile',
-        colorFn: (_, _) => charts.MaterialPalette.purple.shadeDefault,
-        domainFn: (sales, _) => sales.year,
-        measureFn: (sales, _) => sales.sales,
-        data: myRegressionData,
-      )
+          id: 'Mobile',
+          colorFn: (_, _) => charts.MaterialPalette.purple.shadeDefault,
+          domainFn: (sales, _) => sales.year,
+          measureFn: (sales, _) => sales.sales,
+          data: myRegressionData,
+        )
         // Configure our custom line renderer for this series.
         ..setAttribute(charts.rendererIdKey, 'customLine'),
     ];

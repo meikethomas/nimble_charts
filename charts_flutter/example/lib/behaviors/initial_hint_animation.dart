@@ -53,16 +53,11 @@ import 'package:flutter/material.dart';
 import 'package:nimble_charts/flutter.dart' as charts;
 
 class InitialHintAnimation extends StatelessWidget {
-  const InitialHintAnimation(
-    this.seriesList, {
-    super.key,
-    this.animate = true,
-  });
+  const InitialHintAnimation(this.seriesList, {super.key, this.animate = true});
 
   /// Creates a [charts.BarChart] with sample data and no transition.
-  factory InitialHintAnimation.withSampleData() => InitialHintAnimation(
-        _createSampleData(),
-      );
+  factory InitialHintAnimation.withSampleData() =>
+      InitialHintAnimation(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -111,28 +106,28 @@ class InitialHintAnimation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.BarChart(
-        seriesList,
-        animate: animate,
-        // Optionally turn off the animation that animates values up from the
-        // bottom of the domain axis. If animation is on, the bars will animate up
-        // and then animate to the final viewport.
-        animationDuration: Duration.zero,
-        // Set the initial viewport by providing a new AxisSpec with the
-        // desired viewport: a starting domain and the data size.
-        domainAxis: charts.OrdinalAxisSpec(
-          viewport: charts.OrdinalViewport('2018', 4),
-        ),
-        behaviors: [
-          // Add this behavior to show initial hint animation that will pan to the
-          // final desired viewport.
-          // The duration of the animation can be adjusted by pass in
-          // [hintDuration]. By default this is 3000ms.
-          charts.InitialHintBehavior(maxHintTranslate: 4),
-          // Optionally add a pan or pan and zoom behavior.
-          // If pan/zoom is not added, the viewport specified remains the viewport
-          charts.PanAndZoomBehavior(),
-        ],
-      );
+    seriesList,
+    animate: animate,
+    // Optionally turn off the animation that animates values up from the
+    // bottom of the domain axis. If animation is on, the bars will animate up
+    // and then animate to the final viewport.
+    animationDuration: Duration.zero,
+    // Set the initial viewport by providing a new AxisSpec with the
+    // desired viewport: a starting domain and the data size.
+    domainAxis: charts.OrdinalAxisSpec(
+      viewport: charts.OrdinalViewport('2018', 4),
+    ),
+    behaviors: [
+      // Add this behavior to show initial hint animation that will pan to the
+      // final desired viewport.
+      // The duration of the animation can be adjusted by pass in
+      // [hintDuration]. By default this is 3000ms.
+      charts.InitialHintBehavior(maxHintTranslate: 4),
+      // Optionally add a pan or pan and zoom behavior.
+      // If pan/zoom is not added, the viewport specified remains the viewport
+      charts.PanAndZoomBehavior(),
+    ],
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {

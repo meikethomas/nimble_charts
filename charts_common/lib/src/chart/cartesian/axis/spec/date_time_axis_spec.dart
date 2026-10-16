@@ -238,7 +238,7 @@ class TimeFormatterSpec {
 @immutable
 class BasicDateTimeTickFormatterSpec implements DateTimeTickFormatterSpec {
   const BasicDateTimeTickFormatterSpec(DateTimeFormatterFunction this.formatter)
-      : dateFormat = null;
+    : dateFormat = null;
 
   const BasicDateTimeTickFormatterSpec.fromDateFormat(
     DateFormat this.dateFormat,
@@ -300,24 +300,39 @@ class AutoDateTimeTickFormatterSpec implements DateTimeTickFormatterSpec {
     final map = <int, TimeTickFormatter>{};
 
     if (minute != null) {
-      map[DateTimeTickFormatter.MINUTE] =
-          _makeFormatter(minute!, CalendarField.hourOfDay, context);
+      map[DateTimeTickFormatter.MINUTE] = _makeFormatter(
+        minute!,
+        CalendarField.hourOfDay,
+        context,
+      );
     }
     if (hour != null) {
-      map[DateTimeTickFormatter.HOUR] =
-          _makeFormatter(hour!, CalendarField.date, context);
+      map[DateTimeTickFormatter.HOUR] = _makeFormatter(
+        hour!,
+        CalendarField.date,
+        context,
+      );
     }
     if (day != null) {
-      map[23 * DateTimeTickFormatter.HOUR] =
-          _makeFormatter(day!, CalendarField.month, context);
+      map[23 * DateTimeTickFormatter.HOUR] = _makeFormatter(
+        day!,
+        CalendarField.month,
+        context,
+      );
     }
     if (month != null) {
-      map[28 * DateTimeTickFormatter.DAY] =
-          _makeFormatter(month!, CalendarField.year, context);
+      map[28 * DateTimeTickFormatter.DAY] = _makeFormatter(
+        month!,
+        CalendarField.year,
+        context,
+      );
     }
     if (year != null) {
-      map[364 * DateTimeTickFormatter.DAY] =
-          _makeFormatter(year!, CalendarField.year, context);
+      map[364 * DateTimeTickFormatter.DAY] = _makeFormatter(
+        year!,
+        CalendarField.year,
+        context,
+      );
     }
 
     return DateTimeTickFormatter(context.dateTimeFactory, overrides: map);

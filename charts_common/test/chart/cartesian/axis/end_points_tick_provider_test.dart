@@ -112,10 +112,7 @@ void main() {
 
     final drawStrategy = FakeDrawStrategy<DateTime>(10, 10);
     when(scale.viewportDomain).thenReturn(
-      DateTimeExtents(
-        start: DateTime(2018, 8),
-        end: DateTime(2018, 8, 11),
-      ),
+      DateTimeExtents(start: DateTime(2018, 8), end: DateTime(2018, 8, 11)),
     );
     when(scale.rangeWidth).thenReturn(1000);
     when(scale.domainStepSize).thenReturn(1000);
@@ -193,10 +190,7 @@ void main() {
 
     final drawStrategy = FakeDrawStrategy<DateTime>(10, 10);
     when(scale.viewportDomain).thenReturn(
-      DateTimeExtents(
-        start: DateTime(2018, 8),
-        end: DateTime(2018, 8, 11),
-      ),
+      DateTimeExtents(start: DateTime(2018, 8), end: DateTime(2018, 8, 11)),
     );
     when(scale.rangeWidth).thenReturn(1000);
 

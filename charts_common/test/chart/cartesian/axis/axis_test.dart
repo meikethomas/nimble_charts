@@ -37,9 +37,7 @@ StaticTickProvider<num> _createProvider(List<num> values) =>
 
 void main() {
   test('changing first tick only', () {
-    final axis = NumericAxis(
-      tickProvider: _createProvider([1, 10]),
-    );
+    final axis = NumericAxis(tickProvider: _createProvider([1, 10]));
 
     final drawStrategy = MockTickDrawStrategy();
     when(drawStrategy.collides(any, any)).thenReturn(
@@ -67,9 +65,7 @@ void main() {
   });
 
   test('updates max label width on layout change', () {
-    final axis = NumericAxis(
-      tickProvider: _createProvider([1, 10]),
-    );
+    final axis = NumericAxis(tickProvider: _createProvider([1, 10]));
 
     final drawStrategy = MockTickDrawStrategy();
     when(drawStrategy.collides(any, any)).thenReturn(
@@ -93,12 +89,7 @@ void main() {
     axis.layout(componentBounds, drawBounds);
 
     verify(
-      drawStrategy.updateTickWidth(
-        any,
-        maxWidth,
-        maxHeight,
-        axisOrientation,
-      ),
+      drawStrategy.updateTickWidth(any, maxWidth, maxHeight, axisOrientation),
     ).called(1);
   });
 }

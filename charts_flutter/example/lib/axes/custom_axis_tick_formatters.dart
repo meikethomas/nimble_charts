@@ -32,9 +32,8 @@ class CustomAxisTickFormatters extends StatelessWidget {
   });
 
   /// Creates a [charts.TimeSeriesChart] with sample data and no transition.
-  factory CustomAxisTickFormatters.withSampleData() => CustomAxisTickFormatters(
-        _createSampleData(),
-      );
+  factory CustomAxisTickFormatters.withSampleData() =>
+      CustomAxisTickFormatters(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -81,8 +80,8 @@ class CustomAxisTickFormatters extends StatelessWidget {
     /// This is what is used in the [NumericAxisSpec] below.
     final simpleCurrencyFormatter =
         charts.BasicNumericTickFormatterSpec.fromNumberFormat(
-      NumberFormat.compactSimpleCurrency(),
-    );
+          NumberFormat.compactSimpleCurrency(),
+        );
 
     /// Formatter for numeric ticks that uses the callback provided.
     ///

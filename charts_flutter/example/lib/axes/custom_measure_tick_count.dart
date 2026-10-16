@@ -35,9 +35,8 @@ class CustomMeasureTickCount extends StatelessWidget {
   });
 
   /// Creates a [charts.TimeSeriesChart] with sample data and no transition.
-  factory CustomMeasureTickCount.withSampleData() => CustomMeasureTickCount(
-        _createSampleData(),
-      );
+  factory CustomMeasureTickCount.withSampleData() =>
+      CustomMeasureTickCount(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -79,15 +78,16 @@ class CustomMeasureTickCount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.TimeSeriesChart(
-        seriesList,
-        animate: animate,
+    seriesList,
+    animate: animate,
 
-        /// Customize the measure axis to have 2 ticks,
-        primaryMeasureAxis: const charts.NumericAxisSpec(
-          tickProviderSpec:
-              charts.BasicNumericTickProviderSpec(desiredTickCount: 2),
-        ),
-      );
+    /// Customize the measure axis to have 2 ticks,
+    primaryMeasureAxis: const charts.NumericAxisSpec(
+      tickProviderSpec: charts.BasicNumericTickProviderSpec(
+        desiredTickCount: 2,
+      ),
+    ),
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<MyRow, DateTime>> _createSampleData() {

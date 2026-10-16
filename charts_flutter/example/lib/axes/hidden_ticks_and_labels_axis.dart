@@ -30,9 +30,8 @@ class HiddenTicksAndLabelsAxis extends StatelessWidget {
     this.animate = true,
   });
 
-  factory HiddenTicksAndLabelsAxis.withSampleData() => HiddenTicksAndLabelsAxis(
-        _createSampleData(),
-      );
+  factory HiddenTicksAndLabelsAxis.withSampleData() =>
+      HiddenTicksAndLabelsAxis(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -67,26 +66,27 @@ class HiddenTicksAndLabelsAxis extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.BarChart(
-        seriesList,
-        animate: animate,
+    seriesList,
+    animate: animate,
 
-        /// Assign a custom style for the measure axis.
-        ///
-        /// The NoneRenderSpec can still draw an axis line with
-        /// showAxisLine=true.
-        primaryMeasureAxis:
-            const charts.NumericAxisSpec(renderSpec: charts.NoneRenderSpec()),
+    /// Assign a custom style for the measure axis.
+    ///
+    /// The NoneRenderSpec can still draw an axis line with
+    /// showAxisLine=true.
+    primaryMeasureAxis: const charts.NumericAxisSpec(
+      renderSpec: charts.NoneRenderSpec(),
+    ),
 
-        /// This is an OrdinalAxisSpec to match up with BarChart's default
-        /// ordinal domain axis (use NumericAxisSpec or DateTimeAxisSpec for
-        /// other charts).
-        domainAxis: const charts.OrdinalAxisSpec(
-          // Make sure that we draw the domain axis line.
-          showAxisLine: true,
-          // But don't draw anything else.
-          renderSpec: charts.NoneRenderSpec(),
-        ),
-      );
+    /// This is an OrdinalAxisSpec to match up with BarChart's default
+    /// ordinal domain axis (use NumericAxisSpec or DateTimeAxisSpec for
+    /// other charts).
+    domainAxis: const charts.OrdinalAxisSpec(
+      // Make sure that we draw the domain axis line.
+      showAxisLine: true,
+      // But don't draw anything else.
+      renderSpec: charts.NoneRenderSpec(),
+    ),
+  );
 
   /// Create series list with single series
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {

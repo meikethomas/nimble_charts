@@ -61,8 +61,9 @@ class PolygonPainter {
         ? Color.fromARGB(stroke.a, stroke.r, stroke.g, stroke.b)
         : null;
 
-    final fillColor =
-        fill != null ? Color.fromARGB(fill.a, fill.r, fill.g, fill.b) : null;
+    final fillColor = fill != null
+        ? Color.fromARGB(fill.a, fill.r, fill.g, fill.b)
+        : null;
 
     // If the line has a single point, draw a circle.
     if (points.length == 1) {

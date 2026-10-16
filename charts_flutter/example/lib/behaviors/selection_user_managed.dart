@@ -32,16 +32,11 @@ import 'package:flutter/material.dart';
 import 'package:nimble_charts/flutter.dart' as charts;
 
 class SelectionUserManaged extends StatefulWidget {
-  const SelectionUserManaged(
-    this.seriesList, {
-    super.key,
-    this.animate = true,
-  });
+  const SelectionUserManaged(this.seriesList, {super.key, this.animate = true});
 
   /// Creates a [charts.BarChart] with sample data and no transition.
-  factory SelectionUserManaged.withSampleData() => SelectionUserManaged(
-        _createSampleData(),
-      );
+  factory SelectionUserManaged.withSampleData() =>
+      SelectionUserManaged(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -132,7 +127,10 @@ class SelectionUserManagedState extends State<SelectionUserManaged> {
     );
 
     return Column(
-      children: [SizedBox(height: 150, child: chart), clearSelection],
+      children: [
+        SizedBox(height: 150, child: chart),
+        clearSelection,
+      ],
     );
   }
 

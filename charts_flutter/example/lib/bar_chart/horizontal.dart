@@ -27,9 +27,8 @@ class HorizontalBarChart extends StatelessWidget {
   const HorizontalBarChart(this.seriesList, {super.key, this.animate = true});
 
   /// Creates a [charts.BarChart] with sample data and no transition.
-  factory HorizontalBarChart.withSampleData() => HorizontalBarChart(
-        _createSampleData(),
-      );
+  factory HorizontalBarChart.withSampleData() =>
+      HorizontalBarChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -65,11 +64,7 @@ class HorizontalBarChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
       // For horizontal bar charts, set the [vertical] flag to false.
-      charts.BarChart(
-        seriesList,
-        animate: animate,
-        vertical: false,
-      );
+      charts.BarChart(seriesList, animate: animate, vertical: false);
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {

@@ -47,8 +47,10 @@ class ProxyGestureListener {
 
     // If someone claims the long press, then cancel everyone else.
     if (claimingListener != null) {
-      _activeListeners =
-          _cancel(all: _activeListeners, keep: [claimingListener]);
+      _activeListeners = _cancel(
+        all: _activeListeners,
+        keep: [claimingListener],
+      );
       return true;
     }
     return false;
@@ -63,8 +65,10 @@ class ProxyGestureListener {
     // If someone claims the tap, then cancel everyone else.
     // This should hopefully be rare, like for drilling.
     if (claimingListener != null) {
-      _activeListeners =
-          _cancel(all: _activeListeners, keep: [claimingListener]);
+      _activeListeners = _cancel(
+        all: _activeListeners,
+        keep: [claimingListener],
+      );
       return true;
     }
     return false;
@@ -93,8 +97,10 @@ class ProxyGestureListener {
     );
 
     if (claimingListener != null) {
-      _activeListeners =
-          _cancel(all: _activeListeners, keep: [claimingListener]);
+      _activeListeners = _cancel(
+        all: _activeListeners,
+        keep: [claimingListener],
+      );
       return true;
     }
     return false;
@@ -110,12 +116,11 @@ class ProxyGestureListener {
     Point<double> localPosition,
     double scale,
     double pixelsPerSecond,
-  ) =>
-      _activeListeners.any(
-        (listener) =>
-            listener.onDragEnd?.call(localPosition, scale, pixelsPerSecond) ??
-            false,
-      );
+  ) => _activeListeners.any(
+    (listener) =>
+        listener.onDragEnd?.call(localPosition, scale, pixelsPerSecond) ??
+        false,
+  );
 
   bool onFocus() =>
       _listeners.any((listener) => listener.onFocus?.call() ?? false);

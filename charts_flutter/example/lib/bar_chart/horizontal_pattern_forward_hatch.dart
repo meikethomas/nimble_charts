@@ -34,9 +34,7 @@ class HorizontalPatternForwardHatchBarChart extends StatelessWidget {
   });
 
   factory HorizontalPatternForwardHatchBarChart.withSampleData() =>
-      HorizontalPatternForwardHatchBarChart(
-        _createSampleData(),
-      );
+      HorizontalPatternForwardHatchBarChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -98,11 +96,11 @@ class HorizontalPatternForwardHatchBarChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.BarChart(
-        seriesList,
-        animate: animate,
-        barGroupingType: charts.BarGroupingType.grouped,
-        vertical: false,
-      );
+    seriesList,
+    animate: animate,
+    barGroupingType: charts.BarGroupingType.grouped,
+    vertical: false,
+  );
 
   /// Create series list with multiple series
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {

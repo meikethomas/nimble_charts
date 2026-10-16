@@ -14,19 +14,15 @@
 // limitations under the License.
 
 import 'package:nimble_charts_common/common.dart';
-import 'package:nimble_charts_common/src/data/graph.dart' as graph_structure
+import 'package:nimble_charts_common/src/data/graph.dart'
+    as graph_structure
     show Link, Node, indexNotRelevant;
 import 'package:nimble_charts_common/src/data/graph_utils.dart';
 import 'package:test/test.dart';
 
 class MyNode {
-  MyNode({
-    required this.domainId,
-    required this.measure,
-  });
-  // ignore: unreachable_from_main
+  MyNode({required this.domainId, required this.measure});
   final String domainId;
-  // ignore: unreachable_from_main
   final num measure;
 }
 
@@ -38,9 +34,7 @@ class MyLink {
     required this.measure,
   });
 
-  // ignore: unreachable_from_main
   final String domainId;
-  // ignore: unreachable_from_main
   final num measure;
   // ignore: unreachable_from_main
   final MyNode sourceNode;
@@ -79,8 +73,8 @@ void main() {
 
     test('returns data for non-null functions', () {
       // ignore: prefer_function_declarations_over_variables, omit_local_variable_types
-      final TypedAccessorFn<MyNode, String> getDomain =
-          (node, _) => node.domainId;
+      final TypedAccessorFn<MyNode, String> getDomain = (node, _) =>
+          node.domainId;
 
       num getMeasure(MyNode node, _) => node.measure;
       final domainFn = actOnNodeData<MyNode, MyLink, String>(getDomain)!;
@@ -111,9 +105,7 @@ void main() {
     });
 
     test('returns data for non-null functions', () {
-      // ignore: omit_local_variable_types
       String getDomain(MyLink link, _) => link.domainId;
-      // ignore: omit_local_variable_types
       num getMeasure(MyLink link, _) => link.measure;
       final domainFn = actOnLinkData<MyNode, MyLink, String>(getDomain)!;
       final measureFn = actOnLinkData<MyNode, MyLink, num>(getMeasure)!;
@@ -172,10 +164,14 @@ void main() {
         graph_structure.Node(myMockNodes[2]),
         myMockLinks[1],
       );
-      final nodeWithIncoming =
-          addLinkToAbsentNode(secondLink, isIncomingLink: true);
-      final nodeWithOutgoing =
-          addLinkToAbsentNode(firstLink, isIncomingLink: false);
+      final nodeWithIncoming = addLinkToAbsentNode(
+        secondLink,
+        isIncomingLink: true,
+      );
+      final nodeWithOutgoing = addLinkToAbsentNode(
+        firstLink,
+        isIncomingLink: false,
+      );
 
       expect(nodeWithIncoming.incomingLinks.length, 1);
       expect(nodeWithIncoming.outgoingLinks.length, 0);

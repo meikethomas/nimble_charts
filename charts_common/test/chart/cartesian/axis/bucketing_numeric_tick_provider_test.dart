@@ -123,68 +123,64 @@ void main() {
 
   group('threshold', () {
     // TODO: Failing Test - https://github.com/Nimblesite/nimble_charts/issues/37
-    test(
-      'tick generated correctly with no ticks between it and zero',
-      () {
-        tickProvider
-          ..dataIsInWholeNumbers = false
-          ..threshold = 0.1
-          ..showBucket = true
-          ..setFixedTickCount(21)
-          ..allowedSteps = [1.0, 2.5, 5.0];
-        final drawStrategy = FakeDrawStrategy(10, 10);
-        when(scale.viewportDomain).thenReturn(const NumericExtents(0.1, 0.7));
-        when(scale.rangeWidth).thenReturn(1000);
-        when(scale[0.1]).thenReturn(90.0);
-        when(scale[0]).thenReturn(100.0);
+    test('tick generated correctly with no ticks between it and zero', () {
+      tickProvider
+        ..dataIsInWholeNumbers = false
+        ..threshold = 0.1
+        ..showBucket = true
+        ..setFixedTickCount(21)
+        ..allowedSteps = [1.0, 2.5, 5.0];
+      final drawStrategy = FakeDrawStrategy(10, 10);
+      when(scale.viewportDomain).thenReturn(const NumericExtents(0.1, 0.7));
+      when(scale.rangeWidth).thenReturn(1000);
+      when(scale[0.1]).thenReturn(90.0);
+      when(scale[0]).thenReturn(100.0);
 
-        final ticks = tickProvider.getTicks(
-          context: context,
-          graphicsFactory: graphicsFactory,
-          scale: scale,
-          formatter: formatter,
-          formatterValueCache: <num, String>{},
-          tickDrawStrategy: drawStrategy,
-          orientation: null,
+      final ticks = tickProvider.getTicks(
+        context: context,
+        graphicsFactory: graphicsFactory,
+        scale: scale,
+        formatter: formatter,
+        formatterValueCache: <num, String>{},
+        tickDrawStrategy: drawStrategy,
+        orientation: null,
+      );
+
+      // Verify.
+      // We expect to have 20 ticks, because the expected tick at 0.05 should
+      // be removed from the list.
+      expect(ticks, hasLength(20));
+
+      // Verify that we still have a 0 tick with an empty label.
+      expect(ticks[0].labelOffsetPx, isNull);
+      expect(ticks[0].locationPx, equals(100.0));
+      expect(ticks[0].value, equals(0.0));
+      expect(ticks[0].textElement!.text, equals(''));
+
+      // Verify that we have a threshold tick.
+      expect(ticks[1].labelOffsetPx, equals(5.0));
+      expect(ticks[1].locationPx, equals(90.0));
+      expect(ticks[1].value, equals(0.10));
+      expect(ticks[1].textElement!.text, equals('< 0.1'));
+
+      // Verify that the rest of the ticks are all above the threshold in
+      // value and have normal labels.
+      var aboveThresholdTicks = ticks
+        ..sublist(2)
+        ..retainWhere((tick) => tick.value > 0.1);
+      expect(aboveThresholdTicks, hasLength(18));
+
+      aboveThresholdTicks = ticks.sublist(2)
+        ..retainWhere(
+          (tick) =>
+              tick.textElement!.text != '' &&
+              !tick.textElement!.text.contains('<'),
         );
+      expect(aboveThresholdTicks, hasLength(18));
 
-        // Verify.
-        // We expect to have 20 ticks, because the expected tick at 0.05 should
-        // be removed from the list.
-        expect(ticks, hasLength(20));
-
-        // Verify that we still have a 0 tick with an empty label.
-        expect(ticks[0].labelOffsetPx, isNull);
-        expect(ticks[0].locationPx, equals(100.0));
-        expect(ticks[0].value, equals(0.0));
-        expect(ticks[0].textElement!.text, equals(''));
-
-        // Verify that we have a threshold tick.
-        expect(ticks[1].labelOffsetPx, equals(5.0));
-        expect(ticks[1].locationPx, equals(90.0));
-        expect(ticks[1].value, equals(0.10));
-        expect(ticks[1].textElement!.text, equals('< 0.1'));
-
-        // Verify that the rest of the ticks are all above the threshold in
-        // value and have normal labels.
-        var aboveThresholdTicks = ticks
-          ..sublist(2)
-          ..retainWhere((tick) => tick.value > 0.1);
-        expect(aboveThresholdTicks, hasLength(18));
-
-        aboveThresholdTicks = ticks.sublist(2)
-          ..retainWhere(
-            (tick) =>
-                tick.textElement!.text != '' &&
-                !tick.textElement!.text.contains('<'),
-          );
-        expect(aboveThresholdTicks, hasLength(18));
-
-        aboveThresholdTicks = ticks.sublist(2)
-          ..retainWhere((tick) => tick.labelOffsetPx == null);
-        expect(aboveThresholdTicks, hasLength(18));
-      },
-      skip: true,
-    );
+      aboveThresholdTicks = ticks.sublist(2)
+        ..retainWhere((tick) => tick.labelOffsetPx == null);
+      expect(aboveThresholdTicks, hasLength(18));
+    }, skip: true);
   });
 }

@@ -78,10 +78,10 @@ class MockSeriesRenderer<D> extends BaseSeriesRenderer<D> {
   MockSeriesRenderer() : super(rendererId: 'fake', layoutPaintOrder: 0);
 
   @override
-  void update(_, __) {}
+  void update(_, _) {}
 
   @override
-  void paint(_, __) {}
+  void paint(_, _) {}
 
   @override
   List<DatumDetails<D>> getNearestDatumDetailPerSeries(
@@ -98,8 +98,7 @@ class MockSeriesRenderer<D> extends BaseSeriesRenderer<D> {
   DatumDetails<D> addPositionToDetailsForSeriesDatum(
     DatumDetails<D> details,
     SeriesDatum<D> seriesDatum,
-  ) =>
-      DatumDetails.from(details, chartPosition: const NullablePoint(0, 0));
+  ) => DatumDetails.from(details, chartPosition: const NullablePoint(0, 0));
 }
 
 void main() {
@@ -137,20 +136,23 @@ void main() {
     }
 
     for (var i = 0; i < series1.data.length; i++) {
-      when(selectionModel.isDatumSelected(series1, i))
-          .thenReturn(selected.contains(series1.data[i]));
+      when(
+        selectionModel.isDatumSelected(series1, i),
+      ).thenReturn(selected.contains(series1.data[i]));
     }
     for (var i = 0; i < series2.data.length; i++) {
-      when(selectionModel.isDatumSelected(series2, i))
-          .thenReturn(selected.contains(series2.data[i]));
+      when(
+        selectionModel.isDatumSelected(series2, i),
+      ).thenReturn(selected.contains(series2.data[i]));
     }
 
     when(selectionModel.selectedDatum).thenReturn(selection);
 
     final selectedDetails = mockGetSelectedDatumDetails(selection);
 
-    when(chart.getSelectedDatumDetails(SelectionModelType.info))
-        .thenReturn(selectedDetails);
+    when(
+      chart.getSelectedDatumDetails(SelectionModelType.info),
+    ).thenReturn(selectedDetails);
   }
 
   setUp(() {
@@ -159,8 +161,9 @@ void main() {
     seriesRenderer = MockSeriesRenderer();
 
     selectionModel = MockSelectionModel();
-    when(chart.getSelectionModel(SelectionModelType.info))
-        .thenReturn(selectionModel);
+    when(
+      chart.getSelectionModel(SelectionModelType.info),
+    ).thenReturn(selectionModel);
 
     series1 = MutableSeries(
       Series<MyRow, int>(
@@ -168,7 +171,7 @@ void main() {
         data: [s1D1, s1D2, s1D3],
         domainFn: (row, _) => row.campaign,
         measureFn: (row, _) => row.count,
-        colorFn: (_, __) => MaterialPalette.blue.shadeDefault,
+        colorFn: (_, _) => MaterialPalette.blue.shadeDefault,
       ),
     )..measureFn = (_) => 0.0;
 
@@ -178,7 +181,7 @@ void main() {
         data: [s2D1, s2D2, s2D3],
         domainFn: (row, _) => row.campaign,
         measureFn: (row, _) => row.count,
-        colorFn: (_, __) => MaterialPalette.red.shadeDefault,
+        colorFn: (_, _) => MaterialPalette.red.shadeDefault,
       ),
     )..measureFn = (_) => 0.0;
   });
@@ -186,14 +189,12 @@ void main() {
   group('LinePointHighlighter', () {
     test('highlights the selected points', () {
       // Setup
-      final behavior =
-          LinePointHighlighter(selectionModelType: SelectionModelType.info);
+      final behavior = LinePointHighlighter(
+        selectionModelType: SelectionModelType.info,
+      );
       final tester = LinePointHighlighterTester(behavior);
       behavior.attachTo(chart);
-      setupSelection([
-        SeriesDatum(series1, s1D2),
-        SeriesDatum(series2, s2D2),
-      ]);
+      setupSelection([SeriesDatum(series1, s1D2), SeriesDatum(series2, s2D2)]);
 
       // Mock axes for returning fake domain locations.
       final Axis<num> domainAxis = MockNumericAxis();
@@ -229,10 +230,12 @@ void main() {
 
     test('listens to other selection models', () {
       // Setup
-      final behavior =
-          LinePointHighlighter(selectionModelType: SelectionModelType.action);
-      when(chart.getSelectionModel(SelectionModelType.action))
-          .thenReturn(selectionModel);
+      final behavior = LinePointHighlighter(
+        selectionModelType: SelectionModelType.action,
+      );
+      when(
+        chart.getSelectionModel(SelectionModelType.action),
+      ).thenReturn(selectionModel);
 
       // Act
       behavior.attachTo(chart);
@@ -244,8 +247,9 @@ void main() {
 
     test('leaves everything alone with no selection', () {
       // Setup
-      final behavior =
-          LinePointHighlighter(selectionModelType: SelectionModelType.info);
+      final behavior = LinePointHighlighter(
+        selectionModelType: SelectionModelType.info,
+      );
       final tester = LinePointHighlighterTester(behavior);
       behavior.attachTo(chart);
       setupSelection([]);
@@ -269,13 +273,10 @@ void main() {
 
     test('cleans up', () {
       // Setup
-      final behavior =
-          LinePointHighlighter(selectionModelType: SelectionModelType.info)
-            ..attachTo(chart);
-      setupSelection([
-        SeriesDatum(series1, s1D2),
-        SeriesDatum(series2, s2D2),
-      ]);
+      final behavior = LinePointHighlighter(
+        selectionModelType: SelectionModelType.info,
+      )..attachTo(chart);
+      setupSelection([SeriesDatum(series1, s1D2), SeriesDatum(series2, s2D2)]);
 
       // Act
       behavior.removeFrom(chart);

@@ -230,7 +230,7 @@ enum BlendMode {
   sourceIn,
   sourceOut,
   sourceOver,
-  xor
+  xor,
 }
 
 /// Determines the orientation of a drawn link.

@@ -73,12 +73,13 @@ class BarChart extends cart.CartesianChart<String> {
     this.barRendererDecorator,
     super.flipVerticalAxis,
   }) : super(
-          defaultRenderer: defaultRenderer ??
-              common.BarRendererConfig<String>(
-                groupingType: barGroupingType,
-                barRendererDecorator: barRendererDecorator,
-              ),
-        );
+         defaultRenderer:
+             defaultRenderer ??
+             common.BarRendererConfig<String>(
+               groupingType: barGroupingType,
+               barRendererDecorator: barRendererDecorator,
+             ),
+       );
 
   /// Whether the bars are rendered vertically or horizontally.
   ///

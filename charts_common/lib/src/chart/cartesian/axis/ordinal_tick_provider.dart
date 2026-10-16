@@ -45,16 +45,15 @@ class OrdinalTickProvider extends BaseTickProvider<String> {
     required AxisOrientation? orientation,
     bool viewportExtensionEnabled = false,
     TickHint<String>? tickHint,
-  }) =>
-      createTicks(
-        scale.domain.domains,
-        context: context,
-        graphicsFactory: graphicsFactory,
-        scale: scale,
-        formatter: formatter,
-        formatterValueCache: formatterValueCache,
-        tickDrawStrategy: tickDrawStrategy,
-      );
+  }) => createTicks(
+    scale.domain.domains,
+    context: context,
+    graphicsFactory: graphicsFactory,
+    scale: scale,
+    formatter: formatter,
+    formatterValueCache: formatterValueCache,
+    tickDrawStrategy: tickDrawStrategy,
+  );
 
   @override
   bool operator ==(Object other) => other is OrdinalTickProvider;

@@ -52,16 +52,17 @@ class BucketingAxisSpec extends NumericAxisSpec {
     bool? showBucket,
     this.threshold,
     NumericExtents? viewport,
-  })  : showBucket = showBucket ?? true,
-        super(
-          tickProviderSpec:
-              tickProviderSpec ?? const BucketingNumericTickProviderSpec(),
-          tickFormatterSpec: tickFormatterSpec ??
-              BasicNumericTickFormatterSpec.fromNumberFormat(
-                NumberFormat.percentPattern(),
-              ),
-          viewport: viewport ?? const NumericExtents(0.0, 1.0),
-        );
+  }) : showBucket = showBucket ?? true,
+       super(
+         tickProviderSpec:
+             tickProviderSpec ?? const BucketingNumericTickProviderSpec(),
+         tickFormatterSpec:
+             tickFormatterSpec ??
+             BasicNumericTickFormatterSpec.fromNumberFormat(
+               NumberFormat.percentPattern(),
+             ),
+         viewport: viewport ?? const NumericExtents(0.0, 1.0),
+       );
 
   /// All values smaller than the threshold will be bucketed into the same
   /// position in the reserved space on the axis.
@@ -138,9 +139,9 @@ class BucketingNumericTickProviderSpec extends BasicNumericTickProviderSpec {
     super.desiredMinTickCount,
     super.desiredMaxTickCount,
   }) : super(
-          zeroBound: zeroBound ?? true,
-          dataIsInWholeNumbers: dataIsInWholeNumbers ?? false,
-        );
+         zeroBound: zeroBound ?? true,
+         dataIsInWholeNumbers: dataIsInWholeNumbers ?? false,
+       );
 
   @override
   BucketingNumericTickProvider createTickProvider(ChartContext context) {

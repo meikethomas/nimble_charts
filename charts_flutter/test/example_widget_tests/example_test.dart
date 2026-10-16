@@ -22,27 +22,22 @@ void main() {
       useRandomData: false,
     );
 
-    testWidgets(
-      'Main Menu',
-      (tester) async {
-        const galleryApp = GalleryApp();
+    testWidgets('Main Menu', (tester) async {
+      const galleryApp = GalleryApp();
 
-        await tester.pumpWidget(galleryApp);
+      await tester.pumpWidget(galleryApp);
 
-        tester.viewOf(find.byWidget(galleryApp))
-          ..physicalSize = const Size(2000, 7000)
-          ..devicePixelRatio = 1;
+      tester.viewOf(find.byWidget(galleryApp))
+        ..physicalSize = const Size(2000, 7000)
+        ..devicePixelRatio = 1;
 
-        await tester.pumpAndSettle();
+      await tester.pumpAndSettle();
 
-        final listView = tester.widget<ListView>(find.byType(ListView));
-        expect(listView.semanticChildCount, equals(93));
+      final listView = tester.widget<ListView>(find.byType(ListView));
+      expect(listView.semanticChildCount, equals(93));
 
-        await matchesGolden<GalleryApp>(
-          'example_menu',
-        );
-      },
-    );
+      await matchesGolden<GalleryApp>('example_menu');
+    });
 
     testWidgets(
       'Navigates to Simple Bar Chart and Renders',
@@ -367,63 +362,63 @@ void main() {
       'Navigates to Scatter Plot Chart and Renders',
       (tester) async =>
           tester.navigateToChartAndGolden<charts.ScatterPlotChart>(
-        simpleScatterPlotChartTitle,
-        scrollDelta: 300,
-      ),
+            simpleScatterPlotChartTitle,
+            scrollDelta: 300,
+          ),
     );
 
     testWidgets(
       'Navigates to Scatter Plot Chart and Renders',
       (tester) async =>
           tester.navigateToChartAndGolden<charts.ScatterPlotChart>(
-        comparisonPointsScatterPlotChartTitle,
-        scrollDelta: 300,
-      ),
+            comparisonPointsScatterPlotChartTitle,
+            scrollDelta: 300,
+          ),
     );
 
     testWidgets(
       'Navigates to Scatter Plot Chart and Renders',
       (tester) async =>
           tester.navigateToChartAndGolden<charts.ScatterPlotChart>(
-        panAndZoomScatterPlotChartTitle,
-        scrollDelta: 300,
-      ),
+            panAndZoomScatterPlotChartTitle,
+            scrollDelta: 300,
+          ),
     );
 
     testWidgets(
       'Navigates to Bucketing Axis Scatter Plot Chart and Renders',
       (tester) async =>
           tester.navigateToChartAndGolden<charts.ScatterPlotChart>(
-        bucketingAxisScatterPlotChartTitle,
-        scrollDelta: 300,
-      ),
+            bucketingAxisScatterPlotChartTitle,
+            scrollDelta: 300,
+          ),
     );
 
     testWidgets(
       'Navigates to Ordinal Combo Chart and Renders',
       (tester) async =>
           tester.navigateToChartAndGolden<charts.OrdinalComboChart>(
-        ordinalComboChartTitle,
-        scrollDelta: 300,
-      ),
+            ordinalComboChartTitle,
+            scrollDelta: 300,
+          ),
     );
 
     testWidgets(
       'Navigates to Numeric Line Bar Combo Chart and Renders',
       (tester) async =>
           tester.navigateToChartAndGolden<charts.NumericComboChart>(
-        numericComboLineBarChartTitle,
-        scrollDelta: 300,
-      ),
+            numericComboLineBarChartTitle,
+            scrollDelta: 300,
+          ),
     );
 
     testWidgets(
       'Navigates to Numeric Line Points Combo Chart and Renders',
       (tester) async =>
           tester.navigateToChartAndGolden<charts.NumericComboChart>(
-        numericComboLinePointChartTitle,
-        scrollDelta: 400,
-      ),
+            numericComboLinePointChartTitle,
+            scrollDelta: 400,
+          ),
     );
 
     testWidgets(
@@ -438,9 +433,9 @@ void main() {
       'Navigates to Scatter Plot Combo Chart and Renders',
       (tester) async =>
           tester.navigateToChartAndGolden<charts.ScatterPlotChart>(
-        scatterPlotComboLineChartTitle,
-        scrollDelta: 300,
-      ),
+            scatterPlotComboLineChartTitle,
+            scrollDelta: 300,
+          ),
     );
 
     testWidgets(
@@ -628,10 +623,10 @@ extension ExampleWidgetTestExtensions on WidgetTester {
     final tileFinder = find.byWidgetPredicate(
       (w) => switch (w) {
         final ListTile l => switch (l.title) {
-            final Text t when t.data == tileText => true,
-            _ => false
-          },
-        _ => false
+          final Text t when t.data == tileText => true,
+          _ => false,
+        },
+        _ => false,
       },
     );
 

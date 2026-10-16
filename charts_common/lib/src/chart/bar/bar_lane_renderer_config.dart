@@ -43,11 +43,9 @@ class BarLaneRendererConfig extends BarRendererConfig<String> {
     super.symbolRenderer,
     Color? backgroundBarColor,
     super.weightPattern,
-  })  : backgroundBarColor =
-            backgroundBarColor ?? StyleFactory.style.noDataColor,
-        super(
-          groupingType: groupingType ?? BarGroupingType.grouped,
-        );
+  }) : backgroundBarColor =
+           backgroundBarColor ?? StyleFactory.style.noDataColor,
+       super(groupingType: groupingType ?? BarGroupingType.grouped);
 
   /// The color of background bars.
   final Color backgroundBarColor;

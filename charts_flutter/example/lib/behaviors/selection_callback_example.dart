@@ -46,9 +46,8 @@ class SelectionCallbackExample extends StatefulWidget {
   });
 
   /// Creates a [charts.TimeSeriesChart] with sample data and no transition.
-  factory SelectionCallbackExample.withSampleData() => SelectionCallbackExample(
-        _createSampleData(),
-      );
+  factory SelectionCallbackExample.withSampleData() =>
+      SelectionCallbackExample(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -176,9 +175,7 @@ class _SelectionCallbackState extends State<SelectionCallbackExample> {
           widget.seriesList,
           animate: widget.animate,
           selectionModels: [
-            charts.SelectionModelConfig(
-              changedListener: _onSelectionChanged,
-            ),
+            charts.SelectionModelConfig(changedListener: _onSelectionChanged),
           ],
         ),
       ),

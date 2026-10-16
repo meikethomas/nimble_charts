@@ -13,7 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'package:nimble_charts_common/common.dart' as common
+import 'package:nimble_charts_common/common.dart'
+    as common
     show ImmutableSeries, SelectionModel, SelectionModelType, SeriesDatumConfig;
 
 /// Contains override settings for the internal chart state.
@@ -49,9 +50,9 @@ class UserManagedSelectionModel<D> {
   /// [selectedSeriesConfig] and [selectedDataConfig] is set to null because the
   /// [_model] is returned when [getModel] is called.
   UserManagedSelectionModel({common.SelectionModel<D>? model})
-      : _model = model ?? common.SelectionModel(),
-        selectedSeriesConfig = null,
-        selectedDataConfig = null;
+    : _model = model ?? common.SelectionModel(),
+      selectedSeriesConfig = null,
+      selectedDataConfig = null;
 
   /// Creates a [UserManagedSelectionModel] with configuration that is converted
   /// to a [common.SelectionModel] when [getModel] provides a processed series

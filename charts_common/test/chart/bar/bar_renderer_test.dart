@@ -46,13 +46,10 @@ class FakeBarRenderer<D> extends BarRenderer<D> {
   factory FakeBarRenderer({
     required BarRendererConfig<dynamic> config,
     required String rendererId,
-  }) =>
-      FakeBarRenderer._internal(config: config, rendererId: rendererId);
+  }) => FakeBarRenderer._internal(config: config, rendererId: rendererId);
 
-  FakeBarRenderer._internal({
-    required super.config,
-    required super.rendererId,
-  }) : super.internal();
+  FakeBarRenderer._internal({required super.config, required super.rendererId})
+    : super.internal();
 
   @override
   void paintBar(
@@ -156,7 +153,7 @@ void main() {
       MutableSeries<String>(
         Series<MyRow, String>(
           id: 'Desktop',
-          colorFn: (_, __) => MaterialPalette.blue.shadeDefault,
+          colorFn: (_, _) => MaterialPalette.blue.shadeDefault,
           domainFn: (row, _) => row.campaign,
           measureFn: (row, _) => row.clickCount,
           measureOffsetFn: (row, _) => 0,
@@ -166,7 +163,7 @@ void main() {
       MutableSeries<String>(
         Series<MyRow, String>(
           id: 'Tablet',
-          colorFn: (_, __) => MaterialPalette.red.shadeDefault,
+          colorFn: (_, _) => MaterialPalette.red.shadeDefault,
           domainFn: (row, _) => row.campaign,
           measureFn: (row, _) => row.clickCount,
           measureOffsetFn: (row, _) => 0,
@@ -176,7 +173,7 @@ void main() {
       MutableSeries<String>(
         Series<MyRow, String>(
           id: 'Mobile',
-          colorFn: (_, __) => MaterialPalette.green.shadeDefault,
+          colorFn: (_, _) => MaterialPalette.green.shadeDefault,
           domainFn: (row, _) => row.campaign,
           measureFn: (row, _) => row.clickCount,
           measureOffsetFn: (row, _) => 0,
@@ -190,7 +187,7 @@ void main() {
         Series<MyRow, String>(
           id: 'Desktop A',
           seriesCategory: 'A',
-          colorFn: (_, __) => MaterialPalette.blue.shadeDefault,
+          colorFn: (_, _) => MaterialPalette.blue.shadeDefault,
           domainFn: (row, _) => row.campaign,
           measureFn: (row, _) => row.clickCount,
           measureOffsetFn: (row, _) => 0,
@@ -201,7 +198,7 @@ void main() {
         Series<MyRow, String>(
           id: 'Tablet A',
           seriesCategory: 'A',
-          colorFn: (_, __) => MaterialPalette.red.shadeDefault,
+          colorFn: (_, _) => MaterialPalette.red.shadeDefault,
           domainFn: (row, _) => row.campaign,
           measureFn: (row, _) => row.clickCount,
           measureOffsetFn: (row, _) => 0,
@@ -212,7 +209,7 @@ void main() {
         Series<MyRow, String>(
           id: 'Mobile A',
           seriesCategory: 'A',
-          colorFn: (_, __) => MaterialPalette.green.shadeDefault,
+          colorFn: (_, _) => MaterialPalette.green.shadeDefault,
           domainFn: (row, _) => row.campaign,
           measureFn: (row, _) => row.clickCount,
           measureOffsetFn: (row, _) => 0,
@@ -223,7 +220,7 @@ void main() {
         Series<MyRow, String>(
           id: 'Desktop B',
           seriesCategory: 'B',
-          colorFn: (_, __) => MaterialPalette.blue.shadeDefault,
+          colorFn: (_, _) => MaterialPalette.blue.shadeDefault,
           domainFn: (row, _) => row.campaign,
           measureFn: (row, _) => row.clickCount,
           measureOffsetFn: (row, _) => 0,
@@ -234,7 +231,7 @@ void main() {
         Series<MyRow, String>(
           id: 'Tablet B',
           seriesCategory: 'B',
-          colorFn: (_, __) => MaterialPalette.red.shadeDefault,
+          colorFn: (_, _) => MaterialPalette.red.shadeDefault,
           domainFn: (row, _) => row.campaign,
           measureFn: (row, _) => row.clickCount,
           measureOffsetFn: (row, _) => 0,
@@ -245,7 +242,7 @@ void main() {
         Series<MyRow, String>(
           id: 'Mobile B',
           seriesCategory: 'B',
-          colorFn: (_, __) => MaterialPalette.green.shadeDefault,
+          colorFn: (_, _) => MaterialPalette.green.shadeDefault,
           domainFn: (row, _) => row.campaign,
           measureFn: (row, _) => row.clickCount,
           measureOffsetFn: (row, _) => 0,
@@ -845,20 +842,21 @@ void main() {
 
         final color = Color.fromHex(code: '#000000');
 
-        final series = MutableSeries<String>(
-          Series<MyRow, String>(
-            id: 'Desktop',
-            domainFn: (row, _) => row.campaign,
-            measureFn: (row, _) => row.clickCount,
-            measureOffsetFn: (_, __) => 0,
-            colorFn: (_, __) => color,
-            fillColorFn: (_, __) => color,
-            dashPatternFn: (_, __) => [1],
-            data: data,
-          ),
-        )
-          ..setAttr(domainAxisKey, domainAxis)
-          ..setAttr(measureAxisKey, measureAxis);
+        final series =
+            MutableSeries<String>(
+                Series<MyRow, String>(
+                  id: 'Desktop',
+                  domainFn: (row, _) => row.campaign,
+                  measureFn: (row, _) => row.clickCount,
+                  measureOffsetFn: (_, _) => 0,
+                  colorFn: (_, _) => color,
+                  fillColorFn: (_, _) => color,
+                  dashPatternFn: (_, _) => [1],
+                  data: data,
+                ),
+              )
+              ..setAttr(domainAxisKey, domainAxis)
+              ..setAttr(measureAxisKey, measureAxis);
 
         return [series];
       }
@@ -905,20 +903,21 @@ void main() {
 
         final color = Color.fromHex(code: '#000000');
 
-        final series = MutableSeries<String>(
-          Series<MyRow, String>(
-            id: 'Desktop',
-            domainFn: (row, _) => row.campaign,
-            measureFn: (row, _) => row.clickCount,
-            measureOffsetFn: (_, __) => 0,
-            colorFn: (_, __) => color,
-            fillColorFn: (_, __) => color,
-            dashPatternFn: (_, __) => [1],
-            data: data,
-          ),
-        )
-          ..setAttr(domainAxisKey, domainAxis)
-          ..setAttr(measureAxisKey, measureAxis);
+        final series =
+            MutableSeries<String>(
+                Series<MyRow, String>(
+                  id: 'Desktop',
+                  domainFn: (row, _) => row.campaign,
+                  measureFn: (row, _) => row.clickCount,
+                  measureOffsetFn: (_, _) => 0,
+                  colorFn: (_, _) => color,
+                  fillColorFn: (_, _) => color,
+                  dashPatternFn: (_, _) => [1],
+                  data: data,
+                ),
+              )
+              ..setAttr(domainAxisKey, domainAxis)
+              ..setAttr(measureAxisKey, measureAxis);
 
         return [series];
       }
@@ -941,15 +940,15 @@ void main() {
       ];
       final seriesListWithMeasures = createSeriesList(myDataWithMeasures);
 
-      final renderer = makeFakeRenderer(
-        config: BarRendererConfig(groupingType: BarGroupingType.grouped),
-      )
-
-        // Verify that only 3 bars are drawn for an initial draw with null data.
-        ..preprocessSeries(seriesListWithNull)
-        ..update(seriesListWithNull, true)
-        ..paintBarCallCount = 0
-        ..paint(canvas, 0.5);
+      final renderer =
+          makeFakeRenderer(
+              config: BarRendererConfig(groupingType: BarGroupingType.grouped),
+            )
+            // Verify that only 3 bars are drawn initially with null data.
+            ..preprocessSeries(seriesListWithNull)
+            ..update(seriesListWithNull, true)
+            ..paintBarCallCount = 0
+            ..paint(canvas, 0.5);
       expect(renderer.paintBarCallCount, equals(3));
 
       // On animation complete, verify that only 3 bars are drawn.

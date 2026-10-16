@@ -40,10 +40,10 @@ class DatumLegend<D> extends Legend<D> {
     LegendDefaultMeasure? legendDefaultMeasure,
     super.entryTextStyle,
   }) : super(
-          selectionModelType: selectionModelType ?? SelectionModelType.info,
-          legendEntryGenerator:
-              legendEntryGenerator ?? PerDatumLegendEntryGenerator(),
-        ) {
+         selectionModelType: selectionModelType ?? SelectionModelType.info,
+         legendEntryGenerator:
+             legendEntryGenerator ?? PerDatumLegendEntryGenerator(),
+       ) {
     // Calling the setters will automatically use non-null default values.
     this.showMeasures = showMeasures;
     this.legendDefaultMeasure = legendDefaultMeasure;

@@ -26,8 +26,9 @@ import 'package:nimble_charts_common/src/chart/link/link_renderer_config.dart';
 import 'package:nimble_charts_common/src/common/math.dart' show NullablePoint;
 import 'package:nimble_charts_common/src/data/series.dart' show AttributeKey;
 
-const linkElementsKey =
-    AttributeKey<List<LinkRendererElement>>('LinkRenderer.elements');
+const linkElementsKey = AttributeKey<List<LinkRendererElement>>(
+  'LinkRenderer.elements',
+);
 
 class LinkRenderer<D> extends BaseSeriesRenderer<D> {
   factory LinkRenderer({String? rendererId, LinkRendererConfig<D>? config}) =>
@@ -37,10 +38,10 @@ class LinkRenderer<D> extends BaseSeriesRenderer<D> {
       );
 
   LinkRenderer._internal({required super.rendererId, required this.config})
-      : super(
-          layoutPaintOrder: config.layoutPaintOrder,
-          symbolRenderer: config.symbolRenderer,
-        );
+    : super(
+        layoutPaintOrder: config.layoutPaintOrder,
+        symbolRenderer: config.symbolRenderer,
+      );
 
   /// Default renderer ID for the Sankey Chart
   static const defaultRendererID = 'sankey';
@@ -108,8 +109,7 @@ class LinkRenderer<D> extends BaseSeriesRenderer<D> {
     Rectangle<int>? boundsOverride, {
     bool selectOverlappingPoints = false,
     bool selectExactEventLocation = false,
-  }) =>
-      <DatumDetails<D>>[];
+  }) => <DatumDetails<D>>[];
 }
 
 class LinkRendererElement {

@@ -34,8 +34,8 @@ class TreeMapRendererElement<D> {
     this.patternColor,
     this.strokeColor,
     this.strokeWidthPx,
-  })  : _boundingRect = boundingRect,
-        _area = area;
+  }) : _boundingRect = boundingRect,
+       _area = area;
 
   /// Bounding rectangle of this element.
   Rectangle<num> get boundingRect => _boundingRect!;
@@ -79,27 +79,25 @@ class TreeMapRendererElement<D> {
 
   /// Clones a new renderer element with the same properties.
   TreeMapRendererElement<D> clone() => TreeMapRendererElement(
-        boundingRect: _boundingRect == null
-            ? null
-            : Rectangle.fromPoints(
-                boundingRect.topLeft,
-                boundingRect.bottomRight,
-              ),
-        area: area,
-        fillPattern: fillPattern,
-        fillColor:
-            fillColor == null ? null : Color.fromOther(color: fillColor!),
-        patternColor:
-            patternColor == null ? null : Color.fromOther(color: patternColor!),
-        strokeColor:
-            strokeColor == null ? null : Color.fromOther(color: strokeColor!),
-        strokeWidthPx: strokeWidthPx,
-        isLeaf: isLeaf,
-        index: index,
-        series: series,
-        domain: domain,
-        measure: measure,
-      );
+    boundingRect: _boundingRect == null
+        ? null
+        : Rectangle.fromPoints(boundingRect.topLeft, boundingRect.bottomRight),
+    area: area,
+    fillPattern: fillPattern,
+    fillColor: fillColor == null ? null : Color.fromOther(color: fillColor!),
+    patternColor: patternColor == null
+        ? null
+        : Color.fromOther(color: patternColor!),
+    strokeColor: strokeColor == null
+        ? null
+        : Color.fromOther(color: strokeColor!),
+    strokeWidthPx: strokeWidthPx,
+    isLeaf: isLeaf,
+    index: index,
+    series: series,
+    domain: domain,
+    measure: measure,
+  );
 
   /// Refreshes paint properties by invoking series accessor functions again.
   ///
@@ -129,18 +127,21 @@ class TreeMapRendererElement<D> {
   }
 
   @override
-  // ignore: no_runtimetype_tostring
-  String toString() => '$runtimeType${{
-        'boundingRect': boundingRect,
-        'area': area,
-        'strokeColor': strokeColor,
-        'strokeWidthPx': strokeWidthPx,
-        'fillColor': fillColor,
-        'fillPattern': fillPattern,
-        'patternColor': patternColor,
-        'isLeaf': isLeaf,
-        'index': index,
-        'domain': domain,
-        'measure': measure,
-      }}';
+  String toString() {
+    final properties = <String, Object?>{
+      'boundingRect': boundingRect,
+      'area': area,
+      'strokeColor': strokeColor,
+      'strokeWidthPx': strokeWidthPx,
+      'fillColor': fillColor,
+      'fillPattern': fillPattern,
+      'patternColor': patternColor,
+      'isLeaf': isLeaf,
+      'index': index,
+      'domain': domain,
+      'measure': measure,
+    };
+    // ignore: no_runtimetype_tostring
+    return '$runtimeType$properties';
+  }
 }

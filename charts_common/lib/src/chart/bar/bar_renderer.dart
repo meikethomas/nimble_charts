@@ -60,12 +60,10 @@ class BarRenderer<D>
   BarRenderer.internal({
     required BarRendererConfig<Object?> super.config,
     required super.rendererId,
-  })  : barRendererDecorator = config.barRendererDecorator,
-        _stackedBarPaddingPx = config.stackedBarPaddingPx,
-        _barGroupInnerPaddingPx = config.barGroupInnerPaddingPx,
-        super(
-          layoutPaintOrder: config.layoutPaintOrder ?? 0,
-        );
+  }) : barRendererDecorator = config.barRendererDecorator,
+       _stackedBarPaddingPx = config.stackedBarPaddingPx,
+       _barGroupInnerPaddingPx = config.barGroupInnerPaddingPx,
+       super(layoutPaintOrder: config.layoutPaintOrder ?? 0);
 
   /// If we are grouped, use this spacing between the bars in a group.
   final int _barGroupInnerPaddingPx;
@@ -178,29 +176,29 @@ class BarRenderer<D>
         series: series,
         domainValue: domainValue,
       )..setNewTarget(
-          makeBarRendererElement(
-            color: color,
-            dashPattern: dashPattern,
-            details: details,
-            domainValue: domainValue,
-            domainAxis: domainAxis,
-            domainWidth: domainWidth,
-            measureValue: measureValue,
-            measureOffsetValue: measureOffsetValue,
-            measureAxisPosition: measureAxisPosition,
-            measureAxis: measureAxis,
-            fillColor: fillColor,
-            fillPattern: fillPattern,
-            strokeWidthPx: strokeWidthPx,
-            barGroupIndex: barGroupIndex,
-            previousBarGroupWeight: previousBarGroupWeight,
-            barGroupWeight: barGroupWeight,
-            allBarGroupWeights: allBarGroupWeights,
-            numBarGroups: numBarGroups,
-            measureIsNull: measureIsNull,
-            measureIsNegative: measureIsNegative,
-          ),
-        );
+        makeBarRendererElement(
+          color: color,
+          dashPattern: dashPattern,
+          details: details,
+          domainValue: domainValue,
+          domainAxis: domainAxis,
+          domainWidth: domainWidth,
+          measureValue: measureValue,
+          measureOffsetValue: measureOffsetValue,
+          measureAxisPosition: measureAxisPosition,
+          measureAxis: measureAxis,
+          fillColor: fillColor,
+          fillPattern: fillPattern,
+          strokeWidthPx: strokeWidthPx,
+          barGroupIndex: barGroupIndex,
+          previousBarGroupWeight: previousBarGroupWeight,
+          barGroupWeight: barGroupWeight,
+          allBarGroupWeights: allBarGroupWeights,
+          numBarGroups: numBarGroups,
+          measureIsNull: measureIsNull,
+          measureIsNegative: measureIsNegative,
+        ),
+      );
 
   /// Generates a [BarRendererElement] to represent the rendering data for one
   /// bar on the chart.
@@ -226,31 +224,30 @@ class BarRenderer<D>
     List<double>? allBarGroupWeights,
     bool? measureIsNull,
     bool? measureIsNegative,
-  }) =>
-      BarRendererElement<D>()
-        ..color = color
-        ..dashPattern = dashPattern
-        ..fillColor = fillColor
-        ..fillPattern = fillPattern
-        ..measureAxisPosition = measureAxisPosition
-        ..roundPx = details.roundPx
-        ..strokeWidthPx = strokeWidthPx
-        ..measureIsNull = measureIsNull
-        ..measureIsNegative = measureIsNegative
-        ..bounds = _getBarBounds(
-          domainValue,
-          domainAxis,
-          domainWidth,
-          config.maxBarWidthPx,
-          measureValue,
-          measureOffsetValue,
-          measureAxis,
-          barGroupIndex,
-          previousBarGroupWeight,
-          barGroupWeight,
-          allBarGroupWeights,
-          numBarGroups,
-        );
+  }) => BarRendererElement<D>()
+    ..color = color
+    ..dashPattern = dashPattern
+    ..fillColor = fillColor
+    ..fillPattern = fillPattern
+    ..measureAxisPosition = measureAxisPosition
+    ..roundPx = details.roundPx
+    ..strokeWidthPx = strokeWidthPx
+    ..measureIsNull = measureIsNull
+    ..measureIsNegative = measureIsNegative
+    ..bounds = _getBarBounds(
+      domainValue,
+      domainAxis,
+      domainWidth,
+      config.maxBarWidthPx,
+      measureValue,
+      measureOffsetValue,
+      measureAxis,
+      barGroupIndex,
+      previousBarGroupWeight,
+      barGroupWeight,
+      allBarGroupWeights,
+      numBarGroups,
+    );
 
   @override
   void paintBar(
@@ -263,8 +260,9 @@ class BarRenderer<D>
     // When adjusting bars for stacked bar padding, do not modify the first bar
     // if rendering vertically and do not modify the last bar if rendering
     // horizontally.
-    final unmodifiedBar =
-        renderingVertically ? barElements.first : barElements.last;
+    final unmodifiedBar = renderingVertically
+        ? barElements.first
+        : barElements.last;
 
     // Find the max bar width from each segment to calculate corner radius.
     var maxBarWidth = 0;
@@ -311,8 +309,10 @@ class BarRenderer<D>
         ),
       );
 
-      maxBarWidth =
-          max(maxBarWidth, renderingVertically ? bounds.width : bounds.height);
+      maxBarWidth = max(
+        maxBarWidth,
+        renderingVertically ? bounds.width : bounds.height,
+      );
     }
 
     bool roundTopLeft;
@@ -357,9 +357,9 @@ class BarRenderer<D>
     final componentBounds = this.componentBounds!;
     final barOutsideBounds = renderingVertically
         ? barStack.fullStackRect.left < componentBounds.left ||
-            barStack.fullStackRect.right > componentBounds.right
+              barStack.fullStackRect.right > componentBounds.right
         : barStack.fullStackRect.top < componentBounds.top ||
-            barStack.fullStackRect.bottom > componentBounds.bottom;
+              barStack.fullStackRect.bottom > componentBounds.bottom;
 
     // TODO: When we have initial viewport, add image test for
     // clipping.
@@ -479,22 +479,24 @@ class BarRenderer<D>
     barWidth = max(1, barWidth);
 
     // Flip bar group index for calculating location on the domain axis if RTL.
-    final adjustedBarGroupIndex =
-        isRtl ? numBarGroups - barGroupIndex - 1 : barGroupIndex;
+    final adjustedBarGroupIndex = isRtl
+        ? numBarGroups - barGroupIndex - 1
+        : barGroupIndex;
 
     // Calculate the start and end of the bar, taking into account accumulated
     // padding for grouped bars.
     final previousAverageWidth = adjustedBarGroupIndex > 0
         ? ((domainWidth - spacingLoss) *
-                (previousBarGroupWeight! / adjustedBarGroupIndex))
-            .round()
+                  (previousBarGroupWeight! / adjustedBarGroupIndex))
+              .round()
         : 0;
 
-    final domainStart = (domainAxis.getLocation(domainValue)! -
-            (domainWidth / 2) +
-            (previousAverageWidth + _barGroupInnerPaddingPx) *
-                adjustedBarGroupIndex)
-        .round();
+    final domainStart =
+        (domainAxis.getLocation(domainValue)! -
+                (domainWidth / 2) +
+                (previousAverageWidth + _barGroupInnerPaddingPx) *
+                    adjustedBarGroupIndex)
+            .round();
 
     final domainEnd = domainStart + barWidth;
 
@@ -506,12 +508,14 @@ class BarRenderer<D>
     int measureEnd;
     if (measureValue < 0) {
       measureEnd = measureAxis.getLocation(measureOffsetValue)!.round();
-      measureStart =
-          measureAxis.getLocation(measureValue + measureOffsetValue)!.round();
+      measureStart = measureAxis
+          .getLocation(measureValue + measureOffsetValue)!
+          .round();
     } else {
       measureStart = measureAxis.getLocation(measureOffsetValue)!.round();
-      measureEnd =
-          measureAxis.getLocation(measureValue + measureOffsetValue)!.round();
+      measureEnd = measureAxis
+          .getLocation(measureValue + measureOffsetValue)!
+          .round();
     }
 
     Rectangle<int> bounds;
@@ -593,17 +597,18 @@ class BarRendererElement<D> extends BaseBarRendererElement
     final previousBounds = localPrevious.bounds!;
     final targetBounds = localTarget.bounds!;
 
-    final top = ((targetBounds.top - previousBounds.top) * animationPercent) +
+    final top =
+        ((targetBounds.top - previousBounds.top) * animationPercent) +
         previousBounds.top;
     final right =
         ((targetBounds.right - previousBounds.right) * animationPercent) +
-            previousBounds.right;
+        previousBounds.right;
     final bottom =
         ((targetBounds.bottom - previousBounds.bottom) * animationPercent) +
-            previousBounds.bottom;
+        previousBounds.bottom;
     final left =
         ((targetBounds.left - previousBounds.left) * animationPercent) +
-            previousBounds.left;
+        previousBounds.left;
 
     bounds = Rectangle<int>(
       left.round(),
@@ -642,7 +647,6 @@ class AnimatedBar<D> extends BaseAnimatedBar<D, BarRendererElement<D>> {
   @override
   BarRendererElement<D> getCurrentBar(double animationPercent) {
     final bar = super.getCurrentBar(animationPercent)
-
       // Update with series and datum information to pass to bar decorator.
       ..series = series
       ..datum = datum;

@@ -127,8 +127,10 @@ class TimeRangeTickProviderImpl extends TimeRangeTickProvider {
       );
 
       // Request collision check from draw strategy.
-      final collisionReport =
-          tickDrawStrategy.collides(currentTicks, orientation);
+      final collisionReport = tickDrawStrategy.collides(
+        currentTicks,
+        orientation,
+      );
 
       if (!collisionReport.ticksCollide) {
         // Return the first non colliding ticks.

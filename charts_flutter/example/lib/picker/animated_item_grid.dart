@@ -53,37 +53,28 @@ class _AnimatedItemGridState<T> extends State<AnimatedItemGrid<T>>
 
   bool _areItemListsEqual(List<T> list1, List<T> list2) =>
       list1.length == list2.length &&
-      list1.every(
-        (item) => list2.any(
-          (otherItem) => item == otherItem,
-        ),
-      );
+      list1.every((item) => list2.any((otherItem) => item == otherItem));
 
   @override
   Widget build(BuildContext context) => AnimationLimiter(
-        key: ValueKey(widget.items.length),
-        child: Wrap(
-          runAlignment: WrapAlignment.center,
-          alignment: WrapAlignment.center,
-          spacing: 8,
-          runSpacing: 8,
-          children: AnimationConfiguration.toStaggeredList(
-            duration: const Duration(milliseconds: 200),
-            childAnimationBuilder: (widget) => SlideAnimation(
-              verticalOffset: 50,
-              child: FadeInAnimation(
-                child: ScaleAnimation(
-                  scale: 0.5,
-                  child: widget,
-                ),
-              ),
-            ),
-            children: widget.items
-                .map(
-                  (item) => widget.buildItem(context, item),
-                )
-                .toList(),
+    key: ValueKey(widget.items.length),
+    child: Wrap(
+      runAlignment: WrapAlignment.center,
+      alignment: WrapAlignment.center,
+      spacing: 8,
+      runSpacing: 8,
+      children: AnimationConfiguration.toStaggeredList(
+        duration: const Duration(milliseconds: 200),
+        childAnimationBuilder: (widget) => SlideAnimation(
+          verticalOffset: 50,
+          child: FadeInAnimation(
+            child: ScaleAnimation(scale: 0.5, child: widget),
           ),
         ),
-      );
+        children: widget.items
+            .map((item) => widget.buildItem(context, item))
+            .toList(),
+      ),
+    ),
+  );
 }

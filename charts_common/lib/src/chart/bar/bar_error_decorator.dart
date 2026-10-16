@@ -94,11 +94,15 @@ class BarErrorDecorator<D> extends BarRendererDecorator<D> {
           if (startY != endY) {
             final barWidth = bounds.right - bounds.left;
             final x = (bounds.left + bounds.right) / 2;
-            final rectWidth =
-                min(strokeWidthPx + 2 * outlineWidthPx, barWidth.toDouble());
+            final rectWidth = min(
+              strokeWidthPx + 2 * outlineWidthPx,
+              barWidth.toDouble(),
+            );
             final strokeWidth = rectWidth - 2 * outlineWidthPx;
-            final rectEndpointLength =
-                min(endpointLengthPx + 2 * outlineWidthPx, barWidth.toDouble());
+            final rectEndpointLength = min(
+              endpointLengthPx + 2 * outlineWidthPx,
+              barWidth.toDouble(),
+            );
             final endpointLength = rectEndpointLength - 2 * outlineWidthPx;
 
             if (outlineWidthPx > 0) {
@@ -112,7 +116,6 @@ class BarErrorDecorator<D> extends BarRendererDecorator<D> {
                   fill: outlineColor,
                   strokeWidthPx: outlineWidthPx,
                 )
-
                 // Draw rectangle rendering the outline for the horizontal
                 // endpoint representing the lower bound.
                 ..drawRect(
@@ -125,7 +128,6 @@ class BarErrorDecorator<D> extends BarRendererDecorator<D> {
                   fill: outlineColor,
                   strokeWidthPx: outlineWidthPx,
                 )
-
                 // Draw rectangle rendering the outline for the horizontal
                 // endpoint representing the upper bound.
                 ..drawRect(
@@ -147,7 +149,6 @@ class BarErrorDecorator<D> extends BarRendererDecorator<D> {
                 stroke: strokeColor,
                 strokeWidthPx: strokeWidth,
               )
-
               // Draw horizontal whisker line for the lower bound.
               ..drawLine(
                 points: [
@@ -157,7 +158,6 @@ class BarErrorDecorator<D> extends BarRendererDecorator<D> {
                 stroke: strokeColor,
                 strokeWidthPx: strokeWidth,
               )
-
               // Draw horizontal whisker line for the upper bound.
               ..drawLine(
                 points: [
@@ -181,11 +181,15 @@ class BarErrorDecorator<D> extends BarRendererDecorator<D> {
           if (startX != endX) {
             final barWidth = bounds.bottom - bounds.top;
             final y = (bounds.top + bounds.bottom) / 2;
-            final rectWidth =
-                min(strokeWidthPx + 2 * outlineWidthPx, barWidth.toDouble());
+            final rectWidth = min(
+              strokeWidthPx + 2 * outlineWidthPx,
+              barWidth.toDouble(),
+            );
             final strokeWidth = rectWidth - 2 * outlineWidthPx;
-            final rectEndpointLength =
-                min(endpointLengthPx + 2 * outlineWidthPx, barWidth.toDouble());
+            final rectEndpointLength = min(
+              endpointLengthPx + 2 * outlineWidthPx,
+              barWidth.toDouble(),
+            );
             final endpointLength = rectEndpointLength - 2 * outlineWidthPx;
 
             if (outlineWidthPx > 0) {
@@ -199,7 +203,6 @@ class BarErrorDecorator<D> extends BarRendererDecorator<D> {
                   fill: outlineColor,
                   strokeWidthPx: outlineWidthPx,
                 )
-
                 // Draw rectangle rendering the outline for the vertical
                 // endpoint representing the lower bound.
                 ..drawRect(
@@ -212,7 +215,6 @@ class BarErrorDecorator<D> extends BarRendererDecorator<D> {
                   fill: outlineColor,
                   strokeWidthPx: outlineWidthPx,
                 )
-
                 // Draw rectangle rendering the outline for the vertical
                 // endpoint representing the upper bound.
                 ..drawRect(
@@ -234,7 +236,6 @@ class BarErrorDecorator<D> extends BarRendererDecorator<D> {
                 stroke: strokeColor,
                 strokeWidthPx: strokeWidth,
               )
-
               // Draw vertical whisker line for the lower bound.
               ..drawLine(
                 points: [
@@ -244,7 +245,6 @@ class BarErrorDecorator<D> extends BarRendererDecorator<D> {
                 stroke: strokeColor,
                 strokeWidthPx: strokeWidth,
               )
-
               // Draw vertical whisker line for the upper bound.
               ..drawLine(
                 points: [

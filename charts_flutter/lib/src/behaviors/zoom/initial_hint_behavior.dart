@@ -18,7 +18,8 @@ import 'package:meta/meta.dart' show immutable;
 import 'package:nimble_charts/src/base_chart_state.dart' show BaseChartState;
 import 'package:nimble_charts/src/behaviors/chart_behavior.dart'
     show ChartBehavior, ChartStateBehavior, GestureType;
-import 'package:nimble_charts_common/common.dart' as common
+import 'package:nimble_charts_common/common.dart'
+    as common
     show BaseChart, ChartBehavior, InitialHintBehavior;
 
 @immutable

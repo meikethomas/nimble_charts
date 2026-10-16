@@ -42,6 +42,7 @@ class Tick<D> {
   double? labelOffsetPx;
 
   @override
-  String toString() => 'Tick(value: $value, locationPx: $locationPx, '
+  String toString() =>
+      'Tick(value: $value, locationPx: $locationPx, '
       'labelOffsetPx: $labelOffsetPx)';
 }

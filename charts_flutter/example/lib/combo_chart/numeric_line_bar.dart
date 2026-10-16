@@ -32,9 +32,8 @@ class NumericComboLineBarChart extends StatelessWidget {
   });
 
   /// Creates a [charts.LineChart] with sample data and no transition.
-  factory NumericComboLineBarChart.withSampleData() => NumericComboLineBarChart(
-        _createSampleData(),
-      );
+  factory NumericComboLineBarChart.withSampleData() =>
+      NumericComboLineBarChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -72,21 +71,21 @@ class NumericComboLineBarChart extends StatelessWidget {
 
     return [
       charts.Series<LinearSales, int>(
-        id: 'Desktop',
-        colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
-        domainFn: (sales, _) => sales.year,
-        measureFn: (sales, _) => sales.sales,
-        data: desktopSalesData,
-      )
+          id: 'Desktop',
+          colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
+          domainFn: (sales, _) => sales.year,
+          measureFn: (sales, _) => sales.sales,
+          data: desktopSalesData,
+        )
         // Configure our custom bar renderer for this series.
         ..setAttribute(charts.rendererIdKey, 'customBar'),
       charts.Series<LinearSales, int>(
-        id: 'Tablet',
-        colorFn: (_, _) => charts.MaterialPalette.red.shadeDefault,
-        domainFn: (sales, _) => sales.year,
-        measureFn: (sales, _) => sales.sales,
-        data: tableSalesData,
-      )
+          id: 'Tablet',
+          colorFn: (_, _) => charts.MaterialPalette.red.shadeDefault,
+          domainFn: (sales, _) => sales.year,
+          measureFn: (sales, _) => sales.sales,
+          data: tableSalesData,
+        )
         // Configure our custom bar renderer for this series.
         ..setAttribute(charts.rendererIdKey, 'customBar'),
       charts.Series<LinearSales, int>(
@@ -102,19 +101,19 @@ class NumericComboLineBarChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.NumericComboChart(
-        seriesList,
-        animate: animate,
-        // Configure the default renderer as a line renderer. This will be used
-        // for any series that does not define a rendererIdKey.
-        defaultRenderer: charts.LineRendererConfig(),
-        // Custom renderer configuration for the bar series.
-        customSeriesRenderers: [
-          charts.BarRendererConfig(
-            // ID used to link series to this renderer.
-            customRendererId: 'customBar',
-          ),
-        ],
-      );
+    seriesList,
+    animate: animate,
+    // Configure the default renderer as a line renderer. This will be used
+    // for any series that does not define a rendererIdKey.
+    defaultRenderer: charts.LineRendererConfig(),
+    // Custom renderer configuration for the bar series.
+    customSeriesRenderers: [
+      charts.BarRendererConfig(
+        // ID used to link series to this renderer.
+        customRendererId: 'customBar',
+      ),
+    ],
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<LinearSales, int>> _createSampleData() {
@@ -141,21 +140,21 @@ class NumericComboLineBarChart extends StatelessWidget {
 
     return [
       charts.Series<LinearSales, int>(
-        id: 'Desktop',
-        colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
-        domainFn: (sales, _) => sales.year,
-        measureFn: (sales, _) => sales.sales,
-        data: desktopSalesData,
-      )
+          id: 'Desktop',
+          colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
+          domainFn: (sales, _) => sales.year,
+          measureFn: (sales, _) => sales.sales,
+          data: desktopSalesData,
+        )
         // Configure our custom bar renderer for this series.
         ..setAttribute(charts.rendererIdKey, 'customBar'),
       charts.Series<LinearSales, int>(
-        id: 'Tablet',
-        colorFn: (_, _) => charts.MaterialPalette.red.shadeDefault,
-        domainFn: (sales, _) => sales.year,
-        measureFn: (sales, _) => sales.sales,
-        data: tableSalesData,
-      )
+          id: 'Tablet',
+          colorFn: (_, _) => charts.MaterialPalette.red.shadeDefault,
+          domainFn: (sales, _) => sales.year,
+          measureFn: (sales, _) => sales.sales,
+          data: tableSalesData,
+        )
         // Configure our custom bar renderer for this series.
         ..setAttribute(charts.rendererIdKey, 'customBar'),
       charts.Series<LinearSales, int>(

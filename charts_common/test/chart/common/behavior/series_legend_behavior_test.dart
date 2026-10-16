@@ -110,7 +110,7 @@ void main() {
         data: [s1D1, s1D2, s1D3],
         domainFn: (row, _) => row.campaign,
         measureFn: (row, _) => row.count,
-        colorFn: (_, __) => blue,
+        colorFn: (_, _) => blue,
       ),
     );
 
@@ -120,7 +120,7 @@ void main() {
         data: [s2D1, s2D2, s2D3],
         domainFn: (row, _) => row.campaign,
         measureFn: (row, _) => row.count,
-        colorFn: (_, __) => red,
+        colorFn: (_, _) => red,
       ),
     );
   });
@@ -154,9 +154,9 @@ void main() {
   test('default hidden series are removed from list during pre process', () {
     final seriesList = [series1, series2];
     const selectionType = SelectionModelType.info;
-    final legend =
-        ConcreteSeriesLegend<String>(selectionModelType: selectionType)
-          ..defaultHiddenSeries = ['s2'];
+    final legend = ConcreteSeriesLegend<String>(
+      selectionModelType: selectionType,
+    )..defaultHiddenSeries = ['s2'];
 
     chart = ConcreteChart(seriesList);
     legend.attachTo(chart);
@@ -175,8 +175,9 @@ void main() {
   test('hidden series are removed from list after chart pre process', () {
     final seriesList = [series1, series2];
     const selectionType = SelectionModelType.info;
-    final legend =
-        ConcreteSeriesLegend<String>(selectionModelType: selectionType);
+    final legend = ConcreteSeriesLegend<String>(
+      selectionModelType: selectionType,
+    );
 
     chart = ConcreteChart(seriesList);
     legend
@@ -198,13 +199,13 @@ void main() {
     final seriesList = [series1, series2];
     final seriesList2 = [series1, series2];
     const selectionType = SelectionModelType.info;
-    final legend =
-        ConcreteSeriesLegend<String>(selectionModelType: selectionType);
+    final legend = ConcreteSeriesLegend<String>(
+      selectionModelType: selectionType,
+    );
 
     chart = ConcreteChart(seriesList);
     legend
       ..attachTo(chart)
-
       // First hide the series.
       ..hideSeries('s1');
     chart
@@ -287,13 +288,13 @@ void main() {
   test('hidden series removed from chart and later re-added is visible', () {
     final seriesList = [series1, series2];
     const selectionType = SelectionModelType.info;
-    final legend =
-        ConcreteSeriesLegend<String>(selectionModelType: selectionType);
+    final legend = ConcreteSeriesLegend<String>(
+      selectionModelType: selectionType,
+    );
 
     chart = ConcreteChart(seriesList);
     legend
       ..attachTo(chart)
-
       // First hide the series.
       ..hideSeries('s1');
     chart
@@ -374,10 +375,12 @@ void main() {
       ..callConfigureSeries()
       ..callOnPreProcess()
       ..callOnPostProcess();
-    chart.getSelectionModel(selectionType).updateSelection(
-      [SeriesDatum(series1, s1D1), SeriesDatum(series2, s2D1)],
-      [series1, series2],
-    );
+    chart
+        .getSelectionModel(selectionType)
+        .updateSelection(
+          [SeriesDatum(series1, s1D1), SeriesDatum(series2, s2D1)],
+          [series1, series2],
+        );
 
     final legendEntries = legend.legendState.legendEntries;
     expect(legendEntries, hasLength(2));

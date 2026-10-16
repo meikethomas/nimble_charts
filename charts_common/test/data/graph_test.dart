@@ -14,7 +14,8 @@
 // limitations under the License.
 
 import 'package:nimble_charts_common/common.dart';
-import 'package:nimble_charts_common/src/data/graph.dart' as graph_structure
+import 'package:nimble_charts_common/src/data/graph.dart'
+    as graph_structure
     show Link, Node, indexNotRelevant;
 import 'package:test/test.dart';
 
@@ -85,26 +86,22 @@ Graph<MyNode, MyLink, String> mockLinearGraph() {
 String nodeDomain(
   Graph<MyNode, MyLink, String> myGraph,
   graph_structure.Node<MyNode, MyLink> node,
-) =>
-    myGraph.nodeDomainFn(node, graph_structure.indexNotRelevant);
+) => myGraph.nodeDomainFn(node, graph_structure.indexNotRelevant);
 
 String linkDomain(
   Graph<MyNode, MyLink, String> myGraph,
   graph_structure.Link<MyNode, MyLink> link,
-) =>
-    myGraph.linkDomainFn(link, graph_structure.indexNotRelevant);
+) => myGraph.linkDomainFn(link, graph_structure.indexNotRelevant);
 
 num nodeMeasure(
   Graph<MyNode, MyLink, String> myGraph,
   graph_structure.Node<MyNode, MyLink> node,
-) =>
-    myGraph.nodeMeasureFn(node, graph_structure.indexNotRelevant)!;
+) => myGraph.nodeMeasureFn(node, graph_structure.indexNotRelevant)!;
 
 num linkMeasure(
   Graph<MyNode, MyLink, String> myGraph,
   graph_structure.Link<MyNode, MyLink> link,
-) =>
-    myGraph.linkMeasureFn(link, graph_structure.indexNotRelevant)!;
+) => myGraph.linkMeasureFn(link, graph_structure.indexNotRelevant)!;
 
 void main() {
   group('GraphDataClass', () {
@@ -119,15 +116,17 @@ void main() {
 
     test('converts generic node into standard graph node', () {
       final myGraph = mockLinearGraph();
-      expect(
-        myGraph.nodes.map((node) => nodeDomain(myGraph, node)).toList(),
-        [nodeIds[1], nodeIds[2], nodeIds[3]],
-      );
+      expect(myGraph.nodes.map((node) => nodeDomain(myGraph, node)).toList(), [
+        nodeIds[1],
+        nodeIds[2],
+        nodeIds[3],
+      ]);
       expect(myGraph.nodes.length, 3);
-      expect(
-        myGraph.nodes.map((node) => nodeMeasure(myGraph, node)).toList(),
-        [4, 5, 6],
-      );
+      expect(myGraph.nodes.map((node) => nodeMeasure(myGraph, node)).toList(), [
+        4,
+        5,
+        6,
+      ]);
     });
 
     test('executes accessor functions on a given link', () {
@@ -173,14 +172,9 @@ void main() {
       expect(myGraph.nodes[2].outgoingLinks.length, 0);
     });
     test('preserves graph specific data when converting to series', () {
-      final myNodes = [
-        MyNode(nodeIds[1], 4),
-        MyNode(nodeIds[2], 5),
-      ];
+      final myNodes = [MyNode(nodeIds[1], 4), MyNode(nodeIds[2], 5)];
 
-      final myLinks = [
-        MyLink(linkIds[1], myNodes[0], myNodes[1], 1),
-      ];
+      final myLinks = [MyLink(linkIds[1], myNodes[0], myNodes[1], 1)];
 
       final myGraph = Graph<MyNode, MyLink, String>(
         id: 'MyGraph',

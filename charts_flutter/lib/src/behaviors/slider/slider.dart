@@ -18,7 +18,8 @@ import 'dart:math' show Rectangle;
 import 'package:meta/meta.dart' show immutable;
 import 'package:nimble_charts/src/behaviors/chart_behavior.dart'
     show ChartBehavior, GestureType;
-import 'package:nimble_charts_common/common.dart' as common
+import 'package:nimble_charts_common/common.dart'
+    as common
     show
         ChartBehavior,
         LayoutViewPaintOrder,
@@ -75,8 +76,9 @@ class Slider<D> extends ChartBehavior<D> {
     eventTrigger ??= common.SelectionTrigger.tapAndDrag;
     handleRenderer ??= common.RectSymbolRenderer();
     // Default the handle size large enough to tap on a mobile device.
-    style ??=
-        common.SliderStyle(handleSize: const Rectangle<int>(0, 0, 20, 30));
+    style ??= common.SliderStyle(
+      handleSize: const Rectangle<int>(0, 0, 20, 30),
+    );
     return Slider._internal(
       eventTrigger: eventTrigger,
       handleRenderer: handleRenderer,
@@ -163,7 +165,8 @@ class Slider<D> extends ChartBehavior<D> {
       case common.SelectionTrigger.hover:
       case common.SelectionTrigger.tap:
         throw ArgumentError(
-          'Slider does not support the event trigger ' '"$eventTrigger"',
+          'Slider does not support the event trigger '
+          '"$eventTrigger"',
         );
     }
     return desiredGestures;
@@ -171,14 +174,14 @@ class Slider<D> extends ChartBehavior<D> {
 
   @override
   common.Slider<D> createCommonBehavior() => common.Slider<D>(
-        eventTrigger: eventTrigger,
-        handleRenderer: handleRenderer,
-        initialDomainValue: initialDomainValue as D,
-        onChangeCallback: onChangeCallback,
-        roleId: roleId,
-        snapToDatum: snapToDatum,
-        style: style,
-      );
+    eventTrigger: eventTrigger,
+    handleRenderer: handleRenderer,
+    initialDomainValue: initialDomainValue as D,
+    onChangeCallback: onChangeCallback,
+    roleId: roleId,
+    snapToDatum: snapToDatum,
+    style: style,
+  );
 
   @override
   void updateCommonBehavior(common.ChartBehavior<D> commonBehavior) {}
@@ -200,12 +203,12 @@ class Slider<D> extends ChartBehavior<D> {
 
   @override
   int get hashCode => Object.hash(
-        eventTrigger,
-        handleRenderer,
-        initialDomainValue,
-        roleId,
-        snapToDatum,
-        style,
-        layoutPaintOrder,
-      );
+    eventTrigger,
+    handleRenderer,
+    initialDomainValue,
+    roleId,
+    snapToDatum,
+    style,
+    layoutPaintOrder,
+  );
 }

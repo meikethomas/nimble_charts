@@ -10,7 +10,7 @@ void main() {
       final emptySeriesList = [
         charts.Series<OrdinalSales, String>(
           id: 'Sales',
-          colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+          colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
           domainFn: (sales, _) => sales.year,
           measureFn: (sales, _) => sales.sales,
           data: [],
@@ -22,10 +22,7 @@ void main() {
           home: Scaffold(
             body: SizedBox(
               height: 400,
-              child: charts.BarChart(
-                emptySeriesList,
-                animate: false,
-              ),
+              child: charts.BarChart(emptySeriesList, animate: false),
             ),
           ),
         ),
@@ -40,7 +37,7 @@ void main() {
       final largeSeriesList = [
         charts.Series<OrdinalSales, String>(
           id: 'Sales',
-          colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+          colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
           domainFn: (sales, _) => sales.year,
           measureFn: (sales, _) => sales.sales,
           data: List.generate(
@@ -55,10 +52,7 @@ void main() {
           home: Scaffold(
             body: SizedBox(
               height: 400,
-              child: charts.BarChart(
-                largeSeriesList,
-                animate: false,
-              ),
+              child: charts.BarChart(largeSeriesList, animate: false),
             ),
           ),
         ),

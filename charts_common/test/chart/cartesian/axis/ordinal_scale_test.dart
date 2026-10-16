@@ -104,8 +104,9 @@ void main() {
     });
 
     test('space from step changes range band', () {
-      scale.rangeBandConfig =
-          const RangeBandConfig.fixedPixelSpaceBetweenStep(50);
+      scale.rangeBandConfig = const RangeBandConfig.fixedPixelSpaceBetweenStep(
+        50,
+      );
       // 200 = 1000pixels / 4domains) - 50
       expect(scale.rangeBand, closeTo(200.0, EPSILON));
     });
@@ -340,8 +341,7 @@ void main() {
       expect(() => scale.setViewport(0, 'b'), throwsArgumentError);
     });
 
-    test(
-        'set starting value if starting domain is not in domain list '
+    test('set starting value if starting domain is not in domain list '
         'horizontally', () {
       scale
         ..range = const ScaleOutputExtent(1000, 2000)
@@ -354,8 +354,7 @@ void main() {
       expect(scale['d'], closeTo(2750, EPSILON));
     });
 
-    test(
-        'set starting value if starting domain is not in domain list '
+    test('set starting value if starting domain is not in domain list '
         'vertically', () {
       scale
         ..range = const ScaleOutputExtent(2000, 1000)
@@ -368,8 +367,7 @@ void main() {
       expect(scale['d'], closeTo(1250, EPSILON));
     });
 
-    test(
-        'get size returns number of full steps that fit scale range '
+    test('get size returns number of full steps that fit scale range '
         'horizontally ', () {
       scale
         ..range = const ScaleOutputExtent(1000, 2000)
@@ -380,8 +378,7 @@ void main() {
       expect(scale.viewportDataSize, equals(0));
     });
 
-    test(
-        'get size returns number of full steps that fit scale range '
+    test('get size returns number of full steps that fit scale range '
         'vertically ', () {
       scale
         ..range = const ScaleOutputExtent(2000, 1000)
@@ -392,26 +389,30 @@ void main() {
       expect(scale.viewportDataSize, equals(0));
     });
 
-    test('get starting viewport gets first fully visible domain horizontally',
-        () {
-      scale
-        ..range = const ScaleOutputExtent(1000, 2000)
-        ..setViewportSettings(2, -500);
-      expect(scale.viewportStartingDomain, equals('b'));
+    test(
+      'get starting viewport gets first fully visible domain horizontally',
+      () {
+        scale
+          ..range = const ScaleOutputExtent(1000, 2000)
+          ..setViewportSettings(2, -500);
+        expect(scale.viewportStartingDomain, equals('b'));
 
-      scale.setViewportSettings(2, -100);
-      expect(scale.viewportStartingDomain, equals('b'));
-    });
+        scale.setViewportSettings(2, -100);
+        expect(scale.viewportStartingDomain, equals('b'));
+      },
+    );
 
-    test('get starting viewport gets first fully visible domain vertically',
-        () {
-      scale
-        ..range = const ScaleOutputExtent(2000, 1000)
-        ..setViewportSettings(2, 500);
-      expect(scale.viewportStartingDomain, equals('c'));
+    test(
+      'get starting viewport gets first fully visible domain vertically',
+      () {
+        scale
+          ..range = const ScaleOutputExtent(2000, 1000)
+          ..setViewportSettings(2, 500);
+        expect(scale.viewportStartingDomain, equals('c'));
 
-      scale.setViewportSettings(2, 500);
-      expect(scale.viewportStartingDomain, equals('c'));
-    });
+        scale.setViewportSettings(2, 500);
+        expect(scale.viewportStartingDomain, equals('c'));
+      },
+    );
   });
 }

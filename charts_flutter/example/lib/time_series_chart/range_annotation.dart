@@ -39,9 +39,7 @@ class TimeSeriesRangeAnnotationChart extends StatelessWidget {
 
   /// Creates a [charts.TimeSeriesChart] with sample data and no transition.
   factory TimeSeriesRangeAnnotationChart.withSampleData() =>
-      TimeSeriesRangeAnnotationChart(
-        _createSampleData(),
-      );
+      TimeSeriesRangeAnnotationChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -76,18 +74,18 @@ class TimeSeriesRangeAnnotationChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.TimeSeriesChart(
-        seriesList,
-        animate: animate,
-        behaviors: [
-          charts.RangeAnnotation([
-            charts.RangeAnnotationSegment(
-              DateTime(2017, 10, 4),
-              DateTime(2017, 10, 15),
-              charts.RangeAnnotationAxisType.domain,
-            ),
-          ]),
-        ],
-      );
+    seriesList,
+    animate: animate,
+    behaviors: [
+      charts.RangeAnnotation([
+        charts.RangeAnnotationSegment(
+          DateTime(2017, 10, 4),
+          DateTime(2017, 10, 15),
+          charts.RangeAnnotationAxisType.domain,
+        ),
+      ]),
+    ],
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<TimeSeriesSales, DateTime>> _createSampleData() {

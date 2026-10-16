@@ -18,27 +18,30 @@ import 'dart:developer';
 import 'package:example/a11y/a11y_gallery.dart' as a11y show buildGallery;
 import 'package:example/axes/axes_gallery.dart' as axes show buildGallery;
 import 'package:example/bar_chart/bar_gallery.dart' as bar show buildGallery;
-import 'package:example/behaviors/behaviors_gallery.dart' as behaviors
+import 'package:example/behaviors/behaviors_gallery.dart'
+    as behaviors
     show buildGallery;
-import 'package:example/combo_chart/combo_gallery.dart' as combo
+import 'package:example/combo_chart/combo_gallery.dart'
+    as combo
     show buildGallery;
 import 'package:example/i18n/i18n_gallery.dart' as i18n show buildGallery;
-import 'package:example/legends/legends_gallery.dart' as legends
+import 'package:example/legends/legends_gallery.dart'
+    as legends
     show buildGallery;
 import 'package:example/line_chart/line_gallery.dart' as line show buildGallery;
 import 'package:example/pie_chart/pie_gallery.dart' as pie show buildGallery;
 import 'package:example/scatter_plot_chart/scatter_plot_gallery.dart'
-    as scatter_plot show buildGallery;
+    as scatter_plot
+    show buildGallery;
 import 'package:example/time_series_chart/time_series_gallery.dart'
-    as time_series show buildGallery;
+    as time_series
+    show buildGallery;
 import 'package:flutter/material.dart';
 import 'package:nimble_charts/flutter.dart' as charts;
 
 /// This was the original gallery app.
 class Original extends StatelessWidget {
-  Original({
-    super.key,
-  });
+  Original({super.key});
   final a11yGalleries = a11y.buildGallery();
   final barGalleries = bar.buildGallery();
   final timeSeriesGalleries = time_series.buildGallery();
@@ -58,24 +61,28 @@ class Original extends StatelessWidget {
       // Add example bar charts.
       ...barGalleries.map((gallery) => gallery.buildGalleryListTile(context)),
       // Add example time series charts.
-      ...timeSeriesGalleries
-          .map((gallery) => gallery.buildGalleryListTile(context)),
+      ...timeSeriesGalleries.map(
+        (gallery) => gallery.buildGalleryListTile(context),
+      ),
       // Add example line charts.
       ...lineGalleries.map((gallery) => gallery.buildGalleryListTile(context)),
       // Add example scatter plot charts.
-      ...scatterPlotGalleries
-          .map((gallery) => gallery.buildGalleryListTile(context)),
+      ...scatterPlotGalleries.map(
+        (gallery) => gallery.buildGalleryListTile(context),
+      ),
       // Add example pie charts.
       ...comboGalleries.map((gallery) => gallery.buildGalleryListTile(context)),
       // Add example pie charts.
       ...pieGalleries.map((gallery) => gallery.buildGalleryListTile(context)),
       // Add example custom axis.
       ...axesGalleries.map((gallery) => gallery.buildGalleryListTile(context)),
-      ...behaviorsGalleries
-          .map((gallery) => gallery.buildGalleryListTile(context)),
+      ...behaviorsGalleries.map(
+        (gallery) => gallery.buildGalleryListTile(context),
+      ),
       // Add legends examples
-      ...legendsGalleries
-          .map((gallery) => gallery.buildGalleryListTile(context)),
+      ...legendsGalleries.map(
+        (gallery) => gallery.buildGalleryListTile(context),
+      ),
       // Add examples for i18n.
       ...i18nGalleries.map((gallery) => gallery.buildGalleryListTile(context)),
     ];

@@ -10,7 +10,7 @@ void main() {
       final seriesList = [
         charts.Series<OrdinalSales, String>(
           id: 'Sales',
-          colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+          colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
           domainFn: (sales, _) => sales.year,
           measureFn: (sales, _) => sales.sales,
           data: [
@@ -27,10 +27,7 @@ void main() {
           home: Scaffold(
             body: SizedBox(
               height: 400,
-              child: charts.BarChart(
-                seriesList,
-                animate: false,
-              ),
+              child: charts.BarChart(seriesList, animate: false),
             ),
           ),
         ),
@@ -38,9 +35,7 @@ void main() {
 
       expect(find.byType(charts.BarChart), findsOneWidget);
 
-      await matchesGolden<charts.BarChart>(
-        'golden_bar_chart',
-      );
+      await matchesGolden<charts.BarChart>('golden_bar_chart');
     });
 
     // Add more test cases here, e.g.:

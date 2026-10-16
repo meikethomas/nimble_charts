@@ -27,9 +27,8 @@ class SelectionBarHighlight extends StatelessWidget {
   });
 
   /// Creates a [charts.BarChart] with sample data and no transition.
-  factory SelectionBarHighlight.withSampleData() => SelectionBarHighlight(
-        _createSampleData(),
-      );
+  factory SelectionBarHighlight.withSampleData() =>
+      SelectionBarHighlight(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -73,10 +72,7 @@ class SelectionBarHighlight extends StatelessWidget {
       //
       // [defaultInteractions] can be set to false to avoid the default
       // interactions.
-      charts.BarChart(
-        seriesList,
-        animate: animate,
-      );
+      charts.BarChart(seriesList, animate: animate);
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {

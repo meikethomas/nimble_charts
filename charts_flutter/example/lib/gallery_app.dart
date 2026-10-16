@@ -23,28 +23,27 @@ class GalleryApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ValueListenableBuilder(
-        valueListenable: appState,
-        builder: (_, currentState, _) => MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: currentState.isOriginal
-              ? 'Charts Gallery'
-              : 'nimble_charts Gallery',
-          theme: currentState.isOriginal
-              ? null
-              : ThemeData(
-                  colorScheme: currentState.themeMode == ThemeMode.dark
-                      ? ColorScheme.fromSeed(
-                          seedColor: const Color.fromRGBO(0, 147, 173, 1),
-                          brightness: Brightness.dark,
-                        )
-                      : ColorScheme.fromSeed(
-                          seedColor: const Color.fromRGBO(0, 147, 173, 1),
-                        ),
-                ),
-          darkTheme: ThemeData.dark(),
-          themeMode: currentState.themeMode,
-          home:
-              currentState.isOriginal ? Original() : const TagSelectionScreen(),
-        ),
-      );
+    valueListenable: appState,
+    builder: (_, currentState, _) => MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: currentState.isOriginal
+          ? 'Charts Gallery'
+          : 'nimble_charts Gallery',
+      theme: currentState.isOriginal
+          ? null
+          : ThemeData(
+              colorScheme: currentState.themeMode == ThemeMode.dark
+                  ? ColorScheme.fromSeed(
+                      seedColor: const Color.fromRGBO(0, 147, 173, 1),
+                      brightness: Brightness.dark,
+                    )
+                  : ColorScheme.fromSeed(
+                      seedColor: const Color.fromRGBO(0, 147, 173, 1),
+                    ),
+            ),
+      darkTheme: ThemeData.dark(),
+      themeMode: currentState.themeMode,
+      home: currentState.isOriginal ? Original() : const TagSelectionScreen(),
+    ),
+  );
 }

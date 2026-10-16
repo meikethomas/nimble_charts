@@ -25,9 +25,8 @@ import 'package:nimble_charts/flutter.dart' as charts;
 class SimpleDatumLegend extends StatelessWidget {
   const SimpleDatumLegend(this.seriesList, {super.key, this.animate = true});
 
-  factory SimpleDatumLegend.withSampleData() => SimpleDatumLegend(
-        _createSampleData(),
-      );
+  factory SimpleDatumLegend.withSampleData() =>
+      SimpleDatumLegend(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -62,12 +61,12 @@ class SimpleDatumLegend extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.PieChart(
-        seriesList,
-        animate: animate,
-        // Add the series legend behavior to the chart to turn on series
-        // legends. By default the legend will display above the chart.
-        behaviors: [charts.DatumLegend<dynamic>()],
-      );
+    seriesList,
+    animate: animate,
+    // Add the series legend behavior to the chart to turn on series
+    // legends. By default the legend will display above the chart.
+    behaviors: [charts.DatumLegend<dynamic>()],
+  );
 
   /// Create series list with one series
   static List<charts.Series<LinearSales, int>> _createSampleData() {

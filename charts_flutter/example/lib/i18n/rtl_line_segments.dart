@@ -42,9 +42,8 @@ class RTLLineSegments extends StatelessWidget {
   const RTLLineSegments(this.seriesList, {super.key, this.animate = true});
 
   /// Creates a [charts.LineChart] with sample data and no transition.
-  factory RTLLineSegments.withSampleData() => RTLLineSegments(
-        _createSampleData(),
-      );
+  factory RTLLineSegments.withSampleData() =>
+      RTLLineSegments(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -150,8 +149,10 @@ class RTLLineSegments extends StatelessWidget {
         textDirection: ui.TextDirection.rtl,
         child: charts.LineChart(
           seriesList,
-          defaultRenderer:
-              charts.LineRendererConfig(includeArea: true, stacked: true),
+          defaultRenderer: charts.LineRendererConfig(
+            includeArea: true,
+            stacked: true,
+          ),
           animate: animate,
         ),
       );

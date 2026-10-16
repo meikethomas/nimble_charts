@@ -42,44 +42,44 @@ const scatterPlotComboLineChartSubtitle =
     'Scatter plot combo chart with a line';
 
 List<GalleryScaffold> buildGallery() => [
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.insert_chart),
-        title: ordinalComboChartTitle,
-        subtitle: ordinalComboChartSubtitle,
-        childBuilder: appState.value.useRandomData
-            ? OrdinalComboBarLineChart.withRandomData
-            : OrdinalComboBarLineChart.withSampleData,
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: numericComboLineBarChartTitle,
-        subtitle: numericComboLineBarChartSubtitle,
-        childBuilder: appState.value.useRandomData
-            ? NumericComboLineBarChart.withRandomData
-            : NumericComboLineBarChart.withSampleData,
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: numericComboLinePointChartTitle,
-        subtitle: numericComboLinePointChartSubtitle,
-        childBuilder: appState.value.useRandomData
-            ? NumericComboLinePointChart.withRandomData
-            : NumericComboLinePointChart.withSampleData,
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: dateTimeComboLinePointChartTitle,
-        subtitle: dateTimeComboLinePointChartSubtitle,
-        childBuilder: appState.value.useRandomData
-            ? DateTimeComboLinePointChart.withRandomData
-            : DateTimeComboLinePointChart.withSampleData,
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.scatter_plot),
-        title: scatterPlotComboLineChartTitle,
-        subtitle: scatterPlotComboLineChartSubtitle,
-        childBuilder: appState.value.useRandomData
-            ? ScatterPlotComboLineChart.withRandomData
-            : ScatterPlotComboLineChart.withSampleData,
-      ),
-    ];
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.insert_chart),
+    title: ordinalComboChartTitle,
+    subtitle: ordinalComboChartSubtitle,
+    childBuilder: appState.value.useRandomData
+        ? OrdinalComboBarLineChart.withRandomData
+        : OrdinalComboBarLineChart.withSampleData,
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: numericComboLineBarChartTitle,
+    subtitle: numericComboLineBarChartSubtitle,
+    childBuilder: appState.value.useRandomData
+        ? NumericComboLineBarChart.withRandomData
+        : NumericComboLineBarChart.withSampleData,
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: numericComboLinePointChartTitle,
+    subtitle: numericComboLinePointChartSubtitle,
+    childBuilder: appState.value.useRandomData
+        ? NumericComboLinePointChart.withRandomData
+        : NumericComboLinePointChart.withSampleData,
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: dateTimeComboLinePointChartTitle,
+    subtitle: dateTimeComboLinePointChartSubtitle,
+    childBuilder: appState.value.useRandomData
+        ? DateTimeComboLinePointChart.withRandomData
+        : DateTimeComboLinePointChart.withSampleData,
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.scatter_plot),
+    title: scatterPlotComboLineChartTitle,
+    subtitle: scatterPlotComboLineChartSubtitle,
+    childBuilder: appState.value.useRandomData
+        ? ScatterPlotComboLineChart.withRandomData
+        : ScatterPlotComboLineChart.withSampleData,
+  ),
+];

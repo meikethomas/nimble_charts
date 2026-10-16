@@ -25,9 +25,8 @@ import 'package:nimble_charts/flutter.dart' as charts;
 class GroupedBarChart extends StatelessWidget {
   const GroupedBarChart(this.seriesList, {super.key, this.animate = true});
 
-  factory GroupedBarChart.withSampleData() => GroupedBarChart(
-        _createSampleData(),
-      );
+  factory GroupedBarChart.withSampleData() =>
+      GroupedBarChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -88,10 +87,10 @@ class GroupedBarChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.BarChart(
-        seriesList,
-        animate: animate,
-        barGroupingType: charts.BarGroupingType.grouped,
-      );
+    seriesList,
+    animate: animate,
+    barGroupingType: charts.BarGroupingType.grouped,
+  );
 
   /// Create series list with multiple series
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {

@@ -35,10 +35,8 @@ class DayTimeStepper extends BaseTimeStepper {
     return DayTimeStepper._internal(dateTimeFactory, allowedTickIncrements);
   }
 
-  DayTimeStepper._internal(
-    super.dateTimeFactory,
-    List<int> increments,
-  ) : _allowedTickIncrements = increments;
+  DayTimeStepper._internal(super.dateTimeFactory, List<int> increments)
+    : _allowedTickIncrements = increments;
   // TODO: Remove the 14 day increment if we add week stepper.
   static const _defaultIncrements = [1, 2, 3, 7, 14];
   static const _hoursInDay = 24;
@@ -78,8 +76,9 @@ class DayTimeStepper extends BaseTimeStepper {
   @override
   DateTime getNextStepTime(DateTime time, int tickIncrement) {
     // Add an extra hour in case stepping through a daylight saving change.
-    final stepAfter =
-        time.add(Duration(hours: (_hoursInDay * tickIncrement) + 1));
+    final stepAfter = time.add(
+      Duration(hours: (_hoursInDay * tickIncrement) + 1),
+    );
     // Explicitly leaving off hours and beyond to truncate to start of day.
     return dateTimeFactory.createDateTime(
       stepAfter.year,

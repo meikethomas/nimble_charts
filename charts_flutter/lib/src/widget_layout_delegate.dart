@@ -18,7 +18,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:nimble_charts/src/behaviors/chart_behavior.dart'
     show BuildableBehavior;
-import 'package:nimble_charts_common/common.dart' as common
+import 'package:nimble_charts_common/common.dart'
+    as common
     show BehaviorPosition, InsideJustification, OutsideJustification;
 
 /// Layout delegate that layout chart widget with [BuildableBehavior] widgets.
@@ -47,15 +48,18 @@ class WidgetLayoutDelegate extends MultiChildLayoutDelegate {
     var chartOffset = Offset.zero;
 
     // Measure the first buildable behavior.
-    final behaviorID =
-        idAndBehavior.keys.isNotEmpty ? idAndBehavior.keys.first : null;
+    final behaviorID = idAndBehavior.keys.isNotEmpty
+        ? idAndBehavior.keys.first
+        : null;
     var behaviorSize = Size.zero;
     if (behaviorID != null) {
       if (hasChild(behaviorID)) {
-        final leftPosition =
-            isRTL ? common.BehaviorPosition.end : common.BehaviorPosition.start;
-        final rightPosition =
-            isRTL ? common.BehaviorPosition.start : common.BehaviorPosition.end;
+        final leftPosition = isRTL
+            ? common.BehaviorPosition.end
+            : common.BehaviorPosition.start;
+        final rightPosition = isRTL
+            ? common.BehaviorPosition.start
+            : common.BehaviorPosition.end;
         final behaviorPosition = idAndBehavior[behaviorID]!.position;
 
         behaviorSize = layoutChild(behaviorID, BoxConstraints.loose(size));
@@ -121,8 +125,10 @@ class WidgetLayoutDelegate extends MultiChildLayoutDelegate {
           ? chartSize.height
           : 0.0;
 
-      final horizontalJustification =
-          getOutsideJustification(outsideJustification, isRTL);
+      final horizontalJustification = getOutsideJustification(
+        outsideJustification,
+        isRTL,
+      );
 
       switch (horizontalJustification) {
         case HorizontalJustification.leftDrawArea:
@@ -138,22 +144,26 @@ class WidgetLayoutDelegate extends MultiChildLayoutDelegate {
             heightOffset,
           );
         case HorizontalJustification.right:
-          behaviorOffset =
-              Offset(chartSize.width - behaviorSize.width, heightOffset);
+          behaviorOffset = Offset(
+            chartSize.width - behaviorSize.width,
+            heightOffset,
+          );
       }
     } else if (behaviorPosition == common.BehaviorPosition.start ||
         behaviorPosition == common.BehaviorPosition.end) {
       final widthOffset =
           (isRTL && behaviorPosition == common.BehaviorPosition.start) ||
-                  (!isRTL && behaviorPosition == common.BehaviorPosition.end)
-              ? chartSize.width
-              : 0.0;
+              (!isRTL && behaviorPosition == common.BehaviorPosition.end)
+          ? chartSize.width
+          : 0.0;
 
       switch (outsideJustification) {
         case common.OutsideJustification.startDrawArea:
         case common.OutsideJustification.middleDrawArea:
-          behaviorOffset =
-              Offset(widthOffset, behavior.drawAreaBounds!.top.toDouble());
+          behaviorOffset = Offset(
+            widthOffset,
+            behavior.drawAreaBounds!.top.toDouble(),
+          );
         case common.OutsideJustification.start:
         case common.OutsideJustification.middle:
           behaviorOffset = Offset(widthOffset, 0);
@@ -163,8 +173,10 @@ class WidgetLayoutDelegate extends MultiChildLayoutDelegate {
             behavior.drawAreaBounds!.bottom - behaviorSize.height,
           );
         case common.OutsideJustification.end:
-          behaviorOffset =
-              Offset(widthOffset, chartSize.height - behaviorSize.height);
+          behaviorOffset = Offset(
+            widthOffset,
+            chartSize.height - behaviorSize.height,
+          );
       }
     } else if (behaviorPosition == common.BehaviorPosition.inside) {
       final rightOffset = Offset(chartSize.width - behaviorSize.width, 0);
@@ -211,9 +223,4 @@ class WidgetLayoutDelegate extends MultiChildLayoutDelegate {
   }
 }
 
-enum HorizontalJustification {
-  leftDrawArea,
-  left,
-  rightDrawArea,
-  right,
-}
+enum HorizontalJustification { leftDrawArea, left, rightDrawArea, right }

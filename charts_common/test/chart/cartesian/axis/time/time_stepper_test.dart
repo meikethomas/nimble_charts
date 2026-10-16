@@ -13,8 +13,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// ignore_for_file: lines_longer_than_80_chars
-
 import 'package:nimble_charts_common/src/chart/cartesian/axis/time/date_time_extents.dart';
 import 'package:nimble_charts_common/src/chart/cartesian/axis/time/day_time_stepper.dart';
 import 'package:nimble_charts_common/src/chart/cartesian/axis/time/hour_time_stepper.dart';
@@ -29,8 +27,12 @@ const EPSILON = 0.001;
 /// Checks whether the local time zone uses typical US daylight saving time,
 /// as expected by several tests here.
 bool _localTimeZoneMatchesTestExpectations() {
-  final difference =
-      DateTime(2017, 3, 12, 3).difference(DateTime(2017, 3, 12, 2));
+  final difference = DateTime(
+    2017,
+    3,
+    12,
+    3,
+  ).difference(DateTime(2017, 3, 12, 2));
   return difference.inSeconds == 0;
 }
 
@@ -130,14 +132,88 @@ void main() {
     });
   });
 
-  group(
-    'Hour time stepper',
-    () {
-      test('gets steps in 1 hour increments', () {
+  group('Hour time stepper', () {
+    test('gets steps in 1 hour increments', () {
+      final stepper = HourTimeStepper(dateTimeFactory);
+      final extent = DateTimeExtents(
+        start: DateTime(2017, 8, 20, 10),
+        end: DateTime(2017, 8, 20, 15),
+      );
+      final stepIterable = stepper.getSteps(extent)..iterator.reset(1);
+      final steps = stepIterable.toList();
+
+      expect(steps.length, equals(6));
+      expect(
+        steps,
+        equals([
+          DateTime(2017, 8, 20, 10),
+          DateTime(2017, 8, 20, 11),
+          DateTime(2017, 8, 20, 12),
+          DateTime(2017, 8, 20, 13),
+          DateTime(2017, 8, 20, 14),
+          DateTime(2017, 8, 20, 15),
+        ]),
+      );
+    });
+
+    test('gets steps in 4 hour increments', () {
+      final stepper = HourTimeStepper(dateTimeFactory);
+      final extent = DateTimeExtents(
+        start: DateTime(2017, 8, 20, 10),
+        end: DateTime(2017, 8, 21, 10),
+      );
+      final stepIterable = stepper.getSteps(extent)..iterator.reset(4);
+      final steps = stepIterable.toList();
+
+      expect(steps.length, equals(6));
+      expect(
+        steps,
+        equals([
+          DateTime(2017, 8, 20, 12),
+          DateTime(2017, 8, 20, 16),
+          DateTime(2017, 8, 20, 20),
+          DateTime(2017, 8, 21),
+          DateTime(2017, 8, 21, 4),
+          DateTime(2017, 8, 21, 8),
+        ]),
+      );
+    });
+
+    test(
+      'step through daylight saving forward change in 1 hour increments',
+      () {
         final stepper = HourTimeStepper(dateTimeFactory);
+        // DST for PST 2017 begin on March 12. At 2am clocks are turned to 3am.
         final extent = DateTimeExtents(
-          start: DateTime(2017, 8, 20, 10),
-          end: DateTime(2017, 8, 20, 15),
+          start: DateTime(2017, 3, 12),
+          end: DateTime(2017, 3, 12, 5),
+        );
+        final stepIterable = stepper.getSteps(extent)..iterator.reset(1);
+        final steps = stepIterable.toList();
+
+        expect(steps.length, equals(5));
+        expect(
+          steps,
+          equals([
+            DateTime(2017, 3, 12),
+            DateTime(2017, 3, 12, 1),
+            DateTime(2017, 3, 12, 3),
+            DateTime(2017, 3, 12, 4),
+            DateTime(2017, 3, 12, 5),
+          ]),
+        );
+      },
+      skip: !_localTimeZoneMatchesTestExpectations(),
+    );
+
+    test(
+      'step through daylight saving backward change in 1 hour increments',
+      () {
+        final stepper = HourTimeStepper(dateTimeFactory);
+        // DST for PST 2017 end on November 5. At 2am, clocks are turned to 1am.
+        final extent = DateTimeExtents(
+          start: DateTime(2017, 11, 5),
+          end: DateTime(2017, 11, 5, 4),
         );
         final stepIterable = stepper.getSteps(extent)..iterator.reset(1);
         final steps = stepIterable.toList();
@@ -146,21 +222,34 @@ void main() {
         expect(
           steps,
           equals([
-            DateTime(2017, 8, 20, 10),
-            DateTime(2017, 8, 20, 11),
-            DateTime(2017, 8, 20, 12),
-            DateTime(2017, 8, 20, 13),
-            DateTime(2017, 8, 20, 14),
-            DateTime(2017, 8, 20, 15),
+            DateTime(2017, 11, 5),
+            DateTime(
+              2017,
+              11,
+              5,
+            ).add(const Duration(milliseconds: millisecondsInHour)),
+            DateTime(
+              2017,
+              11,
+              5,
+            ).add(const Duration(milliseconds: millisecondsInHour * 2)),
+            DateTime(2017, 11, 5, 2),
+            DateTime(2017, 11, 5, 3),
+            DateTime(2017, 11, 5, 4),
           ]),
         );
-      });
+      },
+      skip: !_localTimeZoneMatchesTestExpectations(),
+    );
 
-      test('gets steps in 4 hour increments', () {
+    test(
+      'step through daylight saving forward change in 4 hour increments',
+      () {
         final stepper = HourTimeStepper(dateTimeFactory);
+        // DST for PST 2017 begin on March 12. At 2am clocks are turned to 3am.
         final extent = DateTimeExtents(
-          start: DateTime(2017, 8, 20, 10),
-          end: DateTime(2017, 8, 21, 10),
+          start: DateTime(2017, 3, 12),
+          end: DateTime(2017, 3, 13),
         );
         final stepIterable = stepper.getSteps(extent)..iterator.reset(4);
         final steps = stepIterable.toList();
@@ -169,103 +258,21 @@ void main() {
         expect(
           steps,
           equals([
-            DateTime(2017, 8, 20, 12),
-            DateTime(2017, 8, 20, 16),
-            DateTime(2017, 8, 20, 20),
-            DateTime(2017, 8, 21),
-            DateTime(2017, 8, 21, 4),
-            DateTime(2017, 8, 21, 8),
+            DateTime(2017, 3, 12, 4),
+            DateTime(2017, 3, 12, 8),
+            DateTime(2017, 3, 12, 12),
+            DateTime(2017, 3, 12, 16),
+            DateTime(2017, 3, 12, 20),
+            DateTime(2017, 3, 13),
           ]),
         );
-      });
+      },
+      skip: !_localTimeZoneMatchesTestExpectations(),
+    );
 
-      test(
-        'step through daylight saving forward change in 1 hour increments',
-        () {
-          final stepper = HourTimeStepper(dateTimeFactory);
-          // DST for PST 2017 begin on March 12. At 2am clocks are turned to 3am.
-          final extent = DateTimeExtents(
-            start: DateTime(2017, 3, 12),
-            end: DateTime(2017, 3, 12, 5),
-          );
-          final stepIterable = stepper.getSteps(extent)..iterator.reset(1);
-          final steps = stepIterable.toList();
-
-          expect(steps.length, equals(5));
-          expect(
-            steps,
-            equals([
-              DateTime(2017, 3, 12),
-              DateTime(2017, 3, 12, 1),
-              DateTime(2017, 3, 12, 3),
-              DateTime(2017, 3, 12, 4),
-              DateTime(2017, 3, 12, 5),
-            ]),
-          );
-        },
-        skip: !_localTimeZoneMatchesTestExpectations(),
-      );
-
-      test(
-        'step through daylight saving backward change in 1 hour increments',
-        () {
-          final stepper = HourTimeStepper(dateTimeFactory);
-          // DST for PST 2017 end on November 5. At 2am, clocks are turned to 1am.
-          final extent = DateTimeExtents(
-            start: DateTime(2017, 11, 5),
-            end: DateTime(2017, 11, 5, 4),
-          );
-          final stepIterable = stepper.getSteps(extent)..iterator.reset(1);
-          final steps = stepIterable.toList();
-
-          expect(steps.length, equals(6));
-          expect(
-            steps,
-            equals([
-              DateTime(2017, 11, 5),
-              DateTime(2017, 11, 5)
-                  .add(const Duration(milliseconds: millisecondsInHour)),
-              DateTime(2017, 11, 5)
-                  .add(const Duration(milliseconds: millisecondsInHour * 2)),
-              DateTime(2017, 11, 5, 2),
-              DateTime(2017, 11, 5, 3),
-              DateTime(2017, 11, 5, 4),
-            ]),
-          );
-        },
-        skip: !_localTimeZoneMatchesTestExpectations(),
-      );
-
-      test(
-        'step through daylight saving forward change in 4 hour increments',
-        () {
-          final stepper = HourTimeStepper(dateTimeFactory);
-          // DST for PST 2017 begin on March 12. At 2am clocks are turned to 3am.
-          final extent = DateTimeExtents(
-            start: DateTime(2017, 3, 12),
-            end: DateTime(2017, 3, 13),
-          );
-          final stepIterable = stepper.getSteps(extent)..iterator.reset(4);
-          final steps = stepIterable.toList();
-
-          expect(steps.length, equals(6));
-          expect(
-            steps,
-            equals([
-              DateTime(2017, 3, 12, 4),
-              DateTime(2017, 3, 12, 8),
-              DateTime(2017, 3, 12, 12),
-              DateTime(2017, 3, 12, 16),
-              DateTime(2017, 3, 12, 20),
-              DateTime(2017, 3, 13),
-            ]),
-          );
-        },
-        skip: !_localTimeZoneMatchesTestExpectations(),
-      );
-
-      test('step through daylight saving backward change in 4 hour increments',
-          () {
+    test(
+      'step through daylight saving backward change in 4 hour increments',
+      () {
         final stepper = HourTimeStepper(dateTimeFactory);
         // DST for PST 2017 end on November 5.
         // At 2am, clocks are turned to 1am.
@@ -280,8 +287,11 @@ void main() {
         expect(
           steps,
           equals([
-            DateTime(2017, 11, 5)
-                .add(const Duration(milliseconds: millisecondsInHour)),
+            DateTime(
+              2017,
+              11,
+              5,
+            ).add(const Duration(milliseconds: millisecondsInHour)),
             DateTime(2017, 11, 5, 4),
             DateTime(2017, 11, 5, 8),
             DateTime(2017, 11, 5, 12),
@@ -290,116 +300,107 @@ void main() {
             DateTime(2017, 11, 6),
           ]),
         );
-      });
-    },
-    skip: !_localTimeZoneMatchesTestExpectations(),
-  );
+      },
+    );
+  }, skip: !_localTimeZoneMatchesTestExpectations());
 
-  group(
-    'Minute time stepper',
-    () {
-      test('gets steps with 5 minute increments', () {
-        final stepper = MinuteTimeStepper(dateTimeFactory);
-        final extent = DateTimeExtents(
-          start: DateTime(2017, 8, 20, 3, 46),
-          end: DateTime(2017, 8, 20, 4, 02),
-        );
-        final stepIterable = stepper.getSteps(extent)..iterator.reset(5);
-        final steps = stepIterable.toList();
-
-        expect(steps.length, equals(3));
-        expect(
-          steps,
-          equals([
-            DateTime(2017, 8, 20, 3, 50),
-            DateTime(2017, 8, 20, 3, 55),
-            DateTime(2017, 8, 20, 4),
-          ]),
-        );
-      });
-
-      test(
-        'step through daylight saving forward change',
-        () {
-          final stepper = MinuteTimeStepper(dateTimeFactory);
-          // DST for PST 2017 begin on March 12. At 2am clocks are turned to 3am.
-          final extent = DateTimeExtents(
-            start: DateTime(2017, 3, 12, 1, 40),
-            end: DateTime(2017, 3, 12, 4, 02),
-          );
-          final stepIterable = stepper.getSteps(extent)..iterator.reset(15);
-          final steps = stepIterable.toList();
-
-          expect(steps.length, equals(6));
-          expect(
-            steps,
-            equals([
-              DateTime(2017, 3, 12, 1, 45),
-              DateTime(2017, 3, 12, 3),
-              DateTime(2017, 3, 12, 3, 15),
-              DateTime(2017, 3, 12, 3, 30),
-              DateTime(2017, 3, 12, 3, 45),
-              DateTime(2017, 3, 12, 4),
-            ]),
-          );
-        },
-        skip: !_localTimeZoneMatchesTestExpectations(),
+  group('Minute time stepper', () {
+    test('gets steps with 5 minute increments', () {
+      final stepper = MinuteTimeStepper(dateTimeFactory);
+      final extent = DateTimeExtents(
+        start: DateTime(2017, 8, 20, 3, 46),
+        end: DateTime(2017, 8, 20, 4, 02),
       );
+      final stepIterable = stepper.getSteps(extent)..iterator.reset(5);
+      final steps = stepIterable.toList();
 
-      test('steps correctly after daylight saving forward change', () {
+      expect(steps.length, equals(3));
+      expect(
+        steps,
+        equals([
+          DateTime(2017, 8, 20, 3, 50),
+          DateTime(2017, 8, 20, 3, 55),
+          DateTime(2017, 8, 20, 4),
+        ]),
+      );
+    });
+
+    test(
+      'step through daylight saving forward change',
+      () {
         final stepper = MinuteTimeStepper(dateTimeFactory);
         // DST for PST 2017 begin on March 12. At 2am clocks are turned to 3am.
         final extent = DateTimeExtents(
-          start: DateTime(2017, 3, 12, 3, 02),
+          start: DateTime(2017, 3, 12, 1, 40),
           end: DateTime(2017, 3, 12, 4, 02),
         );
-        final stepIterable = stepper.getSteps(extent)..iterator.reset(30);
-        final steps = stepIterable.toList();
-
-        expect(steps.length, equals(2));
-        expect(
-          steps,
-          equals([
-            DateTime(2017, 3, 12, 3, 30),
-            DateTime(2017, 3, 12, 4),
-          ]),
-        );
-      });
-
-      test('step through daylight saving backward change', () {
-        final stepper = MinuteTimeStepper(dateTimeFactory);
-        // DST for PST 2017 end on November 5.
-        // At 2am, clocks are turned to 1am.
-        final extent = DateTimeExtents(
-          start:
-              DateTime(2017, 11, 5).add(const Duration(hours: 1, minutes: 29)),
-          end: DateTime(2017, 11, 5, 3, 02),
-        );
-        final stepIterable = stepper.getSteps(extent)..iterator.reset(30);
+        final stepIterable = stepper.getSteps(extent)..iterator.reset(15);
         final steps = stepIterable.toList();
 
         expect(steps.length, equals(6));
         expect(
           steps,
           equals([
-            // The first 1:30am
-            DateTime(2017, 11, 5).add(const Duration(hours: 1, minutes: 30)),
-            // The 2nd 1am.
-            DateTime(2017, 11, 5).add(const Duration(hours: 2)),
-            // The 2nd 1:30am
-            DateTime(2017, 11, 5).add(const Duration(hours: 2, minutes: 30)),
-            // 2am
-            DateTime(2017, 11, 5).add(const Duration(hours: 3)),
-            // 2:30am
-            DateTime(2017, 11, 5).add(const Duration(hours: 3, minutes: 30)),
-            // 3am
-            DateTime(2017, 11, 5, 3),
+            DateTime(2017, 3, 12, 1, 45),
+            DateTime(2017, 3, 12, 3),
+            DateTime(2017, 3, 12, 3, 15),
+            DateTime(2017, 3, 12, 3, 30),
+            DateTime(2017, 3, 12, 3, 45),
+            DateTime(2017, 3, 12, 4),
           ]),
         );
-      });
-    },
-    skip: !_localTimeZoneMatchesTestExpectations(),
-  );
+      },
+      skip: !_localTimeZoneMatchesTestExpectations(),
+    );
+
+    test('steps correctly after daylight saving forward change', () {
+      final stepper = MinuteTimeStepper(dateTimeFactory);
+      // DST for PST 2017 begin on March 12. At 2am clocks are turned to 3am.
+      final extent = DateTimeExtents(
+        start: DateTime(2017, 3, 12, 3, 02),
+        end: DateTime(2017, 3, 12, 4, 02),
+      );
+      final stepIterable = stepper.getSteps(extent)..iterator.reset(30);
+      final steps = stepIterable.toList();
+
+      expect(steps.length, equals(2));
+      expect(
+        steps,
+        equals([DateTime(2017, 3, 12, 3, 30), DateTime(2017, 3, 12, 4)]),
+      );
+    });
+
+    test('step through daylight saving backward change', () {
+      final stepper = MinuteTimeStepper(dateTimeFactory);
+      // DST for PST 2017 end on November 5.
+      // At 2am, clocks are turned to 1am.
+      final extent = DateTimeExtents(
+        start: DateTime(2017, 11, 5).add(const Duration(hours: 1, minutes: 29)),
+        end: DateTime(2017, 11, 5, 3, 02),
+      );
+      final stepIterable = stepper.getSteps(extent)..iterator.reset(30);
+      final steps = stepIterable.toList();
+
+      expect(steps.length, equals(6));
+      expect(
+        steps,
+        equals([
+          // The first 1:30am
+          DateTime(2017, 11, 5).add(const Duration(hours: 1, minutes: 30)),
+          // The 2nd 1am.
+          DateTime(2017, 11, 5).add(const Duration(hours: 2)),
+          // The 2nd 1:30am
+          DateTime(2017, 11, 5).add(const Duration(hours: 2, minutes: 30)),
+          // 2am
+          DateTime(2017, 11, 5).add(const Duration(hours: 3)),
+          // 2:30am
+          DateTime(2017, 11, 5).add(const Duration(hours: 3, minutes: 30)),
+          // 3am
+          DateTime(2017, 11, 5, 3),
+        ]),
+      );
+    });
+  }, skip: !_localTimeZoneMatchesTestExpectations());
 
   group('Month time stepper', () {
     test('steps crosses the year', () {
@@ -433,13 +434,7 @@ void main() {
       final steps = stepIterable.toList();
 
       expect(steps.length, equals(2));
-      expect(
-        steps,
-        equals([
-          DateTime(2017, 2),
-          DateTime(2017, 4),
-        ]),
-      );
+      expect(steps, equals([DateTime(2017, 2), DateTime(2017, 4)]));
     });
 
     test('step before would allow ticks to include last month of the year', () {
@@ -520,34 +515,19 @@ void main() {
       final steps = stepIterable.toList();
 
       expect(steps.length, equals(3));
-      expect(
-        steps,
-        equals([
-          DateTime(2020),
-          DateTime(2030),
-          DateTime(2040),
-        ]),
-      );
+      expect(steps, equals([DateTime(2020), DateTime(2030), DateTime(2040)]));
     });
 
     test('steps through negative year', () {
       final stepper = YearTimeStepper(dateTimeFactory);
-      final extent = DateTimeExtents(
-        start: DateTime(-420),
-        end: DateTime(240),
-      );
+      final extent = DateTimeExtents(start: DateTime(-420), end: DateTime(240));
       final stepIterable = stepper.getSteps(extent)..iterator.reset(200);
       final steps = stepIterable.toList();
 
       expect(steps.length, equals(4));
       expect(
         steps,
-        equals([
-          DateTime(-400),
-          DateTime(-200),
-          DateTime(0),
-          DateTime(200),
-        ]),
+        equals([DateTime(-400), DateTime(-200), DateTime(0), DateTime(200)]),
       );
     });
   });

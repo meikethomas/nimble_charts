@@ -33,7 +33,6 @@ void main() {
       final tapListener = MockListener(consumeEvent: true);
       proxy
         ..add(GestureListener(onTap: tapListener.callback))
-
         // Act
         ..onTapTest(point)
         ..onTap(point);
@@ -46,12 +45,7 @@ void main() {
       // Setup
       final tapListener1 = MockListener();
       proxy
-        ..add(
-          GestureListener(
-            onTap: tapListener1.callback,
-          ),
-        )
-
+        ..add(GestureListener(onTap: tapListener1.callback))
         // Act
         ..onTapTest(point)
         ..onTap(point);
@@ -62,12 +56,7 @@ void main() {
       // Setup Another
       final tapListener2 = MockListener();
       proxy
-        ..add(
-          GestureListener(
-            onTap: tapListener2.callback,
-          ),
-        )
-
+        ..add(GestureListener(onTap: tapListener2.callback))
         // Act
         ..onTapTest(point)
         ..onTap(point);
@@ -99,7 +88,6 @@ void main() {
             onTap: nonclaimingTapListener.callback,
           ),
         )
-
         // Act
         ..onTapTest(point)
         ..onTap(point);
@@ -133,7 +121,6 @@ void main() {
             onTap: claimingTapListener.callback,
           ),
         )
-
         // Act
         ..onTapTest(point)
         ..onTap(point);
@@ -173,7 +160,6 @@ void main() {
             onTapCancel: pressCancel.callback,
           ),
         )
-
         // Act
         ..onTapTest(point)
         ..onLongPress(point)
@@ -221,7 +207,6 @@ void main() {
             onTapCancel: dragCancel.callback,
           ),
         )
-
         // Act
         ..onTapTest(point)
         ..onDragStart(point)

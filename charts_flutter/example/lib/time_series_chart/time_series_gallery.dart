@@ -58,68 +58,68 @@ const confidenceIntervalTimeSeriesChartSubtitle =
     'Draws area around the confidence interval';
 
 List<GalleryScaffold> buildGallery() => [
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: simpleTimeSeriesChartTitle,
-        subtitle: simpleTimeSeriesChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? SimpleTimeSeriesChart.withRandomData()
-            : SimpleTimeSeriesChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: endPointsAxisTimeSeriesChartTitle,
-        subtitle: endPointsAxisTimeSeriesChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? EndPointsAxisTimeSeriesChart.withRandomData()
-            : EndPointsAxisTimeSeriesChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: lineAnnotationTimeSeriesChartTitle,
-        subtitle: lineAnnotationTimeSeriesChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? TimeSeriesLineAnnotationChart.withRandomData()
-            : TimeSeriesLineAnnotationChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: rangeAnnotationTimeSeriesChartTitle,
-        subtitle: rangeAnnotationTimeSeriesChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? TimeSeriesRangeAnnotationChart.withRandomData()
-            : TimeSeriesRangeAnnotationChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: rangeAnnotationMarginLabelsTimeSeriesChartTitle,
-        subtitle: rangeAnnotationMarginLabelsTimeSeriesChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? TimeSeriesRangeAnnotationMarginChart.withRandomData()
-            : TimeSeriesRangeAnnotationMarginChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: symbolAnnotationTimeSeriesChartTitle,
-        subtitle: symbolAnnotationTimeSeriesChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? TimeSeriesSymbolAnnotationChart.withRandomData()
-            : TimeSeriesSymbolAnnotationChart.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: timeSeriesChartWithBarsTitle,
-        subtitle: timeSeriesChartWithBarsSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? TimeSeriesBar.withRandomData()
-            : TimeSeriesBar.withSampleData(),
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.show_chart),
-        title: confidenceIntervalTimeSeriesChartTitle,
-        subtitle: confidenceIntervalTimeSeriesChartSubtitle,
-        childBuilder: () => appState.value.useRandomData
-            ? TimeSeriesConfidenceInterval.withRandomData()
-            : TimeSeriesConfidenceInterval.withSampleData(),
-      ),
-    ];
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: simpleTimeSeriesChartTitle,
+    subtitle: simpleTimeSeriesChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? SimpleTimeSeriesChart.withRandomData()
+        : SimpleTimeSeriesChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: endPointsAxisTimeSeriesChartTitle,
+    subtitle: endPointsAxisTimeSeriesChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? EndPointsAxisTimeSeriesChart.withRandomData()
+        : EndPointsAxisTimeSeriesChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: lineAnnotationTimeSeriesChartTitle,
+    subtitle: lineAnnotationTimeSeriesChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? TimeSeriesLineAnnotationChart.withRandomData()
+        : TimeSeriesLineAnnotationChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: rangeAnnotationTimeSeriesChartTitle,
+    subtitle: rangeAnnotationTimeSeriesChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? TimeSeriesRangeAnnotationChart.withRandomData()
+        : TimeSeriesRangeAnnotationChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: rangeAnnotationMarginLabelsTimeSeriesChartTitle,
+    subtitle: rangeAnnotationMarginLabelsTimeSeriesChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? TimeSeriesRangeAnnotationMarginChart.withRandomData()
+        : TimeSeriesRangeAnnotationMarginChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: symbolAnnotationTimeSeriesChartTitle,
+    subtitle: symbolAnnotationTimeSeriesChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? TimeSeriesSymbolAnnotationChart.withRandomData()
+        : TimeSeriesSymbolAnnotationChart.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: timeSeriesChartWithBarsTitle,
+    subtitle: timeSeriesChartWithBarsSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? TimeSeriesBar.withRandomData()
+        : TimeSeriesBar.withSampleData(),
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.show_chart),
+    title: confidenceIntervalTimeSeriesChartTitle,
+    subtitle: confidenceIntervalTimeSeriesChartSubtitle,
+    childBuilder: () => appState.value.useRandomData
+        ? TimeSeriesConfidenceInterval.withRandomData()
+        : TimeSeriesConfidenceInterval.withSampleData(),
+  ),
+];

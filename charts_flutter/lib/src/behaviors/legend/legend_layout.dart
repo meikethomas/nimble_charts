@@ -40,13 +40,12 @@ class TabularLegendLayout implements LegendLayout {
   factory TabularLegendLayout.horizontalFirst({
     int? desiredMaxColumns,
     EdgeInsets? cellPadding,
-  }) =>
-      TabularLegendLayout._internal(
-        isHorizontalFirst: true,
-        desiredMaxRows: _noLimit,
-        desiredMaxColumns: desiredMaxColumns ?? _noLimit,
-        cellPadding: cellPadding,
-      );
+  }) => TabularLegendLayout._internal(
+    isHorizontalFirst: true,
+    desiredMaxRows: _noLimit,
+    desiredMaxColumns: desiredMaxColumns ?? _noLimit,
+    cellPadding: cellPadding,
+  );
 
   /// Layout vertically, until rows exceed [desiredMaxRows].
   ///
@@ -58,13 +57,12 @@ class TabularLegendLayout implements LegendLayout {
   factory TabularLegendLayout.verticalFirst({
     int? desiredMaxRows,
     EdgeInsets? cellPadding,
-  }) =>
-      TabularLegendLayout._internal(
-        isHorizontalFirst: false,
-        desiredMaxRows: desiredMaxRows ?? _noLimit,
-        desiredMaxColumns: _noLimit,
-        cellPadding: cellPadding,
-      );
+  }) => TabularLegendLayout._internal(
+    isHorizontalFirst: false,
+    desiredMaxRows: desiredMaxRows ?? _noLimit,
+    desiredMaxColumns: _noLimit,
+    cellPadding: cellPadding,
+  );
 
   /// No limit for max rows or max columns.
   static const _noLimit = -1;
@@ -93,8 +91,8 @@ class TabularLegendLayout implements LegendLayout {
     final paddedLegendEntries = ((cellPadding == null)
         ? legendEntries
         : legendEntries
-            .map((entry) => Padding(padding: cellPadding!, child: entry))
-            .toList());
+              .map((entry) => Padding(padding: cellPadding!, child: entry))
+              .toList());
 
     return isHorizontalFirst
         ? _buildHorizontalFirst(paddedLegendEntries)
@@ -111,11 +109,11 @@ class TabularLegendLayout implements LegendLayout {
 
   @override
   int get hashCode => Object.hash(
-        desiredMaxRows,
-        desiredMaxColumns,
-        isHorizontalFirst,
-        cellPadding,
-      );
+    desiredMaxRows,
+    desiredMaxColumns,
+    isHorizontalFirst,
+    cellPadding,
+  );
 
   /// Builds the legend layout horizontally first.
   ///
@@ -149,7 +147,7 @@ class TabularLegendLayout implements LegendLayout {
 
     final rows =
         //Don't use const here, as the TableRow children need to be mutable
-        // ignore: avoid_redundant_argument_values, prefer_const_constructors, prefer_const_literals_to_create_immutables
+        // ignore: prefer_const_constructors, prefer_const_literals_to_create_immutables
         List.generate(maxRows, (_) => TableRow(children: <Widget>[]));
     for (var i = 0; i < legendEntries.length; i++) {
       rows[i % maxRows].children.add(legendEntries[i]);
@@ -174,8 +172,9 @@ class TabularLegendLayout implements LegendLayout {
       final rowChildren = rows[i].children;
       final padCount = columnCount - rowChildren.length;
       if (padCount > 0) {
-        rowChildren
-            .addAll(Iterable<Padding>.generate(padCount, (_) => padWidget));
+        rowChildren.addAll(
+          Iterable<Padding>.generate(padCount, (_) => padWidget),
+        );
       }
     }
 

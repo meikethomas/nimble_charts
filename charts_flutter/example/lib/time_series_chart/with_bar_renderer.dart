@@ -14,7 +14,6 @@
 // limitations under the License.
 
 // Long chart API references stay intact for the copyable gallery snippet.
-// ignore_for_file: lines_longer_than_80_chars
 
 /// Example of a time series chart using a bar renderer.
 library;
@@ -30,9 +29,7 @@ class TimeSeriesBar extends StatelessWidget {
   const TimeSeriesBar(this.seriesList, {super.key, this.animate = true});
 
   /// Creates a [charts.TimeSeriesChart] with sample data and no transition.
-  factory TimeSeriesBar.withSampleData() => TimeSeriesBar(
-        _createSampleData(),
-      );
+  factory TimeSeriesBar.withSampleData() => TimeSeriesBar(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -84,19 +81,19 @@ class TimeSeriesBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.TimeSeriesChart(
-        seriesList,
-        animate: animate,
-        // Set the default renderer to a bar renderer.
-        // This can also be one of the custom renderers of the time series chart.
-        defaultRenderer: charts.BarRendererConfig<DateTime>(),
-        // It is recommended that default interactions be turned off if using bar
-        // renderer, because the line point highlighter is the default for time
-        // series chart.
-        defaultInteractions: false,
-        // If default interactions were removed, optionally add select nearest
-        // and the domain highlighter that are typical for bar charts.
-        behaviors: [charts.SelectNearest(), charts.DomainHighlighter()],
-      );
+    seriesList,
+    animate: animate,
+    // Set the default renderer to a bar renderer.
+    // This can also be one of the custom renderers of the time series chart.
+    defaultRenderer: charts.BarRendererConfig<DateTime>(),
+    // It is recommended that default interactions be turned off if using bar
+    // renderer, because the line point highlighter is the default for time
+    // series chart.
+    defaultInteractions: false,
+    // If default interactions were removed, optionally add select nearest
+    // and the domain highlighter that are typical for bar charts.
+    behaviors: [charts.SelectNearest(), charts.DomainHighlighter()],
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<TimeSeriesSales, DateTime>> _createSampleData() {

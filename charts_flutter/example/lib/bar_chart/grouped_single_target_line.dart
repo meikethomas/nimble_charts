@@ -30,9 +30,7 @@ class GroupedBarSingleTargetLineChart extends StatelessWidget {
   });
 
   factory GroupedBarSingleTargetLineChart.withSampleData() =>
-      GroupedBarSingleTargetLineChart(
-        _createSampleData(),
-      );
+      GroupedBarSingleTargetLineChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -95,11 +93,11 @@ class GroupedBarSingleTargetLineChart extends StatelessWidget {
         data: mobileSalesData,
       ),
       charts.Series<OrdinalSales, String>(
-        id: 'Desktop Target Line',
-        domainFn: (sales, _) => sales.year,
-        measureFn: (sales, _) => sales.sales,
-        data: targetLineData,
-      )
+          id: 'Desktop Target Line',
+          domainFn: (sales, _) => sales.year,
+          measureFn: (sales, _) => sales.sales,
+          data: targetLineData,
+        )
         // Configure our custom bar target renderer for this series.
         ..setAttribute(charts.rendererIdKey, 'customTargetLine'),
     ];
@@ -108,16 +106,16 @@ class GroupedBarSingleTargetLineChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.BarChart(
-        seriesList,
-        animate: animate,
-        barGroupingType: charts.BarGroupingType.grouped,
-        customSeriesRenderers: [
-          charts.BarTargetLineRendererConfig(
-            // ID used to link series to this renderer.
-            customRendererId: 'customTargetLine',
-          ),
-        ],
-      );
+    seriesList,
+    animate: animate,
+    barGroupingType: charts.BarGroupingType.grouped,
+    customSeriesRenderers: [
+      charts.BarTargetLineRendererConfig(
+        // ID used to link series to this renderer.
+        customRendererId: 'customTargetLine',
+      ),
+    ],
+  );
 
   /// Create series list with multiple series
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {
@@ -169,11 +167,11 @@ class GroupedBarSingleTargetLineChart extends StatelessWidget {
         data: mobileSalesData,
       ),
       charts.Series<OrdinalSales, String>(
-        id: 'Desktop Target Line',
-        domainFn: (sales, _) => sales.year,
-        measureFn: (sales, _) => sales.sales,
-        data: targetLineData,
-      )
+          id: 'Desktop Target Line',
+          domainFn: (sales, _) => sales.year,
+          measureFn: (sales, _) => sales.sales,
+          data: targetLineData,
+        )
         // Configure our custom bar target renderer for this series.
         ..setAttribute(charts.rendererIdKey, 'customTargetLine'),
     ];

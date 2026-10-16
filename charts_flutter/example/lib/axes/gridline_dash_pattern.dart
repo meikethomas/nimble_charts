@@ -27,9 +27,8 @@ class GridlineDashPattern extends StatelessWidget {
   const GridlineDashPattern(this.seriesList, {super.key, this.animate = true});
 
   /// Creates a [charts.TimeSeriesChart] with sample data and no transition.
-  factory GridlineDashPattern.withSampleData() => GridlineDashPattern(
-        _createSampleData(),
-      );
+  factory GridlineDashPattern.withSampleData() =>
+      GridlineDashPattern(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -71,18 +70,16 @@ class GridlineDashPattern extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.TimeSeriesChart(
-        seriesList,
-        animate: animate,
+    seriesList,
+    animate: animate,
 
-        /// Customize the gridlines to use a dash pattern.
-        primaryMeasureAxis: const charts.NumericAxisSpec(
-          renderSpec: charts.GridlineRendererSpec(
-            lineStyle: charts.LineStyleSpec(
-              dashPattern: [4, 4],
-            ),
-          ),
-        ),
-      );
+    /// Customize the gridlines to use a dash pattern.
+    primaryMeasureAxis: const charts.NumericAxisSpec(
+      renderSpec: charts.GridlineRendererSpec(
+        lineStyle: charts.LineStyleSpec(dashPattern: [4, 4]),
+      ),
+    ),
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<MyRow, DateTime>> _createSampleData() {

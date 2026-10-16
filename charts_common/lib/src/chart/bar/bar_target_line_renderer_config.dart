@@ -37,9 +37,7 @@ class BarTargetLineRendererConfig<D> extends BaseBarRendererConfig<D> {
     super.strokeWidthPx = 3.0,
     SymbolRenderer? symbolRenderer,
     super.weightPattern,
-  }) : super(
-          symbolRenderer: symbolRenderer ?? LineSymbolRenderer(),
-        );
+  }) : super(symbolRenderer: symbolRenderer ?? LineSymbolRenderer());
 
   /// The number of pixels that the line will extend beyond the bandwidth at the
   /// edges of the bar group.

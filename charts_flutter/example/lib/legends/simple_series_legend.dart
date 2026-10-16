@@ -25,9 +25,8 @@ import 'package:nimble_charts/flutter.dart' as charts;
 class SimpleSeriesLegend extends StatelessWidget {
   const SimpleSeriesLegend(this.seriesList, {super.key, this.animate = true});
 
-  factory SimpleSeriesLegend.withSampleData() => SimpleSeriesLegend(
-        _createSampleData(),
-      );
+  factory SimpleSeriesLegend.withSampleData() =>
+      SimpleSeriesLegend(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -101,13 +100,13 @@ class SimpleSeriesLegend extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.BarChart(
-        seriesList,
-        animate: animate,
-        barGroupingType: charts.BarGroupingType.grouped,
-        // Add the series legend behavior to the chart to turn on series
-        // legends. By default the legend will display above the chart.
-        behaviors: [charts.SeriesLegend()],
-      );
+    seriesList,
+    animate: animate,
+    barGroupingType: charts.BarGroupingType.grouped,
+    // Add the series legend behavior to the chart to turn on series
+    // legends. By default the legend will display above the chart.
+    behaviors: [charts.SeriesLegend()],
+  );
 
   /// Create series list with multiple series
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {

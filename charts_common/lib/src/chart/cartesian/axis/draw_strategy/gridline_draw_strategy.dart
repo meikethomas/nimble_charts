@@ -60,24 +60,23 @@ class GridlineRendererSpec<D> extends SmallTickRendererSpec<D> {
   TickDrawStrategy<D> createDrawStrategy(
     ChartContext context,
     GraphicsFactory graphicsFactory,
-  ) =>
-      GridlineTickDrawStrategy<D>(
-        context,
-        graphicsFactory,
-        tickLengthPx: tickLengthPx,
-        lineStyleSpec: lineStyle,
-        labelStyleSpec: labelStyle,
-        axisLineStyleSpec: axisLineStyle,
-        labelAnchor: labelAnchor,
-        labelJustification: labelJustification,
-        labelOffsetFromAxisPx: labelOffsetFromAxisPx,
-        labelCollisionOffsetFromAxisPx: labelCollisionOffsetFromAxisPx,
-        labelOffsetFromTickPx: labelOffsetFromTickPx,
-        labelCollisionOffsetFromTickPx: labelCollisionOffsetFromTickPx,
-        minimumPaddingBetweenLabelsPx: minimumPaddingBetweenLabelsPx,
-        labelRotation: labelRotation,
-        labelCollisionRotation: labelCollisionRotation,
-      );
+  ) => GridlineTickDrawStrategy<D>(
+    context,
+    graphicsFactory,
+    tickLengthPx: tickLengthPx,
+    lineStyleSpec: lineStyle,
+    labelStyleSpec: labelStyle,
+    axisLineStyleSpec: axisLineStyle,
+    labelAnchor: labelAnchor,
+    labelJustification: labelJustification,
+    labelOffsetFromAxisPx: labelOffsetFromAxisPx,
+    labelCollisionOffsetFromAxisPx: labelCollisionOffsetFromAxisPx,
+    labelOffsetFromTickPx: labelOffsetFromTickPx,
+    labelCollisionOffsetFromTickPx: labelCollisionOffsetFromTickPx,
+    minimumPaddingBetweenLabelsPx: minimumPaddingBetweenLabelsPx,
+    labelRotation: labelRotation,
+    labelCollisionRotation: labelCollisionRotation,
+  );
 
   @override
   // ignore: hash_and_equals
@@ -106,12 +105,12 @@ class GridlineTickDrawStrategy<D> extends BaseTickDrawStrategy<D> {
     super.minimumPaddingBetweenLabelsPx,
     super.labelRotation,
     super.labelCollisionRotation,
-  })  : tickLength = tickLengthPx ?? 0,
-        lineStyle = StyleFactory.style
-            .createGridlineStyle(graphicsFactory, lineStyleSpec),
-        super(
-          axisLineStyleSpec: axisLineStyleSpec ?? lineStyleSpec,
-        );
+  }) : tickLength = tickLengthPx ?? 0,
+       lineStyle = StyleFactory.style.createGridlineStyle(
+         graphicsFactory,
+         lineStyleSpec,
+       ),
+       super(axisLineStyleSpec: axisLineStyleSpec ?? lineStyleSpec);
   int tickLength;
   LineStyle lineStyle;
 

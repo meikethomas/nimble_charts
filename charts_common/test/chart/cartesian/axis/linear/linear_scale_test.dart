@@ -271,21 +271,17 @@ void main() {
     // LinearScaleDomainInfo.addDomainValue does. Leaving this
     // here for posterity, but the library does not support nulls
     // in this way currently
-    test(
-      'scale handles null domain values',
-      () {
-        final scale = LinearScale()
-          ..rangeBandConfig = RangeBandConfig.percentOfStep(1)
-          ..addDomain(1.0)
-          // ..addDomain(null)
-          ..addDomain(3.0)
-          ..addDomain(11.0)
-          ..range = const ScaleOutputExtent(100, 200);
+    test('scale handles null domain values', () {
+      final scale = LinearScale()
+        ..rangeBandConfig = RangeBandConfig.percentOfStep(1)
+        ..addDomain(1.0)
+        // ..addDomain(null)
+        ..addDomain(3.0)
+        ..addDomain(11.0)
+        ..range = const ScaleOutputExtent(100, 200);
 
-        expect(scale.rangeBand, closeTo(100.0 / 6.0, EPSILON));
-      },
-      skip: true,
-    );
+      expect(scale.rangeBand, closeTo(100.0 / 6.0, EPSILON));
+    }, skip: true);
 
     test('scale domainOverride survives copy', () {
       final scale = LinearScale()

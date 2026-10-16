@@ -117,8 +117,9 @@ class BucketingNumericTickProvider extends NumericTickProvider {
     // Create a tick for the threshold.
     final thresholdTick = Tick<num>(
       value: threshold,
-      textElement: graphicsFactory
-          .createTextElement(localFormatter.formatValue(threshold)),
+      textElement: graphicsFactory.createTextElement(
+        localFormatter.formatValue(threshold),
+      ),
       locationPx: (showBucket ? scale[threshold] : scale[0])!.toDouble(),
       labelOffsetPx: showBucket ? -0.5 * (scale[threshold]! - scale[0]!) : 0.0,
     );
@@ -129,10 +130,8 @@ class BucketingNumericTickProvider extends NumericTickProvider {
       ..removeWhere(
         (tick) => tick.value <= thresholdTick.value && tick.value != 0.0,
       )
-
       // Finally, add our threshold tick to the list.
       ..add(thresholdTick)
-
       // Make sure they are sorted by increasing value.
       ..sort((a, b) => a.value.compareTo(b.value));
     return ticks;

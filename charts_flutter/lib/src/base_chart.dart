@@ -25,7 +25,8 @@ import 'package:nimble_charts/src/selection_model_config.dart'
     show SelectionModelConfig;
 import 'package:nimble_charts/src/user_managed_state.dart'
     show UserManagedState;
-import 'package:nimble_charts_common/common.dart' as common
+import 'package:nimble_charts_common/common.dart'
+    as common
     show
         BaseChart,
         LayoutConfig,
@@ -55,9 +56,9 @@ abstract class BaseChart<D> extends StatefulWidget {
     this.defaultInteractions = true,
     this.layoutConfig,
     this.userManagedState,
-  })  : animate = animate ?? true,
-        animationDuration =
-            animationDuration ?? const Duration(milliseconds: 300);
+  }) : animate = animate ?? true,
+       animationDuration =
+           animationDuration ?? const Duration(milliseconds: 300);
 
   /// Series list to draw.
   final List<common.Series<dynamic, D>> seriesList;
@@ -166,8 +167,8 @@ abstract class BaseChart<D> extends StatefulWidget {
       chartState.autoBehaviorWidgets.reversed
           .where(_notACustomBehavior)
           .forEach((behavior) {
-        behaviorList.insert(0, behavior);
-      });
+            behaviorList.insert(0, behavior);
+          });
     }
 
     // Remove any behaviors from the chart that are not in the incoming list.
@@ -210,16 +211,12 @@ abstract class BaseChart<D> extends StatefulWidget {
   /// to.
   void addDefaultInteractions(List<ChartBehavior> behaviors) {
     // Update selection model
-    behaviors.add(
-      SelectNearest<D>(),
-    );
+    behaviors.add(SelectNearest<D>());
   }
 
   bool _notACustomBehavior(ChartBehavior behavior) =>
       behaviors == null ||
-      !behaviors!.any(
-        (userBehavior) => userBehavior.role == behavior.role,
-      );
+      !behaviors!.any((userBehavior) => userBehavior.role == behavior.role);
 
   void _updateSelectionModel(
     common.BaseChart<D> chart,
@@ -317,9 +314,9 @@ class LayoutConfig {
 
   /// Converts the layout configuration to the common [common.LayoutConfig].
   common.LayoutConfig get commonLayoutConfig => common.LayoutConfig(
-        leftSpec: leftMarginSpec,
-        topSpec: topMarginSpec,
-        rightSpec: rightMarginSpec,
-        bottomSpec: bottomMarginSpec,
-      );
+    leftSpec: leftMarginSpec,
+    topSpec: topMarginSpec,
+    rightSpec: rightMarginSpec,
+    bottomSpec: bottomMarginSpec,
+  );
 }

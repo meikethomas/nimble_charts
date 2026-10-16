@@ -25,10 +25,7 @@ import 'package:nimble_charts_common/src/common/gesture_listener.dart'
     show GestureListener;
 
 /// The gesture to use for triggering explore mode.
-enum ExploreModeTrigger {
-  pressHold,
-  tap,
-}
+enum ExploreModeTrigger { pressHold, tap }
 
 /// Chart behavior for adding A11y information.
 abstract class A11yExploreBehavior<D> implements ChartBehavior<D> {
@@ -37,8 +34,8 @@ abstract class A11yExploreBehavior<D> implements ChartBehavior<D> {
     double? minimumWidth,
     this.exploreModeEnabledAnnouncement,
     this.exploreModeDisabledAnnouncement,
-  })  : exploreModeTrigger = exploreModeTrigger ?? ExploreModeTrigger.pressHold,
-        minimumWidth = minimumWidth ?? 1.0 {
+  }) : exploreModeTrigger = exploreModeTrigger ?? ExploreModeTrigger.pressHold,
+       minimumWidth = minimumWidth ?? 1.0 {
     assert(this.minimumWidth >= 1.0, 'minimumWidth must be 1 or greater.');
 
     switch (this.exploreModeTrigger) {

@@ -25,8 +25,9 @@ import 'package:nimble_charts_common/common.dart';
 /// objects.
 const rendererIdKey = AttributeKey<String>('SeriesRenderer.rendererId');
 
-const rendererKey =
-    AttributeKey<SeriesRenderer<Object>>('SeriesRenderer.renderer');
+const rendererKey = AttributeKey<SeriesRenderer<Object>>(
+  'SeriesRenderer.renderer',
+);
 
 /// A series renderer draws one or more series of data onto a chart canvas.
 abstract class SeriesRenderer<D> extends LayoutView {
@@ -132,10 +133,10 @@ abstract class BaseSeriesRenderer<D> implements SeriesRenderer<D> {
     required int layoutPaintOrder,
     this.symbolRenderer,
   }) : layoutConfig = LayoutViewConfig(
-          paintOrder: layoutPaintOrder,
-          position: LayoutPosition.DrawArea,
-          positionOrder: LayoutViewPositionOrder.drawArea,
-        );
+         paintOrder: layoutPaintOrder,
+         position: LayoutPosition.DrawArea,
+         positionOrder: LayoutViewPositionOrder.drawArea,
+       );
   @override
   final LayoutViewConfig layoutConfig;
 
@@ -234,16 +235,17 @@ abstract class BaseSeriesRenderer<D> implements SeriesRenderer<D> {
 
       // Get a list of palettes to use given the number of categories we've
       // seen. One palette per category (but might need to repeat).
-      final colorPalettes = StyleFactory.style
-          .getOrderedPalettes(missingColorCountPerCategory.length);
+      final colorPalettes = StyleFactory.style.getOrderedPalettes(
+        missingColorCountPerCategory.length,
+      );
 
       // Create a map of Color palettes for each category. Each Palette uses
       // the max for any category to ensure that the gradients look appropriate.
       final colorsByCategory = <String, List<Color>>{};
       var index = 0;
       for (final category in missingColorCountPerCategory.keys) {
-        colorsByCategory[category] =
-            colorPalettes[index % colorPalettes.length].makeShades(maxMissing);
+        colorsByCategory[category] = colorPalettes[index % colorPalettes.length]
+            .makeShades(maxMissing);
         index++;
 
         // Reset the count so we can use it to count as we set the colorFn.

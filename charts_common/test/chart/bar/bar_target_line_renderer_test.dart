@@ -141,9 +141,8 @@ void main() {
 
   group('preprocess', () {
     test('with grouped bar target lines', () {
-      renderer = makeRenderer(
-        config: BarTargetLineRendererConfig(),
-      )..preprocessSeries(seriesList);
+      renderer = makeRenderer(config: BarTargetLineRendererConfig())
+        ..preprocessSeries(seriesList);
 
       expect(seriesList.length, equals(3));
 
@@ -377,9 +376,7 @@ void main() {
 
   test('with stroke width target lines', () {
     renderer = makeRenderer(
-      config: BarTargetLineRendererConfig(
-        strokeWidthPx: 5,
-      ),
+      config: BarTargetLineRendererConfig(strokeWidthPx: 5),
     )..preprocessSeries(seriesList);
 
     expect(seriesList.length, equals(3));
@@ -438,9 +435,7 @@ void main() {
   group('preprocess with weight pattern', () {
     test('with grouped bar target lines', () {
       renderer = makeRenderer(
-        config: BarTargetLineRendererConfig(
-          weightPattern: [3, 2, 1],
-        ),
+        config: BarTargetLineRendererConfig(weightPattern: [3, 2, 1]),
       )..preprocessSeries(seriesList);
 
       // Verify that bar group weights are proportional to the sum of the used
@@ -591,20 +586,21 @@ void main() {
 
         final color = Color.fromHex(code: '#000000');
 
-        final series = MutableSeries<String>(
-          Series<MyRow, String>(
-            id: 'Desktop',
-            domainFn: (row, _) => row.campaign,
-            measureFn: (row, _) => row.clickCount,
-            measureOffsetFn: (_, __) => 0,
-            colorFn: (_, __) => color,
-            fillColorFn: (_, __) => color,
-            dashPatternFn: (_, __) => [1],
-            data: data,
-          ),
-        )
-          ..setAttr(domainAxisKey, domainAxis)
-          ..setAttr(measureAxisKey, measureAxis);
+        final series =
+            MutableSeries<String>(
+                Series<MyRow, String>(
+                  id: 'Desktop',
+                  domainFn: (row, _) => row.campaign,
+                  measureFn: (row, _) => row.clickCount,
+                  measureOffsetFn: (_, _) => 0,
+                  colorFn: (_, _) => color,
+                  fillColorFn: (_, _) => color,
+                  dashPatternFn: (_, _) => [1],
+                  data: data,
+                ),
+              )
+              ..setAttr(domainAxisKey, domainAxis)
+              ..setAttr(measureAxisKey, measureAxis);
 
         return [series];
       }
@@ -627,10 +623,7 @@ void main() {
       ];
       final seriesListWithMeasures = createSeriesList(myDataWithMeasures);
 
-      renderer = makeRenderer(
-        config: BarTargetLineRendererConfig(),
-      )
-
+      renderer = makeRenderer(config: BarTargetLineRendererConfig())
         // Verify that only 3 lines are drawn for an initial
         // draw with null data.
         ..preprocessSeries(seriesListWithNull)

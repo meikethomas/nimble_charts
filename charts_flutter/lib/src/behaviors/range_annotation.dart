@@ -17,7 +17,8 @@ import 'package:collection/collection.dart' show ListEquality;
 import 'package:meta/meta.dart' show immutable;
 import 'package:nimble_charts/src/behaviors/chart_behavior.dart'
     show ChartBehavior, GestureType;
-import 'package:nimble_charts_common/common.dart' as common
+import 'package:nimble_charts_common/common.dart'
+    as common
     show
         AnnotationLabelAnchor,
         AnnotationLabelDirection,
@@ -83,16 +84,16 @@ class RangeAnnotation<D> extends ChartBehavior<D> {
 
   @override
   common.RangeAnnotation<D> createCommonBehavior() => common.RangeAnnotation<D>(
-        annotations,
-        defaultColor: defaultColor,
-        defaultLabelAnchor: defaultLabelAnchor,
-        defaultLabelDirection: defaultLabelDirection,
-        defaultLabelPosition: defaultLabelPosition,
-        defaultLabelStyleSpec: defaultLabelStyleSpec,
-        extendAxis: extendAxis,
-        labelPadding: labelPadding,
-        layoutPaintOrder: layoutPaintOrder,
-      );
+    annotations,
+    defaultColor: defaultColor,
+    defaultLabelAnchor: defaultLabelAnchor,
+    defaultLabelDirection: defaultLabelDirection,
+    defaultLabelPosition: defaultLabelPosition,
+    defaultLabelStyleSpec: defaultLabelStyleSpec,
+    extendAxis: extendAxis,
+    labelPadding: labelPadding,
+    layoutPaintOrder: layoutPaintOrder,
+  );
 
   @override
   void updateCommonBehavior(common.ChartBehavior commonBehavior) {}
@@ -115,14 +116,14 @@ class RangeAnnotation<D> extends ChartBehavior<D> {
 
   @override
   int get hashCode => Object.hash(
-        annotations,
-        defaultColor,
-        extendAxis,
-        defaultLabelAnchor,
-        defaultLabelDirection,
-        defaultLabelPosition,
-        defaultLabelStyleSpec,
-        labelPadding,
-        layoutPaintOrder,
-      );
+    annotations,
+    defaultColor,
+    extendAxis,
+    defaultLabelAnchor,
+    defaultLabelDirection,
+    defaultLabelPosition,
+    defaultLabelStyleSpec,
+    labelPadding,
+    layoutPaintOrder,
+  );
 }

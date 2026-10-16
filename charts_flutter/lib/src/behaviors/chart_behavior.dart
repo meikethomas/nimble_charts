@@ -18,7 +18,8 @@ import 'dart:math' show Rectangle;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nimble_charts/src/base_chart_state.dart' show BaseChartState;
-import 'package:nimble_charts_common/common.dart' as common
+import 'package:nimble_charts_common/common.dart'
+    as common
     show
         BehaviorPosition,
         ChartBehavior,

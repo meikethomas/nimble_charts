@@ -39,9 +39,8 @@ class OrdinalInitialViewport extends StatelessWidget {
   });
 
   /// Creates a [charts.BarChart] with sample data and no transition.
-  factory OrdinalInitialViewport.withSampleData() => OrdinalInitialViewport(
-        _createSampleData(),
-      );
+  factory OrdinalInitialViewport.withSampleData() =>
+      OrdinalInitialViewport(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -90,17 +89,17 @@ class OrdinalInitialViewport extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.BarChart(
-        seriesList,
-        animate: animate,
-        // Set the initial viewport by providing a new AxisSpec with the
-        // desired viewport: a starting domain and the data size.
-        domainAxis: charts.OrdinalAxisSpec(
-          viewport: charts.OrdinalViewport('2018', 4),
-        ),
-        // Optionally add a pan or pan and zoom behavior.
-        // If pan/zoom is not added, the viewport specified remains the viewport.
-        behaviors: [charts.PanAndZoomBehavior()],
-      );
+    seriesList,
+    animate: animate,
+    // Set the initial viewport by providing a new AxisSpec with the
+    // desired viewport: a starting domain and the data size.
+    domainAxis: charts.OrdinalAxisSpec(
+      viewport: charts.OrdinalViewport('2018', 4),
+    ),
+    // Optionally add a pan or pan and zoom behavior.
+    // If pan/zoom is not added, the viewport specified remains the viewport.
+    behaviors: [charts.PanAndZoomBehavior()],
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {

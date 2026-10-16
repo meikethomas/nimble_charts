@@ -82,8 +82,9 @@ void main() {
     List<MutableSeries<String>> seriesList = const [],
   }) {
     when(chart.pointWithinRenderer(forPoint)).thenReturn(isWithinRenderer);
-    when(chart.getNearestDatumDetailPerSeries(forPoint, true))
-        .thenReturn(respondWithDetails);
+    when(
+      chart.getNearestDatumDetailPerSeries(forPoint, true),
+    ).thenReturn(respondWithDetails);
     when(chart.currentSeriesList).thenReturn(seriesList);
   }
 
@@ -92,10 +93,12 @@ void main() {
     clickSelectionModel = MockMutableSelectionModel();
 
     chart = MockChart();
-    when(chart.getSelectionModel(SelectionModelType.info))
-        .thenReturn(hoverSelectionModel);
-    when(chart.getSelectionModel(SelectionModelType.action))
-        .thenReturn(clickSelectionModel);
+    when(
+      chart.getSelectionModel(SelectionModelType.info),
+    ).thenReturn(hoverSelectionModel);
+    when(
+      chart.getSelectionModel(SelectionModelType.action),
+    ).thenReturn(clickSelectionModel);
 
     series1Data = ['myDomain1', 'myDomain2', 'myDomain3'];
 
@@ -104,7 +107,7 @@ void main() {
         id: 'mySeries1',
         data: ['myDatum1', 'myDatum2', 'myDatum3'],
         domainFn: (_, i) => series1Data[i!],
-        measureFn: (_, __) => null,
+        measureFn: (_, _) => null,
       ),
     );
 
@@ -137,7 +140,7 @@ void main() {
         id: 'mySeries2',
         data: ['myDatum1s2'],
         domainFn: (_, i) => series2Data[i!],
-        measureFn: (_, __) => null,
+        measureFn: (_, _) => null,
       ),
     );
 
@@ -404,14 +407,8 @@ void main() {
       setupChart(
         forPoint: point,
         isWithinRenderer: true,
-        respondWithDetails: [
-          details10,
-          details1Series2,
-        ],
-        seriesList: [
-          series1,
-          series2,
-        ],
+        respondWithDetails: [details10, details1Series2],
+        seriesList: [series1, series2],
       );
 
       // Act
@@ -419,12 +416,13 @@ void main() {
 
       // Validate
       verify(
-        hoverSelectionModel.updateSelection([
-          SeriesDatum(series1, details10.datum),
-          SeriesDatum(series2, details1Series2.datum),
-        ], [
-          series1,
-        ]),
+        hoverSelectionModel.updateSelection(
+          [
+            SeriesDatum(series1, details10.datum),
+            SeriesDatum(series2, details1Series2.datum),
+          ],
+          [series1],
+        ),
       );
       verifyNoMoreInteractions(hoverSelectionModel);
       verifyNoMoreInteractions(clickSelectionModel);
@@ -442,14 +440,8 @@ void main() {
       setupChart(
         forPoint: point,
         isWithinRenderer: true,
-        respondWithDetails: [
-          details10,
-          details1Series2,
-        ],
-        seriesList: [
-          series1,
-          series2,
-        ],
+        respondWithDetails: [details10, details1Series2],
+        seriesList: [series1, series2],
       );
 
       // Act
@@ -468,22 +460,13 @@ void main() {
 
     test('does not include closest series', () {
       // Setup chart matches point with single domain single series.
-      makeBehavior(
-        SelectionModelType.info,
-        SelectionTrigger.hover,
-      );
+      makeBehavior(SelectionModelType.info, SelectionTrigger.hover);
       const point = Point<double>(100, 100);
       setupChart(
         forPoint: point,
         isWithinRenderer: true,
-        respondWithDetails: [
-          details10,
-          details1Series2,
-        ],
-        seriesList: [
-          series1,
-          series2,
-        ],
+        respondWithDetails: [details10, details1Series2],
+        seriesList: [series1, series2],
       );
 
       // Act
@@ -491,13 +474,10 @@ void main() {
 
       // Validate
       verify(
-        hoverSelectionModel.updateSelection(
-          [
-            SeriesDatum(series1, details10.datum),
-            SeriesDatum(series2, details1Series2.datum),
-          ],
-          [],
-        ),
+        hoverSelectionModel.updateSelection([
+          SeriesDatum(series1, details10.datum),
+          SeriesDatum(series2, details1Series2.datum),
+        ], []),
       );
       verifyNoMoreInteractions(hoverSelectionModel);
       verifyNoMoreInteractions(clickSelectionModel);
@@ -516,14 +496,8 @@ void main() {
       setupChart(
         forPoint: point,
         isWithinRenderer: true,
-        respondWithDetails: [
-          details10,
-          details1Series2,
-        ],
-        seriesList: [
-          series1,
-          series2,
-        ],
+        respondWithDetails: [details10, details1Series2],
+        seriesList: [series1, series2],
       );
 
       // Act
@@ -531,11 +505,10 @@ void main() {
 
       // Validate
       verify(
-        hoverSelectionModel.updateSelection([
-          SeriesDatum(series1, details10.datum),
-        ], [
-          series1,
-        ]),
+        hoverSelectionModel.updateSelection(
+          [SeriesDatum(series1, details10.datum)],
+          [series1],
+        ),
       );
       verifyNoMoreInteractions(hoverSelectionModel);
       verifyNoMoreInteractions(clickSelectionModel);
@@ -553,14 +526,8 @@ void main() {
       setupChart(
         forPoint: point,
         isWithinRenderer: true,
-        respondWithDetails: [
-          details10,
-          details1Series2,
-        ],
-        seriesList: [
-          series1,
-          series2,
-        ],
+        respondWithDetails: [details10, details1Series2],
+        seriesList: [series1, series2],
       );
 
       // Act
@@ -586,7 +553,7 @@ void main() {
           id: 'overlappingSeries',
           data: ['datum1', 'datum2'],
           domainFn: (_, i) => series1Data[i!],
-          measureFn: (_, __) => null,
+          measureFn: (_, _) => null,
         ),
       );
       // Two points covering the mouse position.
@@ -609,13 +576,8 @@ void main() {
       setupChart(
         forPoint: point,
         isWithinRenderer: true,
-        respondWithDetails: [
-          details1,
-          details2,
-        ],
-        seriesList: [
-          series,
-        ],
+        respondWithDetails: [details1, details2],
+        seriesList: [series],
       );
 
       // Act
@@ -623,12 +585,13 @@ void main() {
 
       // Validate
       verify(
-        hoverSelectionModel.updateSelection([
-          SeriesDatum(series, details1.datum),
-          SeriesDatum(series, details2.datum),
-        ], [
-          series,
-        ]),
+        hoverSelectionModel.updateSelection(
+          [
+            SeriesDatum(series, details1.datum),
+            SeriesDatum(series, details2.datum),
+          ],
+          [series],
+        ),
       );
       verifyNoMoreInteractions(hoverSelectionModel);
       verifyNoMoreInteractions(clickSelectionModel);

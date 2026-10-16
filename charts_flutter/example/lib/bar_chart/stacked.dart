@@ -26,9 +26,8 @@ class StackedBarChart extends StatelessWidget {
   const StackedBarChart(this.seriesList, {super.key, this.animate = true});
 
   /// Creates a stacked [charts.BarChart] with sample data and no transition.
-  factory StackedBarChart.withSampleData() => StackedBarChart(
-        _createSampleData(),
-      );
+  factory StackedBarChart.withSampleData() =>
+      StackedBarChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -89,10 +88,10 @@ class StackedBarChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.BarChart(
-        seriesList,
-        animate: animate,
-        barGroupingType: charts.BarGroupingType.stacked,
-      );
+    seriesList,
+    animate: animate,
+    barGroupingType: charts.BarGroupingType.stacked,
+  );
 
   /// Create series list with multiple series
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {

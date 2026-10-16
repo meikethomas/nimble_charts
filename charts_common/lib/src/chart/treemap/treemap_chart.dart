@@ -24,7 +24,7 @@ import 'package:nimble_charts_common/src/chart/treemap/squarified_treemap_render
 
 class TreeMapChart<D> extends BaseChart<D> {
   TreeMapChart({LayoutConfig? layoutConfig})
-      : super(layoutConfig: layoutConfig ?? LayoutConfig());
+    : super(layoutConfig: layoutConfig ?? LayoutConfig());
 
   @override
   void drawInternal(
@@ -44,8 +44,9 @@ class TreeMapChart<D> extends BaseChart<D> {
 
   /// Squarified treemap is used as default renderer.
   @override
-  SeriesRenderer<D> makeDefaultRenderer() => SquarifiedTreeMapRenderer<D>()
-    ..rendererId = SeriesRenderer.defaultRendererId;
+  SeriesRenderer<D> makeDefaultRenderer() =>
+      SquarifiedTreeMapRenderer<D>()
+        ..rendererId = SeriesRenderer.defaultRendererId;
 
   /// Returns a list of datum details from the selection model of [type].
   @override

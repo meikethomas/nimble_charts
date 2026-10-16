@@ -34,9 +34,7 @@ class PercentOfDomainByCategoryBarChart extends StatelessWidget {
   });
 
   factory PercentOfDomainByCategoryBarChart.withSampleData() =>
-      PercentOfDomainByCategoryBarChart(
-        createSampleData(),
-      );
+      PercentOfDomainByCategoryBarChart(createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -142,24 +140,24 @@ class PercentOfDomainByCategoryBarChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.BarChart(
-        seriesList,
-        animate: animate,
-        barGroupingType: charts.BarGroupingType.groupedStacked,
-        // Configures a [PercentInjector] behavior that will calculate measure
-        // values as the percentage of the total of all data that shares both a
-        // domain and a series category.
-        //
-        // We use this option on a grouped stacked bar chart to ensure that the
-        // total value for each bar stack is 100%. A stacked bar chart that does
-        // not group by series category would use the "domain" option.
-        behaviors: [
-          charts.PercentInjector(
-            totalType: charts.PercentInjectorTotalType.domainBySeriesCategory,
-          ),
-        ],
-        // Configure the axis spec to show percentage values.
-        primaryMeasureAxis: charts.PercentAxisSpec(),
-      );
+    seriesList,
+    animate: animate,
+    barGroupingType: charts.BarGroupingType.groupedStacked,
+    // Configures a [PercentInjector] behavior that will calculate measure
+    // values as the percentage of the total of all data that shares both a
+    // domain and a series category.
+    //
+    // We use this option on a grouped stacked bar chart to ensure that the
+    // total value for each bar stack is 100%. A stacked bar chart that does
+    // not group by series category would use the "domain" option.
+    behaviors: [
+      charts.PercentInjector(
+        totalType: charts.PercentInjectorTotalType.domainBySeriesCategory,
+      ),
+    ],
+    // Configure the axis spec to show percentage values.
+    primaryMeasureAxis: charts.PercentAxisSpec(),
+  );
 
   /// Create series list with multiple series
   static List<charts.Series<OrdinalSales, String>> createSampleData() {

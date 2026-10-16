@@ -45,36 +45,40 @@ void main() {
 
   group(BasicDateTimeTickFormatterSpec, () {
     test('formats ticks with custom formatter', () {
-      final dateTimeTickFormatter =
-          dateTimeTickSpec.createTickFormatter(mockContext);
+      final dateTimeTickFormatter = dateTimeTickSpec.createTickFormatter(
+        mockContext,
+      );
 
       final ticks = [testDate1, testDate2, testDate3];
       final expectedLabels = [tickLabel, tickLabel, tickLabel];
-      final actualLabels =
-          dateTimeTickFormatter.format(ticks, {}, stepSize: 10);
+      final actualLabels = dateTimeTickFormatter.format(
+        ticks,
+        {},
+        stepSize: 10,
+      );
 
       expect(actualLabels, equals(expectedLabels));
     });
 
     test('formats ticks with provided DateFormat', () {
-      final dateTimeTickFormatter =
-          dateTimeTickSpecWithDateFormat.createTickFormatter(mockContext);
+      final dateTimeTickFormatter = dateTimeTickSpecWithDateFormat
+          .createTickFormatter(mockContext);
 
       final ticks = [testDate1, testDate2, testDate3];
-      final expectedLabels = [
-        'Nov 11, 1984',
-        'Nov 12, 1984',
-        'Nov 13, 1984',
-      ];
-      final actualLabels =
-          dateTimeTickFormatter.format(ticks, {}, stepSize: 10);
+      final expectedLabels = ['Nov 11, 1984', 'Nov 12, 1984', 'Nov 13, 1984'];
+      final actualLabels = dateTimeTickFormatter.format(
+        ticks,
+        {},
+        stepSize: 10,
+      );
 
       expect(actualLabels, equals(expectedLabels));
     });
 
     test('== override works correctly', () {
-      final otherDateTimeTickSpec =
-          BasicDateTimeTickFormatterSpec(testFormatter);
+      final otherDateTimeTickSpec = BasicDateTimeTickFormatterSpec(
+        testFormatter,
+      );
       final otherDateTimeTickSpecWithDateFormat =
           BasicDateTimeTickFormatterSpec.fromDateFormat(dateFormat);
 
@@ -86,7 +90,8 @@ void main() {
     });
 
     test('hash code works correctly', () {
-      final expectedHash = dateTimeTickSpec.formatter.hashCode *
+      final expectedHash =
+          dateTimeTickSpec.formatter.hashCode *
           37 *
           dateTimeTickSpec.dateFormat.hashCode;
       final actualHash = dateTimeTickSpec.hashCode;

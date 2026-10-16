@@ -35,16 +35,16 @@ class GalleryScaffold extends StatefulWidget {
 
   /// Gets the gallery
   Widget buildGalleryListTile(BuildContext context) => ListTile(
-        leading: listTileIcon,
-        title: Text(title),
-        subtitle: Text(subtitle),
-        onTap: () async {
-          await Navigator.push(
-            context,
-            MaterialPageRoute<dynamic>(builder: (_) => this),
-          );
-        },
+    leading: listTileIcon,
+    title: Text(title),
+    subtitle: Text(subtitle),
+    onTap: () async {
+      await Navigator.push(
+        context,
+        MaterialPageRoute<dynamic>(builder: (_) => this),
       );
+    },
+  );
 
   @override
   GalleryScaffoldState createState() => GalleryScaffoldState();
@@ -57,18 +57,16 @@ class GalleryScaffoldState extends State<GalleryScaffold> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(title: Text(widget.title)),
-        body: Padding(
-          padding: const EdgeInsets.all(8),
-          child: Column(
-            children: <Widget>[
-              SizedBox(height: 250, child: widget.childBuilder()),
-            ],
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: _handleButtonPress,
-          child: const Icon(Icons.refresh),
-        ),
-      );
+    appBar: AppBar(title: Text(widget.title)),
+    body: Padding(
+      padding: const EdgeInsets.all(8),
+      child: Column(
+        children: <Widget>[SizedBox(height: 250, child: widget.childBuilder())],
+      ),
+    ),
+    floatingActionButton: FloatingActionButton(
+      onPressed: _handleButtonPress,
+      child: const Icon(Icons.refresh),
+    ),
+  );
 }

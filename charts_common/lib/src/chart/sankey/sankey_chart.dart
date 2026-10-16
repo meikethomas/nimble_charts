@@ -23,7 +23,7 @@ import 'package:nimble_charts_common/src/chart/sankey/sankey_renderer.dart';
 
 class SankeyChart<D> extends BaseChart<D> {
   SankeyChart({LayoutConfig? layoutConfig})
-      : super(layoutConfig: layoutConfig ?? LayoutConfig());
+    : super(layoutConfig: layoutConfig ?? LayoutConfig());
 
   /// Uses SankeyRenderer as the default renderer.
   @override

@@ -26,9 +26,9 @@ class HourTickFormatter extends TimeTickFormatterImpl {
     required super.transitionFormat,
     required String? noonFormat,
   }) : super(
-          dateTimeFactory: dateTimeFactory,
-          transitionField: CalendarField.date,
-        ) {
+         dateTimeFactory: dateTimeFactory,
+         transitionField: CalendarField.date,
+       ) {
     _noonFormat = dateTimeFactory.createDateFormat(noonFormat);
   }
   late final DateFormat _noonFormat;

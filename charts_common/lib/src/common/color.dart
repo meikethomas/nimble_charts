@@ -24,16 +24,16 @@ class Color {
     this.a = 255,
     Color? darker,
     Color? lighter,
-  })  : _darker = darker,
-        _lighter = lighter;
+  }) : _darker = darker,
+       _lighter = lighter;
 
   Color.fromOther({required Color color, Color? darker, Color? lighter})
-      : r = color.r,
-        g = color.g,
-        b = color.b,
-        a = color.a,
-        _darker = darker ?? color._darker,
-        _lighter = lighter ?? color._lighter;
+    : r = color.r,
+      g = color.g,
+      b = color.b,
+      a = color.a,
+      _darker = darker ?? color._darker,
+      _lighter = lighter ?? color._lighter;
 
   /// Construct the color from a hex code string, of the format #RRGGBB.
   factory Color.fromHex({required String code}) {
@@ -98,7 +98,8 @@ class Color {
   String toString() => rgbaHexString;
 
   /// Converts the character into a #RGBA hex string.
-  String get rgbaHexString => '#${_get2CharHex(r)}${_get2CharHex(g)}'
+  String get rgbaHexString =>
+      '#${_get2CharHex(r)}${_get2CharHex(g)}'
       '${_get2CharHex(b)}${_get2CharHex(a)}';
 
   /// Converts the character into a #RGB hex string.

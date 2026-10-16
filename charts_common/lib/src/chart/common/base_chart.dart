@@ -26,7 +26,7 @@ typedef BehaviorCreator = ChartBehavior<D> Function<D>();
 
 abstract class BaseChart<D> {
   BaseChart({LayoutConfig? layoutConfig})
-      : _layoutManager = LayoutManagerImpl(config: layoutConfig);
+    : _layoutManager = LayoutManagerImpl(config: layoutConfig);
   late ChartContext context;
 
   /// Internal use only.
@@ -228,10 +228,10 @@ abstract class BaseChart<D> {
   SeriesRenderer<D> makeDefaultRenderer();
 
   bool pointWithinRenderer(Point<double> chartPosition) => _usingRenderers.any(
-        (rendererId) => getSeriesRenderer(rendererId)
-            .componentBounds!
-            .containsPoint(chartPosition),
-      );
+    (rendererId) => getSeriesRenderer(
+      rendererId,
+    ).componentBounds!.containsPoint(chartPosition),
+  );
 
   /// Retrieves the datum details that are nearest to the given [drawAreaPoint].
   ///
@@ -248,8 +248,9 @@ abstract class BaseChart<D> {
     // Optionally grab the combined draw area bounds of all components. If this
     // is disabled, then we expect each series renderer to filter out the event
     // if [chartPoint] is located outside of its own component bounds.
-    final boundsOverride =
-        selectAcrossAllDrawAreaComponents ? drawableLayoutAreaBounds : null;
+    final boundsOverride = selectAcrossAllDrawAreaComponents
+        ? drawableLayoutAreaBounds
+        : null;
 
     final details = <DatumDetails<D>>[];
     for (final rendererId in _usingRenderers) {
@@ -329,8 +330,9 @@ abstract class BaseChart<D> {
 
       for (final dynamic datum in series.data) {
         details.add(
-          getSeriesRenderer(rendererId)
-              .getDetailsForSeriesDatum(SeriesDatum<D>(series, datum)),
+          getSeriesRenderer(
+            rendererId,
+          ).getDetailsForSeriesDatum(SeriesDatum<D>(series, datum)),
         );
       }
     }
@@ -478,8 +480,9 @@ abstract class BaseChart<D> {
       selectionModel.clearSelection(notifyListeners: false);
     }
 
-    final processedSeriesList =
-        List.of(seriesList.map<MutableSeries<D>>(makeSeries));
+    final processedSeriesList = List.of(
+      seriesList.map<MutableSeries<D>>(makeSeries),
+    );
 
     // Allow listeners to manipulate the seriesList.
     fireOnDraw(processedSeriesList);
@@ -760,8 +763,7 @@ class LifecycleListener<D> {
   final LifecycleEmptyCallback? onAnimationComplete;
 }
 
-typedef LifecycleSeriesListCallback<D> = void Function(
-  List<MutableSeries<D>> seriesList,
-);
+typedef LifecycleSeriesListCallback<D> =
+    void Function(List<MutableSeries<D>> seriesList);
 typedef LifecycleCanvasCallback = void Function(ChartCanvas canvas);
 typedef LifecycleEmptyCallback = void Function();

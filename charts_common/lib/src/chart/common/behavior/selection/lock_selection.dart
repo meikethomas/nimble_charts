@@ -38,8 +38,10 @@ class LockSelection<D> implements ChartBehavior<D> {
       case SelectionTrigger.tapAndDrag:
       case SelectionTrigger.pressHold:
       case SelectionTrigger.longPressHold:
-        throw ArgumentError('LockSelection does not support the event '
-            'trigger "$eventTrigger"');
+        throw ArgumentError(
+          'LockSelection does not support the event '
+          'trigger "$eventTrigger"',
+        );
     }
   }
   late GestureListener _listener;

@@ -134,8 +134,9 @@ class LeftMarginLayoutStrategy extends VerticalMarginStrategy {
       final left = prevBoundsRight - params.viewMargin.rightPx - width;
       final height =
           (params.isFullPosition ? fullBounds.height : drawAreaBounds.height) -
-              params.viewMargin.height;
-      final top = params.viewMargin.topPx +
+          params.viewMargin.height;
+      final top =
+          params.viewMargin.topPx +
           (params.isFullPosition ? fullBounds.top : drawAreaBounds.top);
 
       // Update the remaining bounds.
@@ -168,8 +169,9 @@ class RightMarginLayoutStrategy extends VerticalMarginStrategy {
       final left = prevBoundsLeft + params.viewMargin.leftPx;
       final height =
           (params.isFullPosition ? fullBounds.height : drawAreaBounds.height) -
-              params.viewMargin.height;
-      final top = params.viewMargin.topPx +
+          params.viewMargin.height;
+      final top =
+          params.viewMargin.topPx +
           (params.isFullPosition ? fullBounds.top : drawAreaBounds.top);
 
       // Update the remaining bounds.
@@ -251,8 +253,9 @@ class TopMarginLayoutStrategy extends HorizontalMarginStrategy {
 
       final width =
           (params.isFullPosition ? fullBounds.width : drawAreaBounds.width) -
-              params.viewMargin.width;
-      final left = params.viewMargin.leftPx +
+          params.viewMargin.width;
+      final left =
+          params.viewMargin.leftPx +
           (params.isFullPosition ? fullBounds.left : drawAreaBounds.left);
 
       // Update the remaining bounds.
@@ -286,8 +289,9 @@ class BottomMarginLayoutStrategy extends HorizontalMarginStrategy {
 
       final width =
           (params.isFullPosition ? fullBounds.width : drawAreaBounds.width) -
-              params.viewMargin.width;
-      final left = params.viewMargin.leftPx +
+          params.viewMargin.width;
+      final left =
+          params.viewMargin.leftPx +
           (params.isFullPosition ? fullBounds.left : drawAreaBounds.left);
 
       // Update the remaining bounds.

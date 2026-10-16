@@ -41,16 +41,15 @@ abstract class SimpleTickFormatterBase<D> implements TickFormatter<D> {
     List<D> tickValues,
     Map<D, String> cache, {
     num? stepSize,
-  }) =>
-      tickValues.map((value) {
-        // Try to use the cached formats first.
-        var formattedString = cache[value];
-        if (formattedString == null) {
-          formattedString = formatValue(value);
-          cache[value] = formattedString;
-        }
-        return formattedString;
-      }).toList();
+  }) => tickValues.map((value) {
+    // Try to use the cached formats first.
+    var formattedString = cache[value];
+    if (formattedString == null) {
+      formattedString = formatValue(value);
+      cache[value] = formattedString;
+    }
+    return formattedString;
+  }).toList();
 
   /// Formats a single tick value.
   String formatValue(D value);

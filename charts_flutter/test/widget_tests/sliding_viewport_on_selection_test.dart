@@ -7,43 +7,40 @@ import '../test_functions.dart';
 
 /// Creates sample data for the chart.
 List<charts.Series<OrdinalSales, String>> createSampleData() => [
-      charts.Series<OrdinalSales, String>(
-        id: 'Sales',
-        domainFn: (sales, _) => sales.year,
-        measureFn: (sales, _) => sales.sales,
-        data: [
-          OrdinalSales('2014', 5),
-          OrdinalSales('2015', 25),
-          OrdinalSales('2016', 100),
-          OrdinalSales('2017', 75),
-          OrdinalSales('2018', 33),
-          OrdinalSales('2019', 80),
-          OrdinalSales('2020', 21),
-          OrdinalSales('2021', 77),
-        ],
-      ),
-    ];
+  charts.Series<OrdinalSales, String>(
+    id: 'Sales',
+    domainFn: (sales, _) => sales.year,
+    measureFn: (sales, _) => sales.sales,
+    data: [
+      OrdinalSales('2014', 5),
+      OrdinalSales('2015', 25),
+      OrdinalSales('2016', 100),
+      OrdinalSales('2017', 75),
+      OrdinalSales('2018', 33),
+      OrdinalSales('2019', 80),
+      OrdinalSales('2020', 21),
+      OrdinalSales('2021', 77),
+    ],
+  ),
+];
 
 /// Builds the chart widget for testing.
 Widget buildTestChart() => MaterialApp(
-      home: Scaffold(
-        body: SizedBox(
-          height: 400,
-          width: 600,
-          child: charts.BarChart(
-            createSampleData(),
-            animate: false,
-            behaviors: [
-              charts.SlidingViewport(),
-              charts.PanAndZoomBehavior(),
-            ],
-            domainAxis: charts.OrdinalAxisSpec(
-              viewport: charts.OrdinalViewport('2016', 3),
-            ),
-          ),
+  home: Scaffold(
+    body: SizedBox(
+      height: 400,
+      width: 600,
+      child: charts.BarChart(
+        createSampleData(),
+        animate: false,
+        behaviors: [charts.SlidingViewport(), charts.PanAndZoomBehavior()],
+        domainAxis: charts.OrdinalAxisSpec(
+          viewport: charts.OrdinalViewport('2016', 3),
         ),
       ),
-    );
+    ),
+  ),
+);
 
 /// Custom finder to get the BarChart widget
 Finder findBarChart() => find.byType(charts.BarChart);

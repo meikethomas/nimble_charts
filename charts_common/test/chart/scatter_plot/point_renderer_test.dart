@@ -17,6 +17,7 @@
 library;
 
 import 'package:test/test.dart';
+
 /*
 
 import 'package:nimble_charts_common/src/chart/common/processed_series.dart'

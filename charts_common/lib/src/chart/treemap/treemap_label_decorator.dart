@@ -37,8 +37,10 @@ class TreeMapLabelDecorator<D> extends TreeMapRendererDecorator<D> {
   // Default configuration
   static const _defaultLabelPadding = 4;
   static const _defaultFontSize = 12;
-  static const _defaultLabelStyle =
-      TextStyleSpec(fontSize: _defaultFontSize, color: Color.black);
+  static const _defaultLabelStyle = TextStyleSpec(
+    fontSize: _defaultFontSize,
+    color: Color.black,
+  );
 
   /// Rotation value of 90 degrees clockwise.
   static const _90DegreeClockwise = pi / 2;
@@ -131,12 +133,11 @@ class TreeMapLabelDecorator<D> extends TreeMapRendererDecorator<D> {
   TextStyle _asTextStyle(
     GraphicsFactory graphicsFactory,
     TextStyleSpec labelSpec,
-  ) =>
-      graphicsFactory.createTextPaint()
-        ..color = labelSpec.color ?? Color.black
-        ..fontFamily = labelSpec.fontFamily
-        ..fontSize = labelSpec.fontSize ?? _defaultFontSize
-        ..lineHeight = labelSpec.lineHeight;
+  ) => graphicsFactory.createTextPaint()
+    ..color = labelSpec.color ?? Color.black
+    ..fontFamily = labelSpec.fontFamily
+    ..fontSize = labelSpec.fontSize ?? _defaultFontSize
+    ..lineHeight = labelSpec.lineHeight;
 
   /// Gets datum specific style.
   TextStyle _datumStyle(
@@ -164,7 +165,8 @@ class TreeMapLabelDecorator<D> extends TreeMapRendererDecorator<D> {
 
     // Set x offset for each line.
     if (rotate) {
-      xOffset = elementBoundingRect.right -
+      xOffset =
+          elementBoundingRect.right -
           labelPadding -
           2 * labelElement.textStyle!.fontSize! -
           labelHeight * position;

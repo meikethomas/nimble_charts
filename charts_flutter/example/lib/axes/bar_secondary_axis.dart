@@ -44,18 +44,14 @@ class BarChartWithSecondaryAxis extends StatelessWidget {
   });
 
   factory BarChartWithSecondaryAxis.withSampleData() =>
-      BarChartWithSecondaryAxis(
-        _createSampleData(),
-      );
+      BarChartWithSecondaryAxis(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
   // It is used for creating random series data to demonstrate animation in
   // the example app only.
   factory BarChartWithSecondaryAxis.withRandomData() =>
-      BarChartWithSecondaryAxis(
-        _createRandomData(),
-      );
+      BarChartWithSecondaryAxis(_createRandomData());
   static const secondaryMeasureAxisId = 'secondaryMeasureAxisId';
   final List<charts.Series<dynamic, String>> seriesList;
   final bool animate;
@@ -100,21 +96,23 @@ class BarChartWithSecondaryAxis extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.BarChart(
-        seriesList,
-        animate: animate,
-        barGroupingType: charts.BarGroupingType.grouped,
-        // It is important when using both primary and secondary axes to choose
-        // the same number of ticks for both sides to get the gridlines to line
-        // up.
-        primaryMeasureAxis: const charts.NumericAxisSpec(
-          tickProviderSpec:
-              charts.BasicNumericTickProviderSpec(desiredTickCount: 3),
-        ),
-        secondaryMeasureAxis: const charts.NumericAxisSpec(
-          tickProviderSpec:
-              charts.BasicNumericTickProviderSpec(desiredTickCount: 3),
-        ),
-      );
+    seriesList,
+    animate: animate,
+    barGroupingType: charts.BarGroupingType.grouped,
+    // It is important when using both primary and secondary axes to choose
+    // the same number of ticks for both sides to get the gridlines to line
+    // up.
+    primaryMeasureAxis: const charts.NumericAxisSpec(
+      tickProviderSpec: charts.BasicNumericTickProviderSpec(
+        desiredTickCount: 3,
+      ),
+    ),
+    secondaryMeasureAxis: const charts.NumericAxisSpec(
+      tickProviderSpec: charts.BasicNumericTickProviderSpec(
+        desiredTickCount: 3,
+      ),
+    ),
+  );
 
   /// Create series list with multiple series
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {

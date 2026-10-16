@@ -104,8 +104,9 @@ class LayoutManagerImpl implements LayoutManager {
       _positionOrderedViews = List.of(_views);
 
       _positionOrderedViews.sort(
-        (v1, v2) => v1.layoutConfig.positionOrder!
-            .compareTo(v2.layoutConfig.positionOrder!),
+        (v1, v2) => v1.layoutConfig.positionOrder!.compareTo(
+          v2.layoutConfig.positionOrder!,
+        ),
       );
 
       _viewsNeedPositionSort = false;
@@ -172,14 +173,22 @@ class LayoutManagerImpl implements LayoutManager {
   /// Measure and layout with given [width] and [height].
   @override
   void measure(int width, int height) {
-    final topViews =
-        _viewsForPositions(LayoutPosition.Top, LayoutPosition.FullTop);
-    final rightViews =
-        _viewsForPositions(LayoutPosition.Right, LayoutPosition.FullRight);
-    final bottomViews =
-        _viewsForPositions(LayoutPosition.Bottom, LayoutPosition.FullBottom);
-    final leftViews =
-        _viewsForPositions(LayoutPosition.Left, LayoutPosition.FullLeft);
+    final topViews = _viewsForPositions(
+      LayoutPosition.Top,
+      LayoutPosition.FullTop,
+    );
+    final rightViews = _viewsForPositions(
+      LayoutPosition.Right,
+      LayoutPosition.FullRight,
+    );
+    final bottomViews = _viewsForPositions(
+      LayoutPosition.Bottom,
+      LayoutPosition.FullBottom,
+    );
+    final leftViews = _viewsForPositions(
+      LayoutPosition.Left,
+      LayoutPosition.FullLeft,
+    );
 
     // Assume the full width and height of the chart is available when measuring
     // for the first time but adjust the maximum if margin spec is set.
@@ -254,21 +263,33 @@ class LayoutManagerImpl implements LayoutManager {
 
   @override
   void layout(int width, int height) {
-    final topViews =
-        _viewsForPositions(LayoutPosition.Top, LayoutPosition.FullTop);
-    final rightViews =
-        _viewsForPositions(LayoutPosition.Right, LayoutPosition.FullRight);
-    final bottomViews =
-        _viewsForPositions(LayoutPosition.Bottom, LayoutPosition.FullBottom);
-    final leftViews =
-        _viewsForPositions(LayoutPosition.Left, LayoutPosition.FullLeft);
+    final topViews = _viewsForPositions(
+      LayoutPosition.Top,
+      LayoutPosition.FullTop,
+    );
+    final rightViews = _viewsForPositions(
+      LayoutPosition.Right,
+      LayoutPosition.FullRight,
+    );
+    final bottomViews = _viewsForPositions(
+      LayoutPosition.Bottom,
+      LayoutPosition.FullBottom,
+    );
+    final leftViews = _viewsForPositions(
+      LayoutPosition.Left,
+      LayoutPosition.FullLeft,
+    );
     final drawAreaViews = _viewsForPositions(LayoutPosition.DrawArea);
 
     final fullBounds = Rectangle(0, 0, width, height);
 
     // Layout the margins.
-    LeftMarginLayoutStrategy()
-        .layout(leftViews, _measurements.leftSizes, fullBounds, drawAreaBounds);
+    LeftMarginLayoutStrategy().layout(
+      leftViews,
+      _measurements.leftSizes,
+      fullBounds,
+      drawAreaBounds,
+    );
     RightMarginLayoutStrategy().layout(
       rightViews,
       _measurements.rightSizes,
@@ -281,8 +302,12 @@ class LayoutManagerImpl implements LayoutManager {
       fullBounds,
       drawAreaBounds,
     );
-    TopMarginLayoutStrategy()
-        .layout(topViews, _measurements.topSizes, fullBounds, drawAreaBounds);
+    TopMarginLayoutStrategy().layout(
+      topViews,
+      _measurements.topSizes,
+      fullBounds,
+      drawAreaBounds,
+    );
 
     // Layout the drawArea.
     for (final view in drawAreaViews) {
@@ -293,12 +318,11 @@ class LayoutManagerImpl implements LayoutManager {
   Iterable<LayoutView> _viewsForPositions(
     LayoutPosition p1, [
     LayoutPosition? p2,
-  ]) =>
-      positionOrderedViews.where(
-        (view) =>
-            view.layoutConfig.position == p1 ||
-            (p2 != null && view.layoutConfig.position == p2),
-      );
+  ]) => positionOrderedViews.where(
+    (view) =>
+        view.layoutConfig.position == p1 ||
+        (p2 != null && view.layoutConfig.position == p2),
+  );
 
   /// Measure and return size measurements.
   /// [width] full width of chart
@@ -355,8 +379,10 @@ class LayoutManagerImpl implements LayoutManager {
       width: adjustedWidth,
       fullWidth: width,
     );
-    bottomHeight =
-        max(bottomSizes.total, config.bottomSpec.getMinPixels(height));
+    bottomHeight = max(
+      bottomSizes.total,
+      config.bottomSpec.getMinPixels(height),
+    );
 
     final topSizes = TopMarginLayoutStrategy().measure(
       topViews,

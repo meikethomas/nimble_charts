@@ -15,7 +15,8 @@
 
 import 'package:nimble_charts_common/common.dart';
 import 'package:nimble_charts_common/src/data/graph.dart' as graph;
-import 'package:nimble_charts_common/src/data/graph.dart' as graph_structure
+import 'package:nimble_charts_common/src/data/graph.dart'
+    as graph_structure
     show Node, indexNotRelevant;
 import 'package:nimble_charts_common/src/data/graph.dart';
 import 'package:nimble_charts_common/src/data/sankey_graph.dart';
@@ -89,8 +90,7 @@ SankeyGraph<MyNode, MyLink, String> mockLinearGraph() {
 String nodeDomain(
   Graph<MyNode, MyLink, String> myGraph,
   graph_structure.Node<MyNode, MyLink> node,
-) =>
-    myGraph.nodeDomainFn(node, graph_structure.indexNotRelevant);
+) => myGraph.nodeDomainFn(node, graph_structure.indexNotRelevant);
 
 void main() {
   group('GraphTopologyFunctions', () {
@@ -101,10 +101,11 @@ void main() {
         myGraph.nodeDomainFn,
         myGraph.linkDomainFn,
       );
-      expect(
-        simpleSort.map((node) => nodeDomain(myGraph, node)).toList(),
-        [nodeIds[1], nodeIds[2], nodeIds[3]],
-      );
+      expect(simpleSort.map((node) => nodeDomain(myGraph, node)).toList(), [
+        nodeIds[1],
+        nodeIds[2],
+        nodeIds[3],
+      ]);
     });
 
     test('returns one of many valid topological sorts for complex graph', () {
@@ -144,30 +145,33 @@ void main() {
         myGraph.linkDomainFn,
       );
 
-      final firstIndex = multiSort
-          .indexWhere((node) => nodeDomain(myGraph, node) == nodeIds[1]);
-      final secondIndex = multiSort
-          .indexWhere((node) => nodeDomain(myGraph, node) == nodeIds[2]);
-      final thirdIndex = multiSort
-          .indexWhere((node) => nodeDomain(myGraph, node) == nodeIds[3]);
-      final fourthIndex = multiSort
-          .indexWhere((node) => nodeDomain(myGraph, node) == nodeIds[4]);
-      final fifthIndex = multiSort
-          .indexWhere((node) => nodeDomain(myGraph, node) == nodeIds[5]);
-      final sixthIndex = multiSort
-          .indexWhere((node) => nodeDomain(myGraph, node) == nodeIds[6]);
-
-      expect(
-        [
-          firstIndex > sixthIndex,
-          firstIndex > fifthIndex,
-          thirdIndex > sixthIndex,
-          fourthIndex > thirdIndex,
-          secondIndex > fourthIndex,
-          secondIndex > fifthIndex,
-        ],
-        everyElement(isTrue),
+      final firstIndex = multiSort.indexWhere(
+        (node) => nodeDomain(myGraph, node) == nodeIds[1],
       );
+      final secondIndex = multiSort.indexWhere(
+        (node) => nodeDomain(myGraph, node) == nodeIds[2],
+      );
+      final thirdIndex = multiSort.indexWhere(
+        (node) => nodeDomain(myGraph, node) == nodeIds[3],
+      );
+      final fourthIndex = multiSort.indexWhere(
+        (node) => nodeDomain(myGraph, node) == nodeIds[4],
+      );
+      final fifthIndex = multiSort.indexWhere(
+        (node) => nodeDomain(myGraph, node) == nodeIds[5],
+      );
+      final sixthIndex = multiSort.indexWhere(
+        (node) => nodeDomain(myGraph, node) == nodeIds[6],
+      );
+
+      expect([
+        firstIndex > sixthIndex,
+        firstIndex > fifthIndex,
+        thirdIndex > sixthIndex,
+        fourthIndex > thirdIndex,
+        secondIndex > fourthIndex,
+        secondIndex > fifthIndex,
+      ], everyElement(isTrue));
     });
 
     test('throws UnsupportedError when graph contains a cycle', () {
@@ -361,14 +365,9 @@ void main() {
     });
 
     test('converts sankey graph data to series data', () {
-      final myNodes = [
-        MyNode('Node 1', 4),
-        MyNode('Node 2', 5),
-      ];
+      final myNodes = [MyNode('Node 1', 4), MyNode('Node 2', 5)];
 
-      final myLinks = [
-        MyLink('Link A', myNodes[0], myNodes[1], 1),
-      ];
+      final myLinks = [MyLink('Link A', myNodes[0], myNodes[1], 1)];
 
       final myGraph = SankeyGraph<MyNode, MyLink, String>(
         id: 'MyGraph',

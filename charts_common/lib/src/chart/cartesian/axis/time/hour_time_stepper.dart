@@ -28,18 +28,17 @@ class HourTimeStepper extends BaseTimeStepper {
     allowedTickIncrements ??= _defaultIncrements;
 
     assert(
-      allowedTickIncrements
-          .every((increment) => increment >= 1 && increment <= 24),
+      allowedTickIncrements.every(
+        (increment) => increment >= 1 && increment <= 24,
+      ),
       'Increments must be between 1 and 24',
     );
 
     return HourTimeStepper._internal(dateTimeFactory, allowedTickIncrements);
   }
 
-  HourTimeStepper._internal(
-    super.dateTimeFactory,
-    List<int> increments,
-  ) : _allowedTickIncrements = increments;
+  HourTimeStepper._internal(super.dateTimeFactory, List<int> increments)
+    : _allowedTickIncrements = increments;
   static const _defaultIncrements = [1, 2, 3, 4, 6, 12, 24];
   static const _hoursInDay = 24;
   static const _millisecondsInHour = 3600 * 1000;
@@ -74,8 +73,9 @@ class HourTimeStepper extends BaseTimeStepper {
             .ceil();
 
     final hoursRemainder = hoursToNextDay % tickIncrement;
-    final rewindHours =
-        hoursRemainder == 0 ? 0 : tickIncrement - hoursRemainder;
+    final rewindHours = hoursRemainder == 0
+        ? 0
+        : tickIncrement - hoursRemainder;
     final stepBefore = dateTimeFactory.createDateTime(
       time.year,
       time.month,

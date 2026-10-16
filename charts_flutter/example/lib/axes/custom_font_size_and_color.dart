@@ -34,9 +34,8 @@ class CustomFontSizeAndColor extends StatelessWidget {
     this.animate = true,
   });
 
-  factory CustomFontSizeAndColor.withSampleData() => CustomFontSizeAndColor(
-        _createSampleData(),
-      );
+  factory CustomFontSizeAndColor.withSampleData() =>
+      CustomFontSizeAndColor(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -71,45 +70,41 @@ class CustomFontSizeAndColor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.BarChart(
-        seriesList,
-        animate: animate,
+    seriesList,
+    animate: animate,
 
-        /// Assign a custom style for the domain axis.
-        ///
-        /// This is an OrdinalAxisSpec to match up with BarChart's default
-        /// ordinal domain axis (use NumericAxisSpec or DateTimeAxisSpec for
-        /// other charts).
-        domainAxis: const charts.OrdinalAxisSpec(
-          renderSpec: charts.SmallTickRendererSpec(
-            // Tick and Label styling here.
-            labelStyle: charts.TextStyleSpec(
-              fontSize: 18, // size in Pts.
-              color: charts.MaterialPalette.black,
-            ),
-
-            // Change the line colors to match text color.
-            lineStyle: charts.LineStyleSpec(
-              color: charts.MaterialPalette.black,
-            ),
-          ),
+    /// Assign a custom style for the domain axis.
+    ///
+    /// This is an OrdinalAxisSpec to match up with BarChart's default
+    /// ordinal domain axis (use NumericAxisSpec or DateTimeAxisSpec for
+    /// other charts).
+    domainAxis: const charts.OrdinalAxisSpec(
+      renderSpec: charts.SmallTickRendererSpec(
+        // Tick and Label styling here.
+        labelStyle: charts.TextStyleSpec(
+          fontSize: 18, // size in Pts.
+          color: charts.MaterialPalette.black,
         ),
 
-        /// Assign a custom style for the measure axis.
-        primaryMeasureAxis: const charts.NumericAxisSpec(
-          renderSpec: charts.GridlineRendererSpec(
-            // Tick and Label styling here.
-            labelStyle: charts.TextStyleSpec(
-              fontSize: 18, // size in Pts.
-              color: charts.MaterialPalette.black,
-            ),
+        // Change the line colors to match text color.
+        lineStyle: charts.LineStyleSpec(color: charts.MaterialPalette.black),
+      ),
+    ),
 
-            // Change the line colors to match text color.
-            lineStyle: charts.LineStyleSpec(
-              color: charts.MaterialPalette.black,
-            ),
-          ),
+    /// Assign a custom style for the measure axis.
+    primaryMeasureAxis: const charts.NumericAxisSpec(
+      renderSpec: charts.GridlineRendererSpec(
+        // Tick and Label styling here.
+        labelStyle: charts.TextStyleSpec(
+          fontSize: 18, // size in Pts.
+          color: charts.MaterialPalette.black,
         ),
-      );
+
+        // Change the line colors to match text color.
+        lineStyle: charts.LineStyleSpec(color: charts.MaterialPalette.black),
+      ),
+    ),
+  );
 
   /// Create series list with single series
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {

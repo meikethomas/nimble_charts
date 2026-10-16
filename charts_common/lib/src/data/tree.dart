@@ -37,20 +37,19 @@ class Tree<T, D> {
     TypedAccessorFn<T, num>? strokeWidthPxFn,
     TypedAccessorFn<T, String>? labelFn,
     TypedAccessorFn<T, TextStyleSpec>? labelStyleFn,
-  }) =>
-      Tree._(
-        id: id,
-        root: root,
-        domainFn: _castFrom<T, D>(domainFn)!,
-        measureFn: _castFrom<T, num?>(measureFn)!,
-        colorFn: _castFrom<T, Color>(colorFn),
-        fillColorFn: _castFrom<T, Color>(fillColorFn),
-        fillPatternFn: _castFrom<T, FillPatternType>(fillPatternFn),
-        patternColorFn: _castFrom<T, Color>(patternColorFn),
-        strokeWidthPxFn: _castFrom<T, num>(strokeWidthPxFn),
-        labelFn: _castFrom<T, String>(labelFn),
-        labelStyleFn: _castFrom<T, TextStyleSpec>(labelStyleFn),
-      );
+  }) => Tree._(
+    id: id,
+    root: root,
+    domainFn: _castFrom<T, D>(domainFn)!,
+    measureFn: _castFrom<T, num?>(measureFn)!,
+    colorFn: _castFrom<T, Color>(colorFn),
+    fillColorFn: _castFrom<T, Color>(fillColorFn),
+    fillPatternFn: _castFrom<T, FillPatternType>(fillPatternFn),
+    patternColorFn: _castFrom<T, Color>(patternColorFn),
+    strokeWidthPxFn: _castFrom<T, num>(strokeWidthPxFn),
+    labelFn: _castFrom<T, String>(labelFn),
+    labelStyleFn: _castFrom<T, TextStyleSpec>(labelStyleFn),
+  );
 
   Tree._({
     required this.id,

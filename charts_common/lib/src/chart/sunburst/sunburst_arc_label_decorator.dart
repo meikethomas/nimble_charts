@@ -50,9 +50,7 @@ class SunburstArcLabelDecorator<D extends Object> extends ArcLabelDecorator<D> {
     // arcs' label with outer arcs.
     this.innerRingLeafArcLabelPosition = ArcLabelPosition.inside,
     this.outerRingArcLabelPosition = ArcLabelPosition.auto,
-  }) : super(
-          labelPosition: ArcLabelPosition.auto,
-        );
+  }) : super(labelPosition: ArcLabelPosition.auto);
 
   /// Configures the [ArcLabelPosition] for the non-leaf arcs in the inner ring.
   /// Label can only be rendered inside, If set to ArcLabelPosition.outside,

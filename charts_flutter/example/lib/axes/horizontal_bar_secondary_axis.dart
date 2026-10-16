@@ -44,9 +44,7 @@ class HorizontalBarChartWithSecondaryAxis extends StatelessWidget {
   });
 
   factory HorizontalBarChartWithSecondaryAxis.withSampleData() =>
-      HorizontalBarChartWithSecondaryAxis(
-        _createSampleData(),
-      );
+      HorizontalBarChartWithSecondaryAxis(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -108,12 +106,14 @@ class HorizontalBarChartWithSecondaryAxis extends StatelessWidget {
         // the same number of ticks for both sides to get the gridlines to line
         // up.
         primaryMeasureAxis: const charts.NumericAxisSpec(
-          tickProviderSpec:
-              charts.BasicNumericTickProviderSpec(desiredTickCount: 3),
+          tickProviderSpec: charts.BasicNumericTickProviderSpec(
+            desiredTickCount: 3,
+          ),
         ),
         secondaryMeasureAxis: const charts.NumericAxisSpec(
-          tickProviderSpec:
-              charts.BasicNumericTickProviderSpec(desiredTickCount: 3),
+          tickProviderSpec: charts.BasicNumericTickProviderSpec(
+            desiredTickCount: 3,
+          ),
         ),
       );
 

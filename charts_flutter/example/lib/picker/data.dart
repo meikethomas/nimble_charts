@@ -510,40 +510,28 @@ List<ChartSampleDefinition> chartSampleDefinitions = [
 
   // Scatter Plot Charts
   ChartSampleDefinition(
-    tags: [
-      tagDefinitions['scatter']!,
-      tagDefinitions['simple']!,
-    ],
+    tags: [tagDefinitions['scatter']!, tagDefinitions['simple']!],
     icon: Icons.scatter_plot,
     build: (context, item) => SimpleScatterPlotChart.withRandomData(),
     title: simpleScatterPlotChartTitle,
     subtitle: simpleScatterPlotChartSubtitle,
   ),
   ChartSampleDefinition(
-    tags: [
-      tagDefinitions['scatter']!,
-      tagDefinitions['custom']!,
-    ],
+    tags: [tagDefinitions['scatter']!, tagDefinitions['custom']!],
     icon: Icons.scatter_plot,
     build: (context, item) => ComparisonPointsScatterPlotChart.withRandomData(),
     title: comparisonPointsScatterPlotChartTitle,
     subtitle: comparisonPointsScatterPlotChartSubtitle,
   ),
   ChartSampleDefinition(
-    tags: [
-      tagDefinitions['scatter']!,
-      tagDefinitions['animated']!,
-    ],
+    tags: [tagDefinitions['scatter']!, tagDefinitions['animated']!],
     icon: Icons.scatter_plot,
     build: (context, item) => ScatterPlotAnimationZoomChart.withRandomData(),
     title: panAndZoomScatterPlotChartTitle,
     subtitle: panAndZoomScatterPlotChartSubtitle,
   ),
   ChartSampleDefinition(
-    tags: [
-      tagDefinitions['scatter']!,
-      tagDefinitions['custom']!,
-    ],
+    tags: [tagDefinitions['scatter']!, tagDefinitions['custom']!],
     icon: Icons.scatter_plot,
     build: (context, item) => BucketingAxisScatterPlotChart.withRandomData(),
     title: bucketingAxisScatterPlotChartTitle,
@@ -620,10 +608,7 @@ List<ChartSampleDefinition> chartSampleDefinitions = [
     subtitle: symbolAnnotationTimeSeriesChartSubtitle,
   ),
   ChartSampleDefinition(
-    tags: [
-      tagDefinitions['time']!,
-      tagDefinitions['bar']!,
-    ],
+    tags: [tagDefinitions['time']!, tagDefinitions['bar']!],
     icon: Icons.timeline,
     build: (context, item) => TimeSeriesBar.withRandomData(),
     title: timeSeriesChartWithBarsTitle,

@@ -37,14 +37,15 @@ class EndPointsTimeAxisSpec extends DateTimeAxisSpec {
     super.showAxisLine,
     super.viewport,
   }) : super(
-          renderSpec: renderSpec ??
-              const SmallTickRendererSpec<DateTime>(
-                labelAnchor: TickLabelAnchor.inside,
-                labelOffsetFromTickPx: 0,
-              ),
-          tickProviderSpec:
-              tickProviderSpec ?? const DateTimeEndPointsTickProviderSpec(),
-        );
+         renderSpec:
+             renderSpec ??
+             const SmallTickRendererSpec<DateTime>(
+               labelAnchor: TickLabelAnchor.inside,
+               labelOffsetFromTickPx: 0,
+             ),
+         tickProviderSpec:
+             tickProviderSpec ?? const DateTimeEndPointsTickProviderSpec(),
+       );
 
   @override
   bool operator ==(Object other) =>

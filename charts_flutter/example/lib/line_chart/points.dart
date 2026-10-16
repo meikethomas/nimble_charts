@@ -27,9 +27,8 @@ class PointsLineChart extends StatelessWidget {
   const PointsLineChart(this.seriesList, {super.key, this.animate = true});
 
   /// Creates a [charts.LineChart] with sample data and no transition.
-  factory PointsLineChart.withSampleData() => PointsLineChart(
-        _createSampleData(),
-      );
+  factory PointsLineChart.withSampleData() =>
+      PointsLineChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -65,10 +64,10 @@ class PointsLineChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.LineChart(
-        seriesList,
-        animate: animate,
-        defaultRenderer: charts.LineRendererConfig(includePoints: true),
-      );
+    seriesList,
+    animate: animate,
+    defaultRenderer: charts.LineRendererConfig(includePoints: true),
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<LinearSales, int>> _createSampleData() {

@@ -41,8 +41,9 @@ class IconRenderer extends charts.CustomSymbolRenderer {
   }) {
     // Lighten the color if the symbol is not enabled
     // Example: If user has tapped on a Series deselecting it.
-    final symbolColor =
-        color != null && !enabled ? color.withAlpha(.26) : color;
+    final symbolColor = color != null && !enabled
+        ? color.withAlpha(.26)
+        : color;
 
     return SizedBox.fromSize(
       size: size,
@@ -58,9 +59,8 @@ class LegendWithCustomSymbol extends StatelessWidget {
     this.animate = true,
   });
 
-  factory LegendWithCustomSymbol.withSampleData() => LegendWithCustomSymbol(
-        _createSampleData(),
-      );
+  factory LegendWithCustomSymbol.withSampleData() =>
+      LegendWithCustomSymbol(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -134,19 +134,19 @@ class LegendWithCustomSymbol extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.BarChart(
-        seriesList,
-        animate: animate,
-        barGroupingType: charts.BarGroupingType.grouped,
-        // Add the legend behavior to the chart to turn on legends.
-        // By default the legend will display above the chart.
-        //
-        // To change the symbol used in the legend, set the renderer attribute
-        // of symbolRendererKey to a SymbolRenderer.
-        behaviors: [charts.SeriesLegend()],
-        defaultRenderer: charts.BarRendererConfig(
-          symbolRenderer: IconRenderer(Icons.cloud),
-        ),
-      );
+    seriesList,
+    animate: animate,
+    barGroupingType: charts.BarGroupingType.grouped,
+    // Add the legend behavior to the chart to turn on legends.
+    // By default the legend will display above the chart.
+    //
+    // To change the symbol used in the legend, set the renderer attribute
+    // of symbolRendererKey to a SymbolRenderer.
+    behaviors: [charts.SeriesLegend()],
+    defaultRenderer: charts.BarRendererConfig(
+      symbolRenderer: IconRenderer(Icons.cloud),
+    ),
+  );
 
   /// Create series list with multiple series
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {

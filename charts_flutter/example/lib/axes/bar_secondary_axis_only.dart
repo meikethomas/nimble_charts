@@ -38,9 +38,7 @@ class BarChartWithSecondaryAxisOnly extends StatelessWidget {
   });
 
   factory BarChartWithSecondaryAxisOnly.withSampleData() =>
-      BarChartWithSecondaryAxisOnly(
-        _createSampleData(),
-      );
+      BarChartWithSecondaryAxisOnly(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -65,11 +63,11 @@ class BarChartWithSecondaryAxisOnly extends StatelessWidget {
 
     return [
       charts.Series<OrdinalSales, String>(
-        id: 'Global Revenue',
-        domainFn: (sales, _) => sales.year,
-        measureFn: (sales, _) => sales.sales,
-        data: globalSalesData,
-      )
+          id: 'Global Revenue',
+          domainFn: (sales, _) => sales.year,
+          measureFn: (sales, _) => sales.sales,
+          data: globalSalesData,
+        )
         // Set series to use the secondary measure axis.
         ..setAttribute(charts.measureAxisIdKey, secondaryMeasureAxisId),
     ];
@@ -77,10 +75,8 @@ class BarChartWithSecondaryAxisOnly extends StatelessWidget {
   // EXCLUDE_FROM_GALLERY_DOCS_END
 
   @override
-  Widget build(BuildContext context) => charts.BarChart(
-        seriesList,
-        animate: animate,
-      );
+  Widget build(BuildContext context) =>
+      charts.BarChart(seriesList, animate: animate);
 
   /// Create series list with multiple series
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {
@@ -93,11 +89,11 @@ class BarChartWithSecondaryAxisOnly extends StatelessWidget {
 
     return [
       charts.Series<OrdinalSales, String>(
-        id: 'Global Revenue',
-        domainFn: (sales, _) => sales.year,
-        measureFn: (sales, _) => sales.sales,
-        data: globalSalesData,
-      )
+          id: 'Global Revenue',
+          domainFn: (sales, _) => sales.year,
+          measureFn: (sales, _) => sales.sales,
+          data: globalSalesData,
+        )
         // Set series to use the secondary measure axis.
         ..setAttribute(charts.measureAxisIdKey, secondaryMeasureAxisId),
     ];

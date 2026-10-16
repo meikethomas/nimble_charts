@@ -38,11 +38,11 @@ class SimpleOrdinalScale implements OrdinalScale {
   SimpleOrdinalScale() : _domain = OrdinalScaleDomainInfo();
 
   SimpleOrdinalScale._copy(SimpleOrdinalScale other)
-      : _domain = other._domain.copy(),
-        _range = ScaleOutputExtent(other._range.start, other._range.end),
-        _viewportScale = other._viewportScale,
-        _viewportTranslatePx = other._viewportTranslatePx,
-        _rangeBandConfig = other._rangeBandConfig;
+    : _domain = other._domain.copy(),
+      _range = ScaleOutputExtent(other._range.start, other._range.end),
+      _viewportScale = other._viewportScale,
+      _viewportTranslatePx = other._viewportTranslatePx,
+      _rangeBandConfig = other._rangeBandConfig;
   final _stepSizeConfig = const StepSizeConfig.auto();
   final OrdinalScaleDomainInfo _domain;
   ScaleOutputExtent _range = const ScaleOutputExtent(0, 1);
@@ -141,7 +141,8 @@ class SimpleOrdinalScale implements OrdinalScale {
 
   @override
   String reverse(double pixelLocation) {
-    final index = (pixelLocation -
+    final index =
+        (pixelLocation -
             viewportTranslatePx -
             _range.start -
             _cachedRangeBandShift) /
@@ -153,8 +154,9 @@ class SimpleOrdinalScale implements OrdinalScale {
     // the range band shift. This may happen on the far left side of the chart,
     // where we want the first datum anyways. Wrapping the result in "max(0, x)"
     // cuts off these negative values.
-    return _domain
-        .getDomainAtIndex(max(0, min(index.round(), domain.size - 1)));
+    return _domain.getDomainAtIndex(
+      max(0, min(index.round(), domain.size - 1)),
+    );
   }
 
   @override
@@ -210,8 +212,10 @@ class SimpleOrdinalScale implements OrdinalScale {
         0,
       );
     } else {
-      _viewportTranslatePx =
-          min(max(rangeWidth * (1.0 - viewportScale), viewportTranslatePx), 0);
+      _viewportTranslatePx = min(
+        max(rangeWidth * (1.0 - viewportScale), viewportTranslatePx),
+        0,
+      );
     }
     _scaleChanged = true;
   }
@@ -279,8 +283,8 @@ class SimpleOrdinalScale implements OrdinalScale {
       // Get topmost visible index.
       final index =
           (-(rangeWidth + _viewportTranslatePx) / _cachedStepSizePixels)
-                  .ceil() -
-              1;
+              .ceil() -
+          1;
       return _domain.getDomainAtIndex(index);
     } else {
       return _domain.getDomainAtIndex(

@@ -31,9 +31,8 @@ class RTLSeriesLegend extends StatelessWidget {
   const RTLSeriesLegend(this.seriesList, {super.key, this.animate = true});
 
   /// Creates a [charts.BarChart] with sample data and no transition.
-  factory RTLSeriesLegend.withSampleData() => RTLSeriesLegend(
-        _createSampleData(),
-      );
+  factory RTLSeriesLegend.withSampleData() =>
+      RTLSeriesLegend(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.

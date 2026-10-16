@@ -21,15 +21,14 @@ import 'package:meta/meta.dart' show immutable;
 import 'package:nimble_charts/src/base_chart_state.dart' show BaseChartState;
 import 'package:nimble_charts/src/behaviors/chart_behavior.dart'
     show ChartBehavior, ChartStateBehavior, GestureType;
-import 'package:nimble_charts_common/common.dart' as common
+import 'package:nimble_charts_common/common.dart'
+    as common
     show BaseChart, ChartBehavior, PanBehavior, PanningCompletedCallback;
 
 @immutable
 class PanBehavior<D> extends ChartBehavior<D> {
   PanBehavior({this.panningCompletedCallback});
-  final _desiredGestures = <GestureType>{
-    GestureType.onDrag,
-  };
+  final _desiredGestures = <GestureType>{GestureType.onDrag};
 
   /// Optional callback that is called when panning is completed.
   ///
@@ -41,8 +40,9 @@ class PanBehavior<D> extends ChartBehavior<D> {
   Set<GestureType> get desiredGestures => _desiredGestures;
 
   @override
-  common.PanBehavior<D> createCommonBehavior() => FlutterPanBehavior<D>()
-    ..panningCompletedCallback = panningCompletedCallback;
+  common.PanBehavior<D> createCommonBehavior() =>
+      FlutterPanBehavior<D>()
+        ..panningCompletedCallback = panningCompletedCallback;
 
   @override
   void updateCommonBehavior(common.ChartBehavior commonBehavior) {}
@@ -129,12 +129,15 @@ mixin FlutterPanBehaviorMixin<D> on common.PanBehavior<D>
     final domainAxis = chart!.domainAxis;
 
     _flingAnimationInitialTranslatePx = domainAxis!.viewportTranslatePx;
-    _flingAnimationTargetTranslatePx = _flingAnimationInitialTranslatePx +
+    _flingAnimationTargetTranslatePx =
+        _flingAnimationInitialTranslatePx +
         pixelsPerSec * flingDistanceMultiplier;
 
     final flingDuration = Duration(
-      milliseconds:
-          max(200, (pixelsPerSec * flingDurationMultiplier).abs().round()),
+      milliseconds: max(
+        200,
+        (pixelsPerSec * flingDurationMultiplier).abs().round(),
+      ),
     );
 
     _flingAnimator!

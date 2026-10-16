@@ -33,9 +33,8 @@ import 'package:nimble_charts/flutter.dart' as charts;
 class FlippedVerticalAxis extends StatelessWidget {
   const FlippedVerticalAxis(this.seriesList, {super.key, this.animate = true});
 
-  factory FlippedVerticalAxis.withSampleData() => FlippedVerticalAxis(
-        _createSampleData(),
-      );
+  factory FlippedVerticalAxis.withSampleData() =>
+      FlippedVerticalAxis(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -75,11 +74,8 @@ class FlippedVerticalAxis extends StatelessWidget {
   // time so the result is an empty chart.
   // TODO: Remove this comment
   @override
-  Widget build(BuildContext context) => charts.BarChart(
-        seriesList,
-        animate: animate,
-        flipVerticalAxis: true,
-      );
+  Widget build(BuildContext context) =>
+      charts.BarChart(seriesList, animate: animate, flipVerticalAxis: true);
 
   /// Create series list with multiple series
   static List<charts.Series<RunnerRank, String>> _createSampleData() {

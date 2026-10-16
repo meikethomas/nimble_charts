@@ -31,9 +31,7 @@ class StackedHorizontalBarChart extends StatelessWidget {
 
   /// Creates a stacked [charts.BarChart] with sample data and no transition.
   factory StackedHorizontalBarChart.withSampleData() =>
-      StackedHorizontalBarChart(
-        _createSampleData(),
-      );
+      StackedHorizontalBarChart(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.

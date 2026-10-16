@@ -27,47 +27,48 @@ const partialPieChartTitle = 'Partial Pie Chart';
 const partialPieChartSubtitle = "That doesn't cover a full revolution";
 
 List<GalleryScaffold> buildGallery() => [
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.pie_chart),
-        title: simplePieChartTitle,
-        subtitle: simplePieChartSubtitle,
-        childBuilder: appState.value.useRandomData
-            ? SimplePieChart.withRandomData
-            : SimplePieChart.withSampleData,
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.pie_chart),
-        title: 'Outside Label Pie Chart',
-        subtitle: 'With a single series and labels outside the arcs',
-        childBuilder: appState.value.useRandomData
-            ? PartialPieChart.withRandomData
-            : PartialPieChart.withSampleData,
-      ),
-      GalleryScaffold(
-        listTileIcon: const Icon(Icons.pie_chart),
-        title: partialPieChartTitle,
-        subtitle: partialPieChartSubtitle,
-        childBuilder: appState.value.useRandomData
-            ? PartialPieChart.withRandomData
-            : PartialPieChart.withSampleData,
-      ),
-      //TODO:
-      // new GalleryScaffold(
-      //   listTileIcon: new Icon(Icons.pie_chart),
-      //   title: 'Simple Donut Chart',
-      //   subtitle: 'With a single series and a hole in the middle',
-      //   childBuilder: () => new DonutPieChart.withRandomData(),
-      const GalleryScaffold(
-        listTileIcon: Icon(Icons.pie_chart),
-        title: 'Auto Label Donut Chart',
-        subtitle: 'With a single series, a hole in the middle, '
-            'and auto-positioned labels',
-        childBuilder: DonutAutoLabelChart.withSampleData,
-      ),
-      //   childBuilder: () => new DonutAutoLabelChart.withRandomData(),
-      // ),
-      // new GalleryScaffold(
-      //   listTileIcon: new Icon(Icons.pie_chart),
-      //   title: 'Gauge Chart',
-      //   subtitle: 'That doesn\'t cover a full revolution',
-    ];
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.pie_chart),
+    title: simplePieChartTitle,
+    subtitle: simplePieChartSubtitle,
+    childBuilder: appState.value.useRandomData
+        ? SimplePieChart.withRandomData
+        : SimplePieChart.withSampleData,
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.pie_chart),
+    title: 'Outside Label Pie Chart',
+    subtitle: 'With a single series and labels outside the arcs',
+    childBuilder: appState.value.useRandomData
+        ? PartialPieChart.withRandomData
+        : PartialPieChart.withSampleData,
+  ),
+  GalleryScaffold(
+    listTileIcon: const Icon(Icons.pie_chart),
+    title: partialPieChartTitle,
+    subtitle: partialPieChartSubtitle,
+    childBuilder: appState.value.useRandomData
+        ? PartialPieChart.withRandomData
+        : PartialPieChart.withSampleData,
+  ),
+  //TODO:
+  // new GalleryScaffold(
+  //   listTileIcon: new Icon(Icons.pie_chart),
+  //   title: 'Simple Donut Chart',
+  //   subtitle: 'With a single series and a hole in the middle',
+  //   childBuilder: () => new DonutPieChart.withRandomData(),
+  const GalleryScaffold(
+    listTileIcon: Icon(Icons.pie_chart),
+    title: 'Auto Label Donut Chart',
+    subtitle:
+        'With a single series, a hole in the middle, '
+        'and auto-positioned labels',
+    childBuilder: DonutAutoLabelChart.withSampleData,
+  ),
+  //   childBuilder: () => new DonutAutoLabelChart.withRandomData(),
+  // ),
+  // new GalleryScaffold(
+  //   listTileIcon: new Icon(Icons.pie_chart),
+  //   title: 'Gauge Chart',
+  //   subtitle: 'That doesn\'t cover a full revolution',
+];

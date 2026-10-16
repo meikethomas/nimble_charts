@@ -13,7 +13,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 // EXCLUDE_FROM_GALLERY_DOCS_START
-// ignore_for_file: lines_longer_than_80_chars
 
 import 'dart:math';
 
@@ -29,9 +28,8 @@ class ChartTitleLine extends StatelessWidget {
   const ChartTitleLine(this.seriesList, {super.key, this.animate = true});
 
   /// Creates a [charts.LineChart] with sample data and no transition.
-  factory ChartTitleLine.withSampleData() => ChartTitleLine(
-        _createSampleData(),
-      );
+  factory ChartTitleLine.withSampleData() =>
+      ChartTitleLine(_createSampleData());
 
   // EXCLUDE_FROM_GALLERY_DOCS_START
   // This section is excluded from being copied to the gallery.
@@ -66,44 +64,41 @@ class ChartTitleLine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => charts.LineChart(
-        seriesList,
-        animate: animate,
-        // Configures four [ChartTitle] behaviors to render titles in each chart
-        // margin. The top title has a sub-title, and is aligned to the left edge
-        // of the chart. The other titles are aligned with the middle of the draw
-        // area.
-        behaviors: [
-          charts.ChartTitle(
-            'Top title text',
-            subTitle: 'Top sub-title text',
-            behaviorPosition: charts.BehaviorPosition.top,
-            titleOutsideJustification: charts.OutsideJustification.start,
-            // Set a larger inner padding than the default (10) to avoid
-            // rendering the text too close to the top measure axis tick label.
-            // The top tick label may extend upwards into the top margin region
-            // if it is located at the top of the draw area.
-            innerPadding: 18,
-          ),
-          charts.ChartTitle(
-            'Bottom title text',
-            behaviorPosition: charts.BehaviorPosition.bottom,
-            titleOutsideJustification:
-                charts.OutsideJustification.middleDrawArea,
-          ),
-          charts.ChartTitle(
-            'Start title',
-            behaviorPosition: charts.BehaviorPosition.start,
-            titleOutsideJustification:
-                charts.OutsideJustification.middleDrawArea,
-          ),
-          charts.ChartTitle(
-            'End title',
-            behaviorPosition: charts.BehaviorPosition.end,
-            titleOutsideJustification:
-                charts.OutsideJustification.middleDrawArea,
-          ),
-        ],
-      );
+    seriesList,
+    animate: animate,
+    // Configures four [ChartTitle] behaviors to render titles in each chart
+    // margin. The top title has a sub-title, and is aligned to the left edge
+    // of the chart. The other titles are aligned with the middle of the draw
+    // area.
+    behaviors: [
+      charts.ChartTitle(
+        'Top title text',
+        subTitle: 'Top sub-title text',
+        behaviorPosition: charts.BehaviorPosition.top,
+        titleOutsideJustification: charts.OutsideJustification.start,
+        // Set a larger inner padding than the default (10) to avoid
+        // rendering the text too close to the top measure axis tick label.
+        // The top tick label may extend upwards into the top margin region
+        // if it is located at the top of the draw area.
+        innerPadding: 18,
+      ),
+      charts.ChartTitle(
+        'Bottom title text',
+        behaviorPosition: charts.BehaviorPosition.bottom,
+        titleOutsideJustification: charts.OutsideJustification.middleDrawArea,
+      ),
+      charts.ChartTitle(
+        'Start title',
+        behaviorPosition: charts.BehaviorPosition.start,
+        titleOutsideJustification: charts.OutsideJustification.middleDrawArea,
+      ),
+      charts.ChartTitle(
+        'End title',
+        behaviorPosition: charts.BehaviorPosition.end,
+        titleOutsideJustification: charts.OutsideJustification.middleDrawArea,
+      ),
+    ],
+  );
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<LinearSales, int>> _createSampleData() {

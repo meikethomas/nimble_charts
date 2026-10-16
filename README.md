@@ -110,6 +110,28 @@ flutter test --update-goldens
 
 Please don't commit goldens in PRs. We will merge your branch to a temporary branch and then run the `generate_goldens.yaml` action to generate the goldens. If there are changes in the goldens, they will show up in the PR.
 
+### Flutter 3.44.9 dependency baseline
+
+The `upgrade/flutter-3.44.9` branch is resolved with Flutter 3.44.9 and Dart
+3.12.2. The package constraints deliberately distinguish the independently
+tested Common package from Flutter's SDK-pinned dependency closure.
+
+| Package | Previous constraint | Current constraint | Selection reason |
+| --- | --- | --- | --- |
+| Common `collection` | `^1.14.5` | `^1.19.1` | Latest compatible collection API. |
+| Common `intl` | `^0.20.1` | `^0.20.2` | Allows the current 0.20.x locale fixes while remaining compatible with Flutter's 0.20.2 pin when `flutter_localizations` is present. |
+| Common `meta` | `^1.1.1` | `^1.18.0` | Preserves Flutter 3.44.9's exact 1.18.0 SDK pin; standalone Common may resolve 1.19.x. |
+| Common `vector_math` | `^2.0.8` | `^2.2.0` | Preserves Flutter's 2.2.0 pin; standalone Common may resolve 2.4.x. |
+| Common dev tools | austerity 1.2 / build_runner 2.4 / mockito 5.4 / test 1.x | `^1.3.0` / `^2.16.2` / `^5.8.1` / `^1.33.0` | Highest jointly resolvable standalone toolchain; build_runner 2.17 requires build 5, which Mockito 5 does not support. |
+| Flutter `collection`, `meta` | `^1.14.5`, `^1.1.1` | `^1.19.1`, `^1.18.0` | Current packages within Flutter 3.44.9 SDK pins. |
+| Flutter dev tools | austerity 1.2 / build_runner 2.4 / mockito 5.0 / test 1.x | `^1.3.0` / `^2.15.1` / `^5.6.4` / `^1.31.0` | Later releases conflict with Flutter's `meta 1.18.0` or `test_api 0.7.11` pins. |
+| Example `cupertino_icons` | `^1.0.8` | `^2.0.0` | Current target-SDK asset package; no Gallery source imports the removed legacy package API. |
+
+Run dependency resolution and tests in each package directory. During local
+development before the branch exists remotely, use an uncommitted override for
+`nimble_charts_common`; published commits and consumer checks must use the Git
+dependency declared in `charts_flutter/pubspec.yaml`.
+
 ## What Has Changed?
 
 The Fork occurred at 0.12.0 of the original charts_flutter

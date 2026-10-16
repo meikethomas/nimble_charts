@@ -34,21 +34,20 @@ extension ColorExtensions on Color {
   ui.Color toDartColor() => ui.Color.fromARGB(a, r, g, b);
 
   /// Returns a new color with the alpha channel multiplied by the given value.
-  Color withAlpha(double alpha) => Color(
-        r: r,
-        g: g,
-        b: b,
-        a: (a * alpha).round(),
-      );
+  Color withAlpha(double alpha) =>
+      Color(r: r, g: g, b: b, a: (a * alpha).round());
 }
 
 /// Extension methods for Flutter colors.
 extension UIColorExtensions on ui.Color {
   /// Converts a Flutter color to a common color.
-  common.Color fromDartColor() => common.Color(
-        r: red,
-        g: green,
-        b: blue,
-        a: alpha,
-      );
+  common.Color fromDartColor() {
+    final argb = toARGB32();
+    return common.Color(
+      a: (argb >> 24) & 0xff,
+      r: (argb >> 16) & 0xff,
+      g: (argb >> 8) & 0xff,
+      b: argb & 0xff,
+    );
+  }
 }

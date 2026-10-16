@@ -14,11 +14,12 @@
 // limitations under the License.
 
 import 'package:flutter/widgets.dart'
-    show BuildContext, DefaultTextStyle, MediaQuery;
+    show BuildContext, DefaultTextStyle, MediaQuery, TextScaler;
 import 'package:nimble_charts/src/line_style.dart' show LineStyle;
 import 'package:nimble_charts/src/text_element.dart' show TextElement;
 import 'package:nimble_charts/src/text_style.dart' show TextStyle;
-import 'package:nimble_charts_common/common.dart' as common
+import 'package:nimble_charts_common/common.dart'
+    as common
     show GraphicsFactory, LineStyle, TextElement, TextStyle;
 
 /// A Flutter implementation of [common.GraphicsFactory] that creates graphics
@@ -34,11 +35,11 @@ class GraphicsFactory implements common.GraphicsFactory {
   GraphicsFactory(
     BuildContext context, {
     GraphicsFactoryHelper helper = const GraphicsFactoryHelper(),
-  })  : textScaleFactor = helper.getTextScaleFactorOf(context),
-        defaultTextStyle = DefaultTextStyle.of(context);
+  }) : textScaler = helper.getTextScalerOf(context),
+       defaultTextStyle = DefaultTextStyle.of(context);
 
-  /// The text scale factor from the MediaQuery.
-  final double textScaleFactor;
+  /// The text scaler from the MediaQuery.
+  final TextScaler textScaler;
 
   /// The default text style from the build context.
   final DefaultTextStyle defaultTextStyle;
@@ -53,12 +54,11 @@ class GraphicsFactory implements common.GraphicsFactory {
   /// Creates a new [TextElement] with the given text.
   ///
   /// [text] The text content for the element.
-  /// The text element will use the current text scale factor and default text
+  /// The text element will use the current text scaler and default text
   /// style.
   @override
   common.TextElement createTextElement(String text) =>
-      TextElement(text, textScaleFactor: textScaleFactor)
-        ..textStyle = createTextPaint();
+      TextElement(text, textScaler: textScaler)..textStyle = createTextPaint();
 
   /// Creates a new [LineStyle] with default properties.
   @override
@@ -73,9 +73,9 @@ class GraphicsFactoryHelper {
   /// Creates a new [GraphicsFactoryHelper].
   const GraphicsFactoryHelper();
 
-  /// Gets the text scale factor from the MediaQuery of the given context.
+  /// Gets the text scaler from the MediaQuery of the given context.
   ///
-  /// [context] The build context to get the text scale factor from.
-  double getTextScaleFactorOf(BuildContext context) =>
-      MediaQuery.textScaleFactorOf(context);
+  /// [context] The build context to get the text scaler from.
+  TextScaler getTextScalerOf(BuildContext context) =>
+      MediaQuery.textScalerOf(context);
 }

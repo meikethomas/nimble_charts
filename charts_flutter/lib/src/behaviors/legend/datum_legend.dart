@@ -13,8 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'package:flutter/widgets.dart'
-    show BuildContext, EdgeInsets, Widget, hashValues;
+import 'package:flutter/widgets.dart' show BuildContext, EdgeInsets, Widget;
 import 'package:meta/meta.dart' show immutable;
 import 'package:nimble_charts/src/behaviors/chart_behavior.dart'
     show BuildableBehavior, ChartBehavior, GestureType;
@@ -26,7 +25,8 @@ import 'package:nimble_charts/src/behaviors/legend/legend_layout.dart'
     show TabularLegendLayout;
 import 'package:nimble_charts/src/chart_container.dart'
     show ChartContainerRenderObject;
-import 'package:nimble_charts_common/common.dart' as common
+import 'package:nimble_charts_common/common.dart'
+    as common
     show
         BehaviorPosition,
         ChartBehavior,
@@ -104,7 +104,8 @@ class DatumLegend<D> extends ChartBehavior<D> {
 
     // Set the tabular layout settings to match the position if it is not
     // specified.
-    horizontalFirst ??= position == common.BehaviorPosition.top ||
+    horizontalFirst ??=
+        position == common.BehaviorPosition.top ||
         position == common.BehaviorPosition.bottom ||
         position == common.BehaviorPosition.inside;
     final layoutBuilder = horizontalFirst
@@ -280,29 +281,29 @@ class DatumLegend<D> extends ChartBehavior<D> {
 
   @override
   int get hashCode => Object.hash(
-        selectionModelType,
-        contentBuilder,
-        position,
-        outsideJustification,
-        insideJustification,
-        showMeasures,
-        legendDefaultMeasure,
-        measureFormatter,
-        secondaryMeasureFormatter,
-        entryTextStyle,
-      );
+    selectionModelType,
+    contentBuilder,
+    position,
+    outsideJustification,
+    insideJustification,
+    showMeasures,
+    legendDefaultMeasure,
+    measureFormatter,
+    secondaryMeasureFormatter,
+    entryTextStyle,
+  );
 }
 
 /// Flutter specific wrapper on the common Legend for building content.
 class _FlutterDatumLegend<D> extends common.DatumLegend<D>
     implements BuildableBehavior, TappableLegend {
   _FlutterDatumLegend(this.config)
-      : super(
-          selectionModelType: config.selectionModelType,
-          measureFormatter: config.measureFormatter,
-          secondaryMeasureFormatter: config.secondaryMeasureFormatter,
-          legendDefaultMeasure: config.legendDefaultMeasure,
-        ) {
+    : super(
+        selectionModelType: config.selectionModelType,
+        measureFormatter: config.measureFormatter,
+        secondaryMeasureFormatter: config.secondaryMeasureFormatter,
+        legendDefaultMeasure: config.legendDefaultMeasure,
+      ) {
     super.entryTextStyle = config.entryTextStyle;
   }
   DatumLegend config;
@@ -325,17 +326,23 @@ class _FlutterDatumLegend<D> extends common.DatumLegend<D>
 
   @override
   Widget build(BuildContext context) {
-    final hasSelection =
-        legendState.legendEntries.any((entry) => entry.isSelected);
+    final hasSelection = legendState.legendEntries.any(
+      (entry) => entry.isSelected,
+    );
 
     // Show measures if [showMeasures] is true and there is a selection or if
     // showing measures when there is no selection.
-    final showMeasures = config.showMeasures &&
+    final showMeasures =
+        config.showMeasures &&
         (hasSelection ||
             legendDefaultMeasure != common.LegendDefaultMeasure.none);
 
-    return config.contentBuilder
-        .build(context, legendState, this, showMeasures: showMeasures);
+    return config.contentBuilder.build(
+      context,
+      legendState,
+      this,
+      showMeasures: showMeasures,
+    );
   }
 
   /// TODO: Maybe highlight the pie wedge.

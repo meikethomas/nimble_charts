@@ -14,7 +14,7 @@
 // limitations under the License.
 
 import 'package:flutter/material.dart' show BuildContext;
-import 'package:flutter/widgets.dart' show InheritedWidget;
+import 'package:flutter/widgets.dart' show InheritedWidget, TextScaler;
 import 'package:mockito/mockito.dart';
 import 'package:nimble_charts/src/graphics_factory.dart';
 import 'package:nimble_charts/src/text_element.dart';
@@ -25,29 +25,30 @@ class FakeBuildContext extends Fake implements BuildContext {
   @override
   T? dependOnInheritedWidgetOfExactType<T extends InheritedWidget>({
     Object? aspect,
-  }) =>
-      null;
+  }) => null;
 }
 
 // Gave up trying to figure out how to use mockito for now.
 class FakeGraphicsFactoryHelper extends Fake implements GraphicsFactoryHelper {
-  FakeGraphicsFactoryHelper(this.textScaleFactor);
-  double textScaleFactor;
+  FakeGraphicsFactoryHelper(this.textScaler);
+  TextScaler textScaler;
 
   @override
-  double getTextScaleFactorOf(BuildContext context) => textScaleFactor;
+  TextScaler getTextScalerOf(BuildContext context) => textScaler;
 }
 
 void main() {
   test('Text element gets assigned scale factor', () {
     final context = FakeBuildContext();
-    final helper = FakeGraphicsFactoryHelper(3);
+    const textScaler = TextScaler.linear(3);
+    final helper = FakeGraphicsFactoryHelper(textScaler);
     final graphicsFactory = GraphicsFactory(context, helper: helper);
 
     final textElement =
         graphicsFactory.createTextElement('test') as TextElement;
 
     expect(textElement.text, equals('test'));
-    expect(textElement.textScaleFactor, equals(3.0));
+    expect(textElement.textScaler, same(textScaler));
+    expect(textElement.textScaler.scale(1), equals(3.0));
   });
 }

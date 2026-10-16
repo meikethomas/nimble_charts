@@ -93,8 +93,7 @@ abstract class CustomSymbolRenderer extends common.SymbolRenderer
   }
 
   @override
-  bool shouldRepaint(common.SymbolRenderer oldRenderer) =>
-      false; // Repainting is handled directly in Flutter.
+  bool shouldRepaint(common.SymbolRenderer oldRenderer) => false; // Repainting is handled directly in Flutter.
 }
 
 /// Common interface for [CustomSymbolRenderer] & [SymbolRendererCanvas] for
@@ -124,16 +123,16 @@ class _SymbolCustomPaint extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final bounds =
-        Rectangle<num>(0, 0, size.width.toInt(), size.height.toInt());
-    final commonColor = color == null
+    final bounds = Rectangle<num>(
+      0,
+      0,
+      size.width.toInt(),
+      size.height.toInt(),
+    );
+    final paintColor = color;
+    final commonColor = paintColor == null
         ? null
-        : common.Color(
-            r: color!.red,
-            g: color!.green,
-            b: color!.blue,
-            a: color!.alpha,
-          );
+        : ColorUtil.fromDartColor(paintColor);
     symbolRenderer.paint(
       cc.ChartCanvas(canvas, gf.GraphicsFactory(context)),
       bounds,

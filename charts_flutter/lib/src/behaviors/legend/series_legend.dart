@@ -14,8 +14,7 @@
 // limitations under the License.
 
 import 'package:collection/collection.dart' show ListEquality;
-import 'package:flutter/widgets.dart'
-    show BuildContext, EdgeInsets, Widget, hashValues;
+import 'package:flutter/widgets.dart' show BuildContext, EdgeInsets, Widget;
 import 'package:meta/meta.dart' show immutable;
 import 'package:nimble_charts/src/behaviors/chart_behavior.dart'
     show BuildableBehavior, ChartBehavior, GestureType;
@@ -27,7 +26,8 @@ import 'package:nimble_charts/src/behaviors/legend/legend_layout.dart'
     show TabularLegendLayout;
 import 'package:nimble_charts/src/chart_container.dart'
     show ChartContainerRenderObject;
-import 'package:nimble_charts_common/common.dart' as common
+import 'package:nimble_charts_common/common.dart'
+    as common
     show
         BehaviorPosition,
         ChartBehavior,
@@ -107,7 +107,8 @@ class SeriesLegend<D> extends ChartBehavior<D> {
 
     // Set the tabular layout settings to match the position if it is not
     // specified.
-    horizontalFirst ??= position == common.BehaviorPosition.top ||
+    horizontalFirst ??=
+        position == common.BehaviorPosition.top ||
         position == common.BehaviorPosition.bottom ||
         position == common.BehaviorPosition.inside;
     final layoutBuilder = horizontalFirst
@@ -290,8 +291,10 @@ class SeriesLegend<D> extends ChartBehavior<D> {
       position == other.position &&
       outsideJustification == other.outsideJustification &&
       insideJustification == other.insideJustification &&
-      const ListEquality()
-          .equals(defaultHiddenSeries, other.defaultHiddenSeries) &&
+      const ListEquality().equals(
+        defaultHiddenSeries,
+        other.defaultHiddenSeries,
+      ) &&
       showMeasures == other.showMeasures &&
       legendDefaultMeasure == other.legendDefaultMeasure &&
       measureFormatter == other.measureFormatter &&
@@ -300,30 +303,30 @@ class SeriesLegend<D> extends ChartBehavior<D> {
 
   @override
   int get hashCode => Object.hash(
-        selectionModelType,
-        contentBuilder,
-        position,
-        outsideJustification,
-        insideJustification,
-        defaultHiddenSeries,
-        showMeasures,
-        legendDefaultMeasure,
-        measureFormatter,
-        secondaryMeasureFormatter,
-        entryTextStyle,
-      );
+    selectionModelType,
+    contentBuilder,
+    position,
+    outsideJustification,
+    insideJustification,
+    defaultHiddenSeries,
+    showMeasures,
+    legendDefaultMeasure,
+    measureFormatter,
+    secondaryMeasureFormatter,
+    entryTextStyle,
+  );
 }
 
 /// Flutter specific wrapper on the common Legend for building content.
 class _FlutterSeriesLegend<D> extends common.SeriesLegend<D>
     implements BuildableBehavior, TappableLegend {
   _FlutterSeriesLegend(this.config)
-      : super(
-          selectionModelType: config.selectionModelType,
-          measureFormatter: config.measureFormatter,
-          secondaryMeasureFormatter: config.secondaryMeasureFormatter,
-          legendDefaultMeasure: config.legendDefaultMeasure,
-        ) {
+    : super(
+        selectionModelType: config.selectionModelType,
+        measureFormatter: config.measureFormatter,
+        secondaryMeasureFormatter: config.secondaryMeasureFormatter,
+        legendDefaultMeasure: config.legendDefaultMeasure,
+      ) {
     super.defaultHiddenSeries = config.defaultHiddenSeries;
     super.entryTextStyle = config.entryTextStyle;
   }
@@ -347,17 +350,23 @@ class _FlutterSeriesLegend<D> extends common.SeriesLegend<D>
 
   @override
   Widget build(BuildContext context) {
-    final hasSelection =
-        legendState.legendEntries.any((entry) => entry.isSelected);
+    final hasSelection = legendState.legendEntries.any(
+      (entry) => entry.isSelected,
+    );
 
     // Show measures if [showMeasures] is true and there is a selection or if
     // showing measures when there is no selection.
-    final showMeasures = config.showMeasures &&
+    final showMeasures =
+        config.showMeasures &&
         (hasSelection ||
             legendDefaultMeasure != common.LegendDefaultMeasure.none);
 
-    return config.contentBuilder
-        .build(context, legendState, this, showMeasures: showMeasures);
+    return config.contentBuilder.build(
+      context,
+      legendState,
+      this,
+      showMeasures: showMeasures,
+    );
   }
 
   @override

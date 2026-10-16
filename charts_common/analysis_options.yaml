@@ -37,8 +37,19 @@ analyzer:
     prefer_null_aware_method_calls: warning
     parameter_assignments: warning
 
+    # Added by austerity 1.3.0. Keep the existing legacy findings visible
+    # without turning this focused SDK migration into a broad lint rewrite.
+    dead_code: warning
+    document_ignores: warning
+    missing_code_block_language_in_doc_comment: warning
+    no_self_assignments: warning
+    unintended_html_in_doc_comment: warning
+    unnecessary_ignore: warning
+    unnecessary_this: warning
+    unnecessary_underscores: warning
+    unsafe_variance: warning
+
     use_late_for_private_fields_and_variables: ignore
     avoid_catches_without_on_clauses: ignore
     avoid_annotating_with_dynamic: ignore
 
-  

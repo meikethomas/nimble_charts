@@ -13,11 +13,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'package:flutter/widgets.dart' show BuildContext, Widget, hashValues;
+import 'package:flutter/widgets.dart' show BuildContext, Widget;
 import 'package:nimble_charts/src/behaviors/legend/legend.dart';
 import 'package:nimble_charts/src/behaviors/legend/legend_entry_layout.dart';
 import 'package:nimble_charts/src/behaviors/legend/legend_layout.dart';
-import 'package:nimble_charts_common/common.dart' as common
+import 'package:nimble_charts_common/common.dart'
+    as common
     show Legend, LegendState, SeriesLegend;
 
 /// Strategy for building a legend content widget.
@@ -94,9 +95,8 @@ class TabularLegendContentBuilder extends BaseLegendContentBuilder {
   TabularLegendContentBuilder({
     LegendEntryLayout? legendEntryLayout,
     LegendLayout? legendLayout,
-  })  : legendEntryLayout =
-            legendEntryLayout ?? const SimpleLegendEntryLayout(),
-        legendLayout = legendLayout ?? TabularLegendLayout.horizontalFirst();
+  }) : legendEntryLayout = legendEntryLayout ?? const SimpleLegendEntryLayout(),
+       legendLayout = legendLayout ?? TabularLegendLayout.horizontalFirst();
 
   /// Strategy for creating widgets for each legend entry.
   @override

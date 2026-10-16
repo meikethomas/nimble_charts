@@ -13,7 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'package:intl/intl.dart' show DateFormat;
+import 'package:intl/date_symbol_data_local.dart' show initializeDateFormatting;
+import 'package:intl/intl.dart' show DateFormat, Intl;
 import 'package:nimble_charts_common/src/chart/cartesian/axis/time/simple_time_tick_formatter.dart';
 import 'package:test/test.dart';
 
@@ -25,26 +26,43 @@ void main() {
   late SimpleTimeTickFormatter simpleTimeFormatter;
   late SimpleTimeTickFormatter simpleTimeFormatterWithDateFormat;
   late DateFormat dateFormat;
+  String? previousLocale;
 
   String testFormatter(DateTime dateTime) => tickLabel;
 
-  setUp(() {
-    dateFormat = DateFormat.yMMMd();
-    simpleTimeFormatter = SimpleTimeTickFormatter(formatter: testFormatter);
-    simpleTimeFormatterWithDateFormat =
-        SimpleTimeTickFormatter(formatter: dateFormat.format);
+  setUpAll(() async {
+    await initializeDateFormatting('en_US');
+    await initializeDateFormatting('de');
   });
 
-  group(SimpleTimeTickFormatter, () {
+  setUp(() {
+    previousLocale = Intl.defaultLocale;
+    Intl.defaultLocale = 'en_US';
+    dateFormat = DateFormat.yMMMd();
+    simpleTimeFormatter = SimpleTimeTickFormatter(formatter: testFormatter);
+    simpleTimeFormatterWithDateFormat = SimpleTimeTickFormatter(
+      formatter: dateFormat.format,
+    );
+  });
+
+  tearDown(() {
+    Intl.defaultLocale = previousLocale;
+  });
+
+  group('MMB0011_intl_formatter_regression', () {
     test('formatter with custom formatting function input', () {
-      final actualLabelFirstTick =
-          simpleTimeFormatter.formatFirstTick(testDate1);
-      final actualLabelSimpleTick =
-          simpleTimeFormatter.formatSimpleTick(testDate1);
-      final actualLabelTransitionTick =
-          simpleTimeFormatter.formatTransitionTick(testDate1);
-      final actualBoolIsTransition =
-          simpleTimeFormatter.isTransition(testDate2, testDate1);
+      final actualLabelFirstTick = simpleTimeFormatter.formatFirstTick(
+        testDate1,
+      );
+      final actualLabelSimpleTick = simpleTimeFormatter.formatSimpleTick(
+        testDate1,
+      );
+      final actualLabelTransitionTick = simpleTimeFormatter
+          .formatTransitionTick(testDate1);
+      final actualBoolIsTransition = simpleTimeFormatter.isTransition(
+        testDate2,
+        testDate1,
+      );
 
       expect(actualLabelFirstTick, equals(tickLabel));
       expect(actualLabelSimpleTick, equals(tickLabel));
@@ -55,19 +73,50 @@ void main() {
     test('formatter with DateFormat formatting function', () {
       const expectedLabel = 'Nov 11, 1984';
 
-      final actualLabelFirstTick =
-          simpleTimeFormatterWithDateFormat.formatFirstTick(testDate1);
-      final actualLabelSimpleTick =
-          simpleTimeFormatterWithDateFormat.formatSimpleTick(testDate1);
-      final actualLabelTransitionTick =
-          simpleTimeFormatterWithDateFormat.formatTransitionTick(testDate1);
-      final actualBoolIsTransition =
-          simpleTimeFormatterWithDateFormat.isTransition(testDate2, testDate1);
+      final actualLabelFirstTick = simpleTimeFormatterWithDateFormat
+          .formatFirstTick(testDate1);
+      final actualLabelSimpleTick = simpleTimeFormatterWithDateFormat
+          .formatSimpleTick(testDate1);
+      final actualLabelTransitionTick = simpleTimeFormatterWithDateFormat
+          .formatTransitionTick(testDate1);
+      final actualBoolIsTransition = simpleTimeFormatterWithDateFormat
+          .isTransition(testDate2, testDate1);
 
       expect(actualLabelFirstTick, equals(expectedLabel));
       expect(actualLabelSimpleTick, equals(expectedLabel));
       expect(actualLabelTransitionTick, equals(expectedLabel));
       expect(actualBoolIsTransition, isFalse);
+    });
+
+    test('MMB0011_date_labels_en_de_preserve_boundaries', () {
+      final beforeBoundary = DateTime.utc(2024, 1, 31, 23, 59, 59);
+      final afterBoundary = DateTime.utc(2024, 2);
+
+      Intl.defaultLocale = 'en_US';
+      final englishFormatter = SimpleTimeTickFormatter(
+        formatter: DateFormat.yMMMd().format,
+      );
+      expect(
+        englishFormatter.formatFirstTick(beforeBoundary),
+        equals('Jan 31, 2024'),
+      );
+      expect(
+        englishFormatter.formatTransitionTick(afterBoundary),
+        equals('Feb 1, 2024'),
+      );
+
+      Intl.defaultLocale = 'de';
+      final germanFormatter = SimpleTimeTickFormatter(
+        formatter: DateFormat.yMMMd().format,
+      );
+      expect(
+        germanFormatter.formatFirstTick(beforeBoundary),
+        equals('31. Jan. 2024'),
+      );
+      expect(
+        germanFormatter.formatTransitionTick(afterBoundary),
+        equals('1. Feb. 2024'),
+      );
     });
   });
 }

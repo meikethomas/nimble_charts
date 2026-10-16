@@ -5,28 +5,28 @@ homepage: https://github.com/Nimblesite/nimble_charts
 publish_to: "none"
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
-  flutter: ">=3.0.0 <4.0.0"
+  sdk: ">=3.9.0 <4.0.0"
+  flutter: ">=3.35.0 <4.0.0"
 
 dependencies:
-  collection: ^1.14.5
+  collection: ^1.19.1
   flutter:
     sdk: flutter
-  meta: ^1.1.1
+  meta: ^1.18.0
 
   nimble_charts_common:
     git:
       url: https://github.com/meikethomas/nimble_charts.git
-      ref: main
+      ref: upgrade/flutter-3.44.9
       path: charts_common
 
 dev_dependencies:
-  austerity: ^1.2.0
-  build_runner: ^2.4.12
+  austerity: ^1.3.0
+  build_runner: ^2.15.1
   example:
     path: example
   flutter_staggered_animations: ^1.1.1
   flutter_test:
     sdk: flutter
-  mockito: ^5.0.0
-  test: ^1.3.0
+  mockito: ^5.6.4
+  test: ^1.31.0

@@ -16,8 +16,9 @@
 import 'dart:ui' show TextAlign, TextDirection;
 
 import 'package:flutter/rendering.dart'
-    show Color, TextBaseline, TextPainter, TextSpan, TextStyle;
-import 'package:nimble_charts_common/common.dart' as common
+    show Color, TextBaseline, TextPainter, TextScaler, TextSpan, TextStyle;
+import 'package:nimble_charts_common/common.dart'
+    as common
     show
         MaxWidthStrategy,
         TextDirection,
@@ -27,13 +28,29 @@ import 'package:nimble_charts_common/common.dart' as common
 
 /// Flutter implementation for text measurement and painter.
 class TextElement implements common.TextElement {
-  TextElement(this.text, {common.TextStyle? style, this.textScaleFactor})
-      : _textStyle = style;
+  TextElement(
+    this.text, {
+    common.TextStyle? style,
+    this.textScaleFactor,
+    TextScaler? textScaler,
+  }) : textScaler =
+           textScaler ??
+           (textScaleFactor == null
+               ? TextScaler.noScaling
+               : TextScaler.linear(textScaleFactor)),
+       _textStyle = style;
   static const ellipsis = '\u{2026}';
 
   @override
   final String text;
 
+  /// The scaler used by the underlying Flutter text painter.
+  ///
+  /// When both constructor arguments are supplied, this modern scaler takes
+  /// precedence over the legacy [textScaleFactor] adapter.
+  final TextScaler textScaler;
+
+  /// Legacy linear text-scale input retained for source compatibility.
   final double? textScaleFactor;
 
   var _painterReady = false;
@@ -145,34 +162,33 @@ class TextElement implements common.TextElement {
             textStyle!.color!.b,
           );
 
-    _textPainter = TextPainter(
-      text: TextSpan(
-        text: text,
-        style: TextStyle(
-          color: color,
-          fontSize: textStyle?.fontSize?.toDouble(),
-          fontFamily: textStyle?.fontFamily,
-          height: textStyle?.lineHeight,
-        ),
-      ),
-    )
-      ..textDirection = TextDirection.ltr
-      // TODO Flip once textAlign works
-      ..textAlign = TextAlign.left
-      // ..textAlign = _textDirection == common.TextDirection.rtl ?
-      //     TextAlign.right : TextAlign.left
-      ..ellipsis = maxWidthStrategy == common.MaxWidthStrategy.ellipsize
-          ? ellipsis
-          : null;
-
-    if (textScaleFactor != null) {
-      _textPainter.textScaleFactor = textScaleFactor!;
-    }
+    _textPainter =
+        TextPainter(
+            text: TextSpan(
+              text: text,
+              style: TextStyle(
+                color: color,
+                fontSize: textStyle?.fontSize?.toDouble(),
+                fontFamily: textStyle?.fontFamily,
+                height: textStyle?.lineHeight,
+              ),
+            ),
+            textScaler: textScaler,
+          )
+          ..textDirection = TextDirection.ltr
+          // TODO Flip once textAlign works
+          ..textAlign = TextAlign.left
+          // ..textAlign = _textDirection == common.TextDirection.rtl ?
+          //     TextAlign.right : TextAlign.left
+          ..ellipsis = maxWidthStrategy == common.MaxWidthStrategy.ellipsize
+              ? ellipsis
+              : null;
 
     _textPainter.layout(maxWidth: maxWidth?.toDouble() ?? double.infinity);
 
-    final baseline =
-        _textPainter.computeDistanceToActualBaseline(TextBaseline.alphabetic);
+    final baseline = _textPainter.computeDistanceToActualBaseline(
+      TextBaseline.alphabetic,
+    );
 
     // Estimating the actual draw height to 70% of measures size.
     //

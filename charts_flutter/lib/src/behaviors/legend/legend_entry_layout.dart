@@ -67,11 +67,11 @@ class SimpleLegendEntryLayout implements LegendEntryLayout {
     // Get the SymbolRendererBuilder wrapping a common.SymbolRenderer if needed.
     final symbolRendererBuilder =
         legendEntry.symbolRenderer! is SymbolRendererBuilder
-            ? legendEntry.symbolRenderer! as SymbolRendererBuilder
-            : SymbolRendererCanvas(
-                legendEntry.symbolRenderer!,
-                legendEntry.dashPattern,
-              );
+        ? legendEntry.symbolRenderer! as SymbolRendererBuilder
+        : SymbolRendererCanvas(
+            legendEntry.symbolRenderer!,
+            legendEntry.dashPattern,
+          );
 
     return GestureDetector(
       onTapUp: makeTapUpCallback(context, legendEntry, legend),
@@ -115,11 +115,10 @@ class SimpleLegendEntryLayout implements LegendEntryLayout {
     common.LegendEntry legendEntry,
     TappableLegend legend,
     bool isHidden,
-  ) =>
-      GestureDetector(
-        onTapUp: makeTapUpCallback(context, legendEntry, legend),
-        child: Text(legendEntry.formattedValue!),
-      );
+  ) => GestureDetector(
+    onTapUp: makeTapUpCallback(context, legendEntry, legend),
+    child: Text(legendEntry.formattedValue!),
+  );
 
   @override
   Widget build(
@@ -163,10 +162,9 @@ class SimpleLegendEntryLayout implements LegendEntryLayout {
     BuildContext context,
     common.LegendEntry legendEntry,
     TappableLegend legend,
-  ) =>
-      (d) {
-        legend.onLegendEntryTapUp(legendEntry);
-      };
+  ) => (d) {
+    legend.onLegendEntryTapUp(legendEntry);
+  };
 
   @override
   bool operator ==(Object other) => other is SimpleLegendEntryLayout;
@@ -190,13 +188,14 @@ class SimpleLegendEntryLayout implements LegendEntryLayout {
     if (isHidden) {
       // Use a default color for hidden legend entries if none is provided.
       color ??= Theme.of(context).textTheme.bodyMedium!.color;
-      color = color!.withOpacity(0.26);
+      color = color!.withValues(alpha: 0.26);
     }
 
     return TextStyle(
       fontFamily: textStyle?.fontFamily,
-      fontSize:
-          textStyle?.fontSize != null ? textStyle!.fontSize!.toDouble() : null,
+      fontSize: textStyle?.fontSize != null
+          ? textStyle!.fontSize!.toDouble()
+          : null,
       color: color,
     );
   }

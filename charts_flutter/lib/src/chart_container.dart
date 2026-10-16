@@ -92,11 +92,15 @@ class ChartContainerRenderObject<D> extends RenderCustomPaint
   /// List of accessibility nodes.
   List<common.A11yNode>? _a11yNodes;
 
+  /// The Flutter view associated with the current chart context.
+  late ui.FlutterView _view;
+
   /// Reconfigures the chart container with new configuration.
   ///
   /// [config] The new configuration.
   /// [context] The build context.
   void reconfigure(ChartContainer<D> config, BuildContext context) {
+    _view = View.of(context);
     _chartState = config.chartState;
 
     _dateTimeFactory = (config.chartWidget is TimeSeriesChart)
@@ -111,8 +115,11 @@ class ChartContainerRenderObject<D> extends RenderCustomPaint
       common.Performance.timeEnd('chartsCreate');
     }
     common.Performance.time('chartsConfig');
-    config.chartWidget
-        .updateCommonChart(_chart!, config.oldChartWidget, _chartState);
+    config.chartWidget.updateCommonChart(
+      _chart!,
+      config.oldChartWidget,
+      _chartState,
+    );
 
     _rtlSpec = config.rtlSpec;
     _chartContainerIsRtl = config.rtl;
@@ -169,8 +176,9 @@ class ChartContainerRenderObject<D> extends RenderCustomPaint
     for (final type in newState.selectionModels.keys) {
       final model = _chart!.getSelectionModel(type);
 
-      final userModel =
-          newState.selectionModels[type]!.getModel(_chart!.currentSeriesList);
+      final userModel = newState.selectionModels[type]!.getModel(
+        _chart!.currentSeriesList,
+      );
 
       if (model != userModel) {
         model.updateSelection(
@@ -184,8 +192,10 @@ class ChartContainerRenderObject<D> extends RenderCustomPaint
   @override
   void performLayout() {
     common.Performance.time('chartsLayout');
-    _chart!
-        .measure(constraints.maxWidth.toInt(), constraints.maxHeight.toInt());
+    _chart!.measure(
+      constraints.maxWidth.toInt(),
+      constraints.maxHeight.toInt(),
+    );
     _chart!.layout(constraints.maxWidth.toInt(), constraints.maxHeight.toInt());
     common.Performance.timeEnd('chartsLayout');
     size = constraints.biggest;
@@ -193,9 +203,9 @@ class ChartContainerRenderObject<D> extends RenderCustomPaint
     // Check if the gestures registered in gesture registry matches what the
     // common chart is listening to.
     // TODO: Still need a test for this for sanity sake.
-//    assert(_desiredGestures
-//        .difference(_chart!.gestureProxy.listenedGestures)
-//        .isEmpty);
+    //    assert(_desiredGestures
+    //        .difference(_chart!.gestureProxy.listenedGestures)
+    //        .isEmpty);
   }
 
   @override
@@ -298,7 +308,8 @@ class ChartContainerRenderObject<D> extends RenderCustomPaint
     requestRebuild();
     if (announcement != null) {
       unawaited(
-        SemanticsService.announce(
+        SemanticsService.sendAnnouncement(
+          _view,
           announcement,
           toDartTextDirection(textDirection),
         ),
@@ -314,7 +325,8 @@ class ChartContainerRenderObject<D> extends RenderCustomPaint
     requestRebuild();
     if (announcement != null) {
       unawaited(
-        SemanticsService.announce(
+        SemanticsService.sendAnnouncement(
+          _view,
           announcement,
           toDartTextDirection(textDirection),
         ),

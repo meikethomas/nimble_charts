@@ -76,8 +76,8 @@ class StackedFillColorBarChart extends StatelessWidget {
         domainFn: (sales, _) => sales.year,
         measureFn: (sales, _) => sales.sales,
         data: desktopSalesData,
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-        fillColorFn: (_, __) =>
+        colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
+        fillColorFn: (_, _) =>
             charts.MaterialPalette.blue.shadeDefault.lighter,
       ),
       // Solid red bars. Fill color will default to the series color if no
@@ -87,7 +87,7 @@ class StackedFillColorBarChart extends StatelessWidget {
         domainFn: (sales, _) => sales.year,
         measureFn: (sales, _) => sales.sales,
         data: tableSalesData,
-        colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.red.shadeDefault,
       ),
       // Hollow green bars.
       charts.Series<OrdinalSales, String>(
@@ -95,8 +95,8 @@ class StackedFillColorBarChart extends StatelessWidget {
         domainFn: (sales, _) => sales.year,
         measureFn: (sales, _) => sales.sales,
         data: mobileSalesData,
-        colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
-        fillColorFn: (_, __) => charts.MaterialPalette.transparent,
+        colorFn: (_, _) => charts.MaterialPalette.green.shadeDefault,
+        fillColorFn: (_, _) => charts.MaterialPalette.transparent,
       ),
     ];
   }
@@ -143,8 +143,8 @@ class StackedFillColorBarChart extends StatelessWidget {
         domainFn: (sales, _) => sales.year,
         measureFn: (sales, _) => sales.sales,
         data: desktopSalesData,
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-        fillColorFn: (_, __) =>
+        colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
+        fillColorFn: (_, _) =>
             charts.MaterialPalette.blue.shadeDefault.lighter,
       ),
       // Solid red bars. Fill color will default to the series color if no
@@ -153,7 +153,7 @@ class StackedFillColorBarChart extends StatelessWidget {
         id: 'Tablet',
         measureFn: (sales, _) => sales.sales,
         data: tableSalesData,
-        colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.red.shadeDefault,
         domainFn: (sales, _) => sales.year,
       ),
       // Hollow green bars.
@@ -162,8 +162,8 @@ class StackedFillColorBarChart extends StatelessWidget {
         domainFn: (sales, _) => sales.year,
         measureFn: (sales, _) => sales.sales,
         data: mobileSalesData,
-        colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
-        fillColorFn: (_, __) => charts.MaterialPalette.transparent,
+        colorFn: (_, _) => charts.MaterialPalette.green.shadeDefault,
+        fillColorFn: (_, _) => charts.MaterialPalette.transparent,
       ),
     ];
   }

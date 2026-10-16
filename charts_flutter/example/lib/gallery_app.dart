@@ -24,7 +24,7 @@ class GalleryApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ValueListenableBuilder(
         valueListenable: appState,
-        builder: (_, currentState, __) => MaterialApp(
+        builder: (_, currentState, _) => MaterialApp(
           debugShowCheckedModeBanner: false,
           title: currentState.isOriginal
               ? 'Charts Gallery'

@@ -53,7 +53,7 @@ void main() {
   runApp(
     ValueListenableBuilder(
       valueListenable: appState,
-      builder: (_, themeMode, __) => const GalleryApp(),
+      builder: (_, themeMode, _) => const GalleryApp(),
     ),
   );
 }

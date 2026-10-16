@@ -54,7 +54,7 @@ class SimpleLineChart extends StatelessWidget {
     return [
       charts.Series<LinearSales, int>(
         id: 'Sales',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
         domainFn: (sales, _) => sales.year,
         measureFn: (sales, _) => sales.sales,
         data: data,
@@ -79,7 +79,7 @@ class SimpleLineChart extends StatelessWidget {
     return [
       charts.Series<LinearSales, int>(
         id: 'Sales',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
         domainFn: (sales, _) => sales.year,
         measureFn: (sales, _) => sales.sales,
         data: data,

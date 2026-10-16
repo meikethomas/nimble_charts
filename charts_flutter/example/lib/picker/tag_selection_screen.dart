@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:example/main.dart';
 import 'package:example/picker/data.dart';
 import 'package:example/picker/full_screen_sample.dart';
@@ -25,12 +27,12 @@ class _TagSelectionScreenState extends State<TagSelectionScreen> {
           actions: [
             IconButton(
               icon: const Icon(Icons.history),
-              onPressed: () async => _showOriginalSampleDialog(context),
+              onPressed: () => unawaited(_showOriginalSampleDialog(context)),
             ),
             IconButton(
               icon: ValueListenableBuilder(
                 valueListenable: appState,
-                builder: (_, appState, __) => Icon(
+                builder: (_, appState, _) => Icon(
                   appState.themeMode == ThemeMode.light
                       ? Icons.dark_mode
                       : Icons.light_mode,
@@ -50,10 +52,12 @@ class _TagSelectionScreenState extends State<TagSelectionScreen> {
             width: 350,
             height: 250,
             child: InkWell(
-              onTap: () async => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => FullScreenSample(item: item),
+              onTap: () => unawaited(
+                Navigator.push<void>(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FullScreenSample(item: item),
+                  ),
                 ),
               ),
               child: Card(
@@ -109,7 +113,7 @@ class _TagSelectionScreenState extends State<TagSelectionScreen> {
         ),
       );
 
-  Future<bool?> _showOriginalSampleDialog(BuildContext context) async =>
+  Future<bool?> _showOriginalSampleDialog(BuildContext context) =>
       showDialog<bool>(
         context: context,
         builder: (context) => AlertDialog(

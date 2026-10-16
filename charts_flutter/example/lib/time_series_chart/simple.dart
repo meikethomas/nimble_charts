@@ -58,7 +58,7 @@ class SimpleTimeSeriesChart extends StatelessWidget {
     return [
       charts.Series<TimeSeriesSales, DateTime>(
         id: 'Sales',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
         domainFn: (sales, _) => sales.time,
         measureFn: (sales, _) => sales.sales,
         data: data,
@@ -89,7 +89,7 @@ class SimpleTimeSeriesChart extends StatelessWidget {
     return [
       charts.Series<TimeSeriesSales, DateTime>(
         id: 'Sales',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
         domainFn: (sales, _) => sales.time,
         measureFn: (sales, _) => sales.sales,
         data: data,

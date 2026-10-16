@@ -11,18 +11,20 @@ typedef TagDefinition = ({
 });
 
 class TagItemSelector<T extends TaggedItem> extends StatefulWidget {
-  const TagItemSelector({
+  TagItemSelector({
     required this.selectedTags,
     required this.items,
-    required this.builder,
+    required Widget Function(BuildContext context, T item) builder,
     required this.allTags,
     super.key,
-  });
+  }) : _builder = ((context, item) => builder(context, item as T));
 
   final List<TagDefinition> allTags;
   final ValueNotifier<List<TagDefinition>> selectedTags;
   final List<T> Function(List<TagDefinition> selectedTags) items;
-  final Widget Function(BuildContext context, T item) builder;
+  final Widget Function(BuildContext context, Object item) _builder;
+
+  Widget buildItem(BuildContext context, T item) => _builder(context, item);
 
   @override
   State<StatefulWidget> createState() => _TagItemSelectorState<T>();
@@ -73,7 +75,7 @@ class _TagItemSelectorState<T extends TaggedItem>
           selectedTags: widget.selectedTags,
           builder: (context, item) => SizedBox(
             width: isPhoneScreen ? double.infinity : null,
-            child: widget.builder(context, item),
+            child: widget.buildItem(context, item),
           ),
         );
 

@@ -127,10 +127,26 @@ tested Common package from Flutter's SDK-pinned dependency closure.
 | Flutter dev tools | austerity 1.2 / build_runner 2.4 / mockito 5.0 / test 1.x | `^1.3.0` / `^2.15.1` / `^5.6.4` / `^1.31.0` | Later releases conflict with Flutter's `meta 1.18.0` or `test_api 0.7.11` pins. |
 | Example `cupertino_icons` | `^1.0.8` | `^2.0.0` | Current target-SDK asset package; no Gallery source imports the removed legacy package API. |
 
-Run dependency resolution and tests in each package directory. During local
-development before the branch exists remotely, use an uncommitted override for
-`nimble_charts_common`; published commits and consumer checks must use the Git
-dependency declared in `charts_flutter/pubspec.yaml`.
+Run dependency resolution and tests in each package directory. The public
+`charts_flutter` package continues to use the Git dependency declared in its
+`pubspec.yaml`. The executable Gallery is intentionally narrower: its own
+`pubspec.yaml` keeps `nimble_charts` and `nimble_charts_common` on local paths
+so that Gallery validation always exercises both packages from this checkout.
+This Example-only override does not change consumer resolution.
+
+### Flutter 3.44.9 Gallery hosts
+
+The Gallery under `charts_flutter/example` is the native development host for
+this branch. Android uses the Flutter plugin DSL with AGP 8.10.1, Gradle
+8.11.1, Kotlin 2.1.21, Java/Kotlin 17, and API levels 36/36/24. iOS uses one
+`FlutterSceneDelegate`/`Main` scene, `FlutterImplicitEngineDelegate`, and an
+iOS 15 deployment target. It has no plugin closure requiring CocoaPods, so no
+Podfile is added.
+
+The focused tests in `charts_flutter/example/test/upgrade` cover the modern
+and original Gallery flows plus real Android APK and unsigned iOS Simulator
+builds. Run them from the Example directory with the repository's pinned
+Flutter 3.44.9 SDK; the native tests resolve and verify that SDK themselves.
 
 ## What Has Changed?
 

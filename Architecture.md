@@ -8,8 +8,9 @@ This repository contains the two packages consumed by MyMicroBalance:
   contracts, selection state, and date/number formatting.
 - `charts_flutter` adapts those contracts to Flutter widgets, painters,
   semantics, gestures, and themes.
-- `charts_flutter/example` is the demo application and a development-only
-  dependency of `charts_flutter`; its native hosts are maintained separately.
+- `charts_flutter/example` is the executable Gallery application, owns the
+  modern tag picker and the original deterministic gallery, and maintains its
+  Android/iOS development hosts independently from consumer applications.
 
 The public package names are `nimble_charts_common` and `nimble_charts`.
 MyMicroBalance also imports `charts_flutter/lib/src/text_element.dart` and
@@ -22,7 +23,14 @@ as compatibility boundaries.
 flowchart LR
     App["Application chart widgets"] --> Flutter["nimble_charts"]
     Flutter --> Common["nimble_charts_common"]
-    Example["Example app"] -. "development path dependency" .-> Flutter
+    State["Gallery AppState"] --> Modern["TagSelectionScreen"]
+    State --> Original["Original gallery"]
+    Modern --> Sample["FullScreenSample"]
+    Sample --> Flutter
+    Original --> Flutter
+    Example["Example package resolution"] -. "local path dependency" .-> Flutter
+    Example -. "local path override" .-> Common
+    Hosts["Android and iOS Example hosts"] --> State
 
     Media["MediaQuery.textScalerOf"] --> Factory["GraphicsFactory"]
     Factory --> Element["TextElement"]
@@ -41,11 +49,24 @@ flowchart LR
   branch, and `charts_common` path. A package-local `pubspec_overrides.yaml`
   may point to `../charts_common` only while developing unpublished commits;
   overrides are never committed.
-- The example keeps its path dependency on `charts_flutter` so library tests
-  can compile the existing example-widget closure without requiring a native
-  Gallery build.
+- The example keeps its path dependency on `charts_flutter` and a scoped
+  `nimble_charts_common` path override. Its generated package configuration
+  must therefore resolve both packages to this checkout, never to a hosted or
+  Git-cache copy. This is an Example-only development boundary and does not
+  activate application-level overrides.
 - Package lockfiles are generated independently and verified offline with
   `--enforce-lockfile`.
+
+## Native host invariants
+
+- Android keeps Flutter's plugin DSL and SDK/NDK defaults while pinning AGP
+  8.10.1, Gradle 8.11.1, Kotlin 2.1.21, Java/Kotlin 17, and target SDK 36.
+  The namespace and application ID remain `com.example.example`.
+- iOS uses `FlutterImplicitEngineDelegate` for plugin registration and one
+  `FlutterSceneDelegate`/`Main` application scene. Multiple scenes are off,
+  and every Runner build configuration targets iOS 15.
+- The Gallery has no native plugin dependency, so its iOS host does not add a
+  Podfile or another package manager merely to build the Example.
 
 ## Compatibility invariants
 
@@ -67,6 +88,13 @@ flowchart LR
   protects English and German date labels around a month boundary.
 - `charts_flutter/test/widget_tests/chart_interactions_test.dart` retains the
   established tap-selection and golden checks.
+- `charts_flutter/example/test/upgrade/flutter_3449_example_test.dart` covers
+  local package roots, native pins, modern phone/tablet filtering, navigation,
+  theme changes, and representative deterministic original samples.
+- `charts_flutter/example/test/upgrade/native_build_test.dart` builds the real
+  Example hosts from the Example working directory, then checks the API-36
+  debug APK with `aapt` and the single-scene iOS-15 Simulator bundle with
+  `plutil`.
 - Analyze `lib` and `test` in both packages. New lint families from the current
   lint bundle remain warnings until the dedicated mechanical cleanup; compiler
   errors and external deprecated API uses are not accepted.

@@ -13,6 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Long chart API references stay intact for the copyable gallery snippet.
 // ignore_for_file: lines_longer_than_80_chars
 
 /// Example of axis using statically provided ticks.

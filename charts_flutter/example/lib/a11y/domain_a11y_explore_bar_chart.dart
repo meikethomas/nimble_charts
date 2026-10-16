@@ -83,14 +83,14 @@ class DomainA11yExploreBarChart extends StatelessWidget {
     return [
       charts.Series<OrdinalSales, String>(
         id: 'Mobile Sales',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
         domainFn: (sales, _) => sales.year,
         measureFn: (sales, _) => sales.sales,
         data: mobileData,
       ),
       charts.Series<OrdinalSales, String>(
         id: 'Tablet Sales',
-        colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.red.shadeDefault,
         domainFn: (sales, _) => sales.year,
         measureFn: (sales, _) => sales.sales,
         data: tabletData,
@@ -194,14 +194,14 @@ class DomainA11yExploreBarChart extends StatelessWidget {
     return [
       charts.Series<OrdinalSales, String>(
         id: 'Mobile Sales',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
         domainFn: (sales, _) => sales.year,
         measureFn: (sales, _) => sales.sales,
         data: mobileData,
       ),
       charts.Series<OrdinalSales, String>(
         id: 'Tablet Sales',
-        colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.red.shadeDefault,
         domainFn: (sales, _) => sales.year,
         measureFn: (sales, _) => sales.sales,
         data: tabletData,

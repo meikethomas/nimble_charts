@@ -13,6 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Long chart API references stay intact for the copyable gallery snippet.
 // ignore_for_file: lines_longer_than_80_chars
 
 /// Example of the chart behavior that centers the viewport on domain selection.
@@ -74,7 +75,7 @@ class SlidingViewportOnSelection extends StatelessWidget {
     return [
       charts.Series<OrdinalSales, String>(
         id: 'Sales',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
         domainFn: (sales, _) => sales.year,
         measureFn: (sales, _) => sales.sales,
         data: data,
@@ -128,7 +129,7 @@ class SlidingViewportOnSelection extends StatelessWidget {
     return [
       charts.Series<OrdinalSales, String>(
         id: 'Sales',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
         domainFn: (sales, _) => sales.year,
         measureFn: (sales, _) => sales.sales,
         data: data,

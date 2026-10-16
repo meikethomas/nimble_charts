@@ -72,21 +72,21 @@ class StackedAreaLineChart extends StatelessWidget {
     return [
       charts.Series<LinearSales, int>(
         id: 'Desktop',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
         domainFn: (sales, _) => sales.year,
         measureFn: (sales, _) => sales.sales,
         data: myFakeDesktopData,
       ),
       charts.Series<LinearSales, int>(
         id: 'Tablet',
-        colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.red.shadeDefault,
         domainFn: (sales, _) => sales.year,
         measureFn: (sales, _) => sales.sales,
         data: myFakeTabletData,
       ),
       charts.Series<LinearSales, int>(
         id: 'Mobile',
-        colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.green.shadeDefault,
         domainFn: (sales, _) => sales.year,
         measureFn: (sales, _) => sales.sales,
         data: myFakeMobileData,
@@ -129,21 +129,21 @@ class StackedAreaLineChart extends StatelessWidget {
     return [
       charts.Series<LinearSales, int>(
         id: 'Desktop',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
         domainFn: (sales, _) => sales.year,
         measureFn: (sales, _) => sales.sales,
         data: myFakeDesktopData,
       ),
       charts.Series<LinearSales, int>(
         id: 'Tablet',
-        colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.red.shadeDefault,
         domainFn: (sales, _) => sales.year,
         measureFn: (sales, _) => sales.sales,
         data: myFakeTabletData,
       ),
       charts.Series<LinearSales, int>(
         id: 'Mobile',
-        colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.green.shadeDefault,
         domainFn: (sales, _) => sales.year,
         measureFn: (sales, _) => sales.sales,
         data: myFakeMobileData,

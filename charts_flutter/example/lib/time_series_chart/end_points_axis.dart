@@ -13,6 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Long chart API references stay intact for the copyable gallery snippet.
 // ignore_for_file: lines_longer_than_80_chars
 
 /// Example of a time series chart with an end points domain axis.
@@ -63,7 +64,7 @@ class EndPointsAxisTimeSeriesChart extends StatelessWidget {
     return [
       charts.Series<TimeSeriesSales, DateTime>(
         id: 'Sales',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
         domainFn: (sales, _) => sales.time,
         measureFn: (sales, _) => sales.sales,
         data: data,
@@ -95,7 +96,7 @@ class EndPointsAxisTimeSeriesChart extends StatelessWidget {
     return [
       charts.Series<TimeSeriesSales, DateTime>(
         id: 'Sales',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
         domainFn: (sales, _) => sales.time,
         measureFn: (sales, _) => sales.sales,
         data: data,

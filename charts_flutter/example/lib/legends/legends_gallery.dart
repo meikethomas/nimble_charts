@@ -13,6 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Long gallery descriptions stay intact to preserve their copyable wording.
 // ignore_for_file: lines_longer_than_80_chars
 
 import 'package:example/gallery_scaffold.dart';

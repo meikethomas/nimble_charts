@@ -79,21 +79,21 @@ class DateTimeComboLinePointChart extends StatelessWidget {
     return [
       charts.Series<TimeSeriesSales, DateTime>(
         id: 'Desktop',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
         domainFn: (sales, _) => sales.time,
         measureFn: (sales, _) => sales.sales,
         data: desktopSalesData,
       ),
       charts.Series<TimeSeriesSales, DateTime>(
         id: 'Tablet',
-        colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.red.shadeDefault,
         domainFn: (sales, _) => sales.time,
         measureFn: (sales, _) => sales.sales,
         data: tableSalesData,
       ),
       charts.Series<TimeSeriesSales, DateTime>(
         id: 'Mobile',
-        colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.green.shadeDefault,
         domainFn: (sales, _) => sales.time,
         measureFn: (sales, _) => sales.sales,
         data: mobileSalesData,
@@ -153,21 +153,21 @@ class DateTimeComboLinePointChart extends StatelessWidget {
     return [
       charts.Series<TimeSeriesSales, DateTime>(
         id: 'Desktop',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
         domainFn: (sales, _) => sales.time,
         measureFn: (sales, _) => sales.sales,
         data: desktopSalesData,
       ),
       charts.Series<TimeSeriesSales, DateTime>(
         id: 'Tablet',
-        colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.red.shadeDefault,
         domainFn: (sales, _) => sales.time,
         measureFn: (sales, _) => sales.sales,
         data: tableSalesData,
       ),
       charts.Series<TimeSeriesSales, DateTime>(
         id: 'Mobile',
-        colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.green.shadeDefault,
         domainFn: (sales, _) => sales.time,
         measureFn: (sales, _) => sales.sales,
         data: mobileSalesData,

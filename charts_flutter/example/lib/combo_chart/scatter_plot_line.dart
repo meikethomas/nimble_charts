@@ -102,7 +102,7 @@ class ScatterPlotComboLineChart extends StatelessWidget {
       ),
       charts.Series<LinearSales, int>(
         id: 'Mobile',
-        colorFn: (_, __) => charts.MaterialPalette.purple.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.purple.shadeDefault,
         domainFn: (sales, _) => sales.year,
         measureFn: (sales, _) => sales.sales,
         data: myRegressionData,
@@ -185,7 +185,7 @@ class ScatterPlotComboLineChart extends StatelessWidget {
       ),
       charts.Series<LinearSales, int>(
         id: 'Mobile',
-        colorFn: (_, __) => charts.MaterialPalette.purple.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.purple.shadeDefault,
         domainFn: (sales, _) => sales.year,
         measureFn: (sales, _) => sales.sales,
         data: myRegressionData,

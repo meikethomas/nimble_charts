@@ -62,7 +62,7 @@ class TimeSeriesConfidenceInterval extends StatelessWidget {
     return [
       charts.Series<TimeSeriesSales, DateTime>(
         id: 'Sales',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
         domainFn: (sales, _) => sales.time,
         measureFn: (sales, _) => sales.sales,
         // When the measureLowerBoundFn and measureUpperBoundFn is defined,
@@ -97,7 +97,7 @@ class TimeSeriesConfidenceInterval extends StatelessWidget {
     return [
       charts.Series<TimeSeriesSales, DateTime>(
         id: 'Sales',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        colorFn: (_, _) => charts.MaterialPalette.blue.shadeDefault,
         domainFn: (sales, _) => sales.time,
         measureFn: (sales, _) => sales.sales,
         // When the measureLowerBoundFn and measureUpperBoundFn is defined,

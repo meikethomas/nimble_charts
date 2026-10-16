@@ -1,19 +1,22 @@
+import 'dart:async';
+
 import 'package:example/picker/tag_item_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class AnimatedItemGrid<T> extends StatefulWidget {
-  const AnimatedItemGrid({
+  AnimatedItemGrid({
     required this.items,
     required this.selectedTags,
-    required this.builder,
+    required Widget Function(BuildContext context, T item) builder,
     super.key,
-  });
+  }) : _builder = ((context, item) => builder(context, item as T));
 
   final List<T> items;
-  //ignore: unreachable_from_main
   final ValueNotifier<List<TagDefinition>> selectedTags;
-  final Widget Function(BuildContext context, T item) builder;
+  final Widget Function(BuildContext context, Object? item) _builder;
+
+  Widget buildItem(BuildContext context, T item) => _builder(context, item);
 
   @override
   State<AnimatedItemGrid<T>> createState() => _AnimatedItemGridState();
@@ -30,16 +33,15 @@ class _AnimatedItemGridState<T> extends State<AnimatedItemGrid<T>>
       vsync: this,
       duration: const Duration(milliseconds: 200),
     );
-    _controller.forward();
+    unawaited(_controller.forward());
   }
 
   @override
   void didUpdateWidget(AnimatedItemGrid<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (!_areItemListsEqual(widget.items, oldWidget.items)) {
-      _controller
-        ..reset()
-        ..forward();
+      _controller.reset();
+      unawaited(_controller.forward());
     }
   }
 
@@ -78,7 +80,7 @@ class _AnimatedItemGridState<T> extends State<AnimatedItemGrid<T>>
             ),
             children: widget.items
                 .map(
-                  (item) => widget.builder(context, item),
+                  (item) => widget.buildItem(context, item),
                 )
                 .toList(),
           ),

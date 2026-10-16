@@ -152,13 +152,11 @@ packages:
     source: path
     version: "0.5.0-beta"
   nimble_charts_common:
-    dependency: transitive
+    dependency: "direct main"
     description:
-      path: charts_common
-      ref: "upgrade/flutter-3.44.9"
-      resolved-ref: "5296d8e8aa3990f274c27bf9792e00be6ec22ecc"
-      url: "https://github.com/meikethomas/nimble_charts.git"
-    source: git
+      path: "../../charts_common"
+      relative: true
+    source: path
     version: "0.5.0-beta"
   path:
     dependency: transitive
